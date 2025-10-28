@@ -15,12 +15,35 @@ import MeetingCalendar from './components/dashboard/meetings/MeetingCalendar';
 import Header from './components/Header';
 import ShiftManagement from './components/attendence/ShiftManagement';
 import { OvertimeHours } from './components/attendence/OvertimeHours';
-import { HolidayManagement } from './components/attendence/HolidayManagement';
+import HolidayManagement from './components/attendence/HolidayManagement';
 import { PunchRecords } from './components/attendence/PunchRecords';
 import { PolicyRules } from './components/attendence/PolicyRules';
 import { LeaveTracking } from './components/attendence/LeaveTracking';
 import { EmployeeAttendanceProfile } from './components/attendence/EmployeeAttendanceProfile';
 import { AttendanceCalendar } from './components/attendence/AttendanceCalendar';
+import { EmployeeDirectory } from './components/employees/EmployeeDirectory';
+import { EmployeeDetails } from './components/employees/EmployeeDetails';
+import { AddEmployee } from './components/employees/AddEmployee';
+import { EmployeeProfile } from './components/employees/EmployeeProfile';
+import { OnboardingChecklist } from './components/employees/OnboardingChecklist';
+import { OnboardingDashboard } from './components/employees/OnboardingDashboard';
+import { OnboardingNew } from './components/employees/OnboardingNew';
+import { OffboardingChecklist } from './components/employees/OffboardingChecklist';
+import { ExitProcess } from './components/employees/ExitProcess';
+import { OffboardingDashboard } from './components/employees/OffboardingDashboard';
+import { TaskDashboard } from './components/task/TaskDashboard';
+import { TaskProjects } from './components/task/TaskProjects';
+import { TaskKanban } from './components/task/TaskKanban';
+import { AddNewTask } from './components/task/AddNewTask';
+import { SubtasksManagement } from './components/task/SubtasksManagement';
+import { TaskDependencies } from './components/task/TaskDependencies';
+import { TaskAssignment } from './components/task/TaskAssignment';
+import { TaskTimeline } from './components/task/TaskTimeline';
+import { TaskDetails } from './components/task/TaskDetails';
+import { JobOpeningsList } from './components/recruitment/JobOpeningsList';
+import { ApplicantsList } from './components/recruitment/ApplicantsList';
+import { InterviewsList } from './components/recruitment/InterviewsList';
+import { InterviewCalendar } from './components/recruitment/InterviewCalendar';
 
 function MeetingsLayout({ children }) {
   const navigate = useNavigate();
@@ -119,11 +142,30 @@ function App() {
             <Route path="/attendance/calendar" element={<AttendanceCalendar/>}/>
             <Route path="/leave" element={<Leave />} />
             <Route path="/payroll" element={<Payroll />} />
+            <Route path="/employee-details" element={<EmployeeDetails />} />
+            <Route path="/new-employee" element={<AddEmployee />} />
+            <Route path="/employee-directory" element={<EmployeeDirectory />} />
+            <Route path="/employee-profile" element={<EmployeeProfile />} />
+            <Route path="/onboarding-checklist" element={<OnboardingChecklist />} />
+            <Route path="/employees/onboarding" element={<OnboardingDashboard />} />
+            <Route path="/task-projects" element={<TaskProjects />} />
+            <Route path="/task-kanban" element={<TaskKanban />} />
+            <Route path="/task-dashboard" element={<TaskDashboard />} />
+            <Route path="/task-dependencies" element={<TaskDependencies />} />
+            <Route path="/employees/onboarding/new" element={<OnboardingNew />} />
+            <Route path="/subtasks-management" element={<SubtasksManagement />} />
+            <Route path="/task-assignment" element={<TaskAssignment />} />
+            <Route path="/task-timeline" element={<TaskTimeline />} />
+            <Route path="/task-details" element={<TaskDetails />} />
             <Route path="/meetings" element={
               <MeetingsLayout>
                 <AllMeetings />
               </MeetingsLayout>
             } />
+            <Route path="/offboarding-checklist" element={<OffboardingChecklist />} />
+            <Route path="/new-task" element={<AddNewTask />} />
+            <Route path="/exit-process" element={<ExitProcess />} />
+            <Route path="/offboarding-dashboard" element={<OffboardingDashboard />} />
             <Route path="/meetings/new" element={
               <MeetingsLayout>
                 <NewMeeting />
@@ -154,6 +196,10 @@ function App() {
                 <MeetingCalendar />
               </MeetingsLayout>
             } />
+            <Route path="/job-openings" element={<JobOpeningsList />} />
+            <Route path="/applicants-list" element={<ApplicantsList />} />
+            <Route path="/interviews" element={<InterviewsList />} />
+            <Route path="/interview-calendar" element={<InterviewCalendar />} />
           </Routes>
         </main>
       </div>

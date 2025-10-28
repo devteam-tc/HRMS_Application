@@ -24,18 +24,28 @@ import {
   Kanban,
   Plus,
   CheckCircle,
-  GitBranch
+  GitBranch,
+  UserCheck,
+  UserX
 } from 'lucide-react';
 
 export const menuItems = [
+  
   {
     id: 'employees',
     label: 'Employees',
     icon: Users,
     items: [
-      { label: 'Employee Details', path: '/employees' },
-      { label: 'On Boarding', path: '/employees/onboarding' },
-      { label: 'Off Boarding', path: '/employees/offboarding' }
+      { id: 'employee-directory', label: 'Employee Directory', icon: LayoutDashboard , path: '/employee-directory' },
+      { id: 'employee-details', label: 'Employee Details', icon: FileText , path: '/employee-details' },
+      { id: 'add-employee', label: 'Add New Employee', icon: UserPlus , path: '/new-employee' },
+      { id: 'employee-profile', label: 'Employee Profile', icon: User , path: '/employee-profile' },
+      { id: 'onboarding-dashboard', label: 'Onboarding Dashboard', icon: LayoutDashboard , path: '/employees/onboarding' },
+      { id: 'onboarding-new', label: 'New Employee Onboarding', icon: UserCheck , path: '/employees/onboarding/new' },
+      { id: 'onboarding-checklist', label: 'Onboarding Checklist', icon: CheckSquare , path: '/onboarding-checklist' },
+      { id: 'offboarding-dashboard', label: 'Offboarding Dashboard', icon: LayoutDashboard , path: '/offboarding-dashboard' },
+      { id: 'exit-process', label: 'Exit Process', icon: UserX , path: '/exit-process' },
+      { id: 'offboarding-checklist', label: 'Offboarding Checklist', icon: CheckSquare , path: '/offboarding-checklist' }
     ]
   },
   {
@@ -59,10 +69,10 @@ export const menuItems = [
     label: 'Recruitment',
     icon: UserPlus,
     items: [
-      { label: 'Job Openings', path: '/recruitment/jobs' },
-      { label: 'Applicants', path: '/recruitment/applicants' },
-      { label: 'Interviews', path: '/recruitment/interviews' },
-      { label: 'Interview Calendar', path: '/recruitment/calendar' }
+      { label: 'Job Openings', path: '/job-openings' },
+      { label: 'Applicants', path: '/applicants-list' },
+      { label: 'Interviews', path: '/interviews' },
+      { label: 'Interview Calendar', path: '/interview-calendar' }
     ]
   },
   {
@@ -94,16 +104,15 @@ export const menuItems = [
     label: 'Tasks',
     icon: CheckSquare,
     items: [
-      { label: 'Task Dashboard', icon: LayoutDashboard  , path: '/tasks/dashboard' },
-      { label: 'Projects (Development)', icon: FolderOpen  , path: '/tasks/projects' },
-      { label: 'Task Status (Kanban)', icon: Kanban  , path: '/tasks/kanban' },
-      { label: 'Add New Task', icon: Plus  , path: '/tasks/add' },
-      { label: 'Task Details', icon: FileText  , path: '/tasks/details' },
-      { label: 'Subtasks', icon: CheckCircle  , path: '/tasks/subtasks' },
-      { label: 'Dependencies', icon: GitBranch  , path: '/tasks/dependencies' },
-      { label: 'Team Assignment', icon: Users  , path: '/tasks/assignment' },
-      { label: 'Timeline (Gantt)', icon: CalendarDays  , path: '/tasks/timeline' },
-      { label: 'Analytics & Reports', icon: BarChart3  , path: '/tasks/analytics' }
+      { label: 'Task Dashboard', icon: LayoutDashboard  , path: '/task-dashboard' },
+      { label: 'Projects (Development)', icon: FolderOpen  , path: '/task-projects' },
+      { label: 'Task Status (Kanban)', icon: Kanban  , path: '/task-kanban' },
+      { label: 'Add New Task', icon: Plus  , path: '/new-task' },
+      { label: 'Task Details', icon: FileText  , path: '/task-details' },
+      { label: 'Subtasks', icon: CheckCircle  , path: '/subtasks-management' },
+      { label: 'Dependencies', icon: GitBranch  , path: '/task-dependencies' },
+      { label: 'Team Assignment', icon: Users  , path: '/task-assignment' },
+      { label: 'Timeline (Gantt)', icon: CalendarDays  , path: '/task-timeline' },
     ]
   },
 ];

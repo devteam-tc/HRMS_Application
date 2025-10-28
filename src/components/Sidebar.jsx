@@ -39,9 +39,9 @@ export function Sidebar({ collapsed, onToggle }) {
       }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200">
+      <div className="neu-card p-4 flex items-center justify-between p-4 border-b border-gray-200">
         {!collapsed && (
-          <div className="flex items-center space-x-2">
+          <div className=" flex items-center space-x-2">
             <img 
               src="/src/assets/logo.webp" 
               alt="HRMS Logo" 
@@ -68,11 +68,11 @@ export function Sidebar({ collapsed, onToggle }) {
           const isExpanded = expandedSections.includes(section.id);
           
           return (
-            <div key={section.id} className="mb-2">
+            <div key={section.id} className="mb-2 space-y-1">
               <button
                 onClick={() => !collapsed && toggleSection(section.id)}
                 className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 hover:bg-gray-50 ${
-                  collapsed ? 'justify-center' : ''
+                  collapsed ? 'neu-primary text-white justify-center' : 'neu-button text-[#333333] hover:text-[#05A7CC]'
                 }`}
                 style={{
                   boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.08), -2px -2px 4px rgba(255, 255, 255, 0.8)',
