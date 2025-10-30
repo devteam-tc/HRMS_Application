@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/sidebar/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Employees from './pages/Employees';
 import Attendance from './components/attendence/Attendance';
@@ -12,7 +12,7 @@ import MeetingConfirmation from './components/dashboard/meetings/MeetingConfirma
 import MeetingDetails from './components/dashboard/meetings/MeetingDetails';
 import EditMeeting from './components/dashboard/meetings/EditMeeting';
 import MeetingCalendar from './components/dashboard/meetings/MeetingCalendar';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import ShiftManagement from './components/attendence/ShiftManagement';
 import { OvertimeHours } from './components/attendence/OvertimeHours';
 import HolidayManagement from './components/attendence/HolidayManagement';
@@ -97,6 +97,12 @@ function App() {
     };
   }, [isMobileSidebarOpen]);
 
+  const [activeModule, setActiveModule] = useState('dashboard');
+
+  const handleModuleChange = (moduleId) => {
+    setActiveModule(moduleId);
+  };
+
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
       {/* Mobile overlay */}
@@ -110,7 +116,9 @@ function App() {
       }`}>
         <Sidebar 
           collapsed={!sidebarOpen} 
-          onToggle={toggleSidebar} 
+          onToggle={toggleSidebar}
+          activeModule={activeModule}
+          onModuleChange={handleModuleChange}
         />
       </div>
       
@@ -118,7 +126,7 @@ function App() {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header - sticky */}
         <div className="sticky top-0 z-10">
-          <Header 
+          <Header
             toggleSidebar={toggleSidebar} 
             onToggleMobileSidebar={toggleMobileSidebar}
             darkMode={false} // Add this if you're implementing dark mode
@@ -132,26 +140,33 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/attendance" element={<Attendance />} />
-            <Route path="/attendance/shifts" element={<ShiftManagement/>} />
-            <Route path="/attendance/overtime" element={<OvertimeHours/>} />
-            <Route path="/attendance/holidays" element={<HolidayManagement/>} />
-            <Route path="/attendance/punch" element={<PunchRecords/>} />
-            <Route path="/attendance/policy" element={<PolicyRules/>} />
-            <Route path="/attendance/leave" element={<LeaveTracking/>} />
-            <Route path="/attendance/employee-profile" element={<EmployeeAttendanceProfile />}/>
-            <Route path="/attendance/calendar" element={<AttendanceCalendar/>}/>
-            <Route path="/leave" element={<Leave />} />
+            <Route path="/shift-management" element={<ShiftManagement/>} />
+            <Route path="/overtime-hours" element={<OvertimeHours/>} />
+            <Route path="/holiday-management" element={<HolidayManagement/>} />
+            <Route path="/punch-records" element={<PunchRecords/>} />
+            <Route path="/policy-rules" element={<PolicyRules/>} />
+            <Route path="/leave-tracking" element={<LeaveTracking/>} />
+            <Route path="/employee-attendance-profile" element={<EmployeeAttendanceProfile />}/>
+            <Route path="/attendance-calendar" element={<AttendanceCalendar/>}/>
+            <Route path="/leave" element={<Leave />} /> 
             <Route path="/payroll" element={<Payroll />} />
             <Route path="/employee-details" element={<EmployeeDetails />} />
             <Route path="/new-employee" element={<AddEmployee />} />
             <Route path="/employee-directory" element={<EmployeeDirectory />} />
             <Route path="/employee-profile" element={<EmployeeProfile />} />
             <Route path="/onboarding-checklist" element={<OnboardingChecklist />} />
-            <Route path="/employees/onboarding" element={<OnboardingDashboard />} />
+            <Route path="/onboarding-dashboard" element={<OnboardingDashboard />} />
+            
+            {/* Task Management Routes */}
+            <Route path="/task-dashboard" element={<TaskDashboard />} />
             <Route path="/task-projects" element={<TaskProjects />} />
             <Route path="/task-kanban" element={<TaskKanban />} />
-            <Route path="/task-dashboard" element={<TaskDashboard />} />
+            <Route path="/new-task" element={<AddNewTask />} />
+            <Route path="/task-details" element={<TaskDetails />} />
+            <Route path="/subtasks-management" element={<SubtasksManagement />} />
             <Route path="/task-dependencies" element={<TaskDependencies />} />
+            <Route path="/task-assignment" element={<TaskAssignment />} />
+            <Route path="/task-timeline" element={<TaskTimeline />} />
             <Route path="/employees/onboarding/new" element={<OnboardingNew />} />
             <Route path="/subtasks-management" element={<SubtasksManagement />} />
             <Route path="/task-assignment" element={<TaskAssignment />} />

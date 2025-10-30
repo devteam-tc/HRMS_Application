@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Users, Search, Filter, Plus, Edit3, BarChart3, Clock, Target, Zap, User } from 'lucide-react';
 
-export const TaskAssignment = ({ onNavigate }) => {
+export const TaskAssignment = () => {
+  const navigate = useNavigate();
   const [selectedMember, setSelectedMember] = useState(null);
   const [draggedTask, setDraggedTask] = useState(null);
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'workload'
@@ -416,7 +418,7 @@ export const TaskAssignment = ({ onNavigate }) => {
               </button>
             </div>
             <button 
-              onClick={() => onNavigate('task-analytics')}
+              onClick={() => navigate('/task')}
               className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#EF5226] transition-colors"
             >
               <BarChart3 size={16} className="mr-2" />
@@ -545,7 +547,7 @@ export const TaskAssignment = ({ onNavigate }) => {
               ))}
             </div>
             <button 
-              onClick={() => onNavigate('add-new-task')}
+              onClick={() => navigate('/task')}
               className="w-full mt-4 neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#EF5226] transition-colors"
             >
               <Plus size={16} className="mr-2" />

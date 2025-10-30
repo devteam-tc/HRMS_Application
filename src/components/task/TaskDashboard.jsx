@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CheckSquare, Clock, AlertCircle, TrendingUp, Users, Folder, Target, Calendar, ArrowUp, ArrowDown, BarChart3, Filter } from 'lucide-react';
 
-export const TaskDashboard = ({ onNavigate }) => {
+export const TaskDashboard = () => {
+  const navigate = useNavigate();
   const [dateFilter, setDateFilter] = useState('this-month');
 
   const kpiData = [
@@ -157,7 +159,7 @@ export const TaskDashboard = ({ onNavigate }) => {
               View All Projects
             </button>
             <button 
-              onClick={() => onNavigate('add-new-task')}
+              onClick={() => navigate('/new-task')}
               className="neu-primary px-6 py-3 rounded-xl hover:shadow-xl transition-all"
             >
               Create New Task

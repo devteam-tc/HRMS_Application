@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Filter, Plus, Eye, Edit3, Users, Calendar, Target, MoreHorizontal, GitBranch, Clock, CheckCircle, AlertTriangle } from 'lucide-react';
 
-export const TaskProjects = ({ onNavigate }) => {
+export const TaskProjects = () => {
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState('list'); // 'list' or 'grid'
   const [statusFilter, setStatusFilter] = useState('active');
   const [searchTerm, setSearchTerm] = useState('');
@@ -203,7 +205,7 @@ export const TaskProjects = ({ onNavigate }) => {
             </div>
             <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <button 
-                onClick={() => onNavigate('task-details', { projectId: project.id })}
+                onClick={() => navigate(`/task-kanban?projectId=${project.id}`)}
                 className="neu-small p-2 rounded-lg hover:text-[#EF5226] transition-colors"
               >
                 <Eye size={16} />
@@ -445,7 +447,7 @@ export const TaskProjects = ({ onNavigate }) => {
               More Filters
             </button>
             <button 
-              onClick={() => onNavigate('add-new-task')}
+              onClick={() => navigate('/new-project')}
               className="neu-primary px-6 py-3 rounded-xl flex items-center hover:shadow-xl transition-all"
             >
               <Plus size={16} className="mr-2" />

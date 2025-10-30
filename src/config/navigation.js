@@ -36,16 +36,16 @@ export const menuItems = [
     label: 'Employees',
     icon: Users,
     items: [
-      { id: 'employee-directory', label: 'Employee Directory', icon: LayoutDashboard , path: '/employee-directory' },
+            { id: 'employee-profile', label: 'Employee Profile', icon: User , path: '/employee-profile' },
+      // { id: 'employee-directory', label: 'Employee Directory', icon: LayoutDashboard , path: '/employee-directory' },
       { id: 'employee-details', label: 'Employee Details', icon: FileText , path: '/employee-details' },
-      { id: 'add-employee', label: 'Add New Employee', icon: UserPlus , path: '/new-employee' },
-      { id: 'employee-profile', label: 'Employee Profile', icon: User , path: '/employee-profile' },
+      // { id: 'add-employee', label: 'Add New Employee', icon: UserPlus , path: '/new-employee' },
       { id: 'onboarding-dashboard', label: 'Onboarding Dashboard', icon: LayoutDashboard , path: '/employees/onboarding' },
-      { id: 'onboarding-new', label: 'New Employee Onboarding', icon: UserCheck , path: '/employees/onboarding/new' },
+      // { id: 'onboarding-new', label: 'New Employee Onboarding', icon: UserCheck , path: '/employees/onboarding/new' },
       { id: 'onboarding-checklist', label: 'Onboarding Checklist', icon: CheckSquare , path: '/onboarding-checklist' },
-      { id: 'offboarding-dashboard', label: 'Offboarding Dashboard', icon: LayoutDashboard , path: '/offboarding-dashboard' },
-      { id: 'exit-process', label: 'Exit Process', icon: UserX , path: '/exit-process' },
-      { id: 'offboarding-checklist', label: 'Offboarding Checklist', icon: CheckSquare , path: '/offboarding-checklist' }
+      { id: 'offboarding-dashboard', label: 'Admin Dashboard', icon: LayoutDashboard , path: '/offboarding-dashboard' },
+      // { id: 'exit-process', label: 'Exit Process', icon: UserX , path: '/exit-process' },
+      // { id: 'offboarding-checklist', label: 'Offboarding Checklist', icon: CheckSquare , path: '/offboarding-checklist' }
     ]
   },
   {

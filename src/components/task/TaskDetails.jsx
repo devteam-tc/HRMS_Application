@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Edit, Trash2, Calendar, Flag, Users, MessageSquare, Paperclip, Plus, CheckCircle, Clock, Send, Download } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
@@ -79,10 +80,11 @@ const taskData = {
   ]
 };
 
-export const TaskDetails = ({ taskId, onNavigate }) => {
+export const TaskDetails = ({ task: initialTask }) => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [newComment, setNewComment] = useState('');
-  const [task, setTask] = useState(taskData);
+  const [task, setTask] = useState(initialTask || taskData);
 
   const getPriorityColor = (priority) => {
     switch (priority) {
@@ -166,7 +168,7 @@ export const TaskDetails = ({ taskId, onNavigate }) => {
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-4 flex-1">
             <button 
-              onClick={() => onNavigate('project-task-list')}
+              onClick={() => navigate('/project-task-list')}
               className="neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -193,7 +195,7 @@ export const TaskDetails = ({ taskId, onNavigate }) => {
           
           <div className="flex items-center space-x-3">
             <button 
-              onClick={() => onNavigate('edit-task', taskId)}
+              onClick={() => navigate(`/edit-task/${task.id}`)}
               className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#05A7CC] hover:text-[#048ba8] transition-colors"
             >
               <Edit className="w-5 h-5" />

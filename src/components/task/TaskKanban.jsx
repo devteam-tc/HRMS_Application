@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Filter, Plus, User, Calendar, Flag, Paperclip, MessageCircle, Eye, MoreHorizontal } from 'lucide-react';
 
-export const TaskKanban = ({ onNavigate }) => {
+export const TaskKanban = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProject, setSelectedProject] = useState('all');
   const [draggedTask, setDraggedTask] = useState(null);
@@ -326,7 +328,7 @@ export const TaskKanban = ({ onNavigate }) => {
               More Filters
             </button>
             <button 
-              onClick={() => onNavigate('add-new-task')}
+              onClick={() => navigate('/new-task')}
               className="neu-primary px-6 py-3 rounded-xl flex items-center hover:shadow-xl transition-all"
             >
               <Plus size={16} className="mr-2" />

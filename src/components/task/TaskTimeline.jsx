@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Calendar, ZoomIn, ZoomOut, Filter, Eye, ChevronLeft, ChevronRight, Download, Settings } from 'lucide-react';
 
-export const TaskTimeline = ({ onNavigate }) => {
+export const TaskTimeline = () => {
+  const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState(new Date(2024, 2, 1)); // March 2024
   const [zoomLevel, setZoomLevel] = useState('weeks'); // 'days', 'weeks', 'months'
   const [selectedProject, setSelectedProject] = useState('all');
@@ -236,7 +238,7 @@ export const TaskTimeline = ({ onNavigate }) => {
             backgroundColor: statusColor,
             borderLeftColor: priorityBorder
           }}
-          onClick={() => onNavigate('task-details', { taskId: task.id })}
+          onClick={() => navigate(`/task/${task.id}`)}
         >
           {/* Progress overlay */}
           <div
