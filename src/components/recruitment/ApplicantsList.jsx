@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Filter, User, MapPin, Calendar, FileText, Eye, Download, Star, ArrowRight, MoreVertical, Mail, Phone } from 'lucide-react';
 
-export const ApplicantsList = ({ jobId, onNavigate }) => {
+export const ApplicantsList = ({ jobId }) => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRole, setFilterRole] = useState('all');
   const [filterStage, setFilterStage] = useState('all');
@@ -168,7 +170,7 @@ export const ApplicantsList = ({ jobId, onNavigate }) => {
   });
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -177,8 +179,8 @@ export const ApplicantsList = ({ jobId, onNavigate }) => {
         </div>
         <div className="flex items-center space-x-3">
           <button 
-            onClick={() => onNavigate('applicant-progress', {})}
-            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+            onClick={() => navigate('/applicant-progress')}
+            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
           >
             Progress Tracker
           </button>
@@ -274,7 +276,7 @@ export const ApplicantsList = ({ jobId, onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{applicants.length}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <User size={24} className="text-[#EF5226]" />
+              <User size={24} className="text-[#CA2030]" />
             </div>
           </div>
         </div>
@@ -286,7 +288,7 @@ export const ApplicantsList = ({ jobId, onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{applicants.filter(a => a.status === 'Under Review').length}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <FileText size={24} className="text-[#05A7CC]" />
+              <FileText size={24} className="text-[#2C318E]" />
             </div>
           </div>
         </div>
@@ -298,7 +300,7 @@ export const ApplicantsList = ({ jobId, onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{applicants.filter(a => a.status === 'Shortlisted').length}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Star size={24} className="text-[#EF5226]" />
+              <Star size={24} className="text-[#CA2030]" />
             </div>
           </div>
         </div>
@@ -310,7 +312,7 @@ export const ApplicantsList = ({ jobId, onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{applicants.filter(a => a.stage === 'Interview').length}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Calendar size={24} className="text-[#05A7CC]" />
+              <Calendar size={24} className="text-[#2C318E]" />
             </div>
           </div>
         </div>
@@ -332,7 +334,7 @@ export const ApplicantsList = ({ jobId, onNavigate }) => {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-xl font-bold text-[#333333] mb-1">{applicant.name}</h3>
-                      <p className="text-[#EF5226] font-medium mb-2">{applicant.appliedFor}</p>
+                      <p className="text-[#CA2030] font-medium mb-2">{applicant.appliedFor}</p>
                       <div className="flex items-center space-x-4 text-sm text-[#666666] mb-3">
                         <div className="flex items-center">
                           <MapPin size={14} className="mr-1" />
@@ -424,7 +426,7 @@ export const ApplicantsList = ({ jobId, onNavigate }) => {
                   className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                   title="View Details"
                 >
-                  <Eye size={20} className="text-[#05A7CC]" />
+                  <Eye size={20} className="text-[#2C318E]" />
                 </button>
                 
                 <button
@@ -432,7 +434,7 @@ export const ApplicantsList = ({ jobId, onNavigate }) => {
                   className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                   title="View Resume"
                 >
-                  <FileText size={20} className="text-[#EF5226]" />
+                  <FileText size={20} className="text-[#CA2030]" />
                 </button>
 
                 <button

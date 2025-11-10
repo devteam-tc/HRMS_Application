@@ -3,8 +3,8 @@ import React from 'react';
 const CalendarLegend = () => {
   const statuses = [
     { color: '#4CAF50', label: 'Completed' },
-    { color: '#05A7CC', label: 'Scheduled' },
-    { color: '#EF5226', label: 'Cancelled' },
+    { color: '#2C318E', label: 'Scheduled' },
+    { color: '#CA2030', label: 'Cancelled' },
     { color: '#FFC107', label: 'Pending' }
   ];
 

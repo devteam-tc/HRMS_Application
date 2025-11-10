@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { navigationItems } from './components/sidebar/navigationData';
 import Sidebar from './components/sidebar/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Employees from './pages/Employees';
@@ -7,7 +8,7 @@ import Attendance from './components/attendence/Attendance';
 import Leave from './pages/Leave';
 import Payroll from './pages/Payroll';
 import AllMeetings from './components/dashboard/meetings/Meetings';
-import NewMeeting from './components/dashboard/meetings/new-meeting';
+import NewMeeting from './components/dashboard/meetings/NewMeeting';
 import MeetingConfirmation from './components/dashboard/meetings/MeetingConfirmation';
 import MeetingDetails from './components/dashboard/meetings/MeetingDetails';
 import EditMeeting from './components/dashboard/meetings/EditMeeting';
@@ -22,7 +23,7 @@ import { LeaveTracking } from './components/attendence/LeaveTracking';
 import { EmployeeAttendanceProfile } from './components/attendence/EmployeeAttendanceProfile';
 import { AttendanceCalendar } from './components/attendence/AttendanceCalendar';
 import { EmployeeDirectory } from './components/employees/EmployeeDirectory';
-import { EmployeeDetails } from './components/employees/EmployeeDetails';
+import { EditProfile } from './components/employees/EditProfile';
 import { AddEmployee } from './components/employees/AddEmployee';
 import { EmployeeProfile } from './components/employees/EmployeeProfile';
 import { OnboardingChecklist } from './components/employees/OnboardingChecklist';
@@ -44,24 +45,60 @@ import { JobOpeningsList } from './components/recruitment/JobOpeningsList';
 import { ApplicantsList } from './components/recruitment/ApplicantsList';
 import { InterviewsList } from './components/recruitment/InterviewsList';
 import { InterviewCalendar } from './components/recruitment/InterviewCalendar';
-
+import { AllProjects } from './components/vslm/AllProjects';
+import { UploadedImages } from './components/vslm/UploadedImages';
+import { ProjectTimeline } from './components/vslm/ProjectTimeline';
+import { SiteVisitLog } from './components/vslm/SiteVisitLog';
+import { VSLMAnalytics } from './components/vslm/VSLMAnalytics';
+import { ProjectReports } from './components/vslm/ProjectReports';
+import Footer from './components/footer/Footer';
+import { MeetingAttachments } from './components/dashboard/meetings/MeetingAttachments';
+import { MeetingReports } from './components/dashboard/meetings/MeetingReports';
+import { PunchInOut } from './components/attendence/PunchInOut';
+import { NeumorphicDashboard as AdminDashboard } from './components/dashboard/AdminDashboard';
+import { AddNewEmployee } from './components/employees/AddNewEmployee';
+import { ViewAnalytics } from './components/attendence/ViewAnalytics';
+import { NewJobOpening } from './components/recruitment/NewJobOpening';
+import { NewInterview } from './components/recruitment/NewInterview';
+import { ApplicantProgress } from './components/recruitment/ApplicantProgress';
+import { ApplicantDetails } from './components/recruitment/ApplicantDetails';
+import { ApplicantActions } from './components/recruitment/ApplicantActions';
+import { ProjectEdit } from './components/vslm/ProjectEdit';
+import { EditJobOpening } from './components/recruitment/EditJobOpening';
+import { JobOpeningDetails } from './components/recruitment/JobOpeningDetails';
+import { ApplicantResume } from './components/recruitment/ApplicantResume';
+import { ProjectDetails } from './components/vslm/ProjectDetails';
 function MeetingsLayout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
   
-  const handleNavigate = (path, id) => {
-    if (path === 'all') {
-      navigate('/meetings');
-    } else if (path === 'new') {
-      navigate('/meetings/new');
-    } else if (path === 'confirmation') {
-      navigate('/meetings/confirmation');
-    } else if (path === 'meeting-details' && id) {
-      navigate(`/meetings/${id}`);
-    } else if (path === 'edit-meeting' && id) {
-      navigate(`/meetings/edit/${id}`);
-    } else if (path === 'calendar' || path === 'calendar-add-meeting') {
-      navigate('/meetings/calendar');
+  const handleNavigate = (path, state) => {
+    const navigationMap = {
+      'all': '/meetings',
+      'new': '/meetings/new',
+      'new-meeting': '/new-meeting',
+      'confirmation': '/meetings/confirmation',
+      'meeting-confirmation': '/meeting-confirmation',
+      'meeting-details': state?.id ? `/meetings/${state.id}` : null,
+      'edit-meeting': '/edit-meeting',
+      'employee-meeting': '/employee-meeting',
+      'calendar': '/meetings/calendar',
+      'calendar-add-meeting': '/meetings/calendar',
+      'add-employee': '/add-employee',
+      'edit-profile': '/edit-profile',
+      'onboarding-new': '/onboarding-new',
+      'onboarding-checklist': '/onboarding-checklist',
+      'offboarding-checklist': '/offboarding-checklist',
+      'offboarding-dashboard': '/offboarding-dashboard',
+      'exit-process': '/exit-process',
+      'project-edit': '/project-edit',
+      'all-projects': '/all-projects',
+      'all-projects-list': '/all-projects-list'
+    };
+
+    const route = navigationMap[path];
+    if (route) {
+      navigate(route, { state });
     } else {
       console.warn(`Unknown navigation path: ${path}`);
     }
@@ -97,11 +134,49 @@ function App() {
     };
   }, [isMobileSidebarOpen]);
 
-  const [activeModule, setActiveModule] = useState('dashboard');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [activeModule, setActiveModule] = useState('employees');
 
-  const handleModuleChange = (moduleId) => {
-    setActiveModule(moduleId);
+  const handleModuleChange = (path) => {
+    // If the path is a URL path (starts with /), navigate to it
+    if (path.startsWith('/')) {
+      navigate(path);
+    } else {
+      // Check if this is a main module with sub-items
+      const mainModule = navigationItems.find(item => item.id === path);
+      
+      if (mainModule?.subItems?.length > 0) {
+        // If it's a main module with sub-items, navigate to the first sub-item's path
+        const firstSubItem = mainModule.subItems[0];
+        if (firstSubItem?.path) {
+          navigate(firstSubItem.path);
+          return;
+        }
+      }
+      
+      // Fallback to the old behavior if it's just an ID
+      setActiveModule(path);
+    }
   };
+
+  // Update active module based on current path
+  useEffect(() => {
+    const currentPath = location.pathname;
+    // Find if current path matches any navigation item
+    const findActiveModule = (items) => {
+      for (const item of items) {
+        if (item.path === currentPath) return item.id;
+        if (item.subItems) {
+          const subItem = item.subItems.find(sub => sub.path === currentPath);
+          if (subItem) return subItem.id;
+        }
+      }
+      return activeModule; // Keep current active module if no match found
+    };
+    
+    setActiveModule(findActiveModule(navigationItems));
+  }, [location.pathname]);
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
@@ -137,25 +212,88 @@ function App() {
         {/* Main content */}
         <main className="flex-1 overflow-y-auto bg-gray-50 p-4">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<AdminDashboard />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/attendance" element={<Attendance />} />
+            <Route path="/view-analytics" element={
+              <MeetingsLayout>
+                <ViewAnalytics />
+              </MeetingsLayout>
+            } />
             <Route path="/shift-management" element={<ShiftManagement/>} />
-            <Route path="/overtime-hours" element={<OvertimeHours/>} />
+            <Route path="/overtime-hours" element={<OvertimeHours />} />
             <Route path="/holiday-management" element={<HolidayManagement/>} />
             <Route path="/punch-records" element={<PunchRecords/>} />
-            <Route path="/policy-rules" element={<PolicyRules/>} />
+            <Route path="/policy-rules" element={
+              <MeetingsLayout>
+                <PolicyRules navigate={navigate} />
+              </MeetingsLayout>
+            } />
             <Route path="/leave-tracking" element={<LeaveTracking/>} />
             <Route path="/employee-attendance-profile" element={<EmployeeAttendanceProfile />}/>
             <Route path="/attendance-calendar" element={<AttendanceCalendar/>}/>
             <Route path="/leave" element={<Leave />} /> 
             <Route path="/payroll" element={<Payroll />} />
-            <Route path="/employee-details" element={<EmployeeDetails />} />
-            <Route path="/new-employee" element={<AddEmployee />} />
-            <Route path="/employee-directory" element={<EmployeeDirectory />} />
-            <Route path="/employee-profile" element={<EmployeeProfile />} />
+            <Route path="/edit-profile" element={
+              <MeetingsLayout>
+                <AddEmployee />
+              </MeetingsLayout>
+            } />
+            <Route path="/employee-details" element={
+              <MeetingsLayout>
+                <EditProfile />
+              </MeetingsLayout>
+            } />
+            <Route path="/employee-directory" element={
+              <MeetingsLayout>
+                <EmployeeDirectory />
+              </MeetingsLayout>
+            } />
+            <Route path="/edit-employee" element={
+              <MeetingsLayout>
+                <AddEmployee mode="edit" />
+              </MeetingsLayout>
+            } />
+            <Route path="/punch-in-out" element={<PunchInOut />} />
+            <Route path="/employee-profile" element={
+              <MeetingsLayout>
+                <EmployeeProfile />
+              </MeetingsLayout>
+            } />
             <Route path="/onboarding-checklist" element={<OnboardingChecklist />} />
-            <Route path="/onboarding-dashboard" element={<OnboardingDashboard />} />
+            <Route path="/onboarding-dashboard" element={
+              <MeetingsLayout>
+                <OnboardingDashboard />
+              </MeetingsLayout>
+            } />
+            <Route path="/add-employee" element={<AddEmployee />} />
+
+            {/* VSLM DASHBAORD */}
+
+              <Route path="/all-projects" element={
+                <MeetingsLayout>
+                  <AllProjects onNavigate={(path, state) => {
+                    const navigationMap = {
+                      'project-edit': '/project-edit',
+                      'all-projects-list': '/all-projects-list'
+                    };
+                    const route = navigationMap[path] || '/';
+                    navigate(route, { state });
+                  }} />
+                </MeetingsLayout>
+              } />
+              <Route path="/project-edit" element={<ProjectEdit />} />
+              <Route path="/new-project" element={<ProjectEdit isNew={true} />} />
+              <Route path="/uploaded-images" element={<UploadedImages />} />
+              <Route path="/project-timeline" element={<ProjectTimeline />} />
+              <Route path="/project-details" element={<ProjectDetails />} />
+              <Route path="/site-visit-log" element={<SiteVisitLog />} />
+              <Route path="/vslm-analytics" element={<VSLMAnalytics />} />
+              <Route path="/project-reports" element={<ProjectReports />} /> 
+
+
             
             {/* Task Management Routes */}
             <Route path="/task-dashboard" element={<TaskDashboard />} />
@@ -167,57 +305,110 @@ function App() {
             <Route path="/task-dependencies" element={<TaskDependencies />} />
             <Route path="/task-assignment" element={<TaskAssignment />} />
             <Route path="/task-timeline" element={<TaskTimeline />} />
-            <Route path="/employees/onboarding/new" element={<OnboardingNew />} />
+            <Route path="/onboarding-new" element={
+              <MeetingsLayout>
+                <OnboardingNew />
+              </MeetingsLayout>
+            } />
             <Route path="/subtasks-management" element={<SubtasksManagement />} />
             <Route path="/task-assignment" element={<TaskAssignment />} />
             <Route path="/task-timeline" element={<TaskTimeline />} />
             <Route path="/task-details" element={<TaskDetails />} />
-            <Route path="/meetings" element={
+
+
+            {/* Meeting Routes */}
+            <Route path="/meetings-attachments" element={<MeetingAttachments />} />
+            <Route path="/meeting-reports" element={
               <MeetingsLayout>
-                <AllMeetings />
+                <MeetingReports onNavigate={(path, state) => {
+                  const navigationMap = {
+                    'new-meeting': '/new-meeting',
+                    'all': '/meetings'
+                  };
+                  const route = navigationMap[path] || '/';
+                  navigate(route, { state });
+                }} />
               </MeetingsLayout>
             } />
-            <Route path="/offboarding-checklist" element={<OffboardingChecklist />} />
+            <Route path="/offboarding-checklist" element={
+              <MeetingsLayout>
+                <OffboardingChecklist onNavigate={(path, state) => {
+                  const navigationMap = {
+                    'offboarding-dashboard': '/offboarding-dashboard',
+                    'exit-process': '/exit-process'
+                  };
+                  const route = navigationMap[path] || '/';
+                  navigate(route, { state });
+                }} />
+              </MeetingsLayout>
+            } />
             <Route path="/new-task" element={<AddNewTask />} />
-            <Route path="/exit-process" element={<ExitProcess />} />
-            <Route path="/offboarding-dashboard" element={<OffboardingDashboard />} />
-            <Route path="/meetings/new" element={
+            <Route path="/exit-process" element={
+              <MeetingsLayout>
+                <ExitProcess onNavigate={(path, state) => {
+                  const navigationMap = {
+                    'offboarding-checklist': '/offboarding-checklist',
+                    'offboarding-dashboard': '/offboarding-dashboard'
+                  };
+                  const route = navigationMap[path] || '/';
+                  navigate(route, { state });
+                }} />
+              </MeetingsLayout>
+            } />
+            <Route path="/offboarding-dashboard" element={
+              <MeetingsLayout>
+                <OffboardingDashboard />
+              </MeetingsLayout>
+            } />
+            <Route path="/new-meeting" element={
               <MeetingsLayout>
                 <NewMeeting />
               </MeetingsLayout>
             } />
-            <Route path="/meetings/confirmation" element={
+            <Route path="/meeting-confirmation" element={
               <MeetingsLayout>
                 <MeetingConfirmation />
               </MeetingsLayout>
             } />
-            <Route path="/meetings/:meetingId" element={
+            <Route path="/meetings" element={
               <MeetingsLayout>
                 <MeetingDetails />
               </MeetingsLayout>
             } />
-            <Route path="/meetings/edit/:meetingId" element={
+            <Route path="/edit-meeting" element={
               <MeetingsLayout>
-                <EditMeeting />
+                <AllMeetings />
               </MeetingsLayout>
             } />
-            <Route path="/meetings/edit/:meetingId" element={
-              <MeetingsLayout>
-                <EditMeeting />
-              </MeetingsLayout>
-            } />
-            <Route path="/meetings/calendar" element={
+            
+            <Route path="/calendar-meetings" element={
               <MeetingsLayout>
                 <MeetingCalendar />
               </MeetingsLayout>
             } />
             <Route path="/job-openings" element={<JobOpeningsList />} />
+            <Route path="/new-job-opening" element={<NewJobOpening />} />
+            <Route path="/job-opening-details" element={<JobOpeningDetails />} />
+            <Route path="/edit-job-opening" element={<EditJobOpening />} />
             <Route path="/applicants-list" element={<ApplicantsList />} />
-            <Route path="/interviews" element={<InterviewsList />} />
             <Route path="/interview-calendar" element={<InterviewCalendar />} />
+            <Route path="/new-interview" element={<NewInterview />} />
+            <Route path="/applicant-progress" element={<ApplicantProgress />} />
+            <Route path="/applicant-details" element={<ApplicantDetails />} />
+            <Route path="/interviews-list" element={<InterviewsList />} />
+            <Route path="/applicant-resume" element={<ApplicantResume />} />
+                        <Route path="/interviews" element={<InterviewsList />} />
+
           </Routes>
         </main>
+              <Footer />
+
       </div>
+
+
+
+
+
     </div>
   );
 }

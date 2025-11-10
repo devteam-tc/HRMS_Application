@@ -18,7 +18,7 @@ const ShiftManagement = ({ onNavigate }) => {
       departments: ['IT', 'HR'],
       overtimeRule: 'After 8 hours',
       status: 'active',
-      color: '#EF5226'
+      color: '#CA2030'
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ const ShiftManagement = ({ onNavigate }) => {
       departments: ['Support', 'Operations'],
       overtimeRule: 'After 8 hours',
       status: 'active',
-      color: '#05A7CC'
+      color: '#2C318E'
     },
     {
       id: 3,
@@ -160,7 +160,7 @@ const ShiftManagement = ({ onNavigate }) => {
                   style={{ backgroundColor: shift.color }}
                 ></div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#333333] group-hover:text-[#EF5226] transition-colors">
+                  <h3 className="text-lg font-bold text-[#333333] group-hover:text-[#CA2030] transition-colors">
                     {shift.name}
                   </h3>
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mt-1 ${
@@ -171,10 +171,10 @@ const ShiftManagement = ({ onNavigate }) => {
                 </div>
               </div>
               <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button className="neu-small p-2 rounded-lg hover:text-[#EF5226] transition-colors">
+                <button className="neu-small p-2 rounded-lg hover:text-[#CA2030] transition-colors">
                   <Edit3 size={16} />
                 </button>
-                <button className="neu-small p-2 rounded-lg hover:text-[#05A7CC] transition-colors">
+                <button className="neu-small p-2 rounded-lg hover:text-[#2C318E] transition-colors">
                   <Copy size={16} />
                 </button>
                 <button className="neu-small p-2 rounded-lg hover:text-red-500 transition-colors">
@@ -188,7 +188,7 @@ const ShiftManagement = ({ onNavigate }) => {
               <div className="neu-small p-4 rounded-xl">
                 <div className="flex items-center justify-between">
                   <span className="text-[#666666] text-sm">Working Hours</span>
-                  <Clock size={16} className="text-[#EF5226]" />
+                  <Clock size={16} className="text-[#CA2030]" />
                 </div>
                 <div className="font-bold text-[#333333] mt-1">
                   {shift.startTime} - {shift.endTime}
@@ -198,7 +198,7 @@ const ShiftManagement = ({ onNavigate }) => {
               <div className="neu-small p-4 rounded-xl">
                 <div className="flex items-center justify-between">
                   <span className="text-[#666666] text-sm">Break Time</span>
-                  <Clock size={16} className="text-[#05A7CC]" />
+                  <Clock size={16} className="text-[#2C318E]" />
                 </div>
                 <div className="font-bold text-[#333333] mt-1">{shift.breakDuration}</div>
               </div>
@@ -206,9 +206,9 @@ const ShiftManagement = ({ onNavigate }) => {
               <div className="neu-small p-4 rounded-xl">
                 <div className="flex items-center justify-between">
                   <span className="text-[#666666] text-sm">Employees</span>
-                  <Users size={16} className="text-[#EF5226]" />
+                  <Users size={16} className="text-[#CA2030]" />
                 </div>
-                <div className="font-bold text-[#EF5226] mt-1">{shift.employees}</div>
+                <div className="font-bold text-[#CA2030] mt-1">{shift.employees}</div>
               </div>
 
               <div className="neu-small p-4 rounded-xl">
@@ -247,7 +247,7 @@ const ShiftManagement = ({ onNavigate }) => {
             {/* Action Button */}
             <button 
               onClick={() => onNavigate('shift-details', { shiftId: shift.id })}
-              className="w-full mt-4 neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#EF5226] transition-colors group"
+              className="w-full mt-4 neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#CA2030] transition-colors group"
             >
               <span className="font-medium">Manage Assignments</span>
               <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -268,11 +268,11 @@ const ShiftManagement = ({ onNavigate }) => {
               className="neu-small p-4 rounded-xl cursor-move hover:shadow-lg transition-all group"
             >
               <div className="flex items-center">
-                <div className="neu-small w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-gradient-to-br from-[#EF5226] to-[#d4471f] text-white font-semibold">
+                <div className="neu-small w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-gradient-to-br from-[#CA2030] to-[#d4471f] text-white font-semibold">
                   {employee.avatar}
                 </div>
                 <div>
-                  <div className="font-medium text-[#333333] group-hover:text-[#EF5226] transition-colors">
+                  <div className="font-medium text-[#333333] group-hover:text-[#CA2030] transition-colors">
                     {employee.name}
                   </div>
                   <div className="text-[#666666] text-sm">{employee.department}</div>
@@ -326,7 +326,7 @@ const ShiftManagement = ({ onNavigate }) => {
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center">
-                      <div className="neu-small w-10 h-10 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-[#EF5226] to-[#d4471f] text-white font-semibold">
+                      <div className="neu-small w-10 h-10 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-[#CA2030] to-[#d4471f] text-white font-semibold">
                         {assignment.avatar}
                       </div>
                       <div>
@@ -336,7 +336,7 @@ const ShiftManagement = ({ onNavigate }) => {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="px-4 py-2 bg-gradient-to-r from-[#EF5226] to-[#d4471f] text-white text-sm rounded-full font-medium">
+                    <span className="px-4 py-2 bg-gradient-to-r from-[#CA2030] to-[#d4471f] text-white text-sm rounded-full font-medium">
                       {assignment.currentShift}
                     </span>
                   </td>
@@ -349,7 +349,7 @@ const ShiftManagement = ({ onNavigate }) => {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center space-x-2">
-                      <button className="neu-small p-2 rounded-lg hover:text-[#EF5226] transition-colors">
+                      <button className="neu-small p-2 rounded-lg hover:text-[#CA2030] transition-colors">
                         <Edit3 size={14} />
                       </button>
                       <button className="neu-small p-2 rounded-lg hover:text-red-500 transition-colors">
@@ -367,7 +367,7 @@ const ShiftManagement = ({ onNavigate }) => {
   );
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Shift Management</h1>
@@ -389,7 +389,7 @@ const ShiftManagement = ({ onNavigate }) => {
                 className={`flex-1 flex items-center justify-center py-3 px-6 rounded-lg transition-all duration-200 ${
                   activeTab === tab.id
                     ? 'neu-primary text-white shadow-lg'
-                    : 'text-[#666666] hover:text-[#EF5226]'
+                    : 'text-[#666666] hover:text-[#CA2030]'
                 }`}
               >
                 <Icon size={16} className="mr-2" />
@@ -417,7 +417,7 @@ const ShiftManagement = ({ onNavigate }) => {
                 <input 
                   type="text" 
                   placeholder="Enter shift name"
-                  className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#EF5226] transition-all"
+                  className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#CA2030] transition-all"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -425,14 +425,14 @@ const ShiftManagement = ({ onNavigate }) => {
                   <label className="block text-[#333333] font-medium mb-2">Start Time</label>
                   <input 
                     type="time" 
-                    className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#EF5226] transition-all"
+                    className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#CA2030] transition-all"
                   />
                 </div>
                 <div>
                   <label className="block text-[#333333] font-medium mb-2">End Time</label>
                   <input 
                     type="time" 
-                    className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#EF5226] transition-all"
+                    className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#CA2030] transition-all"
                   />
                 </div>
               </div>
@@ -441,13 +441,13 @@ const ShiftManagement = ({ onNavigate }) => {
                 <input 
                   type="number" 
                   placeholder="60"
-                  className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#EF5226] transition-all"
+                  className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#CA2030] transition-all"
                 />
               </div>
               <div>
                 <label className="block text-[#333333] font-medium mb-2">Shift Color</label>
                 <div className="flex space-x-3">
-                  {['#EF5226', '#05A7CC', '#4CAF50', '#9C27B0', '#FFC107'].map(color => (
+                  {['#CA2030', '#2C318E', '#4CAF50', '#9C27B0', '#FFC107'].map(color => (
                     <button 
                       key={color}
                       className="w-8 h-8 rounded-full neu-small hover:scale-110 transition-transform"

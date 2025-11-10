@@ -20,13 +20,34 @@ const SidebarItem = ({
   // Show tooltip when sidebar is collapsed and item is hovered
   const showTooltip = isCollapsed && isHovered;
 
+  const handleItemClick = () => {
+    if (hasSubItems) {
+      // If not already expanded, expand and select the first sub-item
+      if (!isExpanded) {
+        onToggle(id);
+        // Find the first sub-item and navigate to it
+        const firstSubItem = subItems[0];
+        if (firstSubItem) {
+          // Use the path for navigation to ensure the correct page loads
+          onModuleChange(firstSubItem.path || firstSubItem.id);
+        }
+      } else {
+        // If already expanded, just toggle the expansion
+        onToggle(id);
+      }
+    } else {
+      // For items without sub-items, just navigate to them
+      onModuleChange(item.path || id);
+    }
+  };
+
   return (
     <div className="space-y-1 relative">
       {/* Parent Item */}
       <div className="relative">
         <button
-          onClick={() => (hasSubItems ? onToggle(id) : onModuleChange(id))}
-          className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all duration-200 ${
+          onClick={handleItemClick}
+          className={`w-full flex items-center justify-between p-3 rounded-2xl transition-all duration-200 ${
             isParentActive && !hasSubItems
               ? "neu-primary text-white"
               : "neu-button text-[#333333] "

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, MapPin, Calendar, Users, DollarSign, Edit, Image, Clock, CheckCircle, AlertTriangle, TrendingUp } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import {
   LineChart,
   Line,
@@ -60,13 +61,15 @@ const progressData = [
 ];
 
 const budgetData = [
-  { name: 'Materials', value: 40, amount: 1000000, color: '#05A7CC' },
+  { name: 'Materials', value: 40, amount: 1000000, color: '#2C318E' },
   { name: 'Labor', value: 35, amount: 875000, color: '#4CAF50' },
   { name: 'Equipment', value: 15, amount: 375000, color: '#FFC107' },
-  { name: 'Other', value: 10, amount: 250000, color: '#EF5226' }
+  { name: 'Other', value: 10, amount: 250000, color: '#CA2030' }
 ];
 
-export const ProjectDetails = ({ projectId, onNavigate }) => {
+export const ProjectDetails = () => {
+  const navigate = useNavigate();
+  const { projectId = '1' } = useParams();
   const [activeTab, setActiveTab] = useState('overview');
 
   const getStatusColor = (status) => {
@@ -74,11 +77,11 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
       case 'completed':
         return 'bg-[#4CAF50] text-white';
       case 'in-progress':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       case 'pending':
         return 'bg-[#666666] text-white';
       case 'ongoing':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       default:
         return 'bg-[#666666] text-white';
     }
@@ -89,7 +92,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
       case 'completed':
         return <CheckCircle className="w-5 h-5 text-[#4CAF50]" />;
       case 'in-progress':
-        return <Clock className="w-5 h-5 text-[#05A7CC]" />;
+        return <Clock className="w-5 h-5 text-[#2C318E]" />;
       case 'pending':
         return <AlertTriangle className="w-5 h-5 text-[#666666]" />;
       default:
@@ -111,7 +114,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button 
-              onClick={() => onNavigate('all-projects')}
+              onClick={() => navigate('/all-projects')}
               className="neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -128,14 +131,14 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
           </div>
           <div className="flex space-x-4">
             <button 
-              onClick={() => onNavigate('uploaded-images', { projectId })}
+              onClick={() => navigate(`/uploaded-images?projectId=${projectId}`)}
               className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-3 hover:scale-105 transition-transform"
             >
               <Image className="w-5 h-5" />
               <span className="font-medium">View Images</span>
             </button>
             <button 
-              onClick={() => onNavigate('project-edit', projectId)}
+              onClick={() => navigate(`/project-edit`)}
               className="neu-primary px-8 py-4 rounded-2xl flex items-center space-x-3 hover:scale-105 transition-transform"
             >
               <Edit className="w-5 h-5" />
@@ -149,7 +152,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="neu-card p-6 rounded-3xl text-center">
           <div className="neu-small p-3 rounded-2xl inline-block mb-4">
-            <TrendingUp className="w-8 h-8 text-[#05A7CC]" />
+            <TrendingUp className="w-8 h-8 text-[#2C318E]" />
           </div>
           <div className="text-3xl font-bold text-[#333333] mb-2">{projectData.progress}%</div>
           <div className="text-[#666666]">Completion</div>
@@ -215,14 +218,14 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="neu-small p-4 rounded-2xl">
                     <div className="flex items-center space-x-3 mb-3">
-                      <MapPin className="w-5 h-5 text-[#05A7CC]" />
+                      <MapPin className="w-5 h-5 text-[#2C318E]" />
                       <span className="font-medium text-[#333333]">Site Address</span>
                     </div>
                     <p className="text-[#666666]">{projectData.address}</p>
                   </div>
                   <div className="neu-small p-4 rounded-2xl">
                     <div className="flex items-center space-x-3 mb-3">
-                      <Calendar className="w-5 h-5 text-[#05A7CC]" />
+                      <Calendar className="w-5 h-5 text-[#2C318E]" />
                       <span className="font-medium text-[#333333]">Project Duration</span>
                     </div>
                     <p className="text-[#666666]">
@@ -253,7 +256,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
                       <Line 
                         type="monotone" 
                         dataKey="planned" 
-                        stroke="#05A7CC" 
+                        stroke="#2C318E" 
                         strokeWidth={3}
                         strokeDasharray="5 5"
                         name="Planned"
@@ -298,7 +301,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
                         </div>
                         <div className="neu-card-inset rounded-full h-2 overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-[#05A7CC] to-[#048ba8] transition-all duration-500"
+                            className="h-full bg-gradient-to-r from-[#2C318E] to-[#048ba8] transition-all duration-500"
                             style={{ width: `${milestone.progress}%` }}
                           ></div>
                         </div>
@@ -319,7 +322,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
                     <div className="flex items-center space-x-4">
                       <Avatar className="w-16 h-16">
                         <AvatarImage src="/placeholder-avatar.jpg" />
-                        <AvatarFallback className="bg-[#05A7CC] text-white text-lg">
+                        <AvatarFallback className="bg-[#2C318E] text-white text-lg">
                           {member.name.split(' ').map(n => n[0]).join('')}
                         </AvatarFallback>
                       </Avatar>
@@ -344,7 +347,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
                     <div className="flex items-start space-x-4">
                       <Avatar className="w-12 h-12">
                         <AvatarImage src="/placeholder-avatar.jpg" />
-                        <AvatarFallback className="bg-[#05A7CC] text-white">
+                        <AvatarFallback className="bg-[#2C318E] text-white">
                           {visit.visitor.split(' ').map(n => n[0]).join('')}
                         </AvatarFallback>
                       </Avatar>
@@ -354,7 +357,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
                           <span className="text-sm text-[#666666]">{new Date(visit.date).toLocaleDateString()}</span>
                         </div>
                         <div className="neu-card-inset px-3 py-1 rounded-xl inline-block mb-3">
-                          <span className="text-sm font-medium text-[#05A7CC]">{visit.purpose}</span>
+                          <span className="text-sm font-medium text-[#2C318E]">{visit.purpose}</span>
                         </div>
                         <p className="text-[#666666]">{visit.notes}</p>
                       </div>
@@ -436,7 +439,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
                 className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform"
               >
                 <div className="flex items-center space-x-3">
-                  <Clock className="w-5 h-5 text-[#05A7CC]" />
+                  <Clock className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Log Site Visit</span>
                 </div>
               </button>
@@ -445,7 +448,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
                 className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform"
               >
                 <div className="flex items-center space-x-3">
-                  <Image className="w-5 h-5 text-[#05A7CC]" />
+                  <Image className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Upload Images</span>
                 </div>
               </button>
@@ -454,7 +457,7 @@ export const ProjectDetails = ({ projectId, onNavigate }) => {
                 className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform"
               >
                 <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5 text-[#05A7CC]" />
+                  <Calendar className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">View Timeline</span>
                 </div>
               </button>

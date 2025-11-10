@@ -115,7 +115,7 @@ export const VSLMSummary = ({ onNavigate }) => {
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#05A7CC] mb-2">12</div>
+          <div className="text-3xl font-bold text-[#2C318E] mb-2">12</div>
           <div className="text-[#666666]">Screens Created</div>
         </div>
         <div className="neu-card p-6 rounded-3xl text-center">
@@ -149,7 +149,7 @@ export const VSLMSummary = ({ onNavigate }) => {
                       <h3 className="text-lg font-bold text-[#333333]">{page.title}</h3>
                       <button 
                         onClick={() => onNavigate(page.id)}
-                        className="neu-button px-4 py-2 rounded-xl text-sm text-[#05A7CC] hover:text-[#048ba8]"
+                        className="neu-button px-4 py-2 rounded-xl text-sm text-[#2C318E] hover:text-[#048ba8]"
                       >
                         View
                       </button>
@@ -234,7 +234,7 @@ export const VSLMSummary = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
             <div className="neu-small w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <MapPin className="w-10 h-10 text-[#05A7CC]" />
+              <MapPin className="w-10 h-10 text-[#2C318E]" />
             </div>
             <div className="text-2xl font-bold text-[#333333] mb-2">6 Projects</div>
             <div className="text-[#666666]">Active construction sites managed</div>
@@ -276,7 +276,7 @@ export const VSLMSummary = ({ onNavigate }) => {
                 onClick={() => onNavigate(item.id)}
                 className="neu-button px-6 py-4 rounded-2xl flex flex-col items-center space-y-2 hover:scale-105 transition-transform"
               >
-                <Icon className="w-8 h-8 text-[#05A7CC]" />
+                <Icon className="w-8 h-8 text-[#2C318E]" />
                 <span className="font-medium text-[#333333]">{item.label}</span>
               </button>
             );
@@ -305,7 +305,7 @@ export const VSLMSummary = ({ onNavigate }) => {
 
           <div className="space-y-4">
             <h4 className="text-lg font-bold text-[#333333] flex items-center space-x-2">
-              <TrendingUp className="w-5 h-5 text-[#05A7CC]" />
+              <TrendingUp className="w-5 h-5 text-[#2C318E]" />
               <span>Business Features</span>
             </h4>
             <ul className="space-y-2 text-[#666666]">

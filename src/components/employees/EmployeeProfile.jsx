@@ -96,7 +96,7 @@ export const EmployeeProfile = ({ employeeId, onNavigate }) => {
     switch (type) {
       case 'achievement': return <Award className="w-4 h-4 text-[#4CAF50]" />;
       case 'responsibility': return <User className="w-4 h-4 text-[#05A7CC]" />;
-      case 'project': return <Building className="w-4 h-4 text-[#EF5226]" />;
+      case 'project': return <Building className="w-4 h-4 text-[#ef5226]" />;
       case 'training': return <CheckCircle className="w-4 h-4 text-[#9C27B0]" />;
       default: return <Clock className="w-4 h-4 text-[#666666]" />;
     }
@@ -121,7 +121,8 @@ export const EmployeeProfile = ({ employeeId, onNavigate }) => {
           </div>
           <div className="flex items-center space-x-4">
             <button
-              onClick={() => onNavigate?.('employee-details', { employeeId: employee.id })}
+                            onClick={() => onNavigate?.('edit-profile')}
+
               className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 hover:text-[#05A7CC] transition-colors"
             >
               <Edit size={20} />
@@ -247,9 +248,9 @@ export const EmployeeProfile = ({ employeeId, onNavigate }) => {
                 <Line 
                   type="monotone" 
                   dataKey="rating" 
-                  stroke="#EF5226" 
+                  stroke="#ef5226" 
                   strokeWidth={3}
-                  dot={{ fill: '#EF5226', strokeWidth: 2, r: 6 }}
+                  dot={{ fill: '#ef5226', strokeWidth: 2, r: 6 }}
                   name="Rating"
                 />
                 <Line 
@@ -286,7 +287,7 @@ export const EmployeeProfile = ({ employeeId, onNavigate }) => {
                   }}
                 />
                 <Bar dataKey="present" fill="#4CAF50" radius={[4, 4, 0, 0]} name="Present" />
-                <Bar dataKey="absent" fill="#EF5226" radius={[4, 4, 0, 0]} name="Absent" />
+                <Bar dataKey="absent" fill="#ef5226" radius={[4, 4, 0, 0]} name="Absent" />
                 <Bar dataKey="late" fill="#FFC107" radius={[4, 4, 0, 0]} name="Late" />
               </BarChart>
             </ResponsiveContainer>
@@ -352,7 +353,7 @@ export const EmployeeProfile = ({ employeeId, onNavigate }) => {
             ))}
           </div>
           
-          <button className="w-full neu-button p-3 rounded-2xl mt-4 hover:text-[#EF5226] transition-colors">
+          <button className="w-full neu-button p-3 rounded-2xl mt-4 hover:text-[#ef5226] transition-colors">
             Update Skills
           </button>
         </div>

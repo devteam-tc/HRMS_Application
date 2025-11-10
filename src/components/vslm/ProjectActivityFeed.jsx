@@ -116,7 +116,7 @@ export const ProjectActivityFeed = ({ projectId, onNavigate }) => {
   const getActivityIcon = (type) => {
     switch (type) {
       case 'site_visit':
-        return <MapPin className="w-5 h-5 text-[#05A7CC]" />;
+        return <MapPin className="w-5 h-5 text-[#2C318E]" />;
       case 'file_upload':
         return <Upload className="w-5 h-5 text-[#4CAF50]" />;
       case 'milestone':
@@ -124,7 +124,7 @@ export const ProjectActivityFeed = ({ projectId, onNavigate }) => {
       case 'budget_update':
         return <FileText className="w-5 h-5 text-[#FF9800]" />;
       case 'issue':
-        return <AlertTriangle className="w-5 h-5 text-[#EF5226]" />;
+        return <AlertTriangle className="w-5 h-5 text-[#CA2030]" />;
       case 'team_update':
         return <Users className="w-5 h-5 text-[#607D8B]" />;
       case 'schedule_change':
@@ -139,7 +139,7 @@ export const ProjectActivityFeed = ({ projectId, onNavigate }) => {
   const getActivityColor = (type) => {
     switch (type) {
       case 'site_visit':
-        return 'bg-[#05A7CC]';
+        return 'bg-[#2C318E]';
       case 'file_upload':
         return 'bg-[#4CAF50]';
       case 'milestone':
@@ -147,7 +147,7 @@ export const ProjectActivityFeed = ({ projectId, onNavigate }) => {
       case 'budget_update':
         return 'bg-[#FF9800]';
       case 'issue':
-        return 'bg-[#EF5226]';
+        return 'bg-[#CA2030]';
       case 'team_update':
         return 'bg-[#607D8B]';
       case 'schedule_change':
@@ -162,9 +162,9 @@ export const ProjectActivityFeed = ({ projectId, onNavigate }) => {
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'high':
-        return 'bg-[#EF5226] text-white';
+        return 'bg-[#CA2030] text-white';
       case 'normal':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       case 'low':
         return 'bg-[#666666] text-white';
       default:
@@ -293,7 +293,7 @@ export const ProjectActivityFeed = ({ projectId, onNavigate }) => {
                       {/* User Avatar */}
                       <Avatar className="w-12 h-12">
                         <AvatarImage src="/placeholder-avatar.jpg" />
-                        <AvatarFallback className="bg-[#05A7CC] text-white">
+                        <AvatarFallback className="bg-[#2C318E] text-white">
                           {activity.user === 'System' ? 'SYS' : activity.user.split(' ').map(n => n[0]).join('')}
                         </AvatarFallback>
                       </Avatar>
@@ -326,7 +326,7 @@ export const ProjectActivityFeed = ({ projectId, onNavigate }) => {
                           <div className="flex flex-wrap gap-2">
                             {activity.relatedItems.map((item, itemIndex) => (
                               <div key={itemIndex} className="neu-card-inset px-3 py-1 rounded-xl">
-                                <span className="text-xs font-medium text-[#05A7CC]">{item}</span>
+                                <span className="text-xs font-medium text-[#2C318E]">{item}</span>
                               </div>
                             ))}
                           </div>
@@ -377,7 +377,7 @@ export const ProjectActivityFeed = ({ projectId, onNavigate }) => {
           <div className="text-[#666666]">Milestones</div>
         </div>
         <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#EF5226] mb-2">
+          <div className="text-3xl font-bold text-[#CA2030] mb-2">
             {activities.filter(a => a.type === 'issue').length}
           </div>
           <div className="text-[#666666]">Issues Resolved</div>

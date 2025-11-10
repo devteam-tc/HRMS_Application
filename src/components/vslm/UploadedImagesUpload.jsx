@@ -124,10 +124,10 @@ export const UploadedImagesUpload = ({ onNavigate, projectId }) => {
           <div className="flex flex-wrap gap-2 mb-2">
             {tags.map((tag, index) => (
               <div key={index} className="neu-small px-3 py-1 rounded-xl flex items-center space-x-2">
-                <span className="text-sm text-[#05A7CC]">{tag}</span>
+                <span className="text-sm text-[#2C318E]">{tag}</span>
                 <button 
                   onClick={() => removeTag(fileId, tag)}
-                  className="text-[#EF5226] hover:text-[#d4471f]"
+                  className="text-[#CA2030] hover:text-[#d4471f]"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -200,7 +200,7 @@ export const UploadedImagesUpload = ({ onNavigate, projectId }) => {
               className={`p-4 rounded-2xl text-left transition-all ${
                 selectedProject === project.id
                   ? 'neu-primary text-white'
-                  : 'neu-button text-[#333333] hover:text-[#05A7CC]'
+                  : 'neu-button text-[#333333] hover:text-[#2C318E]'
               }`}
             >
               <div className="font-medium">{project.name}</div>
@@ -251,7 +251,7 @@ export const UploadedImagesUpload = ({ onNavigate, projectId }) => {
                     <div>
                       <div className="flex items-start space-x-4 mb-4">
                         <div className="neu-card-inset p-3 rounded-xl">
-                          <ImageIcon className="w-8 h-8 text-[#05A7CC]" />
+                          <ImageIcon className="w-8 h-8 text-[#2C318E]" />
                         </div>
                         <div className="flex-1">
                           <h5 className="font-bold text-[#333333] mb-1">{file.name}</h5>
@@ -271,7 +271,7 @@ export const UploadedImagesUpload = ({ onNavigate, projectId }) => {
                                   className={`h-full transition-all duration-300 ${
                                     uploadedFiles.includes(file.id) 
                                       ? 'bg-gradient-to-r from-[#4CAF50] to-[#45a049]'
-                                      : 'bg-gradient-to-r from-[#05A7CC] to-[#048ba8]'
+                                      : 'bg-gradient-to-r from-[#2C318E] to-[#048ba8]'
                                   }`}
                                   style={{ width: `${uploadProgress[file.id]}%` }}
                                 ></div>
@@ -282,7 +282,7 @@ export const UploadedImagesUpload = ({ onNavigate, projectId }) => {
                         {!isUploading && (
                           <button 
                             onClick={() => removeFile(file.id)}
-                            className="neu-button p-2 rounded-xl text-[#EF5226] hover:text-[#d4471f]"
+                            className="neu-button p-2 rounded-xl text-[#CA2030] hover:text-[#d4471f]"
                           >
                             <X className="w-4 h-4" />
                           </button>

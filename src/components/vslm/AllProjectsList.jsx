@@ -142,7 +142,7 @@ export const AllProjectsList = ({ onNavigate }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'ongoing':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       case 'completed':
         return 'bg-[#4CAF50] text-white';
       case 'on-hold':
@@ -154,9 +154,9 @@ export const AllProjectsList = ({ onNavigate }) => {
 
   const getProgressColor = (progress) => {
     if (progress >= 80) return 'from-[#4CAF50] to-[#45a049]';
-    if (progress >= 50) return 'from-[#05A7CC] to-[#048ba8]';
+    if (progress >= 50) return 'from-[#2C318E] to-[#048ba8]';
     if (progress >= 25) return 'from-[#FFC107] to-[#e6ac00]';
-    return 'from-[#EF5226] to-[#d4471f]';
+    return 'from-[#CA2030] to-[#d4471f]';
   };
 
   const handleSort = (field) => {
@@ -352,7 +352,7 @@ export const AllProjectsList = ({ onNavigate }) => {
                   <div className="flex items-center space-x-2">
                     <Avatar className="w-8 h-8">
                       <AvatarImage src="/placeholder-avatar.jpg" />
-                      <AvatarFallback className="bg-[#05A7CC] text-white text-xs">
+                      <AvatarFallback className="bg-[#2C318E] text-white text-xs">
                         {project.manager.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
@@ -372,7 +372,7 @@ export const AllProjectsList = ({ onNavigate }) => {
                   <div className="flex items-center space-x-2">
                     <button 
                       onClick={() => onNavigate('project-details', project.id)}
-                      className="neu-button p-2 rounded-xl text-[#05A7CC] hover:text-[#048ba8] transition-colors"
+                      className="neu-button p-2 rounded-xl text-[#2C318E] hover:text-[#048ba8] transition-colors"
                     >
                       <Eye className="w-4 h-4" />
                     </button>
@@ -382,7 +382,7 @@ export const AllProjectsList = ({ onNavigate }) => {
                     >
                       <Edit className="w-4 h-4" />
                     </button>
-                    <button className="neu-button p-2 rounded-xl text-[#EF5226] hover:text-[#d4471f] transition-colors">
+                    <button className="neu-button p-2 rounded-xl text-[#CA2030] hover:text-[#d4471f] transition-colors">
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>

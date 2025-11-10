@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock, MapPin, Users, Download, FileText, MessageSquare, Send, Edit } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 
@@ -80,13 +80,9 @@ Meeting ended at 9:28 AM.`,
   ]
 };
 
-const MeetingDetails = ({ onNavigate }) => {
+const MeetingDetails = () => {
+  const navigate = useNavigate();
   const { meetingId } = useParams();
-  
-  useEffect(() => {
-    // You can use the meetingId to fetch the specific meeting data here
-    console.log('Meeting ID:', meetingId);
-  }, [meetingId]);
   const [newComment, setNewComment] = useState('');
   const [replyingTo, setReplyingTo] = useState(null);
   const [replyText, setReplyText] = useState('');
@@ -113,9 +109,9 @@ const MeetingDetails = ({ onNavigate }) => {
       case 'completed':
         return 'bg-[#4CAF50] text-white';
       case 'scheduled':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       case 'cancelled':
-        return 'bg-[#EF5226] text-white';
+        return 'bg-[#CA2030] text-white';
       default:
         return 'bg-[#666666] text-white';
     }
@@ -144,7 +140,7 @@ const MeetingDetails = ({ onNavigate }) => {
             </div>
           </div>
           <button 
-            onClick={() => onNavigate('edit-meeting', meetingId)}
+            onClick={() => navigate('/edit-meeting')}
             className="neu-primary px-8 py-4 rounded-2xl flex items-center space-x-3 hover:scale-105 transition-transform"
           >
             <Edit className="w-5 h-5" />
@@ -162,7 +158,7 @@ const MeetingDetails = ({ onNavigate }) => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div className="neu-small p-4 rounded-2xl flex items-center space-x-3">
-                <Calendar className="w-5 h-5 text-[#05A7CC]" />
+                <Calendar className="w-5 h-5 text-[#2C318E]" />
                 <div>
                   <div className="text-sm text-[#666666]">Date</div>
                   <div className="font-medium text-[#333333]">{new Date(meetingData.date).toLocaleDateString('en-US', { 
@@ -175,7 +171,7 @@ const MeetingDetails = ({ onNavigate }) => {
               </div>
 
               <div className="neu-small p-4 rounded-2xl flex items-center space-x-3">
-                <Clock className="w-5 h-5 text-[#05A7CC]" />
+                <Clock className="w-5 h-5 text-[#2C318E]" />
                 <div>
                   <div className="text-sm text-[#666666]">Time</div>
                   <div className="font-medium text-[#333333]">{meetingData.time}</div>
@@ -183,7 +179,7 @@ const MeetingDetails = ({ onNavigate }) => {
               </div>
 
               <div className="neu-small p-4 rounded-2xl flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-[#05A7CC]" />
+                <MapPin className="w-5 h-5 text-[#2C318E]" />
                 <div>
                   <div className="text-sm text-[#666666]">Location</div>
                   <div className="font-medium text-[#333333]">{meetingData.location}</div>
@@ -191,7 +187,7 @@ const MeetingDetails = ({ onNavigate }) => {
               </div>
 
               <div className="neu-small p-4 rounded-2xl flex items-center space-x-3">
-                <Users className="w-5 h-5 text-[#05A7CC]" />
+                <Users className="w-5 h-5 text-[#2C318E]" />
                 <div>
                   <div className="text-sm text-[#666666]">Organizer</div>
                   <div className="font-medium text-[#333333]">{meetingData.organizer}</div>
@@ -212,7 +208,7 @@ const MeetingDetails = ({ onNavigate }) => {
               {meetingData.agenda.map((item, index) => (
                 <div key={index} className="neu-small p-4 rounded-2xl flex items-center space-x-4">
                   <div className="neu-card-inset w-8 h-8 rounded-lg flex items-center justify-center">
-                    <span className="text-sm font-bold text-[#05A7CC]">{index + 1}</span>
+                    <span className="text-sm font-bold text-[#2C318E]">{index + 1}</span>
                   </div>
                   <span className="text-[#333333]">{item}</span>
                 </div>
@@ -239,7 +235,7 @@ const MeetingDetails = ({ onNavigate }) => {
               <div className="flex space-x-4">
                 <Avatar className="w-10 h-10">
                   <AvatarImage src="/placeholder-avatar.jpg" />
-                  <AvatarFallback className="bg-[#05A7CC] text-white">JD</AvatarFallback>
+                  <AvatarFallback className="bg-[#2C318E] text-white">JD</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <div className="neu-input p-4 rounded-2xl mb-3">
@@ -269,7 +265,7 @@ const MeetingDetails = ({ onNavigate }) => {
                   <div className="flex space-x-4">
                     <Avatar className="w-10 h-10">
                       <AvatarImage src="/placeholder-avatar.jpg" />
-                      <AvatarFallback className="bg-[#05A7CC] text-white">
+                      <AvatarFallback className="bg-[#2C318E] text-white">
                         {comment.author.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
@@ -282,7 +278,7 @@ const MeetingDetails = ({ onNavigate }) => {
                       
                       <button 
                         onClick={() => setReplyingTo(comment.id)}
-                        className="text-sm text-[#05A7CC] hover:text-[#048ba8] transition-colors"
+                        className="text-sm text-[#2C318E] hover:text-[#048ba8] transition-colors"
                       >
                         Reply
                       </button>
@@ -357,14 +353,14 @@ const MeetingDetails = ({ onNavigate }) => {
                   <div className="flex items-center space-x-3">
                     <Avatar className="w-12 h-12">
                       <AvatarImage src="/placeholder-avatar.jpg" />
-                      <AvatarFallback className="bg-[#05A7CC] text-white">
+                      <AvatarFallback className="bg-[#2C318E] text-white">
                         {participant.name.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
                       <div className="flex items-center space-x-2">
                         <span className="font-medium text-[#333333]">{participant.name}</span>
-                        <div className={`w-2 h-2 rounded-full ${participant.attended ? 'bg-[#4CAF50]' : 'bg-[#EF5226]'}`}></div>
+                        <div className={`w-2 h-2 rounded-full ${participant.attended ? 'bg-[#4CAF50]' : 'bg-[#CA2030]'}`}></div>
                       </div>
                       <div className="text-sm text-[#666666]">{participant.role}</div>
                       <div className="text-xs text-[#999999]">{participant.email}</div>
@@ -383,14 +379,14 @@ const MeetingDetails = ({ onNavigate }) => {
                 <div key={index} className="neu-small p-4 rounded-2xl">
                   <div className="flex items-center space-x-3">
                     <div className="neu-card-inset p-3 rounded-xl">
-                      <FileText className="w-6 h-6 text-[#05A7CC]" />
+                      <FileText className="w-6 h-6 text-[#2C318E]" />
                     </div>
                     <div className="flex-1">
                       <div className="font-medium text-[#333333]">{file.name}</div>
                       <div className="text-sm text-[#666666]">{file.size} • {file.type}</div>
                       <div className="text-xs text-[#999999]">Uploaded by {file.uploadedBy}</div>
                     </div>
-                    <button className="neu-button p-2 rounded-xl text-[#05A7CC] hover:text-[#048ba8]">
+                    <button className="neu-button p-2 rounded-xl text-[#2C318E] hover:text-[#048ba8]">
                       <Download className="w-4 h-4" />
                     </button>
                   </div>
@@ -405,19 +401,19 @@ const MeetingDetails = ({ onNavigate }) => {
             <div className="space-y-3">
               <button className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform">
                 <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5 text-[#05A7CC]" />
+                  <Calendar className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Schedule Follow-up</span>
                 </div>
               </button>
               <button className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform">
                 <div className="flex items-center space-x-3">
-                  <Download className="w-5 h-5 text-[#05A7CC]" />
+                  <Download className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Export MOM</span>
                 </div>
               </button>
               <button className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform">
                 <div className="flex items-center space-x-3">
-                  <MessageSquare className="w-5 h-5 text-[#05A7CC]" />
+                  <MessageSquare className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Send Summary</span>
                 </div>
               </button>

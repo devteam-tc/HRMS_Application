@@ -66,8 +66,8 @@ export const InterviewDetails = ({ interviewId, onNavigate }) => {
 
   const getModeIcon = (mode) => {
     switch (mode) {
-      case 'Video Call': return <Video size={20} className="text-[#05A7CC]" />;
-      case 'Phone': return <Phone size={20} className="text-[#EF5226]" />;
+      case 'Video Call': return <Video size={20} className="text-[#2C318E]" />;
+      case 'Phone': return <Phone size={20} className="text-[#CA2030]" />;
       case 'In-Person': return <MapPin size={20} className="text-[#666666]" />;
       default: return <Calendar size={20} className="text-[#666666]" />;
     }
@@ -91,7 +91,7 @@ export const InterviewDetails = ({ interviewId, onNavigate }) => {
   };
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
@@ -111,7 +111,7 @@ export const InterviewDetails = ({ interviewId, onNavigate }) => {
             <>
               <button
                 onClick={handleReschedule}
-                className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#EF5226] transition-all duration-200"
+                className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#CA2030] transition-all duration-200"
               >
                 <Edit size={20} />
                 <span>Reschedule</span>
@@ -126,7 +126,7 @@ export const InterviewDetails = ({ interviewId, onNavigate }) => {
               )}
             </>
           )}
-          <button className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#05A7CC] transition-all duration-200">
+          <button className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#2C318E] transition-all duration-200">
             <Share2 size={20} />
             <span>Share</span>
           </button>
@@ -142,7 +142,7 @@ export const InterviewDetails = ({ interviewId, onNavigate }) => {
             </div>
             <div>
               <h3 className="text-xl font-bold text-[#333333] mb-2">{interview.candidateName}</h3>
-              <p className="text-[#EF5226] font-medium mb-2">{interview.jobTitle}</p>
+              <p className="text-[#CA2030] font-medium mb-2">{interview.jobTitle}</p>
               <div className="flex items-center space-x-6 text-[#666666] mb-4">
                 <div className="flex items-center">
                   <Calendar size={16} className="mr-2" />
@@ -288,7 +288,7 @@ export const InterviewDetails = ({ interviewId, onNavigate }) => {
                 {interview.requirements.map((requirement, index) => (
                   <li key={index} className="flex items-start">
                     <div className="neu-small w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                      <div className="w-2 h-2 bg-[#05A7CC] rounded-full"></div>
+                      <div className="w-2 h-2 bg-[#2C318E] rounded-full"></div>
                     </div>
                     <span className="text-[#333333]">{requirement}</span>
                   </li>
@@ -327,14 +327,14 @@ export const InterviewDetails = ({ interviewId, onNavigate }) => {
                 {interview.documents.map((doc, index) => (
                   <div key={index} className="neu-small p-4 rounded-2xl flex items-center justify-between">
                     <div className="flex items-center">
-                      <FileText size={20} className="text-[#EF5226] mr-3" />
+                      <FileText size={20} className="text-[#CA2030] mr-3" />
                       <div>
                         <p className="text-[#333333] font-medium">{doc.name}</p>
                         <p className="text-[#666666] text-sm">{doc.type} • Uploaded {doc.uploadDate}</p>
                       </div>
                     </div>
                     <button className="neu-button p-2 rounded-xl hover:shadow-md transition-all duration-200">
-                      <FileText size={16} className="text-[#05A7CC]" />
+                      <FileText size={16} className="text-[#2C318E]" />
                     </button>
                   </div>
                 ))}
@@ -373,19 +373,19 @@ export const InterviewDetails = ({ interviewId, onNavigate }) => {
                 <div className="space-y-3">
                   <button
                     onClick={() => onNavigate('applicant-details', { applicantId: interview.candidateId })}
-                    className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+                    className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
                   >
                     View Full Profile
                   </button>
                   <button
                     onClick={() => onNavigate('applicant-resume', { applicantId: interview.candidateId })}
-                    className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#EF5226] transition-all duration-200"
+                    className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#CA2030] transition-all duration-200"
                   >
                     View Resume
                   </button>
                   <button
                     onClick={() => onNavigate('applicant-progress', { applicantId: interview.candidateId })}
-                    className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+                    className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
                   >
                     View Progress
                   </button>

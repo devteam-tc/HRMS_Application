@@ -127,7 +127,7 @@ export const OnboardingChecklist = ({ onNavigate }) => {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => onNavigate?.('onboarding-dashboard')}
-              className="neu-button p-3 rounded-2xl hover:text-[#05A7CC] transition-colors"
+              className="neu-button p-3 rounded-2xl hover:text-[#2C318E] transition-colors"
             >
               <ArrowLeft size={20} />
             </button>
@@ -162,7 +162,7 @@ export const OnboardingChecklist = ({ onNavigate }) => {
                 selectedEmployee === employee.id ? 'bg-white bg-opacity-20' : 'neu-gradient'
               }`}>
                 <span className={`font-bold ${
-                  selectedEmployee === employee.id ? 'text-white' : 'text-[#05A7CC]'
+                  selectedEmployee === employee.id ? 'text-white' : 'text-[#2C318E]'
                 }`}>
                   {employee.name.split(' ').map(n => n[0]).join('')}
                 </span>
@@ -185,7 +185,7 @@ export const OnboardingChecklist = ({ onNavigate }) => {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 neu-gradient rounded-full flex items-center justify-center">
-                  <span className="text-xl font-bold text-[#05A7CC]">
+                  <span className="text-xl font-bold text-[#2C318E]">
                     {currentEmployee.name.split(' ').map(n => n[0]).join('')}
                   </span>
                 </div>
@@ -206,7 +206,7 @@ export const OnboardingChecklist = ({ onNavigate }) => {
                 <div className="text-sm text-[#666666] mb-2">Overall Progress</div>
                 <div className="w-32 h-2 bg-[#E8EBEF] rounded-full">
                   <div 
-                    className="h-2 bg-[#05A7CC] rounded-full transition-all duration-300"
+                    className="h-2 bg-[#2C318E] rounded-full transition-all duration-300"
                     style={{ width: `${currentEmployee.progress}%` }}
                   ></div>
                 </div>
@@ -234,7 +234,7 @@ export const OnboardingChecklist = ({ onNavigate }) => {
               <div className="text-2xl font-bold text-[#333333] mb-1">{completed}/{total}</div>
               <div className="w-full h-2 bg-[#E8EBEF] rounded-full mb-2">
                 <div 
-                  className="h-2 bg-[#05A7CC] rounded-full transition-all duration-300"
+                  className="h-2 bg-[#2C318E] rounded-full transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 ></div>
               </div>
@@ -255,7 +255,7 @@ export const OnboardingChecklist = ({ onNavigate }) => {
                 <div className="flex items-center space-x-3">
                   <span className="text-2xl">{category.icon}</span>
                   <h3 className="text-xl font-bold text-[#333333]">{category.title}</h3>
-                  <span className="px-3 py-1 bg-[#05A7CC] text-white rounded-full text-sm">
+                  <span className="px-3 py-1 bg-[#2C318E] text-white rounded-full text-sm">
                     {tasks.filter(task => task.status === 'completed').length}/{tasks.length}
                   </span>
                 </div>
@@ -303,10 +303,10 @@ export const OnboardingChecklist = ({ onNavigate }) => {
                           <option value="in-progress">In Progress</option>
                           <option value="completed">Completed</option>
                         </select>
-                        <button className="neu-button p-2 rounded-xl hover:text-[#05A7CC] transition-colors">
+                        <button className="neu-button p-2 rounded-xl hover:text-[#2C318E] transition-colors">
                           <Paperclip size={14} />
                         </button>
-                        <button className="neu-button p-2 rounded-xl hover:text-[#EF5226] transition-colors">
+                        <button className="neu-button p-2 rounded-xl hover:text-[#CA2030] transition-colors">
                           <MessageCircle size={14} />
                         </button>
                       </div>

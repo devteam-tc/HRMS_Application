@@ -112,7 +112,7 @@ export const ApplicantActions = ({ applicantId, onNavigate }) => {
   const selectedActionData = actions.find(action => action.id === selectedAction);
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
@@ -137,7 +137,7 @@ export const ApplicantActions = ({ applicantId, onNavigate }) => {
           </div>
           <div>
             <h3 className="text-lg font-bold text-[#333333] mb-1">{applicant.name}</h3>
-            <p className="text-[#EF5226] font-medium mb-1">{applicant.appliedFor}</p>
+            <p className="text-[#CA2030] font-medium mb-1">{applicant.appliedFor}</p>
             <p className="text-[#666666] text-sm">Current Status: {applicant.currentStatus}</p>
           </div>
         </div>
@@ -157,7 +157,7 @@ export const ApplicantActions = ({ applicantId, onNavigate }) => {
                     key={action.id}
                     onClick={() => setSelectedAction(action.id)}
                     className={`neu-small p-6 rounded-3xl transition-all duration-200 text-left hover:shadow-lg ${
-                      selectedAction === action.id ? 'ring-2 ring-[#EF5226]' : ''
+                      selectedAction === action.id ? 'ring-2 ring-[#CA2030]' : ''
                     }`}
                   >
                     <div className={`neu-small w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${action.bgColor}`}>
@@ -286,7 +286,7 @@ export const ApplicantActions = ({ applicantId, onNavigate }) => {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#666666]">New Status:</span>
-                      <span className="text-[#EF5226] font-medium">{selectedActionData.nextStage}</span>
+                      <span className="text-[#CA2030] font-medium">{selectedActionData.nextStage}</span>
                     </div>
                   </div>
                 </div>
@@ -332,7 +332,7 @@ export const ApplicantActions = ({ applicantId, onNavigate }) => {
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-3 neu-small rounded-2xl">
                   <div className="flex items-center">
-                    <Mail size={16} className="text-[#05A7CC] mr-3" />
+                    <Mail size={16} className="text-[#2C318E] mr-3" />
                     <span className="text-[#333333] text-sm">Send email notification</span>
                   </div>
                   <input type="checkbox" defaultChecked className="rounded" />
@@ -341,7 +341,7 @@ export const ApplicantActions = ({ applicantId, onNavigate }) => {
                 {selectedAction !== 'reject' && (
                   <div className="flex items-center justify-between p-3 neu-small rounded-2xl">
                     <div className="flex items-center">
-                      <MessageSquare size={16} className="text-[#EF5226] mr-3" />
+                      <MessageSquare size={16} className="text-[#CA2030] mr-3" />
                       <span className="text-[#333333] text-sm">Send SMS update</span>
                     </div>
                     <input type="checkbox" className="rounded" />

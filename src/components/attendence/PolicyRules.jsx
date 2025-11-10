@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Settings, Clock, Shield, AlertCircle, CheckCircle, Edit3, Save, X, ToggleLeft, ToggleRight, Sliders } from 'lucide-react';
 
-export const PolicyRules = ({ onNavigate }) => {
+export const PolicyRules = ({ navigate }) => {
   const [activeTab, setActiveTab] = useState('general');
   const [editMode, setEditMode] = useState({});
 
@@ -90,7 +90,7 @@ export const PolicyRules = ({ onNavigate }) => {
                 onClick={() => handleToggle(section, field)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                   value 
-                    ? 'bg-gradient-to-r from-[#EF5226] to-[#d4471f]' 
+                    ? 'bg-gradient-to-r from-[#CA2030] to-[#d4471f]' 
                     : 'bg-[#E8EBEF]'
                 }`}
               >
@@ -100,7 +100,7 @@ export const PolicyRules = ({ onNavigate }) => {
                   }`}
                 />
               </button>
-              <span className={`text-sm font-medium ${value ? 'text-[#EF5226]' : 'text-[#666666]'}`}>
+              <span className={`text-sm font-medium ${value ? 'text-[#CA2030]' : 'text-[#666666]'}`}>
                 {value ? 'Enabled' : 'Disabled'}
               </span>
             </div>
@@ -118,7 +118,7 @@ export const PolicyRules = ({ onNavigate }) => {
               {description && <div className="text-[#666666] text-sm">{description}</div>}
             </div>
             <div className="flex items-center space-x-3">
-              <span className="font-bold text-[#EF5226] text-lg">{value}</span>
+              <span className="font-bold text-[#CA2030] text-lg">{value}</span>
               {unit && <span className="text-[#666666] text-sm">{unit}</span>}
             </div>
           </div>
@@ -129,7 +129,7 @@ export const PolicyRules = ({ onNavigate }) => {
               max={max}
               value={value}
               onChange={(e) => handleSave(section, field, Number(e.target.value))}
-              className="w-full h-2 bg-gradient-to-r from-[#EF5226] to-[#d4471f] rounded-lg appearance-none cursor-pointer slider"
+              className="w-full h-2 bg-gradient-to-r from-[#CA2030] to-[#d4471f] rounded-lg appearance-none cursor-pointer slider"
             />
           </div>
           <div className="flex justify-between text-xs text-[#666666] mt-2">
@@ -154,7 +154,7 @@ export const PolicyRules = ({ onNavigate }) => {
                   type={type}
                   value={tempValue}
                   onChange={(e) => setTempValue(type === 'number' ? Number(e.target.value) : e.target.value)}
-                  className="neu-input w-20 px-3 py-2 text-center rounded-xl focus:ring-2 focus:ring-[#EF5226]"
+                  className="neu-input w-20 px-3 py-2 text-center rounded-xl focus:ring-2 focus:ring-[#CA2030]"
                 />
                 {unit && <span className="text-[#666666] text-sm">{unit}</span>}
                 <button
@@ -172,11 +172,11 @@ export const PolicyRules = ({ onNavigate }) => {
               </>
             ) : (
               <>
-                <span className="font-bold text-[#EF5226] text-lg">{value}</span>
+                <span className="font-bold text-[#CA2030] text-lg">{value}</span>
                 {unit && <span className="text-[#666666] text-sm">{unit}</span>}
                 <button
                   onClick={() => handleEdit(section, field)}
-                  className="neu-small p-2 rounded-lg hover:text-[#EF5226] transition-colors"
+                  className="neu-small p-2 rounded-lg hover:text-[#CA2030] transition-colors"
                 >
                   <Edit3 size={16} />
                 </button>
@@ -273,8 +273,8 @@ export const PolicyRules = ({ onNavigate }) => {
           <p className="text-[#666666] text-sm mt-1">Configure overtime calculation and approval rules</p>
         </div>
         <div className="flex items-center space-x-2">
-          <Clock size={16} className="text-[#05A7CC]" />
-          <span className="text-[#05A7CC] text-sm font-medium">Auto-calculation enabled</span>
+          <Clock size={16} className="text-[#2C318E]" />
+          <span className="text-[#2C318E] text-sm font-medium">Auto-calculation enabled</span>
         </div>
       </div>
 
@@ -415,7 +415,7 @@ export const PolicyRules = ({ onNavigate }) => {
 
   // Layout: Neumorphic Form UI with Toggle Switches and Sliders
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Policy & Rules Setup</h1>
@@ -439,10 +439,10 @@ export const PolicyRules = ({ onNavigate }) => {
         <div className="neu-card p-6 rounded-2xl hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-2xl font-bold text-[#05A7CC]">8</h3>
+              <h3 className="text-2xl font-bold text-[#2C318E]">8</h3>
               <p className="text-[#666666] text-sm">Auto-Calculated</p>
             </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#05A7CC] to-[#048ba8]">
+            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#2C318E] to-[#048ba8]">
               <Sliders size={24} className="text-white" />
             </div>
           </div>
@@ -489,7 +489,7 @@ export const PolicyRules = ({ onNavigate }) => {
                 className={`flex-1 flex items-center justify-center py-3 px-6 rounded-lg transition-all duration-200 ${
                   activeTab === tab.id
                     ? 'neu-primary text-white shadow-lg'
-                    : 'text-[#666666] hover:text-[#EF5226]'
+                    : 'text-[#666666] hover:text-[#CA2030]'
                 }`}
               >
                 <Icon size={16} className="mr-2" />
@@ -516,7 +516,7 @@ export const PolicyRules = ({ onNavigate }) => {
           Save All Changes
         </button>
         <button 
-          onClick={() => onNavigate('attendance-reports')}
+          onClick={() => navigate('/view-analytics')}
           className="neu-secondary px-8 py-3 rounded-xl hover:shadow-xl transition-all"
         >
           View Policy Impact
@@ -538,7 +538,7 @@ export const PolicyRules = ({ onNavigate }) => {
         .slider::-webkit-slider-thumb {
           -webkit-appearance: none;
           appearance: none;
-          background: #EF5226;
+          background: #CA2030;
           height: 20px;
           width: 20px;
           border-radius: 50%;
@@ -551,7 +551,7 @@ export const PolicyRules = ({ onNavigate }) => {
           border-radius: 4px;
         }
         .slider::-moz-range-thumb {
-          background: #EF5226;
+          background: #CA2030;
           height: 20px;
           width: 20px;
           border-radius: 50%;

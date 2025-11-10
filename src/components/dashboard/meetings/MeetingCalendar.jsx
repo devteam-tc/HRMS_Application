@@ -9,10 +9,10 @@ import CalendarLegend from './CalendarLegend';
 // Sample meetings data
 const calendarMeetings = [
   { id: '1', title: 'Team Standup', date: '2024-01-15', time: '09:00', duration: 30, participants: 4, status: 'completed', color: '#4CAF50' },
-  { id: '2', title: 'Product Review', date: '2024-01-16', time: '14:00', duration: 120, participants: 6, status: 'scheduled', color: '#05A7CC' },
+  { id: '2', title: 'Product Review', date: '2024-01-16', time: '14:00', duration: 120, participants: 6, status: 'scheduled', color: '#2C318E' },
   { id: '3', title: 'HR Policy Meeting', date: '2024-01-17', time: '11:00', duration: 90, participants: 3, status: 'scheduled', color: '#9C27B0' },
   { id: '4', title: 'Client Presentation', date: '2024-01-18', time: '15:30', duration: 60, participants: 8, status: 'scheduled', color: '#FF9800' },
-  { id: '5', title: 'Sprint Planning', date: '2024-01-19', time: '10:00', duration: 45, participants: 5, status: 'scheduled', color: '#05A7CC' },
+  { id: '5', title: 'Sprint Planning', date: '2024-01-19', time: '10:00', duration: 45, participants: 5, status: 'scheduled', color: '#2C318E' },
   { id: '6', title: 'Design Review', date: '2024-01-22', time: '13:00', duration: 75, participants: 4, status: 'scheduled', color: '#E91E63' },
   { id: '7', title: 'All Hands Meeting', date: '2024-01-23', time: '16:00', duration: 60, participants: 15, status: 'scheduled', color: '#2196F3' }
 ];

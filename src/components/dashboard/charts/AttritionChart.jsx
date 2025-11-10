@@ -24,9 +24,9 @@ const AttritionChart = ({ data }) => (
           <Line 
             type="monotone" 
             dataKey="rate" 
-            stroke="#EF5226" 
+            stroke="#CA2030" 
             strokeWidth={3}
-            dot={{ fill: '#EF5226', strokeWidth: 2, r: 6 }}
+            dot={{ fill: '#CA2030', strokeWidth: 2, r: 6 }}
           />
         </LineChart>
       </ResponsiveContainer>

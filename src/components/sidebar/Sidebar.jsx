@@ -43,7 +43,7 @@ const Sidebar = ({ activeModule, onModuleChange }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="flex items-center justify-between p-4">
+      <div className="flex items-center justify-between p-3">
         {!isCollapsed && <SidebarLogo />}
         <button
           onClick={toggleSidebar}

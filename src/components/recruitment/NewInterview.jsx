@@ -170,7 +170,7 @@ export const NewInterview = ({ applicantId, interviewType, onNavigate }) => {
   };
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
@@ -188,7 +188,7 @@ export const NewInterview = ({ applicantId, interviewType, onNavigate }) => {
         <div className="flex items-center space-x-3">
           <button
             onClick={handleSaveDraft}
-            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
           >
             Save Draft
           </button>
@@ -258,7 +258,7 @@ export const NewInterview = ({ applicantId, interviewType, onNavigate }) => {
                           type="button"
                           onClick={() => handleInputChange('mode', mode.value)}
                           className={`neu-small p-3 rounded-2xl transition-all duration-200 ${
-                            formData.mode === mode.value ? 'ring-2 ring-[#EF5226]' : 'hover:shadow-md'
+                            formData.mode === mode.value ? 'ring-2 ring-[#CA2030]' : 'hover:shadow-md'
                           }`}
                         >
                           <Icon size={20} className="mx-auto mb-1 text-[#666666]" />
@@ -403,7 +403,7 @@ export const NewInterview = ({ applicantId, interviewType, onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => addArrayField('agenda')}
-                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#05A7CC] hover:shadow-md transition-all duration-200"
+                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#2C318E] hover:shadow-md transition-all duration-200"
                 >
                   <Plus size={16} />
                   <span>Add Agenda Item</span>
@@ -470,7 +470,7 @@ export const NewInterview = ({ applicantId, interviewType, onNavigate }) => {
                     <button
                       type="button"
                       onClick={() => addArrayField('coInterviewers')}
-                      className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#05A7CC] hover:shadow-md transition-all duration-200"
+                      className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#2C318E] hover:shadow-md transition-all duration-200"
                     >
                       <Plus size={16} />
                       <span>Add Co-Interviewer</span>
@@ -522,14 +522,14 @@ export const NewInterview = ({ applicantId, interviewType, onNavigate }) => {
                   <button
                     type="button"
                     onClick={() => onNavigate('applicant-details', { applicantId })}
-                    className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+                    className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
                   >
                     View Candidate Profile
                   </button>
                 )}
                 <button
                   type="button"
-                  className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#EF5226] transition-all duration-200"
+                  className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#CA2030] transition-all duration-200"
                 >
                   Load Template
                 </button>

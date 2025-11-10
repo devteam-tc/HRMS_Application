@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, Plus, Eye, Edit, Trash2, Download, Calendar, Users, Clock, MapPin, CalendarDays } from 'lucide-react';
+import { Search, Filter, Plus, Eye, Edit, Trash2, Download, Calendar, Users, Clock, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 
 const meetings = [
@@ -80,12 +80,6 @@ export const AllMeetings = ({ onNavigate }) => {
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [dateRange, setDateRange] = useState('all');
-  
-  const handleNewMeeting = () => {
-    if (onNavigate) {
-      onNavigate('new');
-    }
-  };
 
   const filteredMeetings = meetings.filter(meeting => {
     const matchesSearch = meeting.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -120,22 +114,13 @@ export const AllMeetings = ({ onNavigate }) => {
             <h1 className="text-3xl font-bold text-[#333333] mb-2">All Meetings</h1>
             <p className="text-[#666666]">Manage and view all meeting records and minutes</p>
           </div>
-          <div className="flex items-center space-x-4">
-            <button 
-              onClick={() => onNavigate('calendar')}
-              className="flex items-center space-x-2 bg-white border border-[#05A7CC] text-[#05A7CC] px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <CalendarDays className="w-4 h-4" />
-              <span>Calendar View</span>
-            </button>
-            <button 
-              onClick={() => onNavigate('new')}
-              className="flex items-center space-x-2 bg-[#05A7CC] text-white px-4 py-2 rounded-lg hover:bg-[#048ba8] transition-colors"
-            >
-              <Plus className="w-4 h-4" />
-              <span>New Meeting</span>
-            </button>
-          </div>
+          <button 
+            onClick={() => onNavigate('new-meeting')}
+            className="neu-primary px-8 py-4 rounded-2xl flex items-center space-x-3 hover:scale-105 transition-transform"
+          >
+            <Plus className="w-5 h-5" />
+            <span className="font-medium">New Meeting</span>
+          </button>
         </div>
       </div>
 

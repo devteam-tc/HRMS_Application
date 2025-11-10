@@ -48,7 +48,7 @@ const Attendance = ({ onNavigate }) => {
       change: '+2.3%',
       changeType: 'positive',
       icon: UserCheckIcon,
-      color: 'text-[#EF5226]'
+      color: 'text-[#CA2030]'
     },
     {
       title: 'Late Arrivals Today',
@@ -56,7 +56,7 @@ const Attendance = ({ onNavigate }) => {
       change: '-5 from yesterday',
       changeType: 'positive',
       icon: Clock,
-      color: 'text-[#05A7CC]'
+      color: 'text-[#2C318E]'
     },
     {
       title: 'Absenteeism Rate',
@@ -72,7 +72,7 @@ const Attendance = ({ onNavigate }) => {
       change: '2 ongoing',
       changeType: 'neutral',
       icon: Timer,
-      color: 'text-[#EF5226]'
+      color: 'text-[#CA2030]'
     }
   ];
 
@@ -86,8 +86,8 @@ const Attendance = ({ onNavigate }) => {
 
   // Department Data
   const departmentData = [
-    { name: 'IT', present: 45, total: 50, percentage: 90, color: '#EF5226' },
-    { name: 'HR', present: 12, total: 15, percentage: 80, color: '#05A7CC' },
+    { name: 'IT', present: 45, total: 50, percentage: 90, color: '#CA2030' },
+    { name: 'HR', present: 12, total: 15, percentage: 80, color: '#2C318E' },
     { name: 'Finance', present: 18, total: 20, percentage: 90, color: '#4CAF50' },
     { name: 'Marketing', present: 25, total: 30, percentage: 83, color: '#FFC107' },
     { name: 'Operations', present: 35, total: 40, percentage: 87, color: '#9C27B0' }
@@ -106,7 +106,7 @@ const Attendance = ({ onNavigate }) => {
     : attendanceData.filter(record => record.status.toLowerCase() === activeTab.toLowerCase());
 
   return (
-    <div className="bg-[#ECF0F3] min-h-screen p-8">
+    <div className="bg-[#FDFAFA] min-h-screen p-8">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Attendance Dashboard</h1>
@@ -155,7 +155,7 @@ const Attendance = ({ onNavigate }) => {
             </div>
             <div className="h-64 neu-card-inset rounded-xl p-4 flex items-center justify-center">
               <div className="text-center">
-                <TrendingUp size={48} className="text-[#EF5226] mx-auto mb-4" />
+                <TrendingUp size={48} className="text-[#CA2030] mx-auto mb-4" />
                 <p className="text-[#666666]">Interactive line chart showing daily attendance patterns</p>
                 <p className="text-[#666666] text-sm mt-2">87.5% average attendance this week</p>
               </div>
@@ -209,13 +209,13 @@ const Attendance = ({ onNavigate }) => {
                   <button
                     key={index}
                     onClick={() => onNavigate(action.id)}
-                    className="w-full neu-button p-4 rounded-xl flex items-center justify-between hover:text-[#EF5226] transition-colors group"
+                    className="w-full neu-button p-4 rounded-xl flex items-center justify-between hover:text-[#CA2030] transition-colors group"
                   >
                     <div className="flex items-center">
-                      <Icon size={20} className="mr-3 group-hover:text-[#EF5226]" />
+                      <Icon size={20} className="mr-3 group-hover:text-[#CA2030]" />
                       <span className="font-medium">{action.label}</span>
                     </div>
-                    <ChevronRight size={16} className="group-hover:text-[#EF5226]" />
+                    <ChevronRight size={16} className="group-hover:text-[#CA2030]" />
                   </button>
                 );
               })}
@@ -230,7 +230,7 @@ const Attendance = ({ onNavigate }) => {
                 <div key={index} className="flex items-center justify-between p-3 neu-small rounded-xl">
                   <div className="flex items-center">
                     <div className={`w-3 h-3 rounded-full mr-3 ${
-                      activity.status === 'late' ? 'bg-[#EF5226]' :
+                      activity.status === 'late' ? 'bg-[#CA2030]' :
                       activity.status === 'absent' ? 'bg-red-500' :
                       'bg-green-500'
                     }`}></div>
@@ -256,11 +256,11 @@ const Attendance = ({ onNavigate }) => {
             <h2 className="text-xl font-bold text-[#333333] mb-6">This Week Summary</h2>
             <div className="space-y-4">
               <div className="neu-small p-4 rounded-xl text-center">
-                <div className="text-2xl font-bold text-[#EF5226] mb-1">156h</div>
+                <div className="text-2xl font-bold text-[#CA2030] mb-1">156h</div>
                 <div className="text-[#666666] text-sm">Total Hours Worked</div>
               </div>
               <div className="neu-small p-4 rounded-xl text-center">
-                <div className="text-2xl font-bold text-[#05A7CC] mb-1">24h</div>
+                <div className="text-2xl font-bold text-[#2C318E] mb-1">24h</div>
                 <div className="text-[#666666] text-sm">Overtime Hours</div>
               </div>
               <div className="neu-small p-4 rounded-xl text-center">

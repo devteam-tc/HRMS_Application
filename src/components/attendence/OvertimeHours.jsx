@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Clock, TrendingUp, User, Download, Filter, Calendar, DollarSign, BarChart3, ChevronUp, ChevronDown } from 'lucide-react';
 
-export const OvertimeHours = ({ onNavigate }) => {
+export const OvertimeHours = () => {
+  const navigate = useNavigate();
   const [dateRange, setDateRange] = useState('this-month');
   const [departmentFilter, setDepartmentFilter] = useState('all');
   const [sortBy, setSortBy] = useState('hours');
@@ -88,7 +90,7 @@ export const OvertimeHours = ({ onNavigate }) => {
       totalCost: 4680,
       averagePerEmployee: 12,
       trend: '+15%',
-      color: '#EF5226'
+      color: '#CA2030'
     },
     {
       department: 'Support',
@@ -97,7 +99,7 @@ export const OvertimeHours = ({ onNavigate }) => {
       totalCost: 3432,
       averagePerEmployee: 13,
       trend: '+22%',
-      color: '#05A7CC'
+      color: '#2C318E'
     },
     {
       department: 'Development',
@@ -156,7 +158,7 @@ export const OvertimeHours = ({ onNavigate }) => {
 
   const getTrendIcon = (trend) => {
     switch (trend) {
-      case 'up': return <ChevronUp size={16} className="text-[#EF5226]" />;
+      case 'up': return <ChevronUp size={16} className="text-[#CA2030]" />;
       case 'down': return <ChevronDown size={16} className="text-green-600" />;
       default: return <div className="w-4 h-4 bg-gray-400 rounded-full"></div>;
     }
@@ -164,8 +166,8 @@ export const OvertimeHours = ({ onNavigate }) => {
 
   const getDepartmentColor = (department) => {
     const colors = {
-      'IT': 'bg-[#EF5226]',
-      'HR': 'bg-[#05A7CC]',
+      'IT': 'bg-[#CA2030]',
+      'HR': 'bg-[#2C318E]',
       'Support': 'bg-purple-500',
       'Development': 'bg-green-500',
       'Operations': 'bg-yellow-500'
@@ -175,7 +177,7 @@ export const OvertimeHours = ({ onNavigate }) => {
 
   // Layout: Split (Charts on Top, Table Below)
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Overtime & Working Hours</h1>
@@ -189,7 +191,7 @@ export const OvertimeHours = ({ onNavigate }) => {
             <select 
               value={dateRange}
               onChange={(e) => setDateRange(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
             >
               <option value="this-week">This Week</option>
               <option value="this-month">This Month</option>
@@ -201,7 +203,7 @@ export const OvertimeHours = ({ onNavigate }) => {
             <select 
               value={departmentFilter}
               onChange={(e) => setDepartmentFilter(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
             >
               <option value="all">All Departments</option>
               <option value="IT">IT</option>
@@ -218,7 +220,7 @@ export const OvertimeHours = ({ onNavigate }) => {
                 setSortBy(field);
                 setSortOrder(order);
               }}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
             >
               <option value="hours-desc">Hours (High to Low)</option>
               <option value="hours-asc">Hours (Low to High)</option>
@@ -229,12 +231,12 @@ export const OvertimeHours = ({ onNavigate }) => {
           </div>
 
           <div className="flex gap-3">
-            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#EF5226] transition-colors">
+            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors">
               <Download size={16} className="mr-2" />
               Export Report
             </button>
             <button 
-              onClick={() => onNavigate('attendance-reports')}
+              onClick={() => navigate('/view-analytics')}
               className="neu-primary px-6 py-3 rounded-xl flex items-center hover:shadow-xl transition-all"
             >
               <BarChart3 size={16} className="mr-2" />
@@ -251,7 +253,7 @@ export const OvertimeHours = ({ onNavigate }) => {
           <h3 className="text-lg font-bold text-[#333333] mb-6">Monthly Overview</h3>
           <div className="space-y-4">
             <div className="neu-small p-4 rounded-xl text-center">
-              <div className="text-2xl font-bold text-[#EF5226] mb-1">{totalOvertimeHours}h</div>
+              <div className="text-2xl font-bold text-[#CA2030] mb-1">{totalOvertimeHours}h</div>
               <div className="text-[#666666] text-sm">Total Overtime</div>
             </div>
             <div className="neu-small p-4 rounded-xl text-center">
@@ -259,7 +261,7 @@ export const OvertimeHours = ({ onNavigate }) => {
               <div className="text-[#666666] text-sm">Total Cost</div>
             </div>
             <div className="neu-small p-4 rounded-xl text-center">
-              <div className="text-2xl font-bold text-[#05A7CC] mb-1">{averageOvertimePerEmployee.toFixed(1)}h</div>
+              <div className="text-2xl font-bold text-[#2C318E] mb-1">{averageOvertimePerEmployee.toFixed(1)}h</div>
               <div className="text-[#666666] text-sm">Avg per Employee</div>
             </div>
           </div>
@@ -385,7 +387,7 @@ export const OvertimeHours = ({ onNavigate }) => {
                     ${employee.overtimeRate}
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-[#EF5226] font-bold text-lg">
+                    <div className="text-[#CA2030] font-bold text-lg">
                       ${employee.totalOvertimePay}
                     </div>
                   </td>
@@ -427,10 +429,10 @@ export const OvertimeHours = ({ onNavigate }) => {
             </div>
             <div className="flex items-center space-x-4 text-sm">
               <div className="text-[#666666]">
-                Total Cost: <span className="font-bold text-[#EF5226]">${totalOvertimeCost.toLocaleString()}</span>
+                Total Cost: <span className="font-bold text-[#CA2030]">${totalOvertimeCost.toLocaleString()}</span>
               </div>
               <div className="text-[#666666]">
-                Avg Efficiency: <span className="font-bold text-[#05A7CC]">76%</span>
+                Avg Efficiency: <span className="font-bold text-[#2C318E]">76%</span>
               </div>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, User, Calendar, CheckCircle, Clock, XCircle, ArrowRight, MessageSquare, FileText, Star } from 'lucide-react';
 
-export const ApplicantProgress = ({ applicantId, onNavigate }) => {
+export const ApplicantProgress = ({ applicantId }) => {
+  const navigate = useNavigate();
   const [selectedStage, setSelectedStage] = useState(null);
 
   // Mock applicant data
@@ -180,12 +182,12 @@ export const ApplicantProgress = ({ applicantId, onNavigate }) => {
   const progressPercentage = (completedStages / totalStages) * 100;
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
           <button
-            onClick={() => onNavigate('applicant-details', { applicantId: applicant.id })}
+            onClick={() => navigate(-1)}
             className="neu-button p-3 rounded-2xl mr-4 hover:shadow-md transition-all duration-200"
           >
             <ArrowLeft size={20} className="text-[#666666]" />
@@ -196,7 +198,7 @@ export const ApplicantProgress = ({ applicantId, onNavigate }) => {
           </div>
         </div>
         <button
-          onClick={() => onNavigate('applicant-details', { applicantId: applicant.id })}
+          onClick={() => navigate('/applicant-details')}
           className="neu-primary px-6 py-3 rounded-2xl text-white hover:shadow-lg transition-all duration-200"
         >
           View Full Profile
@@ -212,14 +214,14 @@ export const ApplicantProgress = ({ applicantId, onNavigate }) => {
             </div>
             <div>
               <h3 className="text-xl font-bold text-[#333333] mb-1">{applicant.name}</h3>
-              <p className="text-[#EF5226] font-medium mb-1">{applicant.appliedFor}</p>
+              <p className="text-[#CA2030] font-medium mb-1">{applicant.appliedFor}</p>
               <p className="text-[#666666] text-sm">Applied on {applicant.appliedDate}</p>
             </div>
           </div>
           <div className="text-right">
             <p className="text-[#666666] text-sm mb-1">Current Stage</p>
             <p className="text-lg font-bold text-[#333333]">{applicant.currentStage}</p>
-            <p className="text-[#05A7CC] text-sm">{applicant.currentStatus}</p>
+            <p className="text-[#2C318E] text-sm">{applicant.currentStatus}</p>
           </div>
         </div>
 
@@ -231,7 +233,7 @@ export const ApplicantProgress = ({ applicantId, onNavigate }) => {
           </div>
           <div className="neu-card-inset rounded-2xl p-2">
             <div 
-              className="h-4 bg-gradient-to-r from-[#05A7CC] to-[#EF5226] rounded-xl transition-all duration-500"
+              className="h-4 bg-gradient-to-r from-[#2C318E] to-[#CA2030] rounded-xl transition-all duration-500"
               style={{ width: `${progressPercentage}%` }}
             ></div>
           </div>
@@ -302,7 +304,7 @@ export const ApplicantProgress = ({ applicantId, onNavigate }) => {
                           <ul className="space-y-2">
                             {stage.details.map((detail, i) => (
                               <li key={i} className="flex items-start">
-                                <span className="text-[#05A7CC] mr-3 mt-1">•</span>
+                                <span className="text-[#2C318E] mr-3 mt-1">•</span>
                                 <span className="text-[#333333] text-sm">{detail}</span>
                               </li>
                             ))}
@@ -340,7 +342,7 @@ export const ApplicantProgress = ({ applicantId, onNavigate }) => {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-[#666666]">Next Action:</span>
-                <span className="text-[#EF5226] font-medium">Technical Interview</span>
+                <span className="text-[#CA2030] font-medium">Technical Interview</span>
               </div>
             </div>
           </div>
@@ -387,18 +389,18 @@ export const ApplicantProgress = ({ applicantId, onNavigate }) => {
             
             <div className="space-y-3">
               <button
-                onClick={() => onNavigate('applicant-actions', { applicantId: applicant.id })}
+                onClick={() => navigate(`/applicant-actions/${applicant.id}`)}
                 className="neu-secondary w-full px-4 py-3 rounded-2xl text-white hover:shadow-lg transition-all duration-200"
               >
                 Take Action
               </button>
               <button
-                onClick={() => onNavigate('new-interview', { applicantId: applicant.id })}
-                className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+                onClick={() => navigate('/new-interview')}
+                className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
               >
                 Schedule Interview
               </button>
-              <button className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#EF5226] transition-all duration-200 flex items-center justify-center space-x-2">
+              <button className="neu-button w-full px-4 py-3 rounded-2xl text-[#333333] hover:text-[#CA2030] transition-all duration-200 flex items-center justify-center space-x-2">
                 <MessageSquare size={16} />
                 <span>Add Note</span>
               </button>
@@ -424,7 +426,7 @@ export const ApplicantProgress = ({ applicantId, onNavigate }) => {
               </div>
               <div className="flex justify-between">
                 <span className="text-[#666666]">Tech Interview:</span>
-                <span className="text-[#05A7CC]">Jan 25, 2024</span>
+                <span className="text-[#2C318E]">Jan 25, 2024</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#666666]">Est. Decision:</span>

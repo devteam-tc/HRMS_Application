@@ -61,11 +61,11 @@ export const AttendanceCalendar = ({ onNavigate }) => {
   const getStatusColor = (status, data) => {
     switch (status) {
       case 'present':
-        return data.late ? 'border-[#EF5226] bg-orange-50' : 'border-green-500 bg-green-50';
+        return data.late ? 'border-[#CA2030] bg-orange-50' : 'border-green-500 bg-green-50';
       case 'holiday':
-        return 'border-[#05A7CC] bg-blue-50';
+        return 'border-[#2C318E] bg-blue-50';
       case 'leave':
-        return 'border-[#EF5226] bg-red-50';
+        return 'border-[#CA2030] bg-red-50';
       default:
         return 'border-gray-200 bg-white';
     }
@@ -98,14 +98,14 @@ export const AttendanceCalendar = ({ onNavigate }) => {
         >
           <div className="flex justify-between items-start mb-1">
             <span className={`text-sm font-medium ${
-              isToday ? 'text-[#05A7CC] font-bold' : 'text-[#333333]'
+              isToday ? 'text-[#2C318E] font-bold' : 'text-[#333333]'
             }`}>
               {day}
             </span>
             {dayData && (
               <div className="flex space-x-1">
                 {dayData.status === 'present' && <Clock size={12} className="text-green-600" />}
-                {dayData.status === 'holiday' && <Calendar size={12} className="text-[#05A7CC]" />}
+                {dayData.status === 'holiday' && <Calendar size={12} className="text-[#2C318E]" />}
                 {dayData.status === 'leave' && dayData.type && (
                   <div className={`w-2 h-2 rounded-full ${leaveTypes[dayData.type]?.color.split(' ')[0]}`}></div>
                 )}
@@ -118,16 +118,16 @@ export const AttendanceCalendar = ({ onNavigate }) => {
               {dayData.status === 'present' && (
                 <div className="text-xs text-[#666666]">
                   <div>{dayData.employees} employees</div>
-                  {dayData.late && <div className="text-[#EF5226]">{dayData.late} late</div>}
+                  {dayData.late && <div className="text-[#CA2030]">{dayData.late} late</div>}
                 </div>
               )}
               {dayData.status === 'holiday' && (
-                <div className="text-xs text-[#05A7CC] truncate">{dayData.name}</div>
+                <div className="text-xs text-[#2C318E] truncate">{dayData.name}</div>
               )}
               {dayData.status === 'leave' && (
                 <div className="text-xs text-[#666666]">
                   <div>{dayData.employees} present</div>
-                  <div className="text-[#EF5226]">{dayData.leaves} on leave</div>
+                  <div className="text-[#CA2030]">{dayData.leaves} on leave</div>
                 </div>
               )}
             </div>
@@ -142,7 +142,7 @@ export const AttendanceCalendar = ({ onNavigate }) => {
   const selectedDayDetails = selectedDate ? attendanceData[selectedDate] : null;
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Attendance Calendar</h1>
@@ -158,7 +158,7 @@ export const AttendanceCalendar = ({ onNavigate }) => {
               <div className="flex items-center space-x-4">
                 <button
                   onClick={() => navigateMonth(-1)}
-                  className="neu-button p-2 rounded-xl hover:text-[#05A7CC]"
+                  className="neu-button p-2 rounded-xl hover:text-[#2C318E]"
                 >
                   <ChevronLeft size={20} />
                 </button>
@@ -167,7 +167,7 @@ export const AttendanceCalendar = ({ onNavigate }) => {
                 </h2>
                 <button
                   onClick={() => navigateMonth(1)}
-                  className="neu-button p-2 rounded-xl hover:text-[#05A7CC]"
+                  className="neu-button p-2 rounded-xl hover:text-[#2C318E]"
                 >
                   <ChevronRight size={20} />
                 </button>
@@ -214,11 +214,11 @@ export const AttendanceCalendar = ({ onNavigate }) => {
                 <span className="text-sm text-[#666666]">Present</span>
               </div>
               <div className="flex items-center">
-                <div className="w-4 h-4 rounded bg-[#EF5226] mr-3"></div>
+                <div className="w-4 h-4 rounded bg-[#CA2030] mr-3"></div>
                 <span className="text-sm text-[#666666]">Late/Absent</span>
               </div>
               <div className="flex items-center">
-                <div className="w-4 h-4 rounded bg-[#05A7CC] mr-3"></div>
+                <div className="w-4 h-4 rounded bg-[#2C318E] mr-3"></div>
                 <span className="text-sm text-[#666666]">Holiday</span>
               </div>
               <div className="flex items-center">
@@ -260,7 +260,7 @@ export const AttendanceCalendar = ({ onNavigate }) => {
                     <div className="neu-small p-3 rounded-xl">
                       <div className="flex items-center justify-between">
                         <span className="text-[#666666] text-sm">Late Arrivals</span>
-                        <span className="font-bold text-[#EF5226]">{selectedDayDetails.late}</span>
+                        <span className="font-bold text-[#CA2030]">{selectedDayDetails.late}</span>
                       </div>
                     </div>
                   )}
@@ -269,7 +269,7 @@ export const AttendanceCalendar = ({ onNavigate }) => {
               
               {selectedDayDetails.status === 'holiday' && (
                 <div className="neu-small p-4 rounded-xl text-center">
-                  <Calendar size={24} className="text-[#05A7CC] mx-auto mb-2" />
+                  <Calendar size={24} className="text-[#2C318E] mx-auto mb-2" />
                   <p className="font-medium text-[#333333]">{selectedDayDetails.name}</p>
                   <p className="text-sm text-[#666666]">Company Holiday</p>
                 </div>
@@ -283,21 +283,21 @@ export const AttendanceCalendar = ({ onNavigate }) => {
             <div className="space-y-3">
               <button 
                 onClick={() => onNavigate('holiday-management')}
-                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#05A7CC]"
+                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#2C318E]"
               >
                 <Plus size={16} className="inline mr-2" />
                 Add Holiday
               </button>
               <button 
                 onClick={() => onNavigate('punch-records')}
-                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#05A7CC]"
+                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#2C318E]"
               >
                 <Clock size={16} className="inline mr-2" />
                 View Records
               </button>
               <button 
                 onClick={() => onNavigate('attendance-reports')}
-                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#05A7CC]"
+                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#2C318E]"
               >
                 <Filter size={16} className="inline mr-2" />
                 Generate Report

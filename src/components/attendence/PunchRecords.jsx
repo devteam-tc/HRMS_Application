@@ -154,8 +154,8 @@ export const PunchRecords = ({ onNavigate }) => {
 
   const getDepartmentColor = (department) => {
     const colors = {
-      'IT': 'bg-[#EF5226] text-white',
-      'HR': 'bg-[#05A7CC] text-white',
+      'IT': 'bg-[#CA2030] text-white',
+      'HR': 'bg-[#2C318E] text-white',
       'Support': 'bg-purple-500 text-white',
       'Design': 'bg-pink-500 text-white',
       'Development': 'bg-green-500 text-white',
@@ -173,7 +173,7 @@ export const PunchRecords = ({ onNavigate }) => {
 
   // Layout: Interactive Table with Action Buttons and Enhanced Cards
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Punch In/Out Records</h1>
@@ -187,13 +187,13 @@ export const PunchRecords = ({ onNavigate }) => {
           <div className="flex flex-col sm:flex-row gap-4 flex-1">
             {/* Enhanced Search */}
             <div className="relative flex-1 max-w-md">
-              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#EF5226]" />
+              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#CA2030]" />
               <input
                 type="text"
                 placeholder="Search by name or employee ID..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 neu-input rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                className="w-full pl-12 pr-4 py-3 neu-input rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all"
               />
             </div>
 
@@ -201,7 +201,7 @@ export const PunchRecords = ({ onNavigate }) => {
             <select 
               value={dateFilter}
               onChange={(e) => setDateFilter(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
             >
               <option value="today">Today</option>
               <option value="yesterday">Yesterday</option>
@@ -215,7 +215,7 @@ export const PunchRecords = ({ onNavigate }) => {
             <select 
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
             >
               <option value="all">All Status</option>
               <option value="complete">Complete</option>
@@ -227,7 +227,7 @@ export const PunchRecords = ({ onNavigate }) => {
 
           {/* Right side - Actions */}
           <div className="flex gap-3">
-            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#EF5226] transition-colors">
+            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors">
               <Download size={16} className="mr-2" />
               Export
             </button>
@@ -244,11 +244,11 @@ export const PunchRecords = ({ onNavigate }) => {
         <div className="neu-card p-6 rounded-2xl group hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-2xl font-bold text-[#333333] group-hover:text-[#EF5226] transition-colors">142</h3>
+              <h3 className="text-2xl font-bold text-[#333333] group-hover:text-[#CA2030] transition-colors">142</h3>
               <p className="text-[#666666] text-sm">Total Records</p>
             </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#EF5226] to-[#d4471f]">
-              <Clock size={24} className="text-white" />
+            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#CA2030] to-[#d4471f]">
+              <Clock size={24} className="text-black" />
             </div>
           </div>
         </div>
@@ -260,7 +260,7 @@ export const PunchRecords = ({ onNavigate }) => {
               <p className="text-[#666666] text-sm">Complete</p>
             </div>
             <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-green-400 to-green-600">
-              <CheckCircle size={24} className="text-white" />
+              <CheckCircle size={24} className="text-black" />
             </div>
           </div>
         </div>
@@ -268,11 +268,11 @@ export const PunchRecords = ({ onNavigate }) => {
         <div className="neu-card p-6 rounded-2xl group hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-2xl font-bold text-[#05A7CC] group-hover:scale-105 transition-transform">8</h3>
+              <h3 className="text-2xl font-bold text-[#2C318E] group-hover:scale-105 transition-transform">8</h3>
               <p className="text-[#666666] text-sm">Incomplete</p>
             </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#05A7CC] to-[#048ba8]">
-              <AlertCircle size={24} className="text-white" />
+            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#2C318E] to-[#048ba8]">
+              <AlertCircle size={24} className="text-black" />
             </div>
           </div>
         </div>
@@ -280,11 +280,11 @@ export const PunchRecords = ({ onNavigate }) => {
         <div className="neu-card p-6 rounded-2xl group hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-2xl font-bold text-[#333333] group-hover:text-[#EF5226] transition-colors">6</h3>
+              <h3 className="text-2xl font-bold text-[#333333] group-hover:text-[#CA2030] transition-colors">6</h3>
               <p className="text-[#666666] text-sm">Need Review</p>
             </div>
             <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600">
-              <Edit3 size={24} className="text-white" />
+              <Edit3 size={24} className="text-black" />
             </div>
           </div>
         </div>
@@ -304,9 +304,9 @@ export const PunchRecords = ({ onNavigate }) => {
                   type="checkbox"
                   checked={selectedRecords.length === filteredRecords.length && filteredRecords.length > 0}
                   onChange={handleSelectAll}
-                  className="mr-2 w-4 h-4 text-[#EF5226] bg-gray-100 border-gray-300 rounded focus:ring-[#EF5226] focus:ring-2"
+                  className="mr-2 w-4 h-4 text-[#CA2030] bg-gray-100 border-gray-300 rounded focus:ring-[#CA2030] focus:ring-2"
                 />
-                <span className="text-sm text-[#666666] group-hover:text-[#EF5226] transition-colors">Select All</span>
+                <span className="text-sm text-[#666666] group-hover:text-[#CA2030] transition-colors">Select All</span>
               </label>
             </div>
           </div>
@@ -321,7 +321,7 @@ export const PunchRecords = ({ onNavigate }) => {
                     type="checkbox"
                     checked={selectedRecords.length === filteredRecords.length && filteredRecords.length > 0}
                     onChange={handleSelectAll}
-                    className="w-4 h-4 text-[#EF5226] bg-gray-100 border-gray-300 rounded focus:ring-[#EF5226] focus:ring-2"
+                    className="w-4 h-4 text-[#CA2030] bg-gray-100 border-gray-300 rounded focus:ring-[#CA2030] focus:ring-2"
                   />
                 </th>
                 <th className="px-6 py-4 text-left text-[#333333] font-semibold">Employee</th>
@@ -340,19 +340,19 @@ export const PunchRecords = ({ onNavigate }) => {
                   key={record.id} 
                   className={`border-b border-[#E8EBEF] hover:bg-gradient-to-r hover:from-[#ECF0F3] hover:to-[#E8EBEF] transition-all duration-200 ${
                     index % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFB]'
-                  } ${selectedRecords.includes(record.id) ? 'ring-2 ring-[#EF5226] bg-orange-50' : ''}`}
+                  } ${selectedRecords.includes(record.id) ? 'ring-2 ring-[#CA2030] bg-orange-50' : ''}`}
                 >
                   <td className="px-6 py-4">
                     <input
                       type="checkbox"
                       checked={selectedRecords.includes(record.id)}
                       onChange={() => handleSelectRecord(record.id)}
-                      className="w-4 h-4 text-[#EF5226] bg-gray-100 border-gray-300 rounded focus:ring-[#EF5226] focus:ring-2"
+                      className="w-4 h-4 text-[#CA2030] bg-gray-100 border-gray-300 rounded focus:ring-[#CA2030] focus:ring-2"
                     />
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center">
-                      <div className="neu-small w-10 h-10 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-[#EF5226] to-[#d4471f] text-white font-semibold">
+                      <div className="neu-small w-10 h-10 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-[#CA2030] to-[#d4471f] text-black font-semibold">
                         {record.avatar}
                       </div>
                       <div>
@@ -377,7 +377,7 @@ export const PunchRecords = ({ onNavigate }) => {
                   </td>
                   <td className="px-6 py-4 text-[#333333] font-bold">{record.totalHours}</td>
                   <td className="px-6 py-4">
-                    <span className={`font-bold ${record.overtime !== '0h' ? 'text-[#05A7CC]' : 'text-[#666666]'}`}>
+                    <span className={`font-bold ${record.overtime !== '0h' ? 'text-[#2C318E]' : 'text-[#666666]'}`}>
                       {record.overtime}
                     </span>
                   </td>
@@ -386,12 +386,12 @@ export const PunchRecords = ({ onNavigate }) => {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center space-x-2">
-                      <button className="neu-small p-2 rounded-lg hover:text-[#EF5226] hover:shadow-md transition-all">
+                      <button className="neu-small p-2 rounded-lg hover:text-[#CA2030] hover:shadow-md transition-all">
                         <Edit3 size={14} />
                       </button>
                       <button 
                         onClick={() => onNavigate('employee-attendance-profile', { employeeId: record.employeeId })}
-                        className="neu-small p-2 rounded-lg hover:text-[#05A7CC] hover:shadow-md transition-all"
+                        className="neu-small p-2 rounded-lg hover:text-[#2C318E] hover:shadow-md transition-all"
                       >
                         <Eye size={14} />
                       </button>
@@ -415,13 +415,13 @@ export const PunchRecords = ({ onNavigate }) => {
             Showing <span className="font-semibold text-[#333333]">1</span> to <span className="font-semibold text-[#333333]">{filteredRecords.length}</span> of <span className="font-semibold text-[#333333]">{punchRecords.length}</span> entries
           </div>
           <div className="flex items-center space-x-2">
-            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#EF5226] transition-colors">
+            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#CA2030] transition-colors">
               Previous
             </button>
             <button className="neu-primary px-4 py-2 rounded-xl shadow-md">1</button>
-            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#EF5226] transition-colors">2</button>
-            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#EF5226] transition-colors">3</button>
-            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#EF5226] transition-colors">
+            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#CA2030] transition-colors">2</button>
+            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#CA2030] transition-colors">3</button>
+            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#CA2030] transition-colors">
               Next
             </button>
           </div>

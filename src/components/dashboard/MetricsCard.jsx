@@ -8,7 +8,7 @@ const MetricsCard = ({ icon: Icon, value, change, title, subtitle, iconColor, ch
       </div>
       <div className="text-right">
         <div className="text-3xl font-bold text-[#333333]">{value}</div>
-        <div className={`text-sm ${changeType === 'increase' ? 'text-[#4CAF50]' : 'text-[#EF5226]'} font-medium`}>
+        <div className={`text-sm ${changeType === 'increase' ? 'text-[#4CAF50]' : 'text-[#CA2030]'} font-medium`}>
           {change}
         </div>
       </div>

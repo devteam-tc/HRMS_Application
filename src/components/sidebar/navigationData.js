@@ -26,6 +26,7 @@ export const navigationItems = [
     id: "dashboard",
     label: "Dashboard",
     icon: LayoutDashboard,
+    path: '/dashboard'
   },
   {
     id: "employees",
@@ -33,7 +34,7 @@ export const navigationItems = [
     icon: Users,
     subItems: [
       { id: "employee-directory", label: "HR Dashboard", icon: LayoutDashboard , path: '/employee-directory' },
-      { id: "employee-profile", label: "Employee Profile", icon: User , path: '/employee-profile' },
+      // { id: "employee-profile", label: "Employee Profile", icon: User , path: '/employee-profile' },
       { id: "onboarding-dashboard", label: "Onboarding", icon: LayoutDashboard  , path: '/onboarding-dashboard' },
       { id: "offboarding-dashboard", label: "Offboarding", icon: LayoutDashboard  , path: '/offboarding-dashboard' },
       { id: "neumorphic-dashboard", label: "Admin Dashboard", icon: LayoutDashboard  , path: '/admin-dashboard' },
@@ -78,16 +79,16 @@ export const navigationItems = [
   
 
 
-  {
+   {
     id: "meetings",
     label: "Meetings",
     icon: Calendar,
     subItems: [
       { id: "all-meetings", label: "All Meetings", icon: FileText ,  path: '/meetings'},
-      { id: "new-meeting", label: "New Meeting", icon: Plus , path: '/meetings/new'},
-      { id: "meeting-calendar", label: "Meeting Calendar", icon: CalendarDays , path: '/meetings/calendar'},
-      { id: "meeting-attachments", label: "Attachments", icon: Image , path: '/meetings/attachments'},
-      { id: "meeting-reports", label: "Reports & Analytics", icon: BarChart3 , path: '/meetings/reports'},
+      { id: "new-meeting", label: "New Meeting", icon: Plus , path: '/new-meeting/'},
+      { id: "meeting-calendar", label: "Meeting Calendar", icon: CalendarDays , path: '/calendar-meetings/'},
+      { id: "meeting-attachments", label: "Attachments", icon: Image , path: '/meetings-attachments'},
+      { id: "meeting-reports", label: "Reports & Analytics", icon: BarChart3 , path: '/meeting-reports'},
     ],
   },
 
@@ -98,12 +99,12 @@ export const navigationItems = [
     label: "VSLM",
     icon: MapPin,
     subItems: [
-      { id: "all-projects", label: "All Projects", icon: FolderOpen },
-      { id: "uploaded-images", label: "Uploaded Images", icon: Image },
-      { id: "project-timeline", label: "Project Timeline", icon: CalendarDays },
-      { id: "site-visit-log", label: "Site Visit Log", icon: MapPin },
-      { id: "vslm-analytics", label: "Analytics", icon: BarChart3 },
-      { id: "project-reports", label: "Reports", icon: FileText },
+      { id: "all-projects", label: "All Projects", icon: FolderOpen  , path: '/all-projects' },
+      { id: "uploaded-images", label: "Uploaded Images", icon: Image , path: '/uploaded-images' },
+      { id: "project-timeline", label: "Project Timeline", icon: CalendarDays , path: '/project-timeline' },
+      { id: "site-visit-log", label: "Site Visit Log", icon: MapPin , path: '/site-visit-log' },
+      { id: "vslm-analytics", label: "Analytics", icon: BarChart3 , path: '/vslm-analytics' },
+      { id: "project-reports", label: "Reports", icon: FileText , path: '/project-reports' },
     ],
   },
   {

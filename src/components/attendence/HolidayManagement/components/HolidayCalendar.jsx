@@ -20,7 +20,7 @@ export const HolidayCalendar = ({
           <div className="flex items-center space-x-4">
             <button
               onClick={() => navigateMonth(-1)}
-              className="neu-button p-3 rounded-xl hover:text-[#EF5226] transition-colors"
+              className="neu-button p-3 rounded-xl hover:text-[#CA2030] transition-colors"
             >
               <ChevronLeft size={20} />
             </button>
@@ -29,7 +29,7 @@ export const HolidayCalendar = ({
             </h2>
             <button
               onClick={() => navigateMonth(1)}
-              className="neu-button p-3 rounded-xl hover:text-[#EF5226] transition-colors"
+              className="neu-button p-3 rounded-xl hover:text-[#CA2030] transition-colors"
             >
               <ChevronRight size={20} />
             </button>

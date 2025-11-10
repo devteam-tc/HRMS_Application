@@ -18,7 +18,7 @@ import {
 } from 'recharts';
 
 const projectStatusData = [
-  { name: 'Ongoing', value: 3, color: '#05A7CC' },
+  { name: 'Ongoing', value: 3, color: '#2C318E' },
   { name: 'Completed', value: 2, color: '#4CAF50' },
   { name: 'On Hold', value: 1, color: '#FFC107' }
 ];
@@ -133,7 +133,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
         <div className="neu-card p-6 rounded-3xl">
           <div className="flex items-center justify-between mb-4">
             <div className="neu-small p-3 rounded-2xl">
-              <TrendingUp className="h-6 w-6 text-[#05A7CC]" />
+              <TrendingUp className="h-6 w-6 text-[#2C318E]" />
             </div>
             <div className="text-right">
               <div className="text-3xl font-bold text-[#333333]">{totalProjects}</div>
@@ -153,7 +153,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
             </div>
             <div className="text-right">
               <div className="text-3xl font-bold text-[#333333]">{totalVisits}</div>
-              <div className="text-sm text-[#05A7CC] font-medium">+15% vs last period</div>
+              <div className="text-sm text-[#2C318E] font-medium">+15% vs last period</div>
             </div>
           </div>
           <div>
@@ -277,16 +277,16 @@ export const VSLMAnalytics = ({ onNavigate }) => {
                   type="monotone" 
                   dataKey="onTime" 
                   stackId="1" 
-                  stroke="#05A7CC" 
-                  fill="#05A7CC" 
+                  stroke="#2C318E" 
+                  fill="#2C318E" 
                   fillOpacity={0.6}
                 />
                 <Area 
                   type="monotone" 
                   dataKey="delayed" 
                   stackId="1" 
-                  stroke="#EF5226" 
-                  fill="#EF5226" 
+                  stroke="#CA2030" 
+                  fill="#CA2030" 
                   fillOpacity={0.6}
                 />
               </AreaChart>
@@ -317,7 +317,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
                     boxShadow: '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff'
                   }}
                 />
-                <Bar dataKey="visits" fill="#05A7CC" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="visits" fill="#2C318E" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="inspections" fill="#4CAF50" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="safety" fill="#FF9800" radius={[4, 4, 0, 0]} />
               </BarChart>
@@ -349,7 +349,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
                 <Line 
                   type="monotone" 
                   dataKey="planned" 
-                  stroke="#05A7CC" 
+                  stroke="#2C318E" 
                   strokeWidth={3}
                   strokeDasharray="5 5"
                   name="Planned"
@@ -377,7 +377,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
                 <h4 className="font-bold text-[#333333]">{metric.metric}</h4>
                 <div className={`w-3 h-3 rounded-full ${
                   metric.trend === 'up' ? 'bg-[#4CAF50]' :
-                  metric.trend === 'down' ? 'bg-[#EF5226]' : 'bg-[#FFC107]'
+                  metric.trend === 'down' ? 'bg-[#CA2030]' : 'bg-[#FFC107]'
                 }`}></div>
               </div>
               <div className="text-3xl font-bold text-[#333333] mb-2">{metric.current}%</div>
@@ -420,7 +420,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
                 <div className="text-[#333333]">{project.completion}%</div>
                 <div className={`neu-small px-3 py-1 rounded-xl text-xs font-medium ${
                   project.completion === 100 ? 'bg-[#4CAF50] text-white' :
-                  project.completion >= 50 ? 'bg-[#05A7CC] text-white' :
+                  project.completion >= 50 ? 'bg-[#2C318E] text-white' :
                   project.completion >= 25 ? 'bg-[#FFC107] text-white' : 'bg-[#666666] text-white'
                 }`}>
                   {project.completion === 100 ? 'COMPLETED' :
@@ -431,7 +431,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
                   {project.actual <= project.planned * (project.completion / 100) ? (
                     <div className="w-3 h-3 bg-[#4CAF50] rounded-full"></div>
                   ) : (
-                    <div className="w-3 h-3 bg-[#EF5226] rounded-full"></div>
+                    <div className="w-3 h-3 bg-[#CA2030] rounded-full"></div>
                   )}
                   <span className="text-sm text-[#666666]">
                     {project.actual <= project.planned * (project.completion / 100) ? 'On Budget' : 'Over Budget'}
@@ -462,7 +462,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
           
           <div className="neu-small p-6 rounded-2xl">
             <h4 className="font-bold text-[#333333] mb-3 flex items-center space-x-2">
-              <AlertTriangle className="w-5 h-5 text-[#EF5226]" />
+              <AlertTriangle className="w-5 h-5 text-[#CA2030]" />
               <span>Areas for Attention</span>
             </h4>
             <ul className="space-y-2 text-[#666666]">

@@ -107,11 +107,11 @@ export const ProjectTimeline = ({ projectId, onNavigate }) => {
       case 'completed':
         return 'bg-[#4CAF50]';
       case 'in-progress':
-        return 'bg-[#05A7CC]';
+        return 'bg-[#2C318E]';
       case 'pending':
         return 'bg-[#666666]';
       case 'delayed':
-        return 'bg-[#EF5226]';
+        return 'bg-[#CA2030]';
       default:
         return 'bg-[#666666]';
     }
@@ -124,7 +124,7 @@ export const ProjectTimeline = ({ projectId, onNavigate }) => {
       case 'foundation':
         return 'bg-[#795548]';
       case 'structural':
-        return 'bg-[#05A7CC]';
+        return 'bg-[#2C318E]';
       case 'exterior':
         return 'bg-[#4CAF50]';
       case 'interior':
@@ -241,7 +241,7 @@ export const ProjectTimeline = ({ projectId, onNavigate }) => {
           <div className="text-[#666666]">Completed</div>
         </div>
         <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#05A7CC] mb-2">20%</div>
+          <div className="text-3xl font-bold text-[#2C318E] mb-2">20%</div>
           <div className="text-[#666666]">In Progress</div>
         </div>
         <div className="neu-card p-6 rounded-3xl text-center">
@@ -406,7 +406,7 @@ export const ProjectTimeline = ({ projectId, onNavigate }) => {
           {milestones.map((milestone, index) => (
             <div key={index} className="neu-small p-6 rounded-2xl text-center">
               <div className="neu-card-inset w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <div className={`w-8 h-8 rounded-full ${milestone.type === 'start' ? 'bg-[#4CAF50]' : milestone.type === 'end' ? 'bg-[#EF5226]' : 'bg-[#05A7CC]'} flex items-center justify-center`}>
+                <div className={`w-8 h-8 rounded-full ${milestone.type === 'start' ? 'bg-[#4CAF50]' : milestone.type === 'end' ? 'bg-[#CA2030]' : 'bg-[#2C318E]'} flex items-center justify-center`}>
                   {getMilestoneIcon(milestone.type)}
                 </div>
               </div>

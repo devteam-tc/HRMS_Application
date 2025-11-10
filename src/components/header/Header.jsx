@@ -7,8 +7,8 @@ export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobi
   const [messages] = useState(5);
 
   const navbarStyles = {
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.08), 0 -2px 4px rgba(255, 255, 255, 0.9)',
-    background: 'linear-gradient(145deg, #f8fafc, #e2e8f0)',
+    boxShadow: '8px 8px 14px 0 #E9ECFF',
+    background: '#fff',
   };
 
   const buttonStyles = {
@@ -16,8 +16,8 @@ export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobi
   };
 
   const inputStyles = {
-    boxShadow: 'inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.9)',
-    backgroundColor: '#f1f5f9',
+    // boxShadow: 'inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.9)',
+    backgroundColor: '#fff',
   };
 
   return (
@@ -110,7 +110,7 @@ export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobi
             <span 
               className="absolute -top-1 -right-1 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
               style={{
-                backgroundColor: '#05A7CC',
+                backgroundColor: '#2C318E',
                 boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
               }}
             >
@@ -129,7 +129,7 @@ export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobi
             <div 
               className="w-8 h-8 rounded-full flex items-center justify-center"
               style={{
-                backgroundColor: '#05A7CC',
+                backgroundColor: '#2C318E',
                 boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.15), -1px -1px 2px rgba(255, 255, 255, 0.7)',
               }}
             >

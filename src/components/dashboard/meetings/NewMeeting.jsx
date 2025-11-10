@@ -92,12 +92,10 @@ export const NewMeeting = ({ onNavigate }) => {
     setUploadedFiles(prev => prev.filter(file => file !== fileName));
   };
 
-  const handleSave = (e) => {
-    e.preventDefault();
+  const handleSave = () => {
     console.log('Creating meeting:', formData);
-    // In a real app, you would save the meeting data to your backend here
-    // Then navigate to the confirmation page with the meeting data
-    onNavigate('confirmation');
+    // Handle save logic here
+    onNavigate('meeting-confirmation');
   };
 
   const filteredParticipants = availableParticipants.filter(participant =>

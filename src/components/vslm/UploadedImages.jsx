@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Filter, Plus, Eye, Download, Trash2, Image as ImageIcon, Grid, List, Tag, Calendar, User } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 const images = [
   {
@@ -262,7 +262,7 @@ export const UploadedImages = ({ onNavigate, projectId }) => {
           <div className="text-[#666666]">Total Images</div>
         </div>
         <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#05A7CC] mb-2">
+          <div className="text-3xl font-bold text-[#2C318E] mb-2">
             {uniqueProjects.length}
           </div>
           <div className="text-[#666666]">Projects</div>
@@ -318,7 +318,7 @@ export const UploadedImages = ({ onNavigate, projectId }) => {
                   <div className="flex flex-wrap gap-1">
                     {image.tags.slice(0, 3).map((tag, index) => (
                       <div key={index} className="neu-card-inset px-2 py-1 rounded-lg">
-                        <span className="text-xs text-[#05A7CC] font-medium">{tag}</span>
+                        <span className="text-xs text-[#2C318E] font-medium">{tag}</span>
                       </div>
                     ))}
                     {image.tags.length > 3 && (
@@ -332,14 +332,14 @@ export const UploadedImages = ({ onNavigate, projectId }) => {
                   <div className="flex items-center space-x-2">
                     <button 
                       onClick={() => onNavigate('uploaded-images-single', image.id)}
-                      className="flex-1 neu-button p-2 rounded-xl text-[#05A7CC] hover:text-[#048ba8] transition-colors"
+                      className="flex-1 neu-button p-2 rounded-xl text-[#2C318E] hover:text-[#048ba8] transition-colors"
                     >
                       <Eye className="w-4 h-4 mx-auto" />
                     </button>
                     <button className="flex-1 neu-button p-2 rounded-xl text-[#666666] hover:text-[#333333] transition-colors">
                       <Download className="w-4 h-4 mx-auto" />
                     </button>
-                    <button className="flex-1 neu-button p-2 rounded-xl text-[#EF5226] hover:text-[#d4471f] transition-colors">
+                    <button className="flex-1 neu-button p-2 rounded-xl text-[#CA2030] hover:text-[#d4471f] transition-colors">
                       <Trash2 className="w-4 h-4 mx-auto" />
                     </button>
                   </div>
@@ -380,7 +380,7 @@ export const UploadedImages = ({ onNavigate, projectId }) => {
                   <div className="col-span-2 flex items-center space-x-2">
                     <Avatar className="w-6 h-6">
                       <AvatarImage src="/placeholder-avatar.jpg" />
-                      <AvatarFallback className="bg-[#05A7CC] text-white text-xs">
+                      <AvatarFallback className="bg-[#2C318E] text-white text-xs">
                         {image.uploadedBy.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
@@ -397,7 +397,7 @@ export const UploadedImages = ({ onNavigate, projectId }) => {
                     <div className="flex flex-wrap gap-1">
                       {image.tags.slice(0, 2).map((tag, index) => (
                         <div key={index} className="neu-card-inset px-2 py-1 rounded-lg">
-                          <span className="text-xs text-[#05A7CC]">{tag}</span>
+                          <span className="text-xs text-[#2C318E]">{tag}</span>
                         </div>
                       ))}
                       {image.tags.length > 2 && (
@@ -409,14 +409,14 @@ export const UploadedImages = ({ onNavigate, projectId }) => {
                   <div className="col-span-1 flex items-center space-x-1">
                     <button 
                       onClick={() => onNavigate('uploaded-images-single', image.id)}
-                      className="neu-button p-2 rounded-xl text-[#05A7CC] hover:text-[#048ba8] transition-colors"
+                      className="neu-button p-2 rounded-xl text-[#2C318E] hover:text-[#048ba8] transition-colors"
                     >
                       <Eye className="w-4 h-4" />
                     </button>
                     <button className="neu-button p-2 rounded-xl text-[#666666] hover:text-[#333333] transition-colors">
                       <Download className="w-4 h-4" />
                     </button>
-                    <button className="neu-button p-2 rounded-xl text-[#EF5226] hover:text-[#d4471f] transition-colors">
+                    <button className="neu-button p-2 rounded-xl text-[#CA2030] hover:text-[#d4471f] transition-colors">
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { ArrowLeft, Download, Star, Mail, Phone, MapPin, Calendar, User, FileText, ExternalLink, MessageSquare, Clock, CheckCircle, XCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-export const ApplicantDetails = ({ applicantId, onNavigate }) => {
+export const ApplicantDetails = () => {
+  const navigate = useNavigate();
+  const { applicantId } = useParams();
   const [activeTab, setActiveTab] = useState('overview');
 
   // Mock applicant data
@@ -106,12 +110,12 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
   };
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
           <button
-            onClick={() => onNavigate('applicants-list')}
+            onClick={() => navigate('/applicants-list')}
             className="neu-button p-3 rounded-2xl mr-4 hover:shadow-md transition-all duration-200"
           >
             <ArrowLeft size={20} className="text-[#666666]" />
@@ -141,12 +145,12 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
         </div>
         <div className="flex items-center space-x-3">
           <button
-            onClick={() => onNavigate('applicant-actions', { applicantId: applicant.id })}
+            onClick={() => navigate('/applicant-actions', { state: { applicantId: applicant.id } })}
             className="neu-primary px-6 py-3 rounded-2xl text-white hover:shadow-lg transition-all duration-200"
           >
             Take Action
           </button>
-          <button className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#05A7CC] transition-all duration-200">
+          <button className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#2C318E] transition-all duration-200">
             <Download size={20} />
             <span>Download Resume</span>
           </button>
@@ -162,7 +166,7 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
               <p className="text-lg font-bold text-[#333333]">{applicant.appliedFor}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <FileText size={24} className="text-[#EF5226]" />
+              <FileText size={24} className="text-[#CA2030]" />
             </div>
           </div>
         </div>
@@ -174,7 +178,7 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
               <p className="text-lg font-bold text-[#333333]">{applicant.experience}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <User size={24} className="text-[#05A7CC]" />
+              <User size={24} className="text-[#2C318E]" />
             </div>
           </div>
         </div>
@@ -186,7 +190,7 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
               <p className="text-lg font-bold text-[#333333]">{applicant.appliedDate}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Calendar size={24} className="text-[#EF5226]" />
+              <Calendar size={24} className="text-[#CA2030]" />
             </div>
           </div>
         </div>
@@ -209,7 +213,7 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
               </div>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Star size={24} className="text-[#05A7CC]" />
+              <Star size={24} className="text-[#2C318E]" />
             </div>
           </div>
         </div>
@@ -227,8 +231,8 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
           </div>
           <div className="flex items-center space-x-3">
             <button
-              onClick={() => onNavigate('applicant-progress', { applicantId: applicant.id })}
-              className="neu-button px-4 py-2 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+              onClick={() => navigate('/applicant-progress', { state: { applicantId: applicant.id } })}
+              className="neu-button px-4 py-2 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
             >
               View Progress
             </button>
@@ -305,19 +309,19 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-[#666666]">LinkedIn:</span>
-                    <a href={applicant.personalInfo.linkedIn} target="_blank" rel="noopener noreferrer" className="text-[#05A7CC] hover:underline flex items-center">
+                    <a href={applicant.personalInfo.linkedIn} target="_blank" rel="noopener noreferrer" className="text-[#2C318E] hover:underline flex items-center">
                       View Profile <ExternalLink size={14} className="ml-1" />
                     </a>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[#666666]">GitHub:</span>
-                    <a href={applicant.personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-[#05A7CC] hover:underline flex items-center">
+                    <a href={applicant.personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-[#2C318E] hover:underline flex items-center">
                       View Profile <ExternalLink size={14} className="ml-1" />
                     </a>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[#666666]">Portfolio:</span>
-                    <a href={applicant.personalInfo.website} target="_blank" rel="noopener noreferrer" className="text-[#05A7CC] hover:underline flex items-center">
+                    <a href={applicant.personalInfo.website} target="_blank" rel="noopener noreferrer" className="text-[#2C318E] hover:underline flex items-center">
                       View Website <ExternalLink size={14} className="ml-1" />
                     </a>
                   </div>
@@ -326,11 +330,11 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
                 <h3 className="text-xl font-bold text-[#333333] mb-6 mt-8">Documents</h3>
                 <div className="space-y-3">
                   <button
-                    onClick={() => onNavigate('applicant-resume', { applicantId: applicant.id })}
+                    onClick={() => navigate('/applicant-resume')}
                     className="neu-small w-full p-4 rounded-2xl flex items-center justify-between hover:shadow-md transition-all duration-200"
                   >
                     <div className="flex items-center">
-                      <FileText size={20} className="text-[#EF5226] mr-3" />
+                      <FileText size={20} className="text-[#CA2030] mr-3" />
                       <span className="text-[#333333]">{applicant.resume}</span>
                     </div>
                     <Download size={16} className="text-[#666666]" />
@@ -338,7 +342,7 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
                   {applicant.coverLetter && (
                     <button className="neu-small w-full p-4 rounded-2xl flex items-center justify-between hover:shadow-md transition-all duration-200">
                       <div className="flex items-center">
-                        <FileText size={20} className="text-[#05A7CC] mr-3" />
+                        <FileText size={20} className="text-[#2C318E] mr-3" />
                         <span className="text-[#333333]">{applicant.coverLetter}</span>
                       </div>
                       <Download size={16} className="text-[#666666]" />
@@ -373,7 +377,7 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h4 className="text-lg font-bold text-[#333333] mb-1">{job.title}</h4>
-                      <p className="text-[#EF5226] font-medium mb-2">{job.company}</p>
+                      <p className="text-[#CA2030] font-medium mb-2">{job.company}</p>
                       <p className="text-[#666666] text-sm">{job.duration}</p>
                     </div>
                   </div>
@@ -393,7 +397,7 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
                   <div className="flex items-start justify-between">
                     <div>
                       <h4 className="text-lg font-bold text-[#333333] mb-1">{edu.degree}</h4>
-                      <p className="text-[#EF5226] font-medium mb-2">{edu.institution}</p>
+                      <p className="text-[#CA2030] font-medium mb-2">{edu.institution}</p>
                       <div className="flex items-center space-x-4 text-[#666666] text-sm">
                         <span>Graduated: {edu.year}</span>
                         <span>•</span>
@@ -447,7 +451,7 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-bold text-[#333333]">Interview History</h3>
               <button
-                onClick={() => onNavigate('new-interview', { applicantId: applicant.id })}
+                onClick={() => navigate('/new-interview')}
                 className="neu-primary px-6 py-3 rounded-2xl text-white hover:shadow-lg transition-all duration-200"
               >
                 Schedule Interview
@@ -478,7 +482,7 @@ export const ApplicantDetails = ({ applicantId, onNavigate }) => {
                         onClick={() => onNavigate('interview-details', { interviewId: interview.id })}
                         className="neu-button p-2 rounded-xl hover:shadow-md transition-all duration-200"
                       >
-                        <ExternalLink size={16} className="text-[#05A7CC]" />
+                        <ExternalLink size={16} className="text-[#2C318E]" />
                       </button>
                     </div>
                   </div>

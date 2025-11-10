@@ -23,7 +23,7 @@ export const HolidayList = ({
                   <TypeIcon size={14} className="text-white" />
                 </div>
                 <div>
-                  <div className="font-semibold text-[#333333] group-hover:text-[#EF5226] transition-colors">
+                  <div className="font-semibold text-[#333333] group-hover:text-[#CA2030] transition-colors">
                     {holiday.name}
                   </div>
                   <div className="text-[#666666] text-xs">
@@ -32,7 +32,7 @@ export const HolidayList = ({
                 </div>
               </div>
               <div className="opacity-0 group-hover:opacity-100 transition-opacity flex space-x-1">
-                <button className="neu-small p-1 rounded-lg hover:text-[#EF5226]">
+                <button className="neu-small p-1 rounded-lg hover:text-[#CA2030]">
                   <Edit3 size={12} />
                 </button>
                 <button className="neu-small p-1 rounded-lg hover:text-red-500">

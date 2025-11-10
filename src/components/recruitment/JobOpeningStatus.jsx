@@ -174,7 +174,7 @@ export const JobOpeningStatus = ({ onNavigate }) => {
   };
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
@@ -198,7 +198,7 @@ export const JobOpeningStatus = ({ onNavigate }) => {
             key={status}
             onClick={() => setFilterStatus(status)}
             className={`neu-card p-4 rounded-3xl transition-all duration-200 ${
-              filterStatus === status ? 'ring-2 ring-[#EF5226]' : 'hover:shadow-lg'
+              filterStatus === status ? 'ring-2 ring-[#CA2030]' : 'hover:shadow-lg'
             }`}
           >
             <div className="text-center">
@@ -279,14 +279,14 @@ export const JobOpeningStatus = ({ onNavigate }) => {
                     className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                     title="View Details"
                   >
-                    <Eye size={16} className="text-[#05A7CC]" />
+                    <Eye size={16} className="text-[#2C318E]" />
                   </button>
                   <button
                     onClick={() => onNavigate('edit-job-opening', { jobId: job.id })}
                     className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                     title="Edit"
                   >
-                    <Edit size={16} className="text-[#EF5226]" />
+                    <Edit size={16} className="text-[#CA2030]" />
                   </button>
                   <button className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200">
                     <MoreVertical size={16} className="text-[#666666]" />
@@ -306,7 +306,7 @@ export const JobOpeningStatus = ({ onNavigate }) => {
                 
                 <div className="text-center">
                   <div className="neu-small p-4 rounded-2xl mb-2">
-                    <CheckCircle size={24} className="text-[#05A7CC] mx-auto" />
+                    <CheckCircle size={24} className="text-[#2C318E] mx-auto" />
                   </div>
                   <p className="text-2xl font-bold text-[#333333]">{job.progress.shortlisted}</p>
                   <p className="text-sm text-[#666666]">Shortlisted</p>
@@ -314,7 +314,7 @@ export const JobOpeningStatus = ({ onNavigate }) => {
                 
                 <div className="text-center">
                   <div className="neu-small p-4 rounded-2xl mb-2">
-                    <Calendar size={24} className="text-[#EF5226] mx-auto" />
+                    <Calendar size={24} className="text-[#CA2030] mx-auto" />
                   </div>
                   <p className="text-2xl font-bold text-[#333333]">{job.progress.interviews}</p>
                   <p className="text-sm text-[#666666]">Interviews</p>
@@ -322,7 +322,7 @@ export const JobOpeningStatus = ({ onNavigate }) => {
                 
                 <div className="text-center">
                   <div className="neu-small p-4 rounded-2xl mb-2">
-                    <CheckCircle size={24} className="text-[#EF5226] mx-auto" />
+                    <CheckCircle size={24} className="text-[#CA2030] mx-auto" />
                   </div>
                   <p className="text-2xl font-bold text-[#333333]">{job.progress.offers}</p>
                   <p className="text-sm text-[#666666]">Offers</p>
@@ -345,8 +345,8 @@ export const JobOpeningStatus = ({ onNavigate }) => {
                 </div>
                 <div className="neu-card-inset rounded-2xl p-2">
                   <div className="flex space-x-1">
-                    <div className="h-3 bg-[#05A7CC] rounded-xl" style={{ width: `${(job.progress.shortlisted / job.progress.applications) * 100}%` }}></div>
-                    <div className="h-3 bg-[#EF5226] rounded-xl" style={{ width: `${(job.progress.interviews / job.progress.applications) * 100}%` }}></div>
+                    <div className="h-3 bg-[#2C318E] rounded-xl" style={{ width: `${(job.progress.shortlisted / job.progress.applications) * 100}%` }}></div>
+                    <div className="h-3 bg-[#CA2030] rounded-xl" style={{ width: `${(job.progress.interviews / job.progress.applications) * 100}%` }}></div>
                     <div className="h-3 bg-green-500 rounded-xl" style={{ width: `${(job.progress.hired / job.progress.applications) * 100}%` }}></div>
                   </div>
                 </div>

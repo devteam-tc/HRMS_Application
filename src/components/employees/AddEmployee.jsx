@@ -81,7 +81,7 @@ export const AddEmployee = ({ mode = 'add', employeeId, onNavigate }) => {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => onNavigate?.('employee-directory')}
-              className="neu-button p-3 rounded-2xl hover:text-[#05A7CC] transition-colors"
+              className="neu-button p-3 rounded-2xl hover:text-[#2C318E] transition-colors"
             >
               <ArrowLeft size={20} />
             </button>
@@ -114,8 +114,8 @@ export const AddEmployee = ({ mode = 'add', employeeId, onNavigate }) => {
                 </div>
                 <div className="ml-2 mr-4">
                   <p className={`text-sm font-medium ${
-                    isActive ? 'text-[#EF5226]' :
-                    isCompleted ? 'text-[#05A7CC]' :
+                    isActive ? 'text-[#CA2030]' :
+                    isCompleted ? 'text-[#2C318E]' :
                     'text-[#666666]'
                   }`}>
                     {step.title}
@@ -123,7 +123,7 @@ export const AddEmployee = ({ mode = 'add', employeeId, onNavigate }) => {
                 </div>
                 {index < steps.length - 1 && (
                   <div className={`w-8 h-1 rounded-full mx-2 ${
-                    isCompleted ? 'bg-[#05A7CC]' : 'bg-[#E8EBEF]'
+                    isCompleted ? 'bg-[#2C318E]' : 'bg-[#E8EBEF]'
                   }`} />
                 )}
               </div>
@@ -482,7 +482,7 @@ export const AddEmployee = ({ mode = 'add', employeeId, onNavigate }) => {
               ].map((doc) => (
                 <div key={doc.key} className="neu-small p-6 rounded-2xl">
                   <h4 className="font-medium text-[#333333] mb-4">
-                    {doc.label} {doc.required && <span className="text-[#EF5226]">*</span>}
+                    {doc.label} {doc.required && <span className="text-[#CA2030]">*</span>}
                   </h4>
                   {formData[doc.key] ? (
                     <div className="flex items-center justify-between p-3 bg-green-50 rounded-xl">
@@ -555,7 +555,7 @@ export const AddEmployee = ({ mode = 'add', employeeId, onNavigate }) => {
               <div className="space-y-2">
                 {Object.entries(formData).filter(([key, value]) => value && typeof value === 'object' && value.name).map(([key, file]) => (
                   <div key={key} className="flex items-center space-x-2">
-                    <FileText className="w-4 h-4 text-[#05A7CC]" />
+                    <FileText className="w-4 h-4 text-[#2C318E]" />
                     <span className="text-[#333333] text-sm">{file.name}</span>
                   </div>
                 ))}

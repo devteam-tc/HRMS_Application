@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Edit, Phone, Mail, MapPin, Calendar, User, Building, Clock, Download, Upload, FileText, Trash2, Eye, History, Award, Target } from 'lucide-react';
 
-export const EmployeeDetails = ({ employeeId, onNavigate }) => {
+export const EditProfile = ({ employeeId, onNavigate }) => {
   const [activeTab, setActiveTab] = useState('personal');
 
   // Mock employee data
@@ -107,7 +107,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => onNavigate?.('employee-directory')}
-              className="neu-button p-3 rounded-2xl hover:text-[#05A7CC] transition-colors"
+              className="neu-button p-3 rounded-2xl hover:text-[#2C318E] transition-colors"
             >
               <ArrowLeft size={20} />
             </button>
@@ -132,7 +132,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-6">
               <div className="w-20 h-20 neu-gradient rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-[#05A7CC]">
+                <span className="text-2xl font-bold text-[#2C318E]">
                   {employee.name.split(' ').map(n => n[0]).join('')}
                 </span>
               </div>
@@ -200,7 +200,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
               {/* Contact Information */}
               <div className="neu-small p-6 rounded-2xl">
                 <h4 className="font-bold text-[#333333] mb-4 flex items-center">
-                  <Phone size={18} className="mr-2 text-[#05A7CC]" />
+                  <Phone size={18} className="mr-2 text-[#2C318E]" />
                   Contact Information
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -231,7 +231,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
               {/* Personal Details */}
               <div className="neu-small p-6 rounded-2xl">
                 <h4 className="font-bold text-[#333333] mb-4 flex items-center">
-                  <User size={18} className="mr-2 text-[#EF5226]" />
+                  <User size={18} className="mr-2 text-[#CA2030]" />
                   Personal Details
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -297,7 +297,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
               {/* Role Information */}
               <div className="neu-small p-6 rounded-2xl">
                 <h4 className="font-bold text-[#333333] mb-4 flex items-center">
-                  <Building size={18} className="mr-2 text-[#05A7CC]" />
+                  <Building size={18} className="mr-2 text-[#2C318E]" />
                   Role Information
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -331,7 +331,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
               {/* Employment Details */}
               <div className="neu-small p-6 rounded-2xl">
                 <h4 className="font-bold text-[#333333] mb-4 flex items-center">
-                  <Calendar size={18} className="mr-2 text-[#EF5226]" />
+                  <Calendar size={18} className="mr-2 text-[#CA2030]" />
                   Employment Details
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -361,7 +361,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
                   {employee.jobInfo.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-[#05A7CC] text-white rounded-full text-sm"
+                      className="px-3 py-1 bg-[#2C318E] text-white rounded-full text-sm"
                     >
                       {skill}
                     </span>
@@ -400,7 +400,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-12 neu-gradient rounded-xl flex items-center justify-center">
-                          <FileText className="w-6 h-6 text-[#05A7CC]" />
+                          <FileText className="w-6 h-6 text-[#2C318E]" />
                         </div>
                         <div>
                           <h4 className="font-medium text-[#333333]">{doc.name}</h4>
@@ -411,7 +411,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <button className="neu-button p-2 rounded-xl hover:text-[#05A7CC] transition-colors">
+                        <button className="neu-button p-2 rounded-xl hover:text-[#2C318E] transition-colors">
                           <Eye size={16} />
                         </button>
                         <button className="neu-button p-2 rounded-xl hover:text-[#4CAF50] transition-colors">
@@ -446,7 +446,7 @@ export const EmployeeDetails = ({ employeeId, onNavigate }) => {
                           {item.type === 'Promotion' && <Award className="w-6 h-6 text-white" />}
                           {item.type === 'Salary Update' && <Target className="w-6 h-6 text-white" />}
                           {item.type === 'Probation Complete' && <Award className="w-6 h-6 text-white" />}
-                          {item.type === 'Joining' && <User className="w-6 h-6 text-[#05A7CC]" />}
+                          {item.type === 'Joining' && <User className="w-6 h-6 text-[#2C318E]" />}
                         </div>
                         <div>
                           <h4 className="font-bold text-[#333333] mb-1">{item.type}</h4>

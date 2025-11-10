@@ -120,7 +120,7 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
                 <button 
                   onClick={handleLike}
                   className={`neu-button p-3 rounded-2xl flex items-center space-x-2 transition-colors ${
-                    isLiked ? 'text-[#EF5226]' : 'text-[#666666] hover:text-[#EF5226]'
+                    isLiked ? 'text-[#CA2030]' : 'text-[#666666] hover:text-[#CA2030]'
                   }`}
                 >
                   <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
@@ -131,7 +131,7 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
                   <span className="font-medium">{imageData.comments.length}</span>
                 </button>
               </div>
-              <button className="neu-button p-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f] transition-colors">
+              <button className="neu-button p-3 rounded-2xl text-[#CA2030] hover:text-[#d4471f] transition-colors">
                 <Trash2 className="w-5 h-5" />
               </button>
             </div>
@@ -146,7 +146,7 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
               <div className="flex space-x-4">
                 <Avatar className="w-10 h-10">
                   <AvatarImage src="/placeholder-avatar.jpg" />
-                  <AvatarFallback className="bg-[#05A7CC] text-white">JD</AvatarFallback>
+                  <AvatarFallback className="bg-[#2C318E] text-white">JD</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <div className="neu-input p-4 rounded-2xl mb-3">
@@ -176,23 +176,23 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
                   <div className="flex space-x-4">
                     <Avatar className="w-12 h-12">
                       <AvatarImage src="/placeholder-avatar.jpg" />
-                      <AvatarFallback className="bg-[#05A7CC] text-white">
+                      <AvatarFallback className="bg-[#2C318E] text-white">
                         {comment.author.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
                         <span className="font-bold text-[#333333]">{comment.author}</span>
-                        <span className="text-sm text-[#05A7CC]">{comment.role}</span>
+                        <span className="text-sm text-[#2C318E]">{comment.role}</span>
                         <span className="text-sm text-[#666666]">{comment.time}</span>
                       </div>
                       <p className="text-[#333333] mb-3">{comment.content}</p>
                       <div className="flex items-center space-x-4">
-                        <button className="text-sm text-[#666666] hover:text-[#EF5226] transition-colors flex items-center space-x-1">
+                        <button className="text-sm text-[#666666] hover:text-[#CA2030] transition-colors flex items-center space-x-1">
                           <Heart className="w-4 h-4" />
                           <span>{comment.likes}</span>
                         </button>
-                        <button className="text-sm text-[#666666] hover:text-[#05A7CC] transition-colors">
+                        <button className="text-sm text-[#666666] hover:text-[#2C318E] transition-colors">
                           Reply
                         </button>
                       </div>
@@ -213,13 +213,13 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
             <div className="space-y-4">
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3 mb-2">
-                  <User className="w-4 h-4 text-[#05A7CC]" />
+                  <User className="w-4 h-4 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Uploaded by</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Avatar className="w-8 h-8">
                     <AvatarImage src="/placeholder-avatar.jpg" />
-                    <AvatarFallback className="bg-[#05A7CC] text-white text-sm">
+                    <AvatarFallback className="bg-[#2C318E] text-white text-sm">
                       {imageData.uploadedBy.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
@@ -229,7 +229,7 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3 mb-2">
-                  <Calendar className="w-4 h-4 text-[#05A7CC]" />
+                  <Calendar className="w-4 h-4 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Upload Date</span>
                 </div>
                 <p className="text-[#666666]">{new Date(imageData.uploadDate).toLocaleDateString()}</p>
@@ -237,7 +237,7 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3 mb-2">
-                  <MapPin className="w-4 h-4 text-[#05A7CC]" />
+                  <MapPin className="w-4 h-4 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Location</span>
                 </div>
                 <p className="text-[#666666]">{imageData.location}</p>
@@ -279,8 +279,8 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
             <div className="flex flex-wrap gap-2">
               {imageData.tags.map((tag, index) => (
                 <div key={index} className="neu-small px-3 py-2 rounded-xl flex items-center space-x-2">
-                  <Tag className="w-3 h-3 text-[#05A7CC]" />
-                  <span className="text-sm font-medium text-[#05A7CC]">{tag}</span>
+                  <Tag className="w-3 h-3 text-[#2C318E]" />
+                  <span className="text-sm font-medium text-[#2C318E]">{tag}</span>
                 </div>
               ))}
             </div>
@@ -302,7 +302,7 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
                 <div key={index} className="neu-small p-4 rounded-2xl flex items-center space-x-3">
                   <Avatar className="w-10 h-10">
                     <AvatarImage src="/placeholder-avatar.jpg" />
-                    <AvatarFallback className="bg-[#05A7CC] text-white text-sm">
+                    <AvatarFallback className="bg-[#2C318E] text-white text-sm">
                       {person.name.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
@@ -313,7 +313,7 @@ export const UploadedImagesSingle = ({ imageId, onNavigate }) => {
                 </div>
               ))}
               <button 
-                className="w-full neu-button p-4 rounded-2xl flex items-center justify-center space-x-2 text-[#05A7CC] hover:text-[#048ba8] transition-colors"
+                className="w-full neu-button p-4 rounded-2xl flex items-center justify-center space-x-2 text-[#2C318E] hover:text-[#048ba8] transition-colors"
               >
                 <User className="w-4 h-4" />
                 <span>Tag Someone</span>

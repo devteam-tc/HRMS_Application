@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Save, ArrowLeft, Calendar, Users, MapPin, DollarSign, Plus, X, Trash2 } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 const existingProjectData = {
   id: '1',
@@ -38,7 +39,10 @@ const availableTeamMembers = [
   { id: '8', name: 'Grace Lee', role: 'Electrical Engineer', email: 'grace.lee@company.com' }
 ];
 
-export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
+export const ProjectEdit = ({ isNew = false }) => {
+  const navigate = useNavigate();
+  const { projectId } = useParams();
+
   const [formData, setFormData] = useState(isNew ? {
     name: '',
     client: '',
@@ -121,9 +125,9 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
   const handleSave = () => {
     console.log('Saving project:', formData);
     if (isNew) {
-      onNavigate('project-details', 'new-project-id');
+      navigate('/project-details');
     } else {
-      onNavigate('project-details', projectId);
+      navigate('/project-details');
     }
   };
 
@@ -131,16 +135,16 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
     if (hasChanges) {
       if (window.confirm('You have unsaved changes. Are you sure you want to leave?')) {
         if (isNew) {
-          onNavigate('all-projects');
+          navigate('/all-projects');
         } else {
-          onNavigate('project-details', projectId);
+          navigate('/project-details');
         }
       }
     } else {
       if (isNew) {
-        onNavigate('all-projects');
+        navigate('/all-projects');
       } else {
-        onNavigate('project-details', projectId);
+        navigate('/project-details');
       }
     }
   };
@@ -148,14 +152,14 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
   const handleDeleteProject = () => {
     if (window.confirm('Are you sure you want to delete this project? This action cannot be undone.')) {
       console.log('Deleting project:', projectId);
-      onNavigate('all-projects');
+      navigate('/all-projects');
     }
   };
 
   const getStatusColor = (status) => {
     switch (status) {
       case 'ongoing':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       case 'completed':
         return 'bg-[#4CAF50] text-white';
       case 'on-hold':
@@ -210,7 +214,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
             {!isNew && (
               <button 
                 onClick={handleDeleteProject}
-                className="neu-button px-6 py-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f] transition-colors flex items-center space-x-2"
+                className="neu-button px-6 py-3 rounded-2xl text-[#CA2030] hover:text-[#d4471f] transition-colors flex items-center space-x-2"
               >
                 <Trash2 className="w-5 h-5" />
                 <span>Delete</span>
@@ -393,7 +397,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
               <h2 className="text-2xl font-bold text-[#333333]">Project Milestones</h2>
               <button 
                 onClick={addMilestone}
-                className="neu-button p-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8]"
+                className="neu-button p-3 rounded-2xl text-[#2C318E] hover:text-[#048ba8]"
               >
                 <Plus className="w-5 h-5" />
               </button>
@@ -446,7 +450,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
                     <div className="flex items-end">
                       <button 
                         onClick={() => removeMilestone(milestone.id)}
-                        className="neu-button p-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f]"
+                        className="neu-button p-3 rounded-2xl text-[#CA2030] hover:text-[#d4471f]"
                       >
                         <X className="w-5 h-5" />
                       </button>
@@ -473,7 +477,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
               <h3 className="text-xl font-bold text-[#333333]">Team Members</h3>
               <button 
                 onClick={() => setShowTeamSearch(!showTeamSearch)}
-                className="neu-button p-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8]"
+                className="neu-button p-3 rounded-2xl text-[#2C318E] hover:text-[#048ba8]"
               >
                 <Plus className="w-5 h-5" />
               </button>
@@ -501,7 +505,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
                       <div className="flex items-center space-x-3">
                         <Avatar className="w-8 h-8">
                           <AvatarImage src="/placeholder-avatar.jpg" />
-                          <AvatarFallback className="bg-[#05A7CC] text-white text-sm">
+                          <AvatarFallback className="bg-[#2C318E] text-white text-sm">
                             {member.name.split(' ').map(n => n[0]).join('')}
                           </AvatarFallback>
                         </Avatar>
@@ -524,7 +528,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
                     <div className="flex items-center space-x-3">
                       <Avatar className="w-10 h-10">
                         <AvatarImage src="/placeholder-avatar.jpg" />
-                        <AvatarFallback className="bg-[#05A7CC] text-white">
+                        <AvatarFallback className="bg-[#2C318E] text-white">
                           {member.name.split(' ').map(n => n[0]).join('')}
                         </AvatarFallback>
                       </Avatar>
@@ -535,7 +539,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
                     </div>
                     <button 
                       onClick={() => removeTeamMember(member.id)}
-                      className="neu-button p-2 rounded-xl text-[#EF5226] hover:text-[#d4471f]"
+                      className="neu-button p-2 rounded-xl text-[#CA2030] hover:text-[#d4471f]"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -558,7 +562,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
             <div className="space-y-4">
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5 text-[#05A7CC]" />
+                  <Calendar className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Duration</div>
                     <div className="font-medium text-[#333333]">
@@ -573,7 +577,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <DollarSign className="w-5 h-5 text-[#05A7CC]" />
+                  <DollarSign className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Budget</div>
                     <div className="font-medium text-[#333333]">
@@ -585,7 +589,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-[#05A7CC]" />
+                  <Users className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Team Size</div>
                     <div className="font-medium text-[#333333]">
@@ -597,7 +601,7 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-[#05A7CC]" />
+                  <MapPin className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Milestones</div>
                     <div className="font-medium text-[#333333]">
@@ -615,19 +619,19 @@ export const ProjectEdit = ({ projectId, isNew, onNavigate }) => {
             <div className="space-y-3">
               <button className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform">
                 <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5 text-[#05A7CC]" />
+                  <Calendar className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Import Timeline</span>
                 </div>
               </button>
               <button className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform">
                 <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-[#05A7CC]" />
+                  <Users className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Copy Team from Template</span>
                 </div>
               </button>
               <button className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform">
                 <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-[#05A7CC]" />
+                  <MapPin className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Add to Map</span>
                 </div>
               </button>

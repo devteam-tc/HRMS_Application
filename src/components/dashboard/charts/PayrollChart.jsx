@@ -22,7 +22,7 @@ const PayrollChart = ({ data }) => (
             }}
             formatter={(value) => [`$${value?.toLocaleString()}`, 'Amount']} 
           />
-          <Bar dataKey="amount" fill="#05A7CC" radius={[8, 8, 0, 0]} />
+          <Bar dataKey="amount" fill="#2C318E" radius={[8, 8, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>

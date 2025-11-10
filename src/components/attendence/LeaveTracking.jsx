@@ -123,8 +123,8 @@ export const LeaveTracking = ({ onNavigate }) => {
 
   const getDepartmentColor = (department) => {
     const colors = {
-      'IT': 'bg-[#EF5226]',
-      'HR': 'bg-[#05A7CC]',
+      'IT': 'bg-[#CA2030]',
+      'HR': 'bg-[#2C318E]',
       'Support': 'bg-purple-500',
       'Design': 'bg-pink-500',
       'Development': 'bg-green-500',
@@ -152,7 +152,7 @@ export const LeaveTracking = ({ onNavigate }) => {
           </div>
         </div>
         <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-          <button className="neu-small p-1 rounded-lg hover:text-[#EF5226]">
+          <button className="neu-small p-1 rounded-lg hover:text-[#CA2030]">
             <Eye size={12} />
           </button>
         </div>
@@ -218,7 +218,7 @@ export const LeaveTracking = ({ onNavigate }) => {
 
   // Layout: Kanban Board View
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Leave & Absence Tracking</h1>
@@ -231,18 +231,18 @@ export const LeaveTracking = ({ onNavigate }) => {
           <div className="flex flex-col sm:flex-row gap-4 flex-1">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#EF5226]" />
+              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#CA2030]" />
               <input
                 type="text"
                 placeholder="Search employees..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 neu-input rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                className="w-full pl-12 pr-4 py-3 neu-input rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all"
               />
             </div>
 
             {/* Department Filter */}
-            <select className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all">
+            <select className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all">
               <option value="all">All Departments</option>
               <option value="IT">IT</option>
               <option value="HR">HR</option>
@@ -252,7 +252,7 @@ export const LeaveTracking = ({ onNavigate }) => {
             </select>
 
             {/* Leave Type Filter */}
-            <select className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all">
+            <select className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all">
               <option value="all">All Leave Types</option>
               <option value="sick">Sick Leave</option>
               <option value="casual">Casual Leave</option>
@@ -262,7 +262,7 @@ export const LeaveTracking = ({ onNavigate }) => {
           </div>
 
           <div className="flex gap-3">
-            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#EF5226] transition-colors">
+            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors">
               <Download size={16} className="mr-2" />
               Export
             </button>
@@ -282,8 +282,8 @@ export const LeaveTracking = ({ onNavigate }) => {
               <h3 className="text-2xl font-bold text-[#333333]">{leaveRequests.length}</h3>
               <p className="text-[#666666] text-sm">Total Requests</p>
             </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#EF5226] to-[#d4471f]">
-              <Calendar size={24} className="text-white" />
+            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#CA2030] to-[#d4471f]">
+              <Calendar size={24} className="text-black" />
             </div>
           </div>
         </div>
@@ -295,7 +295,7 @@ export const LeaveTracking = ({ onNavigate }) => {
               <p className="text-[#666666] text-sm">Pending</p>
             </div>
             <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600">
-              <AlertCircle size={24} className="text-white" />
+              <AlertCircle size={24} className="text-black" />
             </div>
           </div>
         </div>
@@ -307,7 +307,7 @@ export const LeaveTracking = ({ onNavigate }) => {
               <p className="text-[#666666] text-sm">Approved</p>
             </div>
             <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-green-400 to-green-600">
-              <CheckCircle size={24} className="text-white" />
+              <CheckCircle size={24} className="text-whiblackte" />
             </div>
           </div>
         </div>
@@ -319,7 +319,7 @@ export const LeaveTracking = ({ onNavigate }) => {
               <p className="text-[#666666] text-sm">Rejected</p>
             </div>
             <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-red-400 to-red-600">
-              <XCircle size={24} className="text-white" />
+              <XCircle size={24} className="text-black" />
             </div>
           </div>
         </div>
@@ -373,7 +373,7 @@ export const LeaveTracking = ({ onNavigate }) => {
             <div className="mt-6 pt-4 border-t border-[#E8EBEF]">
               <button 
                 onClick={() => onNavigate('leave-balance')}
-                className="w-full neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#EF5226] transition-colors group"
+                className="w-full neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#CA2030] transition-colors group"
               >
                 <span className="font-medium">View All {column.title}</span>
                 <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -389,27 +389,27 @@ export const LeaveTracking = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button 
             onClick={() => onNavigate('leave-calendar')}
-            className="neu-button p-4 rounded-xl text-left hover:text-[#EF5226] transition-colors group"
+            className="neu-button p-4 rounded-xl text-left hover:text-[#CA2030] transition-colors group"
           >
-            <Calendar size={20} className="mb-2 group-hover:text-[#EF5226]" />
+            <Calendar size={20} className="mb-2 group-hover:text-[#CA2030]" />
             <div className="font-medium">Leave Calendar</div>
             <div className="text-sm text-[#666666]">View leave schedule</div>
           </button>
           
           <button 
             onClick={() => onNavigate('leave-balance')}
-            className="neu-button p-4 rounded-xl text-left hover:text-[#EF5226] transition-colors group"
+            className="neu-button p-4 rounded-xl text-left hover:text-[#CA2030] transition-colors group"
           >
-            <Clock size={20} className="mb-2 group-hover:text-[#EF5226]" />
+            <Clock size={20} className="mb-2 group-hover:text-[#CA2030]" />
             <div className="font-medium">Leave Balance</div>
             <div className="text-sm text-[#666666]">Check employee balances</div>
           </button>
           
           <button 
             onClick={() => onNavigate('leave-policy')}
-            className="neu-button p-4 rounded-xl text-left hover:text-[#EF5226] transition-colors group"
+            className="neu-button p-4 rounded-xl text-left hover:text-[#CA2030] transition-colors group"
           >
-            <Filter size={20} className="mb-2 group-hover:text-[#EF5226]" />
+            <Filter size={20} className="mb-2 group-hover:text-[#CA2030]" />
             <div className="font-medium">Leave Policies</div>
             <div className="text-sm text-[#666666]">Manage leave rules</div>
           </button>

@@ -55,18 +55,18 @@ export const EmployeeAttendanceProfile = ({ employeeId, onNavigate }) => {
   ];
 
   const performanceMetrics = [
-    { label: 'Punctuality Score', value: 85, color: '#EF5226', max: 100 },
+    { label: 'Punctuality Score', value: 85, color: '#CA2030', max: 100 },
     { label: 'Attendance Rate', value: 91, color: '#4CAF50', max: 100 },
-    { label: 'Overtime Hours', value: 24, color: '#05A7CC', max: 40 },
+    { label: 'Overtime Hours', value: 24, color: '#2C318E', max: 40 },
     { label: 'Leave Utilization', value: 11, color: '#9C27B0', max: 21 }
   ];
 
   const getStatusColor = (status) => {
     const colors = {
       'on-time': 'text-green-600 bg-green-100',
-      'late': 'text-[#EF5226] bg-orange-100',
+      'late': 'text-[#CA2030] bg-orange-100',
       'early': 'text-blue-600 bg-blue-100',
-      'overtime': 'text-[#05A7CC] bg-blue-100',
+      'overtime': 'text-[#2C318E] bg-blue-100',
       'normal': 'text-[#333333] bg-gray-100',
       'leave': 'text-purple-600 bg-purple-100'
     };
@@ -90,13 +90,13 @@ export const EmployeeAttendanceProfile = ({ employeeId, onNavigate }) => {
 
   // Layout: Profile + Timeline
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
           <button 
             onClick={() => onNavigate('punch-records')}
-            className="neu-small p-2 rounded-xl hover:text-[#EF5226] transition-colors"
+            className="neu-small p-2 rounded-xl hover:text-[#CA2030] transition-colors"
           >
             <ChevronLeft size={20} />
           </button>
@@ -110,7 +110,7 @@ export const EmployeeAttendanceProfile = ({ employeeId, onNavigate }) => {
         <div className="lg:col-span-1 space-y-6">
           {/* Employee Profile Card */}
           <div className="neu-card p-6 rounded-2xl text-center">
-            <div className="neu-small w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-gradient-to-br from-[#EF5226] to-[#d4471f] text-white text-2xl font-bold">
+            <div className="neu-small w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-gradient-to-br from-[#CA2030] to-[#d4471f] text-white text-2xl font-bold">
               {employee.avatar}
             </div>
             <h2 className="text-xl font-bold text-[#333333] mb-1">{employee.name}</h2>
@@ -185,20 +185,20 @@ export const EmployeeAttendanceProfile = ({ employeeId, onNavigate }) => {
             </div>
             
             <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-              <div className="neu-small p-3 rounded-xl mb-4 bg-gradient-to-br from-[#EF5226] to-[#d4471f] inline-block">
+              <div className="neu-small p-3 rounded-xl mb-4 bg-gradient-to-br from-[#CA2030] to-[#d4471f] inline-block">
                 <AlertCircle size={24} className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-[#EF5226] mb-1">
+              <h3 className="text-2xl font-bold text-[#CA2030] mb-1">
                 {attendanceStats.currentMonth.lateDays}
               </h3>
               <p className="text-[#666666] text-sm">Late Arrivals</p>
             </div>
             
             <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-              <div className="neu-small p-3 rounded-xl mb-4 bg-gradient-to-br from-[#05A7CC] to-[#048ba8] inline-block">
+              <div className="neu-small p-3 rounded-xl mb-4 bg-gradient-to-br from-[#2C318E] to-[#048ba8] inline-block">
                 <Clock size={24} className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-[#05A7CC] mb-1">
+              <h3 className="text-2xl font-bold text-[#2C318E] mb-1">
                 {attendanceStats.currentMonth.overtimeHours}h
               </h3>
               <p className="text-[#666666] text-sm">Overtime Hours</p>
@@ -223,13 +223,13 @@ export const EmployeeAttendanceProfile = ({ employeeId, onNavigate }) => {
                 <select 
                   value={selectedPeriod}
                   onChange={(e) => setSelectedPeriod(e.target.value)}
-                  className="neu-input px-4 py-2 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226]"
+                  className="neu-input px-4 py-2 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030]"
                 >
                   <option value="this-week">This Week</option>
                   <option value="this-month">This Month</option>
                   <option value="last-month">Last Month</option>
                 </select>
-                <button className="neu-button px-4 py-2 rounded-xl flex items-center hover:text-[#EF5226] transition-colors">
+                <button className="neu-button px-4 py-2 rounded-xl flex items-center hover:text-[#CA2030] transition-colors">
                   <Download size={16} className="mr-2" />
                   Export
                 </button>
@@ -238,14 +238,14 @@ export const EmployeeAttendanceProfile = ({ employeeId, onNavigate }) => {
 
             <div className="relative">
               {/* Timeline Line */}
-              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#EF5226] to-[#05A7CC]"></div>
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#CA2030] to-[#2C318E]"></div>
               
               {/* Timeline Items */}
               <div className="space-y-6">
                 {activityTimeline.map((activity, index) => (
                   <div key={index} className="relative flex items-start">
                     {/* Timeline Dot */}
-                    <div className="absolute left-4 w-4 h-4 rounded-full bg-gradient-to-r from-[#EF5226] to-[#d4471f] border-4 border-[#ECF0F3] z-10"></div>
+                    <div className="absolute left-4 w-4 h-4 rounded-full bg-gradient-to-r from-[#CA2030] to-[#d4471f] border-4 border-[#ECF0F3] z-10"></div>
                     
                     {/* Timeline Content */}
                     <div className="ml-12 neu-small p-4 rounded-xl flex-1 hover:shadow-md transition-all">
@@ -282,7 +282,7 @@ export const EmployeeAttendanceProfile = ({ employeeId, onNavigate }) => {
                   <div className="font-semibold text-[#333333] mb-2 capitalize">
                     {leaveType.replace(/([A-Z])/g, ' $1').trim()}
                   </div>
-                  <div className="text-2xl font-bold text-[#EF5226] mb-1">{balance.remaining}</div>
+                  <div className="text-2xl font-bold text-[#CA2030] mb-1">{balance.remaining}</div>
                   <div className="text-[#666666] text-sm mb-3">Remaining</div>
                   <div className="neu-card-inset rounded-lg p-1">
                     <div 

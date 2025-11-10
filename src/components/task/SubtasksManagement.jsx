@@ -191,7 +191,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
 
   const getPriorityColor = (priority) => {
     const colors = {
-      'high': 'text-[#EF5226] bg-red-100',
+      'high': 'text-[#CA2030] bg-red-100',
       'medium': 'text-[#FFC107] bg-yellow-100',
       'low': 'text-[#4CAF50] bg-green-100'
     };
@@ -201,8 +201,8 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
   const getProgressColor = (completed, total) => {
     const percentage = (completed / total) * 100;
     if (percentage === 100) return '#4CAF50';
-    if (percentage >= 50) return '#EF5226';
-    return '#05A7CC';
+    if (percentage >= 50) return '#CA2030';
+    return '#2C318E';
   };
 
   const totalSubtasks = subtaskGroups.reduce((sum, group) => sum + group.total, 0);
@@ -211,20 +211,20 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
 
   // Layout: Nested Checklist with Expand/Collapse
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
           <button 
             onClick={() => onNavigate('task-details', { taskId: mainTask.id })}
-            className="neu-small p-2 rounded-xl hover:text-[#EF5226] transition-colors"
+            className="neu-small p-2 rounded-xl hover:text-[#CA2030] transition-colors"
           >
             <ArrowLeft size={20} />
           </button>
           <div className="flex-1">
             <h1 className="text-3xl font-bold text-[#333333] mb-2">Subtasks Management</h1>
             <p className="text-[#666666]">
-              Managing subtasks for: <span className="font-semibold text-[#EF5226]">{mainTask.title}</span>
+              Managing subtasks for: <span className="font-semibold text-[#CA2030]">{mainTask.title}</span>
             </p>
           </div>
           <button 
@@ -258,11 +258,11 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
             <div className="text-[#666666] text-sm">Completed</div>
           </div>
           <div className="neu-small p-4 rounded-xl text-center">
-            <div className="text-2xl font-bold text-[#05A7CC] mb-1">{totalSubtasks - completedSubtasks}</div>
+            <div className="text-2xl font-bold text-[#2C318E] mb-1">{totalSubtasks - completedSubtasks}</div>
             <div className="text-[#666666] text-sm">Remaining</div>
           </div>
           <div className="neu-small p-4 rounded-xl text-center">
-            <div className="text-2xl font-bold text-[#EF5226] mb-1">{Math.round(overallProgress)}%</div>
+            <div className="text-2xl font-bold text-[#CA2030] mb-1">{Math.round(overallProgress)}%</div>
             <div className="text-[#666666] text-sm">Progress</div>
           </div>
         </div>
@@ -284,7 +284,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     {isExpanded ? (
-                      <ChevronDown size={20} className="text-[#EF5226]" />
+                      <ChevronDown size={20} className="text-[#CA2030]" />
                     ) : (
                       <ChevronRight size={20} className="text-[#666666]" />
                     )}
@@ -344,12 +344,12 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                               type="text"
                               value={editingSubtask.title}
                               onChange={(e) => setEditingSubtask(prev => ({ ...prev, title: e.target.value }))}
-                              className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                              className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
                             />
                             <textarea
                               value={editingSubtask.description}
                               onChange={(e) => setEditingSubtask(prev => ({ ...prev, description: e.target.value }))}
-                              className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all resize-none"
+                              className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all resize-none"
                               rows={2}
                             />
                             <div className="flex items-center justify-between">
@@ -360,7 +360,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                                     const member = teamMembers.find(m => m.id === parseInt(e.target.value));
                                     setEditingSubtask(prev => ({ ...prev, assignee: member }));
                                   }}
-                                  className="neu-input px-3 py-2 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                                  className="neu-input px-3 py-2 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
                                 >
                                   {teamMembers.map(member => (
                                     <option key={member.id} value={member.id}>{member.name}</option>
@@ -370,7 +370,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                                   type="number"
                                   value={editingSubtask.estimatedHours}
                                   onChange={(e) => setEditingSubtask(prev => ({ ...prev, estimatedHours: parseInt(e.target.value) }))}
-                                  className="neu-input px-3 py-2 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all w-20"
+                                  className="neu-input px-3 py-2 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all w-20"
                                   placeholder="Hours"
                                 />
                               </div>
@@ -401,7 +401,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                                 className={`mt-1 transition-all duration-200 ${
                                   subtask.completed 
                                     ? 'text-[#4CAF50] hover:text-[#388E3C]' 
-                                    : 'text-[#E8EBEF] hover:text-[#EF5226]'
+                                    : 'text-[#E8EBEF] hover:text-[#CA2030]'
                                 }`}
                               >
                                 {subtask.completed ? (
@@ -432,7 +432,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                                   <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button
                                       onClick={() => handleEditSubtask(subtask)}
-                                      className="neu-small p-2 rounded-lg hover:text-[#EF5226] transition-colors"
+                                      className="neu-small p-2 rounded-lg hover:text-[#CA2030] transition-colors"
                                     >
                                       <Edit3 size={14} />
                                     </button>
@@ -444,7 +444,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                                 
                                 <div className="flex items-center space-x-6 text-sm">
                                   <div className="flex items-center">
-                                    <div className="neu-small w-6 h-6 rounded-full flex items-center justify-center bg-gradient-to-br from-[#EF5226] to-[#d4471f] text-white text-xs font-bold mr-2">
+                                    <div className="neu-small w-6 h-6 rounded-full flex items-center justify-center bg-gradient-to-br from-[#CA2030] to-[#d4471f] text-white text-xs font-bold mr-2">
                                       {subtask.assignee.avatar}
                                     </div>
                                     <span className="text-[#666666]">{subtask.assignee.name}</span>
@@ -497,7 +497,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                   value={newSubtask.title}
                   onChange={(e) => setNewSubtask(prev => ({ ...prev, title: e.target.value }))}
                   placeholder="Enter subtask title..."
-                  className="w-full neu-input p-3 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                  className="w-full neu-input p-3 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all"
                 />
               </div>
               
@@ -506,7 +506,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                 <select
                   value={newSubtask.group}
                   onChange={(e) => setNewSubtask(prev => ({ ...prev, group: e.target.value }))}
-                  className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                  className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
                 >
                   <option value="">Select Group</option>
                   {subtaskGroups.map(group => (
@@ -520,7 +520,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                 <select
                   value={newSubtask.assignee}
                   onChange={(e) => setNewSubtask(prev => ({ ...prev, assignee: e.target.value }))}
-                  className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                  className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
                 >
                   <option value="">Select Assignee</option>
                   {teamMembers.map(member => (
@@ -536,7 +536,7 @@ export const SubtasksManagement = ({ taskId, onNavigate }) => {
                   value={newSubtask.estimate}
                   onChange={(e) => setNewSubtask(prev => ({ ...prev, estimate: e.target.value }))}
                   placeholder="8"
-                  className="w-full neu-input p-3 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                  className="w-full neu-input p-3 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all"
                 />
               </div>
             </div>

@@ -40,9 +40,9 @@ const payrollData = [
 
 const engagementData = [
   { name: 'Highly Engaged', value: 45, color: '#4CAF50' },
-  { name: 'Engaged', value: 35, color: '#05A7CC' },
+  { name: 'Engaged', value: 35, color: '#2C318E' },
   { name: 'Neutral', value: 15, color: '#FFC107' },
-  { name: 'Disengaged', value: 5, color: '#EF5226' }
+  { name: 'Disengaged', value: 5, color: '#CA2030' }
 ];
 
 const upcomingMeetings = [
@@ -103,7 +103,7 @@ const Dashboard = () => {
           change="+12 this month"
           title="Total Employees"
           subtitle="Active: 1,195 | Inactive: 52"
-          iconColor="text-[#05A7CC]"
+          iconColor="text-[#2C318E]"
         />
         
         <MetricsCard 
@@ -112,7 +112,7 @@ const Dashboard = () => {
           change="-2.1% vs last month"
           title="Attrition Rate"
           subtitle="Industry avg: 10.3%"
-          iconColor="text-[#EF5226]"
+          iconColor="text-[#CA2030]"
           changeType="decrease"
         />
         

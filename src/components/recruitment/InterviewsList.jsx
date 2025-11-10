@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Calendar, Clock, User, Video, MapPin, Phone, Plus, Filter, Search, Eye, Edit, MoreVertical, CheckCircle, XCircle } from 'lucide-react';
 
-export const InterviewsList = ({ onNavigate }) => {
+export const InterviewsList = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
   const [filterType, setFilterType] = useState('all');
@@ -148,8 +150,8 @@ export const InterviewsList = ({ onNavigate }) => {
 
   const getModeIcon = (mode) => {
     switch (mode) {
-      case 'Video Call': return <Video size={16} className="text-[#05A7CC]" />;
-      case 'Phone': return <Phone size={16} className="text-[#EF5226]" />;
+      case 'Video Call': return <Video size={16} className="text-[#2C318E]" />;
+      case 'Phone': return <Phone size={16} className="text-[#CA2030]" />;
       case 'In-Person': return <MapPin size={16} className="text-[#666666]" />;
       default: return <Calendar size={16} className="text-[#666666]" />;
     }
@@ -198,7 +200,7 @@ export const InterviewsList = ({ onNavigate }) => {
   });
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -207,13 +209,13 @@ export const InterviewsList = ({ onNavigate }) => {
         </div>
         <div className="flex items-center space-x-3">
           <button
-            onClick={() => onNavigate('interview-calendar')}
-            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+            onClick={() => navigate('/interview-calendar')}
+            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
           >
             Calendar View
           </button>
           <button
-            onClick={() => onNavigate('new-interview')}
+            onClick={() => navigate('/new-interview')}
             className="neu-primary px-6 py-3 rounded-2xl flex items-center space-x-2 transition-all duration-200 hover:shadow-lg"
           >
             <Plus size={20} />
@@ -308,7 +310,7 @@ export const InterviewsList = ({ onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{interviews.length}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Calendar size={24} className="text-[#EF5226]" />
+              <Calendar size={24} className="text-[#CA2030]" />
             </div>
           </div>
         </div>
@@ -320,7 +322,7 @@ export const InterviewsList = ({ onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{interviews.filter(i => i.status === 'Scheduled').length}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Clock size={24} className="text-[#05A7CC]" />
+              <Clock size={24} className="text-[#2C318E]" />
             </div>
           </div>
         </div>
@@ -344,7 +346,7 @@ export const InterviewsList = ({ onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">5</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Calendar size={24} className="text-[#05A7CC]" />
+              <Calendar size={24} className="text-[#2C318E]" />
             </div>
           </div>
         </div>
@@ -366,7 +368,7 @@ export const InterviewsList = ({ onNavigate }) => {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-xl font-bold text-[#333333] mb-1">{interview.candidateName}</h3>
-                      <p className="text-[#EF5226] font-medium mb-2">{interview.jobTitle}</p>
+                      <p className="text-[#CA2030] font-medium mb-2">{interview.jobTitle}</p>
                       <div className="flex items-center space-x-4 text-sm text-[#666666] mb-3">
                         <div className="flex items-center">
                           <Calendar size={14} className="mr-1" />
@@ -434,7 +436,7 @@ export const InterviewsList = ({ onNavigate }) => {
                   className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                   title="View Details"
                 >
-                  <Eye size={20} className="text-[#05A7CC]" />
+                  <Eye size={20} className="text-[#2C318E]" />
                 </button>
                 
                 {interview.status === 'Scheduled' && (
@@ -443,7 +445,7 @@ export const InterviewsList = ({ onNavigate }) => {
                     className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                     title="Edit Interview"
                   >
-                    <Edit size={20} className="text-[#EF5226]" />
+                    <Edit size={20} className="text-[#CA2030]" />
                   </button>
                 )}
 

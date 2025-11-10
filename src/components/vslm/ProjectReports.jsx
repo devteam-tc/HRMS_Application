@@ -89,13 +89,13 @@ export const ProjectReports = ({ onNavigate }) => {
   const getReportIcon = (type) => {
     switch (type) {
       case 'progress':
-        return <TrendingUp className="w-6 h-6 text-[#05A7CC]" />;
+        return <TrendingUp className="w-6 h-6 text-[#2C318E]" />;
       case 'financial':
         return <BarChart3 className="w-6 h-6 text-[#4CAF50]" />;
       case 'operational':
         return <MapPin className="w-6 h-6 text-[#9C27B0]" />;
       case 'compliance':
-        return <Users className="w-6 h-6 text-[#EF5226]" />;
+        return <Users className="w-6 h-6 text-[#CA2030]" />;
       case 'resource':
         return <PieChart className="w-6 h-6 text-[#FF9800]" />;
       case 'executive':
@@ -108,13 +108,13 @@ export const ProjectReports = ({ onNavigate }) => {
   const getTypeColor = (type) => {
     switch (type) {
       case 'progress':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       case 'financial':
         return 'bg-[#4CAF50] text-white';
       case 'operational':
         return 'bg-[#9C27B0] text-white';
       case 'compliance':
-        return 'bg-[#EF5226] text-white';
+        return 'bg-[#CA2030] text-white';
       case 'resource':
         return 'bg-[#FF9800] text-white';
       case 'executive':
@@ -280,7 +280,7 @@ export const ProjectReports = ({ onNavigate }) => {
                   <div className="flex flex-wrap gap-2">
                     {report.format.map((format, index) => (
                       <div key={index} className="neu-card-inset px-2 py-1 rounded-lg">
-                        <span className="text-xs font-medium text-[#05A7CC]">{format}</span>
+                        <span className="text-xs font-medium text-[#2C318E]">{format}</span>
                       </div>
                     ))}
                   </div>
@@ -292,7 +292,7 @@ export const ProjectReports = ({ onNavigate }) => {
                   disabled={isGenerating}
                   className={`w-full p-3 rounded-2xl flex items-center justify-center space-x-2 transition-all ${
                     generatingReport === report.id
-                      ? 'neu-card-inset text-[#05A7CC]'
+                      ? 'neu-card-inset text-[#2C318E]'
                       : isGenerating
                       ? 'neu-button text-[#999999] cursor-not-allowed'
                       : 'neu-primary hover:scale-105'
@@ -348,7 +348,7 @@ export const ProjectReports = ({ onNavigate }) => {
                 <div className="text-[#333333] font-medium">{report.size}</div>
                 
                 <div className="flex items-center space-x-2">
-                  <button className="neu-button p-2 rounded-xl text-[#05A7CC] hover:text-[#048ba8] transition-colors">
+                  <button className="neu-button p-2 rounded-xl text-[#2C318E] hover:text-[#048ba8] transition-colors">
                     <Download className="w-4 h-4" />
                   </button>
                   <button className="neu-button p-2 rounded-xl text-[#666666] hover:text-[#333333] transition-colors">
@@ -416,7 +416,7 @@ export const ProjectReports = ({ onNavigate }) => {
                   const Icon = chart.icon;
                   return (
                     <button key={chart.name} className="neu-button p-4 rounded-2xl text-center hover:scale-105 transition-transform">
-                      <Icon className="w-6 h-6 mx-auto mb-2 text-[#05A7CC]" />
+                      <Icon className="w-6 h-6 mx-auto mb-2 text-[#2C318E]" />
                       <span className="text-sm text-[#333333]">{chart.name}</span>
                     </button>
                   );
@@ -439,10 +439,10 @@ export const ProjectReports = ({ onNavigate }) => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="neu-small p-6 rounded-2xl text-center">
-            <Calendar className="w-12 h-12 text-[#05A7CC] mx-auto mb-4" />
+            <Calendar className="w-12 h-12 text-[#2C318E] mx-auto mb-4" />
             <h4 className="font-bold text-[#333333] mb-2">Weekly Progress</h4>
             <p className="text-sm text-[#666666] mb-4">Every Monday at 9:00 AM</p>
-            <button className="neu-button px-4 py-2 rounded-xl text-[#05A7CC]">Configure</button>
+            <button className="neu-button px-4 py-2 rounded-xl text-[#2C318E]">Configure</button>
           </div>
           
           <div className="neu-small p-6 rounded-2xl text-center">

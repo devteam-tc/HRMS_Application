@@ -22,7 +22,7 @@ export const TaskAssignment = () => {
       taskCount: { active: 5, pending: 2, completed: 18 },
       performance: 95,
       availability: 'available',
-      color: '#EF5226'
+      color: '#CA2030'
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ export const TaskAssignment = () => {
       taskCount: { active: 4, pending: 1, completed: 22 },
       performance: 98,
       availability: 'available',
-      color: '#05A7CC'
+      color: '#2C318E'
     },
     {
       id: 3,
@@ -147,15 +147,15 @@ export const TaskAssignment = () => {
 
   const getWorkloadColor = (currentLoad, capacity) => {
     const percentage = (currentLoad / capacity) * 100;
-    if (percentage >= 95) return '#EF5226';
+    if (percentage >= 95) return '#CA2030';
     if (percentage >= 80) return '#FFC107';
-    if (percentage >= 60) return '#05A7CC';
+    if (percentage >= 60) return '#2C318E';
     return '#4CAF50';
   };
 
   const getPriorityColor = (priority) => {
     const colors = {
-      'high': '#EF5226',
+      'high': '#CA2030',
       'medium': '#FFC107',
       'low': '#4CAF50'
     };
@@ -200,7 +200,7 @@ export const TaskAssignment = () => {
         onDragOver={handleDragOver}
         onDrop={(e) => handleDrop(e, member.id)}
         className={`neu-card p-6 rounded-2xl cursor-pointer transition-all duration-300 group ${
-          isSelected ? 'ring-2 ring-[#EF5226] shadow-xl' : 'hover:shadow-lg'
+          isSelected ? 'ring-2 ring-[#CA2030] shadow-xl' : 'hover:shadow-lg'
         }`}
       >
         {/* Member Header */}
@@ -213,7 +213,7 @@ export const TaskAssignment = () => {
               {member.avatar}
             </div>
             <div>
-              <h3 className="font-bold text-[#333333] group-hover:text-[#EF5226] transition-colors">
+              <h3 className="font-bold text-[#333333] group-hover:text-[#CA2030] transition-colors">
                 {member.name}
               </h3>
               <p className="text-[#666666] text-sm">{member.role}</p>
@@ -247,7 +247,7 @@ export const TaskAssignment = () => {
         {/* Task Stats */}
         <div className="grid grid-cols-3 gap-3 mb-4">
           <div className="neu-small p-2 rounded-xl text-center">
-            <div className="text-lg font-bold text-[#05A7CC]">{member.taskCount.active}</div>
+            <div className="text-lg font-bold text-[#2C318E]">{member.taskCount.active}</div>
             <div className="text-xs text-[#666666]">Active</div>
           </div>
           <div className="neu-small p-2 rounded-xl text-center">
@@ -263,8 +263,8 @@ export const TaskAssignment = () => {
         {/* Performance Score */}
         <div className="neu-small p-3 rounded-xl text-center">
           <div className="flex items-center justify-center mb-1">
-            <Zap size={16} className="text-[#EF5226] mr-1" />
-            <span className="font-bold text-[#EF5226]">{member.performance}%</span>
+            <Zap size={16} className="text-[#CA2030] mr-1" />
+            <span className="font-bold text-[#CA2030]">{member.performance}%</span>
           </div>
           <div className="text-xs text-[#666666]">Performance Score</div>
         </div>
@@ -306,7 +306,7 @@ export const TaskAssignment = () => {
       >
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h4 className="font-semibold text-[#333333] text-sm mb-1 group-hover:text-[#EF5226] transition-colors">
+            <h4 className="font-semibold text-[#333333] text-sm mb-1 group-hover:text-[#CA2030] transition-colors">
               {task.title}
             </h4>
             <span className="text-xs text-[#666666] bg-[#E8EBEF] px-2 py-1 rounded">
@@ -331,7 +331,7 @@ export const TaskAssignment = () => {
           {selectedMember && (
             <div className="flex justify-between">
               <span className="text-[#666666]">Skill Match:</span>
-              <span className={`font-medium ${skillMatch >= 70 ? 'text-[#4CAF50]' : skillMatch >= 40 ? 'text-[#FFC107]' : 'text-[#EF5226]'}`}>
+              <span className={`font-medium ${skillMatch >= 70 ? 'text-[#4CAF50]' : skillMatch >= 40 ? 'text-[#FFC107]' : 'text-[#CA2030]'}`}>
                 {Math.round(skillMatch)}%
               </span>
             </div>
@@ -361,7 +361,7 @@ export const TaskAssignment = () => {
 
   // Layout: Grid with Drag & Drop Assignment
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Team Assignment</h1>
@@ -373,11 +373,11 @@ export const TaskAssignment = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div className="grid grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-[#EF5226] mb-1">{teamMembers.length}</div>
+              <div className="text-2xl font-bold text-[#CA2030] mb-1">{teamMembers.length}</div>
               <div className="text-[#666666] text-sm">Team Members</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-[#05A7CC] mb-1">{unassignedTasks.length}</div>
+              <div className="text-2xl font-bold text-[#2C318E] mb-1">{unassignedTasks.length}</div>
               <div className="text-[#666666] text-sm">Unassigned Tasks</div>
             </div>
             <div className="text-center">
@@ -401,7 +401,7 @@ export const TaskAssignment = () => {
                 className={`px-4 py-2 rounded-lg transition-all ${
                   viewMode === 'grid' 
                     ? 'neu-primary text-white shadow-md' 
-                    : 'text-[#666666] hover:text-[#EF5226]'
+                    : 'text-[#666666] hover:text-[#CA2030]'
                 }`}
               >
                 Grid View
@@ -411,7 +411,7 @@ export const TaskAssignment = () => {
                 className={`px-4 py-2 rounded-lg transition-all ${
                   viewMode === 'workload' 
                     ? 'neu-primary text-white shadow-md' 
-                    : 'text-[#666666] hover:text-[#EF5226]'
+                    : 'text-[#666666] hover:text-[#CA2030]'
                 }`}
               >
                 Workload View
@@ -419,7 +419,7 @@ export const TaskAssignment = () => {
             </div>
             <button 
               onClick={() => navigate('/task')}
-              className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#EF5226] transition-colors"
+              className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors"
             >
               <BarChart3 size={16} className="mr-2" />
               Analytics
@@ -520,7 +520,7 @@ export const TaskAssignment = () => {
                   <div className="text-[#666666] text-sm">All Skills</div>
                   <div className="flex flex-wrap gap-1 mt-2">
                     {selectedMember.skills.map(skill => (
-                      <span key={skill} className="px-2 py-1 bg-[#EF5226] text-white rounded text-xs">
+                      <span key={skill} className="px-2 py-1 bg-[#CA2030] text-white rounded text-xs">
                         {skill}
                       </span>
                     ))}
@@ -538,7 +538,7 @@ export const TaskAssignment = () => {
           {/* Unassigned Tasks */}
           <div className="neu-card p-6 rounded-2xl">
             <h3 className="text-lg font-bold text-[#333333] mb-4 flex items-center">
-              <Target size={18} className="mr-2 text-[#05A7CC]" />
+              <Target size={18} className="mr-2 text-[#2C318E]" />
               Unassigned Tasks
             </h3>
             <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -548,7 +548,7 @@ export const TaskAssignment = () => {
             </div>
             <button 
               onClick={() => navigate('/task')}
-              className="w-full mt-4 neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#EF5226] transition-colors"
+              className="w-full mt-4 neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#CA2030] transition-colors"
             >
               <Plus size={16} className="mr-2" />
               Add New Task
@@ -562,7 +562,7 @@ export const TaskAssignment = () => {
               <div className="neu-small p-3 rounded-xl">
                 <div className="flex justify-between items-center">
                   <span className="text-[#666666] text-sm">Overloaded</span>
-                  <span className="font-bold text-[#EF5226]">
+                  <span className="font-bold text-[#CA2030]">
                     {teamMembers.filter(m => (m.currentLoad/m.capacity) > 0.9).length}
                   </span>
                 </div>

@@ -7,15 +7,15 @@ export const HolidayStats = ({ holidays }) => {
       label: 'Total Holidays',
       value: holidays.length,
       icon: Calendar,
-      color: 'from-[#EF5226] to-[#d4471f]',
+      color: 'from-[#CA2030] to-[#d4471f]',
       textColor: 'text-[#333333]'
     },
     {
       label: 'National Holidays',
       value: holidays.filter(h => h.type === 'national').length,
       icon: Globe,
-      color: 'from-[#05A7CC] to-[#048ba8]',
-      textColor: 'text-[#05A7CC]'
+      color: 'from-[#2C318E] to-[#048ba8]',
+      textColor: 'text-[#2C318E]'
     },
     {
       label: 'Religious Holidays',
@@ -28,8 +28,8 @@ export const HolidayStats = ({ holidays }) => {
       label: 'Company Holidays',
       value: holidays.filter(h => h.type === 'company').length,
       icon: Building,
-      color: 'from-[#EF5226] to-[#d4471f]',
-      textColor: 'text-[#EF5226]'
+      color: 'from-[#CA2030] to-[#d4471f]',
+      textColor: 'text-[#CA2030]'
     }
   ];
 

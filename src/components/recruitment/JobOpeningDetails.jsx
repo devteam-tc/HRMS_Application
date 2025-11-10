@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Edit, Share2, Archive, Trash2, MapPin, Calendar, Clock, DollarSign, Users, Building2, Star, Eye, MessageSquare, User } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-export const JobOpeningDetails = ({ jobId, onNavigate }) => {
+export const JobOpeningDetails = ({ jobId }) => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
 
   // Mock job data
@@ -134,7 +136,7 @@ Key Responsibilities:
         </div>
         <div className="flex items-center space-x-3">
           <button
-            onClick={() => onNavigate('edit-job-opening', { jobId: jobDetails.id })}
+            onClick={() => navigate('/edit-job-opening')}
             className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#EF5226] transition-all duration-200"
           >
             <Edit size={20} />
@@ -350,7 +352,7 @@ Key Responsibilities:
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-bold text-[#333333]">Recent Applications</h3>
               <button
-                onClick={() => onNavigate('applicants-list', { jobId: jobDetails.id })}
+                onClick={() => navigate('/applicants-list')}
                 className="neu-secondary px-6 py-3 rounded-2xl text-white hover:shadow-lg transition-all duration-200"
               >
                 View All Applications
@@ -381,7 +383,7 @@ Key Responsibilities:
                         {application.status}
                       </span>
                       <button
-                        onClick={() => onNavigate('applicant-details', { applicantId: application.id })}
+                        onClick={() => navigate('/applicant-details')}
                         className="neu-button p-2 rounded-xl hover:shadow-md transition-all duration-200"
                       >
                         <Eye size={16} className="text-[#05A7CC]" />

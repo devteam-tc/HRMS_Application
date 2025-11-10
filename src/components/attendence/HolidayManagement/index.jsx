@@ -34,7 +34,7 @@ export const HolidayManagement = ({ onNavigate }) => {
       location: 'All Offices',
       optional: false,
       category: 'Public Holiday',
-      color: '#05A7CC'
+      color: '#2C318E'
     },
     // ... other holidays
   ], []);
@@ -92,13 +92,13 @@ export const HolidayManagement = ({ onNavigate }) => {
           key={day}
           onClick={() => setSelectedHoliday(dayHolidays[0] || null)}
           className={`h-24 p-2 neu-card rounded-xl cursor-pointer transition-all duration-200 hover:shadow-md ${
-            dayHolidays.length > 0 ? 'ring-2 ring-[#EF5226]' : ''
+            dayHolidays.length > 0 ? 'ring-2 ring-[#CA2030]' : ''
           }`}
         >
           <div className="flex justify-between items-start mb-1">
             <span className={`text-sm font-medium ${
-              isToday ? 'bg-[#EF5226] text-white px-2 py-1 rounded-full' : 
-              dayHolidays.length > 0 ? 'text-[#EF5226] font-bold' : 'text-[#333333]'
+              isToday ? 'bg-[#CA2030] text-white px-2 py-1 rounded-full' : 
+              dayHolidays.length > 0 ? 'text-[#CA2030] font-bold' : 'text-[#333333]'
             }`}>
               {day}
             </span>
@@ -132,7 +132,7 @@ export const HolidayManagement = ({ onNavigate }) => {
   };
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Holiday Management</h1>
         <p className="text-[#666666]">Manage company holidays with calendar and list view</p>
@@ -176,12 +176,12 @@ export const HolidayManagement = ({ onNavigate }) => {
             <div className="space-y-3">
               <button 
                 onClick={() => onNavigate('attendance-calendar')}
-                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#EF5226] transition-colors"
+                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#CA2030] transition-colors"
               >
                 <Calendar size={16} className="inline mr-2" />
                 View in Calendar
               </button>
-              <button className="w-full neu-button p-3 rounded-xl text-left hover:text-[#EF5226] transition-colors">
+              <button className="w-full neu-button p-3 rounded-xl text-left hover:text-[#CA2030] transition-colors">
                 <Filter size={16} className="inline mr-2" />
                 Export Holiday List
               </button>

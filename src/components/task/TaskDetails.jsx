@@ -89,7 +89,7 @@ export const TaskDetails = ({ task: initialTask }) => {
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'high':
-        return 'bg-[#EF5226] text-white';
+        return 'bg-[#CA2030] text-white';
       case 'medium':
         return 'bg-[#FFC107] text-white';
       case 'low':
@@ -104,7 +104,7 @@ export const TaskDetails = ({ task: initialTask }) => {
       case 'todo':
         return 'bg-[#666666] text-white';
       case 'in-progress':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       case 'done':
         return 'bg-[#4CAF50] text-white';
       default:
@@ -196,12 +196,12 @@ export const TaskDetails = ({ task: initialTask }) => {
           <div className="flex items-center space-x-3">
             <button 
               onClick={() => navigate(`/edit-task/${task.id}`)}
-              className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#05A7CC] hover:text-[#048ba8] transition-colors"
+              className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#2C318E] hover:text-[#048ba8] transition-colors"
             >
               <Edit className="w-5 h-5" />
               <span>Edit</span>
             </button>
-            <button className="neu-button p-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f] transition-colors">
+            <button className="neu-button p-3 rounded-2xl text-[#CA2030] hover:text-[#d4471f] transition-colors">
               <Trash2 className="w-5 h-5" />
             </button>
           </div>
@@ -215,7 +215,7 @@ export const TaskDetails = ({ task: initialTask }) => {
           <div className="text-[#666666]">Progress</div>
         </div>
         <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#05A7CC] mb-2">{completedSubtasks}/{task.subtasks.length}</div>
+          <div className="text-3xl font-bold text-[#2C318E] mb-2">{completedSubtasks}/{task.subtasks.length}</div>
           <div className="text-[#666666]">Subtasks</div>
         </div>
         <div className="neu-card p-6 rounded-3xl text-center">
@@ -271,7 +271,7 @@ export const TaskDetails = ({ task: initialTask }) => {
                       <div className="flex items-center space-x-4">
                         <Avatar className="w-16 h-16">
                           <AvatarImage src="/placeholder-avatar.jpg" />
-                          <AvatarFallback className="bg-[#05A7CC] text-white text-lg">
+                          <AvatarFallback className="bg-[#2C318E] text-white text-lg">
                             {assignee.avatar}
                           </AvatarFallback>
                         </Avatar>
@@ -292,8 +292,8 @@ export const TaskDetails = ({ task: initialTask }) => {
                 <div className="flex flex-wrap gap-3">
                   {task.tags.map((tag, index) => (
                     <div key={index} className="neu-small px-4 py-2 rounded-xl flex items-center space-x-2">
-                      <Flag className="w-4 h-4 text-[#05A7CC]" />
-                      <span className="text-sm font-medium text-[#05A7CC]">{tag}</span>
+                      <Flag className="w-4 h-4 text-[#2C318E]" />
+                      <span className="text-sm font-medium text-[#2C318E]">{tag}</span>
                     </div>
                   ))}
                 </div>
@@ -307,7 +307,7 @@ export const TaskDetails = ({ task: initialTask }) => {
                 <h3 className="text-2xl font-bold text-[#333333]">Subtasks</h3>
                 <button 
                   onClick={() => onNavigate('subtasks-management', taskId)}
-                  className="neu-button px-4 py-2 rounded-2xl text-[#05A7CC] hover:text-[#048ba8]"
+                  className="neu-button px-4 py-2 rounded-2xl text-[#2C318E] hover:text-[#048ba8]"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Add Subtask
@@ -316,7 +316,7 @@ export const TaskDetails = ({ task: initialTask }) => {
               
               <div className="neu-card-inset rounded-full h-3 overflow-hidden mb-6">
                 <div 
-                  className="h-full bg-gradient-to-r from-[#05A7CC] to-[#048ba8] transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-[#2C318E] to-[#048ba8] transition-all duration-500"
                   style={{ width: `${progressPercentage}%` }}
                 ></div>
               </div>
@@ -364,7 +364,7 @@ export const TaskDetails = ({ task: initialTask }) => {
                 <div className="flex space-x-4">
                   <Avatar className="w-10 h-10">
                     <AvatarImage src="/placeholder-avatar.jpg" />
-                    <AvatarFallback className="bg-[#05A7CC] text-white">CU</AvatarFallback>
+                    <AvatarFallback className="bg-[#2C318E] text-white">CU</AvatarFallback>
                   </Avatar>
                   <div className="flex-1">
                     <div className="neu-input p-4 rounded-2xl mb-3">
@@ -405,13 +405,13 @@ export const TaskDetails = ({ task: initialTask }) => {
                         </div>
                         <p className="text-[#666666] mb-3">{comment.content}</p>
                         <div className="flex items-center space-x-4">
-                          <button className="text-sm text-[#666666] hover:text-[#05A7CC] transition-colors">
+                          <button className="text-sm text-[#666666] hover:text-[#2C318E] transition-colors">
                             👍 {comment.reactions.thumbsUp || 0}
                           </button>
-                          <button className="text-sm text-[#666666] hover:text-[#EF5226] transition-colors">
+                          <button className="text-sm text-[#666666] hover:text-[#CA2030] transition-colors">
                             ❤️ {comment.reactions.heart || 0}
                           </button>
-                          <button className="text-sm text-[#666666] hover:text-[#05A7CC] transition-colors">
+                          <button className="text-sm text-[#666666] hover:text-[#2C318E] transition-colors">
                             Reply
                           </button>
                         </div>
@@ -459,10 +459,10 @@ export const TaskDetails = ({ task: initialTask }) => {
             <div className="space-y-4">
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3 mb-2">
-                  <Calendar className="w-4 h-4 text-[#05A7CC]" />
+                  <Calendar className="w-4 h-4 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Due Date</span>
                 </div>
-                <div className={`text-sm ${isOverdue ? 'text-[#EF5226] font-medium' : 'text-[#666666]'}`}>
+                <div className={`text-sm ${isOverdue ? 'text-[#CA2030] font-medium' : 'text-[#666666]'}`}>
                   {new Date(task.dueDate).toLocaleDateString()}
                   {isOverdue && <span className="ml-2">OVERDUE</span>}
                 </div>
@@ -470,7 +470,7 @@ export const TaskDetails = ({ task: initialTask }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3 mb-2">
-                  <Clock className="w-4 h-4 text-[#05A7CC]" />
+                  <Clock className="w-4 h-4 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Time Tracking</span>
                 </div>
                 <div className="text-sm text-[#666666]">
@@ -486,7 +486,7 @@ export const TaskDetails = ({ task: initialTask }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3 mb-2">
-                  <Flag className="w-4 h-4 text-[#05A7CC]" />
+                  <Flag className="w-4 h-4 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Priority</span>
                 </div>
                 <div className={`inline-block px-3 py-1 rounded-lg text-xs font-medium ${getPriorityColor(task.priority)}`}>
@@ -500,7 +500,7 @@ export const TaskDetails = ({ task: initialTask }) => {
           <div className="neu-card p-8 rounded-3xl">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-[#333333]">Attachments</h3>
-              <button className="neu-button p-2 rounded-xl text-[#05A7CC] hover:text-[#048ba8]">
+              <button className="neu-button p-2 rounded-xl text-[#2C318E] hover:text-[#048ba8]">
                 <Plus className="w-4 h-4" />
               </button>
             </div>
@@ -519,7 +519,7 @@ export const TaskDetails = ({ task: initialTask }) => {
                         </div>
                       </div>
                     </div>
-                    <button className="neu-button p-2 rounded-xl text-[#05A7CC] hover:text-[#048ba8]">
+                    <button className="neu-button p-2 rounded-xl text-[#2C318E] hover:text-[#048ba8]">
                       <Download className="w-4 h-4" />
                     </button>
                   </div>
@@ -557,19 +557,19 @@ export const TaskDetails = ({ task: initialTask }) => {
                 className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform"
               >
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-[#05A7CC]" />
+                  <CheckCircle className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Manage Subtasks</span>
                 </div>
               </button>
               <button className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform">
                 <div className="flex items-center space-x-3">
-                  <Clock className="w-5 h-5 text-[#05A7CC]" />
+                  <Clock className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Log Time</span>
                 </div>
               </button>
               <button className="w-full neu-button p-4 rounded-2xl text-left hover:scale-105 transition-transform">
                 <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-[#05A7CC]" />
+                  <Users className="w-5 h-5 text-[#2C318E]" />
                   <span className="font-medium text-[#333333]">Assign to Someone</span>
                 </div>
               </button>

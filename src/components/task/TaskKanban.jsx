@@ -10,7 +10,7 @@ export const TaskKanban = () => {
 
   const kanbanColumns = [
     { id: 'todo', title: 'To Do', color: '#666666', count: 0 },
-    { id: 'in-progress', title: 'In Progress', color: '#05A7CC', count: 0 },
+    { id: 'in-progress', title: 'In Progress', color: '#2C318E', count: 0 },
     { id: 'review', title: 'Review', color: '#FFC107', count: 0 },
     { id: 'done', title: 'Done', color: '#4CAF50', count: 0 }
   ];
@@ -22,7 +22,7 @@ export const TaskKanban = () => {
       description: 'Implement OAuth 2.0 with social login options',
       status: 'todo',
       priority: 'high',
-      assignee: { name: 'John Doe', avatar: 'JD', color: '#EF5226' },
+      assignee: { name: 'John Doe', avatar: 'JD', color: '#CA2030' },
       project: 'E-commerce Platform',
       dueDate: '2024-03-25',
       tags: ['Frontend', 'Security'],
@@ -37,7 +37,7 @@ export const TaskKanban = () => {
       description: 'Design and implement the database schema for user management',
       status: 'in-progress',
       priority: 'high',
-      assignee: { name: 'Sarah Wilson', avatar: 'SW', color: '#05A7CC' },
+      assignee: { name: 'Sarah Wilson', avatar: 'SW', color: '#2C318E' },
       project: 'E-commerce Platform',
       dueDate: '2024-03-22',
       tags: ['Backend', 'Database'],
@@ -145,7 +145,7 @@ export const TaskKanban = () => {
 
   const getPriorityColor = (priority) => {
     const colors = {
-      'high': '#EF5226',
+      'high': '#CA2030',
       'medium': '#FFC107',
       'low': '#4CAF50'
     };
@@ -181,7 +181,7 @@ export const TaskKanban = () => {
       {/* Task Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1">
-          <h4 className="font-semibold text-[#333333] text-sm mb-1 group-hover:text-[#EF5226] transition-colors">
+          <h4 className="font-semibold text-[#333333] text-sm mb-1 group-hover:text-[#CA2030] transition-colors">
             {task.title}
           </h4>
           <span className="text-xs text-[#666666] bg-[#E8EBEF] px-2 py-1 rounded">
@@ -191,7 +191,7 @@ export const TaskKanban = () => {
         <div className="opacity-0 group-hover:opacity-100 transition-opacity">
           <button 
             onClick={() => onNavigate('task-details', { taskId: task.id })}
-            className="neu-small p-1 rounded-lg hover:text-[#EF5226] transition-colors"
+            className="neu-small p-1 rounded-lg hover:text-[#CA2030] transition-colors"
           >
             <Eye size={12} />
           </button>
@@ -286,7 +286,7 @@ export const TaskKanban = () => {
 
   // Layout: Kanban Board with Drag & Drop
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Task Status (Kanban)</h1>
@@ -299,13 +299,13 @@ export const TaskKanban = () => {
           <div className="flex flex-col sm:flex-row gap-4 flex-1">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#EF5226]" />
+              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#CA2030]" />
               <input
                 type="text"
                 placeholder="Search tasks..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 neu-input rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                className="w-full pl-12 pr-4 py-3 neu-input rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all"
               />
             </div>
 
@@ -313,7 +313,7 @@ export const TaskKanban = () => {
             <select 
               value={selectedProject}
               onChange={(e) => setSelectedProject(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
             >
               <option value="all">All Projects</option>
               {projects.map(project => (
@@ -323,7 +323,7 @@ export const TaskKanban = () => {
           </div>
 
           <div className="flex gap-3">
-            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#EF5226] transition-colors">
+            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors">
               <Filter size={16} className="mr-2" />
               More Filters
             </button>
@@ -389,9 +389,9 @@ export const TaskKanban = () => {
             {/* Add Task Button */}
             <button 
               onClick={() => onNavigate('add-new-task', { defaultStatus: column.id })}
-              className="w-full mt-6 neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#EF5226] transition-colors group"
+              className="w-full mt-6 neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#CA2030] transition-colors group"
             >
-              <Plus size={16} className="mr-2 group-hover:text-[#EF5226]" />
+              <Plus size={16} className="mr-2 group-hover:text-[#CA2030]" />
               Add Task to {column.title}
             </button>
           </div>
@@ -407,7 +407,7 @@ export const TaskKanban = () => {
             <div className="text-[#666666] text-sm">Total Tasks</div>
           </div>
           <div className="neu-small p-4 rounded-xl text-center">
-            <div className="text-2xl font-bold text-[#05A7CC] mb-1">
+            <div className="text-2xl font-bold text-[#2C318E] mb-1">
               {filteredTasks.filter(t => t.status === 'in-progress').length}
             </div>
             <div className="text-[#666666] text-sm">In Progress</div>
@@ -419,7 +419,7 @@ export const TaskKanban = () => {
             <div className="text-[#666666] text-sm">Completed</div>
           </div>
           <div className="neu-small p-4 rounded-xl text-center">
-            <div className="text-2xl font-bold text-[#EF5226] mb-1">
+            <div className="text-2xl font-bold text-[#CA2030] mb-1">
               {filteredTasks.filter(t => t.priority === 'high').length}
             </div>
             <div className="text-[#666666] text-sm">High Priority</div>

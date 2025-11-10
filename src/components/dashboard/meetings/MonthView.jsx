@@ -26,12 +26,12 @@ const MonthView = ({ currentDate, meetings, onDateClick }) => {
           <div 
             key={index} 
             className={`h-32 neu-card rounded-2xl p-3 cursor-pointer transition-all hover:scale-105 ${
-              isToday ? 'ring-2 ring-[#05A7CC]' : ''
+              isToday ? 'ring-2 ring-[#2C318E]' : ''
             } ${!isCurrentMonth ? 'opacity-50' : ''}`}
             onClick={() => onDateClick(date)}
           >
             <div className={`text-sm font-medium mb-2 ${
-              isToday ? 'text-[#05A7CC]' : 'text-[#333333]'
+              isToday ? 'text-[#2C318E]' : 'text-[#333333]'
             }`}>
               {date.getDate()}
             </div>

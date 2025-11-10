@@ -155,7 +155,7 @@ Key Responsibilities:
   };
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
@@ -173,7 +173,7 @@ Key Responsibilities:
         <div className="flex items-center space-x-3">
           <button
             onClick={handleArchive}
-            className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#EF5226] transition-all duration-200"
+            className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#CA2030] transition-all duration-200"
           >
             <Archive size={20} />
             <span>Archive</span>
@@ -202,7 +202,7 @@ Key Responsibilities:
 
       {/* Change Indicator */}
       {isChanged && (
-        <div className="neu-card p-4 rounded-2xl mb-8 border-l-4 border-[#EF5226]">
+        <div className="neu-card p-4 rounded-2xl mb-8 border-l-4 border-[#CA2030]">
           <p className="text-[#333333] font-medium">You have unsaved changes</p>
           <p className="text-[#666666] text-sm">Make sure to save your changes before leaving this page</p>
         </div>
@@ -349,7 +349,7 @@ Key Responsibilities:
                 <button
                   type="button"
                   onClick={() => addArrayField('requirements')}
-                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#05A7CC] hover:shadow-md transition-all duration-200"
+                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#2C318E] hover:shadow-md transition-all duration-200"
                 >
                   <Plus size={16} />
                   <span>Add Requirement</span>
@@ -385,7 +385,7 @@ Key Responsibilities:
                 <button
                   type="button"
                   onClick={() => addArrayField('skills')}
-                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#05A7CC] hover:shadow-md transition-all duration-200"
+                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#2C318E] hover:shadow-md transition-all duration-200"
                 >
                   <Plus size={16} />
                   <span>Add Skill</span>
@@ -421,7 +421,7 @@ Key Responsibilities:
                 <button
                   type="button"
                   onClick={() => addArrayField('benefits')}
-                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#05A7CC] hover:shadow-md transition-all duration-200"
+                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#2C318E] hover:shadow-md transition-all duration-200"
                 >
                   <Plus size={16} />
                   <span>Add Benefit</span>

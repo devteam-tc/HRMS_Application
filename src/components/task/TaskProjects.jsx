@@ -24,8 +24,8 @@ export const TaskProjects = () => {
         pending: 3
       },
       team: [
-        { name: 'John Doe', role: 'Frontend Lead', avatar: 'JD', color: '#EF5226' },
-        { name: 'Sarah Wilson', role: 'Designer', avatar: 'SW', color: '#05A7CC' },
+        { name: 'John Doe', role: 'Frontend Lead', avatar: 'JD', color: '#CA2030' },
+        { name: 'Sarah Wilson', role: 'Designer', avatar: 'SW', color: '#2C318E' },
         { name: 'Mike Johnson', role: 'Backend Dev', avatar: 'MJ', color: '#4CAF50' },
         { name: 'Emma Brown', role: 'QA Lead', avatar: 'EB', color: '#9C27B0' }
       ],
@@ -50,8 +50,8 @@ export const TaskProjects = () => {
         pending: 20
       },
       team: [
-        { name: 'David Lee', role: 'Mobile Lead', avatar: 'DL', color: '#EF5226' },
-        { name: 'Lisa Chen', role: 'iOS Dev', avatar: 'LC', color: '#05A7CC' },
+        { name: 'David Lee', role: 'Mobile Lead', avatar: 'DL', color: '#CA2030' },
+        { name: 'Lisa Chen', role: 'iOS Dev', avatar: 'LC', color: '#2C318E' },
         { name: 'Tom Wilson', role: 'Android Dev', avatar: 'TW', color: '#4CAF50' }
       ],
       deadline: '2024-06-30',
@@ -75,8 +75,8 @@ export const TaskProjects = () => {
         pending: 1
       },
       team: [
-        { name: 'Alex Rodriguez', role: 'DevOps Lead', avatar: 'AR', color: '#EF5226' },
-        { name: 'Maria Garcia', role: 'Backend Dev', avatar: 'MG', color: '#05A7CC' }
+        { name: 'Alex Rodriguez', role: 'DevOps Lead', avatar: 'AR', color: '#CA2030' },
+        { name: 'Maria Garcia', role: 'Backend Dev', avatar: 'MG', color: '#2C318E' }
       ],
       deadline: '2024-03-25',
       startDate: '2024-01-01',
@@ -99,8 +99,8 @@ export const TaskProjects = () => {
         pending: 52
       },
       team: [
-        { name: 'Robert Kim', role: 'Data Engineer', avatar: 'RK', color: '#EF5226' },
-        { name: 'Nina Patel', role: 'Frontend Dev', avatar: 'NP', color: '#05A7CC' },
+        { name: 'Robert Kim', role: 'Data Engineer', avatar: 'RK', color: '#CA2030' },
+        { name: 'Nina Patel', role: 'Frontend Dev', avatar: 'NP', color: '#2C318E' },
         { name: 'James Liu', role: 'Data Analyst', avatar: 'JL', color: '#4CAF50' }
       ],
       deadline: '2024-08-15',
@@ -124,8 +124,8 @@ export const TaskProjects = () => {
         pending: 0
       },
       team: [
-        { name: 'Chris Thompson', role: 'Security Lead', avatar: 'CT', color: '#EF5226' },
-        { name: 'Anna Miller', role: 'DevSecOps', avatar: 'AM', color: '#05A7CC' }
+        { name: 'Chris Thompson', role: 'Security Lead', avatar: 'CT', color: '#CA2030' },
+        { name: 'Anna Miller', role: 'DevSecOps', avatar: 'AM', color: '#2C318E' }
       ],
       deadline: '2024-02-28',
       startDate: '2023-12-01',
@@ -156,8 +156,8 @@ export const TaskProjects = () => {
 
   const getProgressColor = (progress) => {
     if (progress >= 90) return '#4CAF50';
-    if (progress >= 70) return '#EF5226';
-    if (progress >= 50) return '#05A7CC';
+    if (progress >= 70) return '#CA2030';
+    if (progress >= 50) return '#2C318E';
     return '#FFC107';
   };
 
@@ -177,7 +177,7 @@ export const TaskProjects = () => {
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <div className="flex items-center space-x-3 mb-2">
-                <h3 className="text-xl font-bold text-[#333333] group-hover:text-[#EF5226] transition-colors">
+                <h3 className="text-xl font-bold text-[#333333] group-hover:text-[#CA2030] transition-colors">
                   {project.name}
                 </h3>
                 <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}>
@@ -206,11 +206,11 @@ export const TaskProjects = () => {
             <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <button 
                 onClick={() => navigate(`/task-kanban?projectId=${project.id}`)}
-                className="neu-small p-2 rounded-lg hover:text-[#EF5226] transition-colors"
+                className="neu-small p-2 rounded-lg hover:text-[#CA2030] transition-colors"
               >
                 <Eye size={16} />
               </button>
-              <button className="neu-small p-2 rounded-lg hover:text-[#05A7CC] transition-colors">
+              <button className="neu-small p-2 rounded-lg hover:text-[#2C318E] transition-colors">
                 <Edit3 size={16} />
               </button>
               <button className="neu-small p-2 rounded-lg hover:text-[#333333] transition-colors">
@@ -249,11 +249,11 @@ export const TaskProjects = () => {
               <div className="text-xs text-[#666666]">Completed</div>
             </div>
             <div className="neu-small p-3 rounded-xl text-center">
-              <div className="text-lg font-bold text-[#05A7CC]">{project.tasks.inProgress}</div>
+              <div className="text-lg font-bold text-[#2C318E]">{project.tasks.inProgress}</div>
               <div className="text-xs text-[#666666]">In Progress</div>
             </div>
             <div className="neu-small p-3 rounded-xl text-center">
-              <div className="text-lg font-bold text-[#EF5226]">{project.tasks.pending}</div>
+              <div className="text-lg font-bold text-[#CA2030]">{project.tasks.pending}</div>
               <div className="text-xs text-[#666666]">Pending</div>
             </div>
           </div>
@@ -299,7 +299,7 @@ export const TaskProjects = () => {
           {/* Project Header */}
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h3 className="text-lg font-bold text-[#333333] group-hover:text-[#EF5226] transition-colors mb-2">
+              <h3 className="text-lg font-bold text-[#333333] group-hover:text-[#CA2030] transition-colors mb-2">
                 {project.name}
               </h3>
               <div className="flex space-x-2 mb-3">
@@ -311,7 +311,7 @@ export const TaskProjects = () => {
                 </span>
               </div>
             </div>
-            <button className="neu-small p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity hover:text-[#EF5226]">
+            <button className="neu-small p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity hover:text-[#CA2030]">
               <MoreHorizontal size={16} />
             </button>
           </div>
@@ -380,7 +380,7 @@ export const TaskProjects = () => {
   );
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Projects (Development)</h1>
@@ -393,13 +393,13 @@ export const TaskProjects = () => {
           <div className="flex flex-col sm:flex-row gap-4 flex-1">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#EF5226]" />
+              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#CA2030]" />
               <input
                 type="text"
                 placeholder="Search projects..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 neu-input rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                className="w-full pl-12 pr-4 py-3 neu-input rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all"
               />
             </div>
 
@@ -407,7 +407,7 @@ export const TaskProjects = () => {
             <select 
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
             >
               <option value="all">All Status</option>
               <option value="active">Active</option>
@@ -423,7 +423,7 @@ export const TaskProjects = () => {
                 className={`px-4 py-2 rounded-lg transition-all ${
                   viewMode === 'list' 
                     ? 'neu-primary text-white shadow-md' 
-                    : 'text-[#666666] hover:text-[#EF5226]'
+                    : 'text-[#666666] hover:text-[#CA2030]'
                 }`}
               >
                 List
@@ -433,7 +433,7 @@ export const TaskProjects = () => {
                 className={`px-4 py-2 rounded-lg transition-all ${
                   viewMode === 'grid' 
                     ? 'neu-primary text-white shadow-md' 
-                    : 'text-[#666666] hover:text-[#EF5226]'
+                    : 'text-[#666666] hover:text-[#CA2030]'
                 }`}
               >
                 Grid
@@ -442,7 +442,7 @@ export const TaskProjects = () => {
           </div>
 
           <div className="flex gap-3">
-            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#EF5226] transition-colors">
+            <button className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors">
               <Filter size={16} className="mr-2" />
               More Filters
             </button>
@@ -460,13 +460,13 @@ export const TaskProjects = () => {
       {/* Project Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-[#EF5226] mb-1">
+          <div className="text-2xl font-bold text-[#CA2030] mb-1">
             {projects.filter(p => p.status === 'active').length}
           </div>
           <div className="text-[#666666] text-sm">Active Projects</div>
         </div>
         <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-[#05A7CC] mb-1">
+          <div className="text-2xl font-bold text-[#2C318E] mb-1">
             {projects.reduce((sum, p) => sum + p.tasks.total, 0)}
           </div>
           <div className="text-[#666666] text-sm">Total Tasks</div>

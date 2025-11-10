@@ -76,8 +76,8 @@ export const OnboardingDashboard = ({ onNavigate }) => {
   ];
 
   const departmentOnboarding = [
-    { department: 'Engineering', count: 8, color: '#EF5226' },
-    { department: 'Sales', count: 5, color: '#05A7CC' },
+    { department: 'Engineering', count: 8, color: '#CA2030' },
+    { department: 'Sales', count: 5, color: '#2C318E' },
     { department: 'Marketing', count: 4, color: '#4CAF50' },
     { department: 'Design', count: 3, color: '#FFC107' },
     { department: 'Analytics', count: 2, color: '#9C27B0' },
@@ -192,7 +192,7 @@ export const OnboardingDashboard = ({ onNavigate }) => {
               </div>
               <div className="text-right">
                 <div className="text-3xl font-bold text-[#333333]">{onboardingStats.inProgress}</div>
-                <div className="text-sm text-[#05A7CC] font-medium">In progress</div>
+                <div className="text-sm text-[#2C318E] font-medium">In progress</div>
               </div>
             </div>
             <div>
@@ -260,17 +260,17 @@ export const OnboardingDashboard = ({ onNavigate }) => {
                 <Line 
                   type="monotone" 
                   dataKey="new" 
-                  stroke="#EF5226" 
+                  stroke="#CA2030" 
                   strokeWidth={3}
-                  dot={{ fill: '#EF5226', strokeWidth: 2, r: 6 }}
+                  dot={{ fill: '#CA2030', strokeWidth: 2, r: 6 }}
                   name="New Hires"
                 />
                 <Line 
                   type="monotone" 
                   dataKey="completed" 
-                  stroke="#05A7CC" 
+                  stroke="#2C318E" 
                   strokeWidth={3}
-                  dot={{ fill: '#05A7CC', strokeWidth: 2, r: 6 }}
+                  dot={{ fill: '#2C318E', strokeWidth: 2, r: 6 }}
                   name="Completed"
                 />
               </LineChart>
@@ -336,7 +336,7 @@ export const OnboardingDashboard = ({ onNavigate }) => {
             </div>
             <button
               onClick={() => onNavigate?.('onboarding-checklist')}
-              className="neu-button px-4 py-2 rounded-2xl flex items-center space-x-2 hover:text-[#05A7CC] transition-colors"
+              className="neu-button px-4 py-2 rounded-2xl flex items-center space-x-2 hover:text-[#2C318E] transition-colors"
             >
               <FileText size={16} />
               <span>View All</span>
@@ -349,7 +349,7 @@ export const OnboardingDashboard = ({ onNavigate }) => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 neu-gradient rounded-full flex items-center justify-center">
-                      <span className="font-bold text-[#05A7CC]">
+                      <span className="font-bold text-[#2C318E]">
                         {employee.name.split(' ').map(n => n[0]).join('')}
                       </span>
                     </div>
@@ -368,7 +368,7 @@ export const OnboardingDashboard = ({ onNavigate }) => {
                       <div className="flex items-center space-x-2">
                         <div className="w-20 h-2 bg-[#E8EBEF] rounded-full">
                           <div 
-                            className="h-2 bg-[#05A7CC] rounded-full transition-all duration-300"
+                            className="h-2 bg-[#2C318E] rounded-full transition-all duration-300"
                             style={{ width: `${employee.progress}%` }}
                           ></div>
                         </div>
@@ -411,7 +411,7 @@ export const OnboardingDashboard = ({ onNavigate }) => {
             ))}
           </div>
 
-          <button className="w-full neu-button p-3 rounded-2xl mt-4 hover:text-[#EF5226] transition-colors">
+          <button className="w-full neu-button p-3 rounded-2xl mt-4 hover:text-[#CA2030] transition-colors">
             View All Tasks
           </button>
         </div>
@@ -435,7 +435,7 @@ export const OnboardingDashboard = ({ onNavigate }) => {
               <h4 className="font-bold text-[#333333] mb-2">{stage.stage}</h4>
               <div className="w-full h-2 bg-[#E8EBEF] rounded-full mb-2">
                 <div 
-                  className="h-2 bg-[#05A7CC] rounded-full transition-all duration-300"
+                  className="h-2 bg-[#2C318E] rounded-full transition-all duration-300"
                   style={{ width: `${stage.percentage}%` }}
                 ></div>
               </div>

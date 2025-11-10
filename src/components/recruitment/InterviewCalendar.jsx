@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Calendar, ChevronLeft, ChevronRight, Plus, Filter, User, Clock, Video, MapPin, Phone, Eye, Edit } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-export const InterviewCalendar = ({ onNavigate }) => {
+export const InterviewCalendar = () => {
+  const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [viewMode, setViewMode] = useState('month'); // 'month', 'week', 'day'
   const [filterStatus, setFilterStatus] = useState('all');
@@ -106,8 +108,8 @@ export const InterviewCalendar = ({ onNavigate }) => {
 
   const getModeIcon = (mode) => {
     switch (mode) {
-      case 'Video Call': return <Video size={12} className="text-[#05A7CC]" />;
-      case 'Phone': return <Phone size={12} className="text-[#EF5226]" />;
+      case 'Video Call': return <Video size={12} className="text-[#2C318E]" />;
+      case 'Phone': return <Phone size={12} className="text-[#CA2030]" />;
       case 'In-Person': return <MapPin size={12} className="text-[#666666]" />;
       default: return <Calendar size={12} className="text-[#666666]" />;
     }
@@ -146,7 +148,7 @@ export const InterviewCalendar = ({ onNavigate }) => {
   });
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -155,8 +157,8 @@ export const InterviewCalendar = ({ onNavigate }) => {
         </div>
         <div className="flex items-center space-x-3">
           <button
-            onClick={() => onNavigate('interviews-list')}
-            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+            onClick={() => navigate('/interviews-list')}
+            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
           >
             List View
           </button>
@@ -199,7 +201,7 @@ export const InterviewCalendar = ({ onNavigate }) => {
 
             <button
               onClick={navigateToToday}
-              className="neu-button px-4 py-3 rounded-2xl text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+              className="neu-button px-4 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
             >
               Today
             </button>
@@ -275,11 +277,11 @@ export const InterviewCalendar = ({ onNavigate }) => {
               <div
                 key={index}
                 className={`h-32 neu-small rounded-2xl p-3 transition-all duration-200 hover:shadow-lg ${
-                  isToday ? 'ring-2 ring-[#EF5226]' : ''
+                  isToday ? 'ring-2 ring-[#CA2030]' : ''
                 }`}
               >
                 <div className="flex justify-between items-start mb-2">
-                  <span className={`font-medium ${isToday ? 'text-[#EF5226]' : 'text-[#333333]'}`}>
+                  <span className={`font-medium ${isToday ? 'text-[#CA2030]' : 'text-[#333333]'}`}>
                     {day}
                   </span>
                   {dayInterviews.length > 0 && (
@@ -309,7 +311,7 @@ export const InterviewCalendar = ({ onNavigate }) => {
                   
                   {dayInterviews.length > 2 && (
                     <button
-                      className="w-full text-xs text-[#05A7CC] hover:underline text-left"
+                      className="w-full text-xs text-[#2C318E] hover:underline text-left"
                       onClick={() => {
                         // Filter interviews list by date
                         onNavigate('interviews-list', { date: date.toISOString().split('T')[0] });
@@ -340,7 +342,7 @@ export const InterviewCalendar = ({ onNavigate }) => {
                     </div>
                     <div>
                       <h4 className="font-medium text-[#333333] mb-1">{interview.candidateName}</h4>
-                      <p className="text-[#EF5226] text-sm font-medium mb-1">{interview.jobTitle}</p>
+                      <p className="text-[#CA2030] text-sm font-medium mb-1">{interview.jobTitle}</p>
                       <div className="flex items-center space-x-4 text-xs text-[#666666]">
                         <div className="flex items-center">
                           <Clock size={12} className="mr-1" />
@@ -363,13 +365,13 @@ export const InterviewCalendar = ({ onNavigate }) => {
                       onClick={() => onNavigate('interview-details', { interviewId: interview.id })}
                       className="neu-button p-2 rounded-xl hover:shadow-md transition-all duration-200"
                     >
-                      <Eye size={16} className="text-[#05A7CC]" />
+                      <Eye size={16} className="text-[#2C318E]" />
                     </button>
                     <button
                       onClick={() => onNavigate('edit-interview', { interviewId: interview.id })}
                       className="neu-button p-2 rounded-xl hover:shadow-md transition-all duration-200"
                     >
-                      <Edit size={16} className="text-[#EF5226]" />
+                      <Edit size={16} className="text-[#CA2030]" />
                     </button>
                   </div>
                 </div>
@@ -381,7 +383,7 @@ export const InterviewCalendar = ({ onNavigate }) => {
             <Calendar size={48} className="text-[#666666] mx-auto mb-4" />
             <p className="text-[#666666] text-lg">No interviews scheduled for today</p>
             <button
-              onClick={() => onNavigate('new-interview')}
+              onClick={() => navigate('/new-interview')}
               className="neu-primary px-6 py-3 rounded-2xl mt-4 hover:shadow-lg transition-all duration-200"
             >
               Schedule Interview
@@ -396,11 +398,11 @@ export const InterviewCalendar = ({ onNavigate }) => {
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="flex items-center space-x-2">
-            <Video size={16} className="text-[#05A7CC]" />
+            <Video size={16} className="text-[#2C318E]" />
             <span className="text-[#333333] text-sm">Video Call</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Phone size={16} className="text-[#EF5226]" />
+            <Phone size={16} className="text-[#CA2030]" />
             <span className="text-[#333333] text-sm">Phone Call</span>
           </div>
           <div className="flex items-center space-x-2">

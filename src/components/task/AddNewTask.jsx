@@ -167,7 +167,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
 
   const getPriorityColor = (priority) => {
     const colors = {
-      'high': 'text-[#EF5226] bg-red-100',
+      'high': 'text-[#CA2030] bg-red-100',
       'medium': 'text-[#FFC107] bg-yellow-100',
       'low': 'text-[#4CAF50] bg-green-100'
     };
@@ -176,21 +176,21 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
 
   // Layout: Neumorphic Form Design
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Add New Task</h1>
         <p className="text-[#666666]">Create a new task with detailed specifications and assignments</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="max-w-6xl mx-auto">
+      <form onSubmit={handleSubmit} className="max-w-8xl ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Form */}
           <div className="lg:col-span-2 space-y-6">
             {/* Basic Information */}
             <div className="neu-card p-6 rounded-2xl">
               <h2 className="text-xl font-bold text-[#333333] mb-6 flex items-center">
-                <FileText size={20} className="mr-2 text-[#EF5226]" />
+                <FileText size={20} className="mr-2 text-[#CA2030]" />
                 Basic Information
               </h2>
               
@@ -202,7 +202,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                     value={formData.title}
                     onChange={(e) => handleInputChange('title', e.target.value)}
                     placeholder="Enter task title..."
-                    className={`w-full neu-input p-4 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all ${
+                    className={`w-full neu-input p-4 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all ${
                       errors.title ? 'ring-2 ring-red-500' : ''
                     }`}
                   />
@@ -216,7 +216,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                     onChange={(e) => handleInputChange('description', e.target.value)}
                     placeholder="Describe the task in detail..."
                     rows={4}
-                    className={`w-full neu-input p-4 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all resize-none ${
+                    className={`w-full neu-input p-4 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all resize-none ${
                       errors.description ? 'ring-2 ring-red-500' : ''
                     }`}
                   />
@@ -229,7 +229,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                     <select
                       value={formData.project}
                       onChange={(e) => handleInputChange('project', e.target.value)}
-                      className={`w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all ${
+                      className={`w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all ${
                         errors.project ? 'ring-2 ring-red-500' : ''
                       }`}
                     >
@@ -246,7 +246,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                     <select
                       value={formData.priority}
                       onChange={(e) => handleInputChange('priority', e.target.value)}
-                      className="w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                      className="w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
                     >
                       <option value="low">Low Priority</option>
                       <option value="medium">Medium Priority</option>
@@ -260,7 +260,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
             {/* Assignment & Timeline */}
             <div className="neu-card p-6 rounded-2xl">
               <h2 className="text-xl font-bold text-[#333333] mb-6 flex items-center">
-                <User size={20} className="mr-2 text-[#05A7CC]" />
+                <User size={20} className="mr-2 text-[#2C318E]" />
                 Assignment & Timeline
               </h2>
               
@@ -270,7 +270,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                   <select
                     value={formData.assignee}
                     onChange={(e) => handleInputChange('assignee', e.target.value)}
-                    className={`w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all ${
+                    className={`w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all ${
                       errors.assignee ? 'ring-2 ring-red-500' : ''
                     }`}
                   >
@@ -290,7 +290,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                     type="date"
                     value={formData.dueDate}
                     onChange={(e) => handleInputChange('dueDate', e.target.value)}
-                    className={`w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all ${
+                    className={`w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all ${
                       errors.dueDate ? 'ring-2 ring-red-500' : ''
                     }`}
                   />
@@ -305,7 +305,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                     onChange={(e) => handleInputChange('estimatedHours', e.target.value)}
                     placeholder="8"
                     min="1"
-                    className={`w-full neu-input p-4 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all ${
+                    className={`w-full neu-input p-4 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all ${
                       errors.estimatedHours ? 'ring-2 ring-red-500' : ''
                     }`}
                   />
@@ -317,7 +317,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                   <select
                     value={formData.status}
                     onChange={(e) => handleInputChange('status', e.target.value)}
-                    className="w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                    className="w-full neu-input p-4 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
                   >
                     <option value="todo">To Do</option>
                     <option value="in-progress">In Progress</option>
@@ -342,7 +342,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                     value={newTag}
                     onChange={(e) => setNewTag(e.target.value)}
                     placeholder="Add a tag..."
-                    className="flex-1 neu-input p-3 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                    className="flex-1 neu-input p-3 rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all"
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
                   />
                   <button
@@ -370,7 +370,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                         className={`px-3 py-1 rounded-lg text-sm transition-all ${
                           formData.tags.includes(tag)
                             ? 'bg-[#E8EBEF] text-[#999] cursor-not-allowed'
-                            : 'neu-button hover:text-[#EF5226]'
+                            : 'neu-button hover:text-[#CA2030]'
                         }`}
                       >
                         {tag}
@@ -387,7 +387,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                       {formData.tags.map(tag => (
                         <span
                           key={tag}
-                          className="inline-flex items-center px-3 py-1 rounded-lg bg-[#EF5226] text-white text-sm"
+                          className="inline-flex items-center px-3 py-1 rounded-lg bg-[#CA2030] text-white text-sm"
                         >
                           {tag}
                           <button
@@ -419,7 +419,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                   </label>
                   <select
                     onChange={(e) => handleAddDependency(e.target.value)}
-                    className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+                    className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
                   >
                     <option value="">Select a dependency</option>
                     {availableTasks.filter(task => !formData.dependencies.includes(task.id)).map(task => (
@@ -556,7 +556,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => onNavigate('task-kanban')}
-                  className="w-full neu-button p-3 rounded-xl hover:text-[#EF5226] transition-colors"
+                  className="w-full neu-button p-3 rounded-xl hover:text-[#CA2030] transition-colors"
                 >
                   <X size={16} className="inline mr-2" />
                   Cancel
@@ -568,7 +568,7 @@ export const AddNewTask = ({ defaultStatus, onNavigate }) => {
                     // Save as draft functionality
                     console.log('Saving as draft...');
                   }}
-                  className="w-full neu-button p-3 rounded-xl hover:text-[#05A7CC] transition-colors"
+                  className="w-full neu-button p-3 rounded-xl hover:text-[#2C318E] transition-colors"
                 >
                   <Clock size={16} className="inline mr-2" />
                   Save as Draft

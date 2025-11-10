@@ -151,9 +151,9 @@ const EditMeeting = ({ onNavigate }) => {
       case 'completed':
         return 'bg-[#4CAF50] text-white';
       case 'scheduled':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       case 'cancelled':
-        return 'bg-[#EF5226] text-white';
+        return 'bg-[#CA2030] text-white';
       default:
         return 'bg-[#666666] text-white';
     }
@@ -189,7 +189,7 @@ const EditMeeting = ({ onNavigate }) => {
           <div className="flex space-x-4">
             <button 
               onClick={handleDeleteMeeting}
-              className="neu-button px-6 py-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f] transition-colors flex items-center space-x-2"
+              className="neu-button px-6 py-3 rounded-2xl text-[#CA2030] hover:text-[#d4471f] transition-colors flex items-center space-x-2"
             >
               <Trash2 className="w-5 h-5" />
               <span>Delete</span>
@@ -414,7 +414,7 @@ const EditMeeting = ({ onNavigate }) => {
               <h2 className="text-2xl font-bold text-[#333333]">Meeting Agenda</h2>
               <button 
                 onClick={addAgendaItem}
-                className="neu-button p-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8]"
+                className="neu-button p-3 rounded-2xl text-[#2C318E] hover:text-[#048ba8]"
               >
                 <Plus className="w-5 h-5" />
               </button>
@@ -424,7 +424,7 @@ const EditMeeting = ({ onNavigate }) => {
               {formData.agenda.map((item, index) => (
                 <div key={index} className="flex items-center space-x-4">
                   <div className="neu-card-inset w-10 h-10 rounded-xl flex items-center justify-center">
-                    <span className="text-sm font-bold text-[#05A7CC]">{index + 1}</span>
+                    <span className="text-sm font-bold text-[#2C318E]">{index + 1}</span>
                   </div>
                   <div className="flex-1 neu-input p-4 rounded-2xl">
                     <input
@@ -438,7 +438,7 @@ const EditMeeting = ({ onNavigate }) => {
                   {formData.agenda.length > 1 && (
                     <button 
                       onClick={() => removeAgendaItem(index)}
-                      className="neu-button p-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f]"
+                      className="neu-button p-3 rounded-2xl text-[#CA2030] hover:text-[#d4471f]"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -458,7 +458,7 @@ const EditMeeting = ({ onNavigate }) => {
                 <p className="text-[#666666] mb-4">Drag and drop files or click to upload</p>
                 <button 
                   onClick={() => handleFileUpload('new_document.pdf')}
-                  className="neu-button px-6 py-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8]"
+                  className="neu-button px-6 py-3 rounded-2xl text-[#2C318E] hover:text-[#048ba8]"
                 >
                   Browse Files
                 </button>
@@ -478,7 +478,7 @@ const EditMeeting = ({ onNavigate }) => {
                         </div>
                         <button 
                           onClick={() => removeFile(file)}
-                          className="neu-button p-2 rounded-lg text-[#EF5226] hover:text-[#d4471f]"
+                          className="neu-button p-2 rounded-lg text-[#CA2030] hover:text-[#d4471f]"
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -499,7 +499,7 @@ const EditMeeting = ({ onNavigate }) => {
               <h3 className="text-xl font-bold text-[#333333]">Participants</h3>
               <button 
                 onClick={() => setShowParticipantSearch(!showParticipantSearch)}
-                className="neu-button p-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8]"
+                className="neu-button p-3 rounded-2xl text-[#2C318E] hover:text-[#048ba8]"
               >
                 <Plus className="w-5 h-5" />
               </button>
@@ -527,7 +527,7 @@ const EditMeeting = ({ onNavigate }) => {
                       <div className="flex items-center space-x-3">
                         <Avatar className="w-8 h-8">
                           <AvatarImage src="/placeholder-avatar.jpg" />
-                          <AvatarFallback className="bg-[#05A7CC] text-white text-sm">
+                          <AvatarFallback className="bg-[#2C318E] text-white text-sm">
                             {participant.name.split(' ').map(n => n[0]).join('')}
                           </AvatarFallback>
                         </Avatar>
@@ -550,7 +550,7 @@ const EditMeeting = ({ onNavigate }) => {
                     <div className="flex items-center space-x-3">
                       <Avatar className="w-10 h-10">
                         <AvatarImage src="/placeholder-avatar.jpg" />
-                        <AvatarFallback className="bg-[#05A7CC] text-white">
+                        <AvatarFallback className="bg-[#2C318E] text-white">
                           {participant.name.split(' ').map(n => n[0]).join('')}
                         </AvatarFallback>
                       </Avatar>
@@ -561,7 +561,7 @@ const EditMeeting = ({ onNavigate }) => {
                     </div>
                     <button 
                       onClick={() => removeParticipant(participant.id)}
-                      className="neu-button p-2 rounded-xl text-[#EF5226] hover:text-[#d4471f]"
+                      className="neu-button p-2 rounded-xl text-[#CA2030] hover:text-[#d4471f]"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -577,7 +577,7 @@ const EditMeeting = ({ onNavigate }) => {
             <div className="space-y-4">
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5 text-[#05A7CC]" />
+                  <Calendar className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Date & Time</div>
                     <div className="font-medium text-[#333333]">
@@ -592,7 +592,7 @@ const EditMeeting = ({ onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-[#05A7CC]" />
+                  <MapPin className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Location</div>
                     <div className="font-medium text-[#333333]">
@@ -604,7 +604,7 @@ const EditMeeting = ({ onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-[#05A7CC]" />
+                  <Users className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Participants</div>
                     <div className="font-medium text-[#333333]">
@@ -616,7 +616,7 @@ const EditMeeting = ({ onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <Clock className="w-5 h-5 text-[#05A7CC]" />
+                  <Clock className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Recurring</div>
                     <div className="font-medium text-[#333333]">

@@ -13,8 +13,8 @@ export const TaskDashboard = () => {
       change: '+3 from last month',
       changeType: 'positive',
       icon: Folder,
-      color: 'text-[#EF5226]',
-      bgColor: 'from-[#EF5226] to-[#d4471f]'
+      color: 'text-[#CA2030]',
+      bgColor: 'from-[#CA2030] to-[#d4471f]'
     },
     {
       title: 'Open Tasks',
@@ -22,8 +22,8 @@ export const TaskDashboard = () => {
       change: '+12 this week',
       changeType: 'positive',
       icon: CheckSquare,
-      color: 'text-[#05A7CC]',
-      bgColor: 'from-[#05A7CC] to-[#048ba8]'
+      color: 'text-[#2C318E]',
+      bgColor: 'from-[#2C318E] to-[#048ba8]'
     },
     {
       title: 'Completed Tasks',
@@ -53,8 +53,8 @@ export const TaskDashboard = () => {
   ];
 
   const resourceAllocation = [
-    { team: 'Frontend Team', allocated: 85, capacity: 100, tasks: 28, color: '#EF5226' },
-    { team: 'Backend Team', allocated: 92, capacity: 100, tasks: 34, color: '#05A7CC' },
+    { team: 'Frontend Team', allocated: 85, capacity: 100, tasks: 28, color: '#CA2030' },
+    { team: 'Backend Team', allocated: 92, capacity: 100, tasks: 34, color: '#2C318E' },
     { team: 'DevOps Team', allocated: 67, capacity: 100, tasks: 18, color: '#4CAF50' },
     { team: 'QA Team', allocated: 78, capacity: 100, tasks: 22, color: '#9C27B0' },
     { team: 'Design Team', allocated: 54, capacity: 100, tasks: 15, color: '#FFC107' }
@@ -100,7 +100,7 @@ export const TaskDashboard = () => {
   ];
 
   const tasksByPriority = [
-    { priority: 'High', count: 45, color: '#EF5226' },
+    { priority: 'High', count: 45, color: '#CA2030' },
     { priority: 'Medium', count: 78, color: '#FFC107' },
     { priority: 'Low', count: 35, color: '#4CAF50' }
   ];
@@ -125,7 +125,7 @@ export const TaskDashboard = () => {
 
   // Layout: Dashboard Cards + Charts
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Task Dashboard</h1>
@@ -139,14 +139,14 @@ export const TaskDashboard = () => {
             <select 
               value={dateFilter}
               onChange={(e) => setDateFilter(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
             >
               <option value="this-week">This Week</option>
               <option value="this-month">This Month</option>
               <option value="this-quarter">This Quarter</option>
               <option value="custom">Custom Range</option>
             </select>
-            <button className="neu-button px-4 py-3 rounded-xl flex items-center hover:text-[#EF5226] transition-colors">
+            <button className="neu-button px-4 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors">
               <Filter size={16} className="mr-2" />
               More Filters
             </button>
@@ -154,7 +154,7 @@ export const TaskDashboard = () => {
           <div className="flex space-x-3">
             <button 
               onClick={() => onNavigate('task-projects')}
-              className="neu-button px-6 py-3 rounded-xl hover:text-[#EF5226] transition-colors"
+              className="neu-button px-6 py-3 rounded-xl hover:text-[#CA2030] transition-colors"
             >
               View All Projects
             </button>
@@ -176,7 +176,7 @@ export const TaskDashboard = () => {
             <div key={index} className="neu-card p-6 rounded-2xl hover:shadow-lg transition-all duration-300 group">
               <div className="flex items-center justify-between mb-4">
                 <div className={`neu-small p-3 rounded-xl bg-gradient-to-br ${kpi.bgColor}`}>
-                  <Icon size={24} className="text-white" />
+                  <Icon size={24} className="text-black" />
                 </div>
                 <div className={`text-xs px-3 py-1 rounded-full font-medium flex items-center ${
                   kpi.changeType === 'positive' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
@@ -203,7 +203,7 @@ export const TaskDashboard = () => {
         <div className="neu-card p-6 rounded-2xl">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-[#333333]">Task Completion Trend</h2>
-            <TrendingUp size={20} className="text-[#EF5226]" />
+            <TrendingUp size={20} className="text-[#CA2030]" />
           </div>
           <div className="h-64 neu-card-inset rounded-xl p-4">
             <div className="h-full flex items-end justify-between space-x-4">
@@ -218,12 +218,12 @@ export const TaskDashboard = () => {
                       style={{ 
                         height: `${(week.completed / 60) * 240}px`,
                         background: week.completed >= week.target 
-                          ? 'linear-gradient(to top, #EF5226, #d4471f)' 
-                          : 'linear-gradient(to top, #05A7CC, #048ba8)'
+                          ? 'linear-gradient(to top, #CA2030, #d4471f)' 
+                          : 'linear-gradient(to top, #2C318E, #048ba8)'
                       }}
                     ></div>
                     <div className="text-xs font-medium mt-2" style={{
-                      color: week.completed >= week.target ? '#EF5226' : '#05A7CC'
+                      color: week.completed >= week.target ? '#CA2030' : '#2C318E'
                     }}>
                       {week.completed}
                     </div>
@@ -235,11 +235,11 @@ export const TaskDashboard = () => {
           </div>
           <div className="flex justify-center space-x-6 mt-4">
             <div className="flex items-center">
-              <div className="w-4 h-4 rounded bg-gradient-to-r from-[#EF5226] to-[#d4471f] mr-2"></div>
+              <div className="w-4 h-4 rounded bg-gradient-to-r from-[#CA2030] to-[#d4471f] mr-2"></div>
               <span className="text-sm text-[#666666]">Above Target</span>
             </div>
             <div className="flex items-center">
-              <div className="w-4 h-4 rounded bg-gradient-to-r from-[#05A7CC] to-[#048ba8] mr-2"></div>
+              <div className="w-4 h-4 rounded bg-gradient-to-r from-[#2C318E] to-[#048ba8] mr-2"></div>
               <span className="text-sm text-[#666666]">Below Target</span>
             </div>
           </div>
@@ -249,7 +249,7 @@ export const TaskDashboard = () => {
         <div className="neu-card p-6 rounded-2xl">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-[#333333]">Resource Allocation</h2>
-            <Users size={20} className="text-[#05A7CC]" />
+            <Users size={20} className="text-[#2C318E]" />
           </div>
           <div className="space-y-4">
             {resourceAllocation.map((team, index) => (
@@ -296,7 +296,7 @@ export const TaskDashboard = () => {
             <h2 className="text-xl font-bold text-[#333333]">Recent Projects</h2>
             <button 
               onClick={() => onNavigate('task-projects')}
-              className="neu-button px-4 py-2 rounded-xl text-sm hover:text-[#EF5226] transition-colors"
+              className="neu-button px-4 py-2 rounded-xl text-sm hover:text-[#CA2030] transition-colors"
             >
               View All
             </button>
@@ -329,7 +329,7 @@ export const TaskDashboard = () => {
                   <span className="text-sm text-[#666666]">
                     Progress: {project.tasks.completed}/{project.tasks.total} tasks
                   </span>
-                  <span className="text-sm font-bold text-[#EF5226]">{project.progress}%</span>
+                  <span className="text-sm font-bold text-[#CA2030]">{project.progress}%</span>
                 </div>
                 <div className="neu-card-inset rounded-lg p-1">
                   <div 
@@ -368,21 +368,21 @@ export const TaskDashboard = () => {
             <div className="mt-8 space-y-3">
               <button 
                 onClick={() => onNavigate('task-kanban')}
-                className="w-full neu-button p-3 rounded-xl hover:text-[#EF5226] transition-colors"
+                className="w-full neu-button p-3 rounded-xl hover:text-[#CA2030] transition-colors"
               >
                 <CheckSquare size={16} className="inline mr-2" />
                 View Kanban Board
               </button>
               <button 
                 onClick={() => onNavigate('task-timeline')}
-                className="w-full neu-button p-3 rounded-xl hover:text-[#05A7CC] transition-colors"
+                className="w-full neu-button p-3 rounded-xl hover:text-[#2C318E] transition-colors"
               >
                 <BarChart3 size={16} className="inline mr-2" />
                 View Timeline
               </button>
               <button 
                 onClick={() => onNavigate('task-analytics')}
-                className="w-full neu-button p-3 rounded-xl hover:text-[#EF5226] transition-colors"
+                className="w-full neu-button p-3 rounded-xl hover:text-[#CA2030] transition-colors"
               >
                 <TrendingUp size={16} className="inline mr-2" />
                 View Analytics

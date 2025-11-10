@@ -90,15 +90,17 @@ export const OnboardingNew = ({ onNavigate }) => {
     }
   ]);
 
-  const [stepProgress, setStepProgress] = useState(
-    onboardingSteps.reduce((acc, step) => {
-      acc[step.id] = step.tasks.reduce((taskAcc, task) => {
-        taskAcc[task.id] = task.status;
-        return taskAcc;
-      }, {});
-      return acc;
-    }, {})
-  );
+  // Initialize stepProgress state with proper task statuses
+  const [stepProgress, setStepProgress] = useState(() => {
+    const initialState = {};
+    onboardingSteps.forEach(step => {
+      initialState[step.id] = {};
+      step.tasks.forEach(task => {
+        initialState[step.id][task.id] = task.status || 'pending';
+      });
+    });
+    return initialState;
+  });
 
   const pendingEmployees = [
     { id: 1, name: 'Alice Johnson', designation: 'Frontend Developer', department: 'Engineering', joiningDate: '2024-01-25' },
@@ -106,19 +108,24 @@ export const OnboardingNew = ({ onNavigate }) => {
     { id: 3, name: 'Carol Brown', designation: 'UX Designer', department: 'Design', joiningDate: '2024-02-01' }
   ];
 
-  const updateTaskStatus = (stepId, taskId, status) => {
+  const updateTaskStatus = (stepId, taskId) => {
     setStepProgress(prev => ({
       ...prev,
       [stepId]: {
         ...prev[stepId],
-        [taskId]: status
+        [taskId]: prev[stepId]?.[taskId] === 'completed' ? 'pending' : 'completed'
       }
     }));
   };
 
   const getStepProgress = (stepId) => {
     const stepTasks = onboardingSteps.find(s => s.id === stepId)?.tasks || [];
-    const completedTasks = stepTasks.filter(task => stepProgress[stepId]?.[task.id] === 'completed').length;
+    if (stepTasks.length === 0) return 0;
+    
+    const completedTasks = stepTasks.filter(task => 
+      stepProgress[stepId]?.[task.id] === 'completed'
+    ).length;
+    
     return Math.round((completedTasks / stepTasks.length) * 100);
   };
 
@@ -141,13 +148,36 @@ export const OnboardingNew = ({ onNavigate }) => {
   };
 
   const handleStartOnboarding = () => {
-    if (!selectedEmployee || !formData.joiningDate || !formData.department) {
-      alert('Please fill all required fields');
-      return;
+    // Validate required fields
+    const requiredFields = [
+      { field: selectedEmployee, message: 'Please select an employee' },
+      { field: formData.joiningDate, message: 'Please select a joining date' },
+      { field: formData.department, message: 'Please select a department' }
+    ];
+
+    for (const { field, message } of requiredFields) {
+      if (!field) {
+        alert(message);
+        return;
+      }
     }
     
-    console.log('Starting onboarding for:', selectedEmployee, formData);
-    onNavigate?.('onboarding-checklist', { employeeId: selectedEmployee, formData });
+    console.log('Starting onboarding with data:', { 
+      employeeId: selectedEmployee, 
+      formData,
+      onboardingSteps,
+      stepProgress
+    });
+    
+    // Call the navigation handler if provided
+    if (typeof onNavigate === 'function') {
+      onNavigate('onboarding-checklist', { 
+        employeeId: selectedEmployee, 
+        formData 
+      });
+    } else {
+      console.warn('onNavigate function is not provided');
+    }
   };
 
   return (
@@ -333,9 +363,7 @@ export const OnboardingNew = ({ onNavigate }) => {
                         {task.required && <span className="text-xs text-[#EF5226]">*</span>}
                       </div>
                       <button
-                        onClick={() => updateTaskStatus(step.id, task.id, 
-                          stepProgress[step.id]?.[task.id] === 'completed' ? 'pending' : 'completed'
-                        )}
+                        onClick={() => updateTaskStatus(step.id, task.id)}
                         className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(stepProgress[step.id]?.[task.id] || 'pending')}`}
                       >
                         {stepProgress[step.id]?.[task.id] || 'pending'}

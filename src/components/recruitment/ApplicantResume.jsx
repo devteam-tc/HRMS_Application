@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Download, FileText, Eye, Printer, Share2, Star, User, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 
-export const ApplicantResume = ({ applicantId, onNavigate }) => {
+export const ApplicantResume = () => {
+  const { applicantId } = useParams();
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState('preview'); // 'preview' or 'raw'
 
   // Mock applicant data
@@ -114,12 +117,12 @@ export const ApplicantResume = ({ applicantId, onNavigate }) => {
   };
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
           <button
-            onClick={() => onNavigate('applicant-details', { applicantId: applicant.id })}
+            onClick={() => navigate('/applicant-details')}
             className="neu-button p-3 rounded-2xl mr-4 hover:shadow-md transition-all duration-200"
           >
             <ArrowLeft size={20} className="text-[#666666]" />
@@ -152,14 +155,14 @@ export const ApplicantResume = ({ applicantId, onNavigate }) => {
           </div>
           <button
             onClick={handlePrint}
-            className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+            className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#2C318E] transition-all duration-200"
           >
             <Printer size={20} />
             <span>Print</span>
           </button>
           <button
             onClick={handleShare}
-            className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+            className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 text-[#333333] hover:text-[#2C318E] transition-all duration-200"
           >
             <Share2 size={20} />
             <span>Share</span>
@@ -194,7 +197,7 @@ export const ApplicantResume = ({ applicantId, onNavigate }) => {
                 <span>{applicant.resumeData.personalInfo.location}</span>
               </div>
             </div>
-            <div className="flex items-center justify-center space-x-6 text-[#05A7CC]">
+            <div className="flex items-center justify-center space-x-6 text-[#2C318E]">
               <a href={`https://${applicant.resumeData.personalInfo.linkedIn}`} className="hover:underline flex items-center">
                 LinkedIn <ExternalLink size={14} className="ml-1" />
               </a>
@@ -222,14 +225,14 @@ export const ApplicantResume = ({ applicantId, onNavigate }) => {
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="text-xl font-bold text-[#333333]">{job.title}</h3>
-                      <p className="text-[#EF5226] font-medium">{job.company} • {job.location}</p>
+                      <p className="text-[#CA2030] font-medium">{job.company} • {job.location}</p>
                     </div>
                     <span className="text-[#666666] font-medium">{job.duration}</span>
                   </div>
                   <ul className="space-y-2">
                     {job.achievements.map((achievement, i) => (
                       <li key={i} className="flex items-start">
-                        <span className="text-[#05A7CC] mr-3 mt-2">•</span>
+                        <span className="text-[#2C318E] mr-3 mt-2">•</span>
                         <span className="text-[#333333]">{achievement}</span>
                       </li>
                     ))}
@@ -248,7 +251,7 @@ export const ApplicantResume = ({ applicantId, onNavigate }) => {
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="text-lg font-bold text-[#333333]">{edu.degree}</h3>
-                      <p className="text-[#EF5226] font-medium">{edu.institution} • {edu.location}</p>
+                      <p className="text-[#CA2030] font-medium">{edu.institution} • {edu.location}</p>
                       <p className="text-[#666666]">Relevant Coursework: {edu.relevant}</p>
                     </div>
                     <div className="text-right">
@@ -280,7 +283,7 @@ export const ApplicantResume = ({ applicantId, onNavigate }) => {
             <ul className="space-y-2">
               {applicant.resumeData.certifications.map((cert, index) => (
                 <li key={index} className="flex items-start">
-                  <span className="text-[#05A7CC] mr-3 mt-2">•</span>
+                  <span className="text-[#2C318E] mr-3 mt-2">•</span>
                   <span className="text-[#333333]">{cert}</span>
                 </li>
               ))}
@@ -339,7 +342,7 @@ export const ApplicantResume = ({ applicantId, onNavigate }) => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#666666]">ATS Score:</span>
-                  <span className="text-[#05A7CC]">8.5/10</span>
+                  <span className="text-[#2C318E]">8.5/10</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#666666]">Readability:</span>
@@ -381,7 +384,7 @@ export const ApplicantResume = ({ applicantId, onNavigate }) => {
               <div className="neu-small p-6 rounded-3xl">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <FileText size={20} className="text-[#05A7CC] mr-3" />
+                    <FileText size={20} className="text-[#2C318E] mr-3" />
                     <span className="text-[#333333]">{applicant.coverLetter}</span>
                   </div>
                   <button className="neu-button p-2 rounded-xl hover:shadow-md transition-all duration-200">

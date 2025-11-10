@@ -12,7 +12,7 @@ export const TaskTimeline = () => {
     {
       id: 'PROJ-001',
       name: 'E-commerce Platform',
-      color: '#EF5226',
+      color: '#CA2030',
       tasks: [
         {
           id: 'TASK-001',
@@ -52,7 +52,7 @@ export const TaskTimeline = () => {
     {
       id: 'PROJ-002',
       name: 'Mobile App Development',
-      color: '#05A7CC',
+      color: '#2C318E',
       tasks: [
         {
           id: 'TASK-004',
@@ -177,16 +177,16 @@ export const TaskTimeline = () => {
   const getStatusColor = (status) => {
     const colors = {
       'todo': '#E8EBEF',
-      'in-progress': '#05A7CC',
+      'in-progress': '#2C318E',
       'done': '#4CAF50',
-      'overdue': '#EF5226'
+      'overdue': '#CA2030'
     };
     return colors[status] || '#E8EBEF';
   };
 
   const getPriorityBorder = (priority) => {
     const colors = {
-      'high': '#EF5226',
+      'high': '#CA2030',
       'medium': '#FFC107',
       'low': '#4CAF50'
     };
@@ -251,7 +251,7 @@ export const TaskTimeline = () => {
           
           {/* Task content */}
           <div className="absolute inset-0 p-2 flex items-center">
-            <span className="text-xs font-medium text-[#333333] truncate group-hover:text-[#EF5226] transition-colors">
+            <span className="text-xs font-medium text-[#333333] truncate group-hover:text-[#CA2030] transition-colors">
               {task.title}
             </span>
           </div>
@@ -279,7 +279,7 @@ export const TaskTimeline = () => {
 
   // Layout: Interactive Gantt View
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Timeline (Gantt Chart)</h1>
@@ -294,7 +294,7 @@ export const TaskTimeline = () => {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => navigateMonth(-1)}
-                className="neu-button p-3 rounded-xl hover:text-[#EF5226] transition-colors"
+                className="neu-button p-3 rounded-xl hover:text-[#CA2030] transition-colors"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -305,7 +305,7 @@ export const TaskTimeline = () => {
               </div>
               <button
                 onClick={() => navigateMonth(1)}
-                className="neu-button p-3 rounded-xl hover:text-[#EF5226] transition-colors"
+                className="neu-button p-3 rounded-xl hover:text-[#CA2030] transition-colors"
               >
                 <ChevronRight size={20} />
               </button>
@@ -315,7 +315,7 @@ export const TaskTimeline = () => {
             <select 
               value={selectedProject}
               onChange={(e) => setSelectedProject(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all"
+              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
             >
               <option value="all">All Projects</option>
               {projects.map(project => (
@@ -332,7 +332,7 @@ export const TaskTimeline = () => {
                   className={`px-4 py-2 rounded-lg transition-all capitalize ${
                     zoomLevel === level 
                       ? 'neu-primary text-white shadow-md' 
-                      : 'text-[#666666] hover:text-[#EF5226]'
+                      : 'text-[#666666] hover:text-[#CA2030]'
                   }`}
                 >
                   {level}
@@ -342,11 +342,11 @@ export const TaskTimeline = () => {
           </div>
 
           <div className="flex items-center space-x-3">
-            <button className="neu-button px-4 py-3 rounded-xl flex items-center hover:text-[#EF5226] transition-colors">
+            <button className="neu-button px-4 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors">
               <Filter size={16} className="mr-2" />
               Filters
             </button>
-            <button className="neu-button px-4 py-3 rounded-xl flex items-center hover:text-[#05A7CC] transition-colors">
+            <button className="neu-button px-4 py-3 rounded-xl flex items-center hover:text-[#2C318E] transition-colors">
               <Download size={16} className="mr-2" />
               Export
             </button>
@@ -389,7 +389,7 @@ export const TaskTimeline = () => {
                   <span className="text-sm text-[#666666]">
                     {Math.round(project.tasks.reduce((sum, t) => sum + t.progress, 0) / project.tasks.length)}% complete
                   </span>
-                  <button className="neu-small p-2 rounded-lg hover:text-[#EF5226] transition-colors">
+                  <button className="neu-small p-2 rounded-lg hover:text-[#CA2030] transition-colors">
                     <Settings size={16} />
                   </button>
                 </div>
@@ -424,7 +424,7 @@ export const TaskTimeline = () => {
                       {/* Dependencies */}
                       {task.dependencies.length > 0 && (
                         <div className="absolute -top-2 left-0 right-0 h-1">
-                          <div className="h-0.5 bg-[#EF5226] opacity-50 rounded"></div>
+                          <div className="h-0.5 bg-[#CA2030] opacity-50 rounded"></div>
                         </div>
                       )}
                     </div>
@@ -444,7 +444,7 @@ export const TaskTimeline = () => {
                 <span className="text-sm text-[#666666]">Not Started</span>
               </div>
               <div className="flex items-center">
-                <div className="w-4 h-4 bg-[#05A7CC] rounded mr-2"></div>
+                <div className="w-4 h-4 bg-[#2C318E] rounded mr-2"></div>
                 <span className="text-sm text-[#666666]">In Progress</span>
               </div>
               <div className="flex items-center">
@@ -452,14 +452,14 @@ export const TaskTimeline = () => {
                 <span className="text-sm text-[#666666]">Completed</span>
               </div>
               <div className="flex items-center">
-                <div className="w-4 h-4 bg-[#EF5226] rounded mr-2"></div>
+                <div className="w-4 h-4 bg-[#CA2030] rounded mr-2"></div>
                 <span className="text-sm text-[#666666]">Overdue</span>
               </div>
             </div>
             
             <div className="flex items-center space-x-6">
               <div className="flex items-center">
-                <div className="w-4 h-2 bg-[#EF5226] rounded mr-2"></div>
+                <div className="w-4 h-2 bg-[#CA2030] rounded mr-2"></div>
                 <span className="text-sm text-[#666666]">High Priority</span>
               </div>
               <div className="flex items-center">
@@ -478,7 +478,7 @@ export const TaskTimeline = () => {
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
         <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-[#EF5226] mb-1">
+          <div className="text-2xl font-bold text-[#CA2030] mb-1">
             {filteredProjects.reduce((sum, p) => sum + p.tasks.filter(t => t.status === 'in-progress').length, 0)}
           </div>
           <div className="text-[#666666] text-sm">Active Tasks</div>
@@ -490,7 +490,7 @@ export const TaskTimeline = () => {
           <div className="text-[#666666] text-sm">Completed</div>
         </div>
         <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-[#05A7CC] mb-1">
+          <div className="text-2xl font-bold text-[#2C318E] mb-1">
             {filteredProjects.reduce((sum, p) => sum + p.tasks.filter(t => new Date(t.endDate) < new Date() && t.status !== 'done').length, 0)}
           </div>
           <div className="text-[#666666] text-sm">Overdue</div>

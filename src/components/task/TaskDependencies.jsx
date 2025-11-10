@@ -115,7 +115,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
 
   const getPriorityColor = (priority) => {
     const colors = {
-      'high': '#EF5226',
+      'high': '#CA2030',
       'medium': '#FFC107',
       'low': '#4CAF50'
     };
@@ -153,9 +153,9 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
         onClick={() => onClick(task)}
         className={`neu-card p-4 rounded-xl cursor-pointer transition-all duration-300 border-2 ${
           isHighlighted 
-            ? 'ring-2 ring-[#EF5226] shadow-lg' 
+            ? 'ring-2 ring-[#CA2030] shadow-lg' 
             : 'border-transparent hover:shadow-lg'
-        } ${task.isCriticalPath ? 'border-[#EF5226] border-opacity-50' : ''}`}
+        } ${task.isCriticalPath ? 'border-[#CA2030] border-opacity-50' : ''}`}
       >
         <div className="flex items-center justify-between mb-3">
           <span className="text-xs font-medium text-[#666666] bg-[#E8EBEF] px-2 py-1 rounded">
@@ -163,7 +163,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
           </span>
           <div className="flex items-center space-x-2">
             {task.isCriticalPath && (
-              <AlertTriangle size={14} className="text-[#EF5226]" title="Critical Path" />
+              <AlertTriangle size={14} className="text-[#CA2030]" title="Critical Path" />
             )}
             <div 
               className="w-3 h-3 rounded-full"
@@ -215,7 +215,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
           >
             <polygon
               points="0 0, 10 3.5, 0 7"
-              fill="#EF5226"
+              fill="#CA2030"
             />
           </marker>
         </defs>
@@ -224,7 +224,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
           y1={from.y}
           x2={to.x}
           y2={to.y}
-          stroke="#EF5226"
+          stroke="#CA2030"
           strokeWidth="2"
           markerEnd="url(#arrowhead)"
           className="drop-shadow-sm"
@@ -235,27 +235,27 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
 
   // Layout: Visual Dependency Map
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
           <button 
             onClick={() => onNavigate('task-details', { taskId: currentTask.id })}
-            className="neu-small p-2 rounded-xl hover:text-[#EF5226] transition-colors"
+            className="neu-small p-2 rounded-xl hover:text-[#CA2030] transition-colors"
           >
             <ArrowLeft size={20} />
           </button>
           <div className="flex-1">
             <h1 className="text-3xl font-bold text-[#333333] mb-2">Task Dependencies</h1>
             <p className="text-[#666666]">
-              Visual dependency map for: <span className="font-semibold text-[#EF5226]">{currentTask.title}</span>
+              Visual dependency map for: <span className="font-semibold text-[#CA2030]">{currentTask.title}</span>
             </p>
           </div>
           <div className="flex items-center space-x-3">
             <button
               onClick={() => setFilterCritical(!filterCritical)}
               className={`neu-button px-4 py-2 rounded-xl flex items-center transition-all ${
-                filterCritical ? 'neu-primary text-white' : 'hover:text-[#EF5226]'
+                filterCritical ? 'neu-primary text-white' : 'hover:text-[#CA2030]'
               }`}
             >
               <AlertTriangle size={16} className="mr-2" />
@@ -275,11 +275,11 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-[#EF5226] mb-1">{criticalPathTasks.length}</div>
+          <div className="text-2xl font-bold text-[#CA2030] mb-1">{criticalPathTasks.length}</div>
           <div className="text-[#666666] text-sm">Critical Path Tasks</div>
         </div>
         <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-[#05A7CC] mb-1">{blockedTasks.length}</div>
+          <div className="text-2xl font-bold text-[#2C318E] mb-1">{blockedTasks.length}</div>
           <div className="text-[#666666] text-sm">Blocked Tasks</div>
         </div>
         <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
@@ -302,11 +302,11 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
               <h2 className="text-xl font-bold text-[#333333]">Dependency Map</h2>
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2 text-sm text-[#666666]">
-                  <AlertTriangle size={14} className="text-[#EF5226]" />
+                  <AlertTriangle size={14} className="text-[#CA2030]" />
                   <span>Critical Path</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-[#666666]">
-                  <GitBranch size={14} className="text-[#05A7CC]" />
+                  <GitBranch size={14} className="text-[#2C318E]" />
                   <span>Dependencies</span>
                 </div>
               </div>
@@ -330,7 +330,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
                 {dependencyConnections
                   .filter(conn => !filterCritical || (conn.fromTask.isCriticalPath && conn.toTask.isCriticalPath))
                   .map((conn, index) => (
-                    <div key={index} className="absolute w-full h-0.5 bg-[#EF5226] opacity-50 rounded" 
+                    <div key={index} className="absolute w-full h-0.5 bg-[#CA2030] opacity-50 rounded" 
                          style={{ 
                            top: `${20 + (index * 40)}%`, 
                            left: '10%', 
@@ -398,7 +398,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
               <div className="flex space-x-2 mt-4">
                 <button 
                   onClick={() => onNavigate('task-details', { taskId: selectedTask.id })}
-                  className="flex-1 neu-button py-2 rounded-xl text-sm hover:text-[#EF5226] transition-colors"
+                  className="flex-1 neu-button py-2 rounded-xl text-sm hover:text-[#CA2030] transition-colors"
                 >
                   <Eye size={14} className="inline mr-1" />
                   View
@@ -414,7 +414,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
           {/* Critical Path Tasks */}
           <div className="neu-card p-6 rounded-2xl">
             <h3 className="text-lg font-bold text-[#333333] mb-4 flex items-center">
-              <AlertTriangle size={18} className="mr-2 text-[#EF5226]" />
+              <AlertTriangle size={18} className="mr-2 text-[#CA2030]" />
               Critical Path
             </h3>
             <div className="space-y-3">
@@ -436,7 +436,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
           {/* Blocked Tasks */}
           <div className="neu-card p-6 rounded-2xl">
             <h3 className="text-lg font-bold text-[#333333] mb-4 flex items-center">
-              <Clock size={18} className="mr-2 text-[#05A7CC]" />
+              <Clock size={18} className="mr-2 text-[#2C318E]" />
               Blocked Tasks
             </h3>
             <div className="space-y-3">
@@ -448,7 +448,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
                       <div className="font-medium text-[#333333] text-sm">{task.id}</div>
                       <div className="text-[#666666] text-xs">{task.title.substring(0, 30)}...</div>
                     </div>
-                    <div className="text-[#EF5226]">
+                    <div className="text-[#CA2030]">
                       <AlertTriangle size={14} />
                     </div>
                   </div>
@@ -463,16 +463,16 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
             <div className="space-y-3">
               <button 
                 onClick={() => onNavigate('task-timeline')}
-                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#EF5226] transition-colors"
+                className="w-full neu-button p-3 rounded-xl text-left hover:text-[#CA2030] transition-colors"
               >
                 <GitBranch size={16} className="inline mr-2" />
                 View Timeline
               </button>
-              <button className="w-full neu-button p-3 rounded-xl text-left hover:text-[#05A7CC] transition-colors">
+              <button className="w-full neu-button p-3 rounded-xl text-left hover:text-[#2C318E] transition-colors">
                 <CheckCircle size={16} className="inline mr-2" />
                 Mark Complete
               </button>
-              <button className="w-full neu-button p-3 rounded-xl text-left hover:text-[#EF5226] transition-colors">
+              <button className="w-full neu-button p-3 rounded-xl text-left hover:text-[#CA2030] transition-colors">
                 <Plus size={16} className="inline mr-2" />
                 Add Dependency
               </button>
@@ -489,7 +489,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
             <div className="space-y-4">
               <div>
                 <label className="block text-[#333333] font-medium mb-2">From Task</label>
-                <select className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all">
+                <select className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all">
                   <option value="">Select a task</option>
                   {tasks.map(task => (
                     <option key={task.id} value={task.id}>{task.id} - {task.title}</option>
@@ -499,7 +499,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
               
               <div>
                 <label className="block text-[#333333] font-medium mb-2">To Task</label>
-                <select className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#EF5226] transition-all">
+                <select className="w-full neu-input p-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all">
                   <option value="">Select a task</option>
                   {tasks.map(task => (
                     <option key={task.id} value={task.id}>{task.id} - {task.title}</option>

@@ -23,7 +23,7 @@ const RecentActivities = ({ activities }) => (
               <p className="text-xs text-[#999999]">{activity.time}</p>
             </div>
             <div className={`w-2 h-2 rounded-full ${
-              activity.type === 'success' ? 'bg-[#4CAF50]' : 'bg-[#05A7CC]'
+              activity.type === 'success' ? 'bg-[#4CAF50]' : 'bg-[#2C318E]'
             }`}></div>
           </div>
         </div>

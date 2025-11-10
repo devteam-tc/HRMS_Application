@@ -22,11 +22,11 @@ const SidebarSubItem = ({ subItem, activeModule, onModuleChange, isCollapsed }) 
           onClick={handleClick}
           className={`w-full flex items-center p-3 rounded-xl transition-colors duration-200 ${
             isActive
-              ? "bg-blue-50 text-blue-600"
+              ? "bg-[#CA2030] text-[#FFF]"
               : "text-gray-600 hover:bg-gray-50"
           } ${isCollapsed ? 'justify-center' : 'pl-8'}`}
         >
-          <Icon size={18} className={isCollapsed ? 'text-gray-500' : 'text-gray-600'} />
+          <Icon size={18} className={isActive ? 'text-white' : (isCollapsed ? 'text-gray-500' : 'text-gray-600')} />
           {!isCollapsed && <span className="ml-3 text-sm">{label}</span>}
         </button>
       </div>

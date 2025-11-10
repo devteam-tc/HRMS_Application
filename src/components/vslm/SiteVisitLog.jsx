@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Plus, Search, Filter, Eye, Edit, Trash2, Calendar, User, MapPin, FileText, Image, Clock } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 const siteVisits = [
   {
@@ -131,11 +131,11 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
       case 'completed':
         return 'bg-[#4CAF50] text-white';
       case 'in-progress':
-        return 'bg-[#05A7CC] text-white';
+        return 'bg-[#2C318E] text-white';
       case 'pending':
         return 'bg-[#FFC107] text-white';
       case 'cancelled':
-        return 'bg-[#EF5226] text-white';
+        return 'bg-[#CA2030] text-white';
       default:
         return 'bg-[#666666] text-white';
     }
@@ -269,7 +269,7 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
           <div className="text-[#666666]">Completed</div>
         </div>
         <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#05A7CC] mb-2">
+          <div className="text-3xl font-bold text-[#2C318E] mb-2">
             {siteVisits.reduce((total, visit) => total + visit.photos, 0)}
           </div>
           <div className="text-[#666666]">Photos Taken</div>
@@ -293,7 +293,7 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
                   <div className="flex items-center space-x-4">
                     <Avatar className="w-16 h-16">
                       <AvatarImage src="/placeholder-avatar.jpg" />
-                      <AvatarFallback className="bg-[#05A7CC] text-white text-lg">
+                      <AvatarFallback className="bg-[#2C318E] text-white text-lg">
                         {visit.visitor.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
@@ -315,14 +315,14 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
                     <div className="flex items-center space-x-2">
                       <button 
                         onClick={() => onNavigate('site-visit-details', visit.id)}
-                        className="neu-button p-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8] transition-colors"
+                        className="neu-button p-3 rounded-2xl text-[#2C318E] hover:text-[#048ba8] transition-colors"
                       >
                         <Eye className="w-5 h-5" />
                       </button>
                       <button className="neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors">
                         <Edit className="w-5 h-5" />
                       </button>
-                      <button className="neu-button p-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f] transition-colors">
+                      <button className="neu-button p-3 rounded-2xl text-[#CA2030] hover:text-[#d4471f] transition-colors">
                         <Trash2 className="w-5 h-5" />
                       </button>
                     </div>
@@ -336,21 +336,21 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
                 <div className="space-y-3">
                   <div className="neu-small p-4 rounded-2xl">
                     <div className="flex items-center space-x-3 mb-2">
-                      <FileText className="w-4 h-4 text-[#05A7CC]" />
+                      <FileText className="w-4 h-4 text-[#2C318E]" />
                       <span className="font-medium text-[#333333]">Purpose</span>
                     </div>
                     <p className="text-[#666666]">{visit.purpose}</p>
                   </div>
                   <div className="neu-small p-4 rounded-2xl">
                     <div className="flex items-center space-x-3 mb-2">
-                      <MapPin className="w-4 h-4 text-[#05A7CC]" />
+                      <MapPin className="w-4 h-4 text-[#2C318E]" />
                       <span className="font-medium text-[#333333]">Area</span>
                     </div>
                     <p className="text-[#666666]">{visit.area}</p>
                   </div>
                   <div className="neu-small p-4 rounded-2xl">
                     <div className="flex items-center space-x-3 mb-2">
-                      <Clock className="w-4 h-4 text-[#05A7CC]" />
+                      <Clock className="w-4 h-4 text-[#2C318E]" />
                       <span className="font-medium text-[#333333]">Duration</span>
                     </div>
                     <p className="text-[#666666]">{visit.duration}</p>
@@ -378,7 +378,7 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
                   <div className="neu-small p-4 rounded-2xl">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <FileText className="w-5 h-5 text-[#05A7CC]" />
+                        <FileText className="w-5 h-5 text-[#2C318E]" />
                         <span className="text-[#333333]">Attachments</span>
                       </div>
                       <span className="font-bold text-[#333333]">{visit.attachments}</span>
@@ -387,7 +387,7 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
                   <div className="neu-small p-4 rounded-2xl">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <Image className="w-5 h-5 text-[#05A7CC]" />
+                        <Image className="w-5 h-5 text-[#2C318E]" />
                         <span className="text-[#333333]">Photos</span>
                       </div>
                       <span className="font-bold text-[#333333]">{visit.photos}</span>
@@ -409,7 +409,7 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
                 {visit.nextVisit && (
                   <div className="mt-4 neu-small p-4 rounded-2xl">
                     <div className="flex items-center space-x-3">
-                      <Calendar className="w-4 h-4 text-[#05A7CC]" />
+                      <Calendar className="w-4 h-4 text-[#2C318E]" />
                       <span className="text-[#666666]">Next visit scheduled for: </span>
                       <span className="font-medium text-[#333333]">{new Date(visit.nextVisit).toLocaleDateString()}</span>
                     </div>

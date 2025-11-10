@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Filter, Grid, List, Eye, Edit, Archive, Phone, Mail, MapPin, Calendar, Users, Download, Plus } from 'lucide-react';
 
-export const EmployeeDirectory = ({ onNavigate }) => {
+export const EmployeeDirectory = () => {
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
@@ -125,10 +127,10 @@ export const EmployeeDirectory = ({ onNavigate }) => {
   const handleQuickAction = (action, employee) => {
     switch (action) {
       case 'view':
-        onNavigate?.('employee-details', { employeeId: employee.id });
+        navigate(`/employee-details`);
         break;
       case 'edit':
-        onNavigate?.('add-employee', { mode: 'edit', employeeId: employee.id });
+        navigate(`/edit-employee`);
         break;
       case 'archive':
         console.log('Archive employee:', employee.id);
@@ -144,12 +146,12 @@ export const EmployeeDirectory = ({ onNavigate }) => {
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-4xl font-bold text-[#333333] mb-2">Employee Directory</h1>
+            <h1 className="text-4xl font-bold text-[#333333] mb-2">All Employees Details</h1>
             <p className="text-[#666666] text-lg">Manage and view all employee information</p>
           </div>
           <div className="flex items-center space-x-4">
             <button 
-              onClick={() => onNavigate?.('add-employee')}
+              onClick={() => navigate('/add-employee')}
               className="neu-primary px-6 py-3 rounded-2xl flex items-center space-x-2 hover:scale-105 transition-transform"
             >
               <Plus size={20} />
@@ -376,7 +378,7 @@ export const EmployeeDirectory = ({ onNavigate }) => {
                     </div>
                   </div>
 
-                  <div className="hidden md:flex items-center space-x-8">
+                  
                     <div>
                       <p className="text-sm font-medium text-[#333333]">{employee.department}</p>
                       <p className="text-xs text-[#666666]">Department</p>
@@ -400,7 +402,7 @@ export const EmployeeDirectory = ({ onNavigate }) => {
                         {employee.status}
                       </span>
                     </div>
-                  </div>
+                  
 
                   <div className="flex items-center space-x-2">
                     <button

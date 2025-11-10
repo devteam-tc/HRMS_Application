@@ -47,7 +47,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5 text-[#05A7CC]" />
+                  <Calendar className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Date</div>
                     <div className="font-medium text-[#333333]">
@@ -64,7 +64,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <Clock className="w-5 h-5 text-[#05A7CC]" />
+                  <Clock className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Time</div>
                     <div className="font-medium text-[#333333]">
@@ -76,7 +76,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-[#05A7CC]" />
+                  <MapPin className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Location</div>
                     <div className="font-medium text-[#333333]">{createdMeetingData.location}</div>
@@ -86,7 +86,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-[#05A7CC]" />
+                  <Users className="w-5 h-5 text-[#2C318E]" />
                   <div>
                     <div className="text-sm text-[#666666]">Participants</div>
                     <div className="font-medium text-[#333333]">{createdMeetingData.participants.length} invited</div>
@@ -100,7 +100,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
               <div className="flex items-center space-x-3">
                 <Avatar className="w-12 h-12">
                   <AvatarImage src="/placeholder-avatar.jpg" />
-                  <AvatarFallback className="bg-[#05A7CC] text-white">
+                  <AvatarFallback className="bg-[#2C318E] text-white">
                     {createdMeetingData.organizer.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
@@ -124,7 +124,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
                   <div className="flex items-center space-x-3">
                     <Avatar className="w-10 h-10">
                       <AvatarImage src="/placeholder-avatar.jpg" />
-                      <AvatarFallback className="bg-[#05A7CC] text-white">
+                      <AvatarFallback className="bg-[#2C318E] text-white">
                         {participant.name.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
@@ -177,7 +177,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
 
               <div className="neu-small p-4 rounded-2xl">
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-[#05A7CC] rounded-full"></div>
+                  <div className="w-3 h-3 bg-[#2C318E] rounded-full"></div>
                   <div>
                     <div className="font-medium text-[#333333]">Waiting for responses</div>
                     <div className="text-sm text-[#666666]">Participants can accept or decline the invitation</div>
@@ -222,7 +222,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="neu-small p-6 rounded-2xl text-center">
             <div className="neu-card-inset w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-              <Users className="w-8 h-8 text-[#05A7CC]" />
+              <Users className="w-8 h-8 text-[#2C318E]" />
             </div>
             <h4 className="font-bold text-[#333333] mb-2">Track Responses</h4>
             <p className="text-sm text-[#666666]">Monitor participant acceptances and prepare for the meeting</p>
@@ -230,7 +230,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
 
           <div className="neu-small p-6 rounded-2xl text-center">
             <div className="neu-card-inset w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-              <Calendar className="w-8 h-8 text-[#05A7CC]" />
+              <Calendar className="w-8 h-8 text-[#2C318E]" />
             </div>
             <h4 className="font-bold text-[#333333] mb-2">Add to Calendar</h4>
             <p className="text-sm text-[#666666]">The meeting has been automatically added to your calendar</p>
@@ -238,7 +238,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
 
           <div className="neu-small p-6 rounded-2xl text-center">
             <div className="neu-card-inset w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-              <MapPin className="w-8 h-8 text-[#05A7CC]" />
+              <MapPin className="w-8 h-8 text-[#2C318E]" />
             </div>
             <h4 className="font-bold text-[#333333] mb-2">Prepare Materials</h4>
             <p className="text-sm text-[#666666]">Upload additional documents and prepare the agenda</p>
@@ -250,7 +250,7 @@ export const MeetingConfirmation = ({ onNavigate }) => {
       <div className="mt-8 text-center">
         <button 
           onClick={() => onNavigate('all')}
-          className="inline-flex items-center px-6 py-3 bg-[#05A7CC] text-white rounded-xl hover:bg-[#0487a3] transition-colors duration-200 shadow-md hover:shadow-lg"
+          className="inline-flex items-center px-6 py-3 bg-[#2C318E] text-white rounded-xl hover:bg-[#0487a3] transition-colors duration-200 shadow-md hover:shadow-lg"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           Back to All Meetings

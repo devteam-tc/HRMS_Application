@@ -83,7 +83,7 @@ export const InterviewFeedback = ({ interviewId, onNavigate }) => {
   const averageRating = (formData.technicalSkills + formData.communication + formData.problemSolving + formData.culturalFit) / 4;
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
@@ -115,7 +115,7 @@ export const InterviewFeedback = ({ interviewId, onNavigate }) => {
           </div>
           <div>
             <h3 className="text-lg font-bold text-[#333333] mb-1">{interview.candidateName}</h3>
-            <p className="text-[#EF5226] font-medium mb-1">{interview.jobTitle}</p>
+            <p className="text-[#CA2030] font-medium mb-1">{interview.jobTitle}</p>
             <p className="text-[#666666] text-sm">{interview.type} • {interview.date} at {interview.time}</p>
           </div>
         </div>
@@ -163,7 +163,7 @@ export const InterviewFeedback = ({ interviewId, onNavigate }) => {
                         type="button"
                         onClick={() => setFormData(prev => ({ ...prev, recommendation: rec.value }))}
                         className={`neu-small p-4 rounded-2xl transition-all duration-200 text-left ${
-                          formData.recommendation === rec.value ? 'ring-2 ring-[#EF5226]' : 'hover:shadow-lg'
+                          formData.recommendation === rec.value ? 'ring-2 ring-[#CA2030]' : 'hover:shadow-lg'
                         }`}
                       >
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center mb-3 ${rec.color}`}>
@@ -298,7 +298,7 @@ export const InterviewFeedback = ({ interviewId, onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => addArrayField('strengths')}
-                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#05A7CC] hover:shadow-md transition-all duration-200"
+                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#2C318E] hover:shadow-md transition-all duration-200"
                 >
                   <Plus size={16} />
                   <span>Add Strength</span>
@@ -337,7 +337,7 @@ export const InterviewFeedback = ({ interviewId, onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => addArrayField('areasForImprovement')}
-                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#EF5226] hover:shadow-md transition-all duration-200"
+                  className="neu-button px-4 py-3 rounded-2xl flex items-center space-x-2 text-[#CA2030] hover:shadow-md transition-all duration-200"
                 >
                   <Plus size={16} />
                   <span>Add Area for Improvement</span>
@@ -432,7 +432,7 @@ export const InterviewFeedback = ({ interviewId, onNavigate }) => {
               <div className="space-y-3">
                 <button
                   type="button"
-                  className="neu-button w-full px-4 py-3 rounded-2xl flex items-center justify-center space-x-2 text-[#333333] hover:text-[#05A7CC] transition-all duration-200"
+                  className="neu-button w-full px-4 py-3 rounded-2xl flex items-center justify-center space-x-2 text-[#333333] hover:text-[#2C318E] transition-all duration-200"
                 >
                   <FileText size={16} />
                   <span>Add File</span>

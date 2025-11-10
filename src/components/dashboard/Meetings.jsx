@@ -11,7 +11,7 @@ const Meetings = ({ meetings }) => (
         <div key={index} className="bg-[#ECF0F3] p-4 rounded-2xl shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff]">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-3 h-3 bg-[#05A7CC] rounded-full"></div>
+              <div className="w-3 h-3 bg-[#2C318E] rounded-full"></div>
               <div>
                 <p className="font-medium text-[#333333]">{meeting.title}</p>
                 <p className="text-xs text-[#666666]">{meeting.time} • {meeting.participants} participants</p>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Plus, Search, Filter, Briefcase, MapPin, Users, Calendar, Building2, MoreVertical, Edit, Eye, Archive, Trash2 } from 'lucide-react';
 
-export const JobOpeningsList = ({ onNavigate }) => {
+export const JobOpeningsList = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDepartment, setFilterDepartment] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
@@ -110,7 +112,7 @@ export const JobOpeningsList = ({ onNavigate }) => {
   });
 
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -118,7 +120,7 @@ export const JobOpeningsList = ({ onNavigate }) => {
           <p className="text-[#666666]">Manage job postings and track applications</p>
         </div>
         <button
-          onClick={() => onNavigate('new-job-opening')}
+          onClick={() => navigate('/new-job-opening')}
           className="neu-primary px-6 py-3 rounded-2xl flex items-center space-x-2 transition-all duration-200 hover:shadow-lg"
         >
           <Plus size={20} />
@@ -192,7 +194,7 @@ export const JobOpeningsList = ({ onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{jobOpenings.length}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Briefcase size={24} className="text-[#EF5226]" />
+              <Briefcase size={24} className="text-[#CA2030]" />
             </div>
           </div>
         </div>
@@ -204,7 +206,7 @@ export const JobOpeningsList = ({ onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{jobOpenings.filter(j => j.status === 'Open').length}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Users size={24} className="text-[#05A7CC]" />
+              <Users size={24} className="text-[#2C318E]" />
             </div>
           </div>
         </div>
@@ -216,7 +218,7 @@ export const JobOpeningsList = ({ onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{jobOpenings.reduce((sum, job) => sum + job.applications, 0)}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Users size={24} className="text-[#EF5226]" />
+              <Users size={24} className="text-[#CA2030]" />
             </div>
           </div>
         </div>
@@ -228,7 +230,7 @@ export const JobOpeningsList = ({ onNavigate }) => {
               <p className="text-2xl font-bold text-[#333333]">{jobOpenings.reduce((sum, job) => sum + job.openings, 0)}</p>
             </div>
             <div className="neu-small p-4 rounded-2xl">
-              <Building2 size={24} className="text-[#05A7CC]" />
+              <Building2 size={24} className="text-[#2C318E]" />
             </div>
           </div>
         </div>
@@ -297,18 +299,18 @@ export const JobOpeningsList = ({ onNavigate }) => {
                   <td className="py-4 px-6">
                     <div className="flex items-center space-x-2">
                       <button
-                        onClick={() => onNavigate('job-opening-details', { jobId: job.id })}
+                        onClick={() => navigate('/job-opening-details')}
                         className="neu-small p-2 rounded-xl hover:shadow-md transition-all duration-200"
                         title="View Details"
                       >
-                        <Eye size={16} className="text-[#05A7CC]" />
+                        <Eye size={16} className="text-[#2C318E]" />
                       </button>
                       <button
-                        onClick={() => onNavigate('edit-job-opening', { jobId: job.id })}
+                        onClick={() => navigate('/edit-job-opening')}
                         className="neu-small p-2 rounded-xl hover:shadow-md transition-all duration-200"
                         title="Edit"
                       >
-                        <Edit size={16} className="text-[#EF5226]" />
+                        <Edit size={16} className="text-[#CA2030]" />
                       </button>
                       <button
                         className="neu-small p-2 rounded-xl hover:shadow-md transition-all duration-200"
