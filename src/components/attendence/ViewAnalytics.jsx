@@ -360,7 +360,7 @@ export const ViewAnalytics = () => {
 
   // Layout: Chart-heavy Report Page
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Reports & Analytics</h1>

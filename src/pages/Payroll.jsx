@@ -9,7 +9,7 @@ const Payroll = () => {
   const payrollData = [
     { 
       id: 1, 
-      employee: 'John Doee', 
+      employee: 'Lione', 
       position: 'Software Engineer', 
       department: 'Engineering',
       basicSalary: 5000, 

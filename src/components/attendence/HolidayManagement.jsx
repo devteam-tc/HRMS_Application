@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Plus, Edit3, Calendar, Trash2, Globe, Building, MapPin, Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import { AddHolidayModal } from '../Holiday/AddHolidayModal';
+import { HolidayList } from '../Holiday/HolidayList';
+import { HolidayCalendar } from '../Holiday/HolidayCalendar';
 
 export const HolidayManagement = ({ onNavigate }) => {
   const [currentDate, setCurrentDate] = useState(new Date(2024, 2, 1)); // March 2024
@@ -226,7 +229,7 @@ export const HolidayManagement = ({ onNavigate }) => {
 
   // Layout: Calendar + List Hybrid
   return (
-    <div className="p-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Holiday Management</h1>
@@ -293,54 +296,12 @@ export const HolidayManagement = ({ onNavigate }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Calendar View */}
         <div className="lg:col-span-2">
-          <div className="neu-card rounded-2xl p-6">
-            {/* Calendar Header */}
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center space-x-4">
-                <button
-                  onClick={() => navigateMonth(-1)}
-                  className="neu-button p-3 rounded-xl hover:text-[#EF5226] transition-colors"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <h2 className="text-2xl font-bold text-[#333333]">
-                  {months[currentDate.getMonth()]} {currentDate.getFullYear()}
-                </h2>
-                <button
-                  onClick={() => navigateMonth(1)}
-                  className="neu-button p-3 rounded-xl hover:text-[#EF5226] transition-colors"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </div>
-              
-              <button 
-                onClick={() => setShowAddHoliday(true)}
-                className="neu-primary px-6 py-3 rounded-xl flex items-center hover:shadow-xl transition-all"
-              >
-                <Plus size={16} className="mr-2" />
-                Add Holiday
-              </button>
-            </div>
-
-            {/* Week Days Header */}
-            <div className="grid grid-cols-7 gap-4 mb-4">
-              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                <div key={day} className="text-center">
-                  <span className="text-[#666666] font-bold text-sm bg-[#E8EBEF] py-2 px-4 rounded-xl">
-                    {day}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-4">
-              {renderCalendarGrid()}
-            </div>
-          </div>
+      <HolidayCalendar 
+      holidays={holidays} 
+      selectedHoliday={selectedHoliday} 
+      setSelectedHoliday={setSelectedHoliday} 
+    />
         </div>
-
         {/* Holiday List Sidebar */}
         <div className="lg:col-span-1 space-y-6">
           {/* Filters */}
@@ -372,59 +333,12 @@ export const HolidayManagement = ({ onNavigate }) => {
           </div>
 
           {/* Holiday List */}
-          <div className="neu-card p-6 rounded-2xl">
-            <h3 className="text-lg font-bold text-[#333333] mb-4">Holiday List</h3>
-            <div className="space-y-3 max-h-96 overflow-y-auto">
-              {filteredHolidays.map(holiday => {
-                const TypeIcon = getTypeIcon(holiday.type);
-                return (
-                  <div 
-                    key={holiday.id} 
-                    className="neu-small p-4 rounded-xl hover:shadow-md transition-all cursor-pointer group"
-                    onClick={() => setSelectedHoliday(holiday)}
-                  >
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex items-center">
-                        <div className="neu-small p-2 rounded-lg mr-3" style={{ backgroundColor: holiday.color }}>
-                          <TypeIcon size={14} className="text-white" />
-                        </div>
-                        <div>
-                          <div className="font-semibold text-[#333333] group-hover:text-[#EF5226] transition-colors">
-                            {holiday.name}
-                          </div>
-                          <div className="text-[#666666] text-xs">
-                            {new Date(holiday.date).toLocaleDateString()}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity flex space-x-1">
-                        <button className="neu-small p-1 rounded-lg hover:text-[#EF5226]">
-                          <Edit3 size={12} />
-                        </button>
-                        <button className="neu-small p-1 rounded-lg hover:text-red-500">
-                          <Trash2 size={12} />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="text-xs text-[#666666] mb-2">
-                      {holiday.description.substring(0, 60)}
-                      {holiday.description.length > 60 && '...'}
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className={`inline-block px-2 py-1 rounded-lg text-xs font-medium border ${getTypeColor(holiday.type)}`}>
-                        {holiday.type}
-                      </span>
-                      <span className={`text-xs font-medium ${
-                        holiday.optional ? 'text-yellow-600' : 'text-green-600'
-                      }`}>
-                        {holiday.optional ? 'Optional' : 'Mandatory'}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+         <HolidayList 
+          holidays={holidays} 
+          searchTerm={searchTerm} 
+          typeFilter={typeFilter} 
+          setSelectedHoliday={setSelectedHoliday} 
+        />
 
           {/* Selected Holiday Details */}
           {selectedHoliday && (
@@ -463,7 +377,7 @@ export const HolidayManagement = ({ onNavigate }) => {
             <h3 className="text-lg font-bold text-[#333333] mb-4">Quick Actions</h3>
             <div className="space-y-3">
               <button 
-                onClick={() => onNavigate('attendance-calendar')}
+                onClick={() => onNavigate('/attendance-calendar')}
                 className="w-full neu-button p-3 rounded-xl text-left hover:text-[#EF5226] transition-colors"
               >
                 <Calendar size={16} className="inline mr-2" />
@@ -480,66 +394,10 @@ export const HolidayManagement = ({ onNavigate }) => {
 
       {/* Add Holiday Modal */}
       {showAddHoliday && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="neu-card p-8 rounded-2xl max-w-md w-full mx-4 shadow-2xl">
-            <h3 className="text-xl font-bold text-[#333333] mb-6">Add New Holiday</h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-[#333333] font-medium mb-2">Holiday Name</label>
-                <input 
-                  type="text" 
-                  placeholder="Enter holiday name"
-                  className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#EF5226] transition-all"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-[#333333] font-medium mb-2">Date</label>
-                <input 
-                  type="date" 
-                  className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#EF5226] transition-all"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-[#333333] font-medium mb-2">Type</label>
-                <select className="w-full neu-input p-3 rounded-xl focus:ring-2 focus:ring-[#EF5226] transition-all">
-                  <option value="national">National</option>
-                  <option value="religious">Religious</option>
-                  <option value="company">Company</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-[#333333] font-medium mb-2">Description</label>
-                <textarea 
-                  placeholder="Holiday description"
-                  className="w-full neu-input p-3 rounded-xl h-20 resize-none focus:ring-2 focus:ring-[#EF5226] transition-all"
-                />
-              </div>
-              
-              <div className="flex items-center">
-                <input type="checkbox" id="optional" className="mr-2 w-4 h-4 text-[#EF5226] bg-gray-100 border-gray-300 rounded focus:ring-[#EF5226] focus:ring-2" />
-                <label htmlFor="optional" className="text-[#333333]">Optional Holiday</label>
-              </div>
-            </div>
-            
-            <div className="flex space-x-4 mt-8">
-              <button 
-                onClick={() => setShowAddHoliday(false)}
-                className="flex-1 neu-button py-3 rounded-xl hover:text-[#666666] transition-colors"
-              >
-                Cancel
-              </button>
-              <button 
-                onClick={() => setShowAddHoliday(false)}
-                className="flex-1 neu-primary py-3 rounded-xl hover:shadow-xl transition-all"
-              >
-                Add Holiday
-              </button>
-            </div>
-          </div>
-        </div>
+     <AddHolidayModal 
+  show={showAddHoliday} 
+  onClose={() => setShowAddHoliday(false)} 
+/>
       )}
     </div>
   );

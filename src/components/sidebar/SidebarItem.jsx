@@ -4,18 +4,16 @@ import SidebarSubItem from "./SidebarSubItem";
 
 const SidebarItem = ({
   item,
-  expandedItems,
+  isExpanded = false,  // Set default value
   onToggle,
   onModuleChange,
   activeModule,
-  isCollapsed,
-  isHovered
+  isCollapsed = false,  // Set default value
+  isHovered = false    // Set default value
 }) => {
-  const { id, label, icon: Icon, subItems } = item;
+  const { id, label, icon: Icon, subItems = [] } = item;
   const hasSubItems = Array.isArray(subItems) && subItems.length > 0;
-  const isExpanded = expandedItems.includes(id);
-  const isParentActive =
-    activeModule === id || subItems?.some((s) => s.id === activeModule);
+  const isParentActive = activeModule === id || (Array.isArray(subItems) && subItems.some((s) => s && s.id === activeModule));
     
   // Show tooltip when sidebar is collapsed and item is hovered
   const showTooltip = isCollapsed && isHovered;

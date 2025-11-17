@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 const employees = [
   {
     id: '1',
-    name: 'John Doe',
+    name: 'Lion',
     email: 'john.doe@company.com',
     phone: '+1 (555) 123-4567',
     position: 'Senior Software Engineer',
@@ -102,7 +102,7 @@ export const ViewAllEmployees = () => {
   const departments = [...new Set(employees.map(emp => emp.department))];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

@@ -181,13 +181,13 @@ export const OnboardingNew = ({ onNavigate }) => {
   };
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-4">
             <button
-              onClick={() => onNavigate?.('onboarding-dashboard')}
+              onClick={() => onNavigate('onboarding-dashboard')}
               className="neu-button p-3 rounded-2xl hover:text-[#05A7CC] transition-colors"
             >
               <ArrowLeft size={20} />

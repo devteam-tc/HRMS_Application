@@ -13,12 +13,12 @@ const existingProjectData = {
   progress: 75,
   startDate: '2024-01-15',
   endDate: '2024-06-30',
-  manager: 'John Doe',
+  manager: 'Lion',
   budget: 2500000,
   spent: 1875000,
   description: 'A modern 15-story office complex featuring sustainable design elements, state-of-the-art facilities, and LEED Gold certification targets.',
   team: [
-    { id: '1', name: 'John Doe', role: 'Project Manager', email: 'john.doe@company.com' },
+    { id: '1', name: 'Lion', role: 'Project Manager', email: 'john.doe@company.com' },
     { id: '2', name: 'Alice Johnson', role: 'Site Engineer', email: 'alice.johnson@company.com' },
     { id: '3', name: 'Bob Smith', role: 'Safety Officer', email: 'bob.smith@company.com' },
     { id: '4', name: 'Carol Davis', role: 'Quality Inspector', email: 'carol.davis@company.com' }
@@ -178,7 +178,7 @@ export const ProjectEdit = ({ isNew = false }) => {
   );
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">
@@ -281,7 +281,7 @@ export const ProjectEdit = ({ isNew = false }) => {
                       className="w-full bg-transparent outline-none text-[#333333]"
                     >
                       <option value="">Select manager</option>
-                      <option value="John Doe">John Doe</option>
+                      <option value="Lion">Lion</option>
                       <option value="Jane Smith">Jane Smith</option>
                       <option value="Alice Johnson">Alice Johnson</option>
                       <option value="Bob Smith">Bob Smith</option>

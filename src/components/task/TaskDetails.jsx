@@ -60,7 +60,7 @@ const taskData = {
     },
     {
       id: '4',
-      author: 'John Doe',
+      author: 'Lion',
       avatar: 'JD',
       time: '2024-02-18T17:10:00',
       content: 'Great progress team! The wireframes look solid. Alice, could you also prepare some alternative layouts for A/B testing once we move to development?',
@@ -73,7 +73,7 @@ const taskData = {
     { id: '6', title: 'Performance Optimization', status: 'in-progress', assignee: 'Frank Wilson' }
   ],
   activityFeed: [
-    { id: '1', type: 'comment', user: 'John Doe', action: 'added a comment', time: '2024-02-18T17:10:00' },
+    { id: '1', type: 'comment', user: 'Lion', action: 'added a comment', time: '2024-02-18T17:10:00' },
     { id: '2', type: 'subtask', user: 'Alice Johnson', action: 'completed subtask "Wireframe creation"', time: '2024-02-18T16:45:00' },
     { id: '3', type: 'attachment', user: 'Alice Johnson', action: 'uploaded Homepage_Wireframes_v1.pdf', time: '2024-02-18T14:20:00' },
     { id: '4', type: 'status', user: 'Bob Smith', action: 'moved task to In Progress', time: '2024-02-18T10:15:00' }
@@ -162,13 +162,13 @@ export const TaskDetails = ({ task: initialTask }) => {
   ];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-4 flex-1">
             <button 
-              onClick={() => navigate('/project-task-list')}
+              onClick={() => navigate('/task-projects')}
               className="neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />

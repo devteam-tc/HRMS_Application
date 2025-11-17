@@ -11,7 +11,7 @@ const meetingData = {
   duration: '30 minutes',
   location: 'Conference Room A',
   department: 'Engineering',
-  organizer: 'John Doe',
+  organizer: 'Lion',
   status: 'completed',
   description: 'Weekly standup meeting to discuss progress, blockers, and upcoming tasks for the engineering team.',
   agenda: [
@@ -22,16 +22,16 @@ const meetingData = {
     'Technical discussions'
   ],
   participants: [
-    { name: 'John Doe', email: 'john.doe@company.com', role: 'Team Lead', attended: true },
+    { name: 'Lion', email: 'john.doe@company.com', role: 'Team Lead', attended: true },
     { name: 'Jane Smith', email: 'jane.smith@company.com', role: 'Senior Developer', attended: true },
     { name: 'Mike Johnson', email: 'mike.johnson@company.com', role: 'Frontend Developer', attended: true },
     { name: 'Sarah Wilson', email: 'sarah.wilson@company.com', role: 'Backend Developer', attended: false }
   ],
   attachments: [
-    { name: 'Sprint_Planning_Document.pdf', size: '2.4 MB', type: 'PDF', uploadedBy: 'John Doe' },
+    { name: 'Sprint_Planning_Document.pdf', size: '2.4 MB', type: 'PDF', uploadedBy: 'Lion' },
     { name: 'Team_Progress_Report.xlsx', size: '1.8 MB', type: 'Excel', uploadedBy: 'Jane Smith' }
   ],
-  minutes: `Meeting started at 9:00 AM with John Doe as the facilitator.
+  minutes: `Meeting started at 9:00 AM with Lion as the facilitator.
 
 **Progress Review:**
 - Jane completed the user authentication module
@@ -64,7 +64,7 @@ Meeting ended at 9:28 AM.`,
       replies: [
         {
           id: '1-1',
-          author: 'John Doe',
+          author: 'Lion',
           time: '1 hour ago',
           content: 'Perfect! Please include the design team lead in that meeting.'
         }
@@ -118,7 +118,7 @@ const MeetingDetails = () => {
   };
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, CheckCircle, Clock, AlertTriangle, User, Calendar, MessageCircle, Paperclip, Download, Upload, Send } from 'lucide-react';
 
-export const OnboardingChecklist = ({ onNavigate }) => {
+export const OnboardingChecklist = () => {
+  const navigate = useNavigate();
   const [selectedEmployee, setSelectedEmployee] = useState(1);
   
   // Mock employee data with onboarding progress
@@ -120,13 +122,13 @@ export const OnboardingChecklist = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-4">
             <button
-              onClick={() => onNavigate?.('onboarding-dashboard')}
+              onClick={() => navigate('/onboarding-dashboard')}
               className="neu-button p-3 rounded-2xl hover:text-[#2C318E] transition-colors"
             >
               <ArrowLeft size={20} />

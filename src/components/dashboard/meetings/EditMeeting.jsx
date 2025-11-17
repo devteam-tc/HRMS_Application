@@ -20,7 +20,7 @@ const existingMeetingData = {
     'Code review assignments'
   ],
   participants: [
-    { id: '1', name: 'John Doe', email: 'john.doe@company.com', role: 'Team Lead' },
+    { id: '1', name: 'Lion', email: 'john.doe@company.com', role: 'Team Lead' },
     { id: '2', name: 'Jane Smith', email: 'jane.smith@company.com', role: 'Senior Developer' },
     { id: '3', name: 'Mike Johnson', email: 'mike.johnson@company.com', role: 'Frontend Developer' }
   ],
@@ -160,7 +160,7 @@ const EditMeeting = ({ onNavigate }) => {
   };
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

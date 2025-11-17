@@ -102,7 +102,7 @@ export const VSLMSummary = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl text-center">
         <h1 className="text-4xl font-bold text-[#333333] mb-4">🏗️ VSLM Module Complete!</h1>

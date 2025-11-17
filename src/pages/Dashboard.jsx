@@ -92,7 +92,7 @@ const recentActivities = [
 
 const Dashboard = () => {
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       <WelcomeHeader />
 
       {/* Primary Metrics Cards */}

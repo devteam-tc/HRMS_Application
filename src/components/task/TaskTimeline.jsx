@@ -17,7 +17,7 @@ export const TaskTimeline = () => {
         {
           id: 'TASK-001',
           title: 'User Authentication System',
-          assignee: 'John Doe',
+          assignee: 'Lion',
           startDate: '2024-03-01',
           endDate: '2024-03-25',
           progress: 65,
@@ -238,7 +238,7 @@ export const TaskTimeline = () => {
             backgroundColor: statusColor,
             borderLeftColor: priorityBorder
           }}
-          onClick={() => navigate(`/task/${task.id}`)}
+          onClick={() => navigate(`/new-task`)}
         >
           {/* Progress overlay */}
           <div
@@ -351,7 +351,7 @@ export const TaskTimeline = () => {
               Export
             </button>
             <button 
-              onClick={() => onNavigate('task-analytics')}
+              onClick={() => navigate('/task-analytics')}
               className="neu-primary px-6 py-3 rounded-xl flex items-center hover:shadow-xl transition-all"
             >
               <Eye size={16} className="mr-2" />

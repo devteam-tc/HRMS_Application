@@ -1,110 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckSquare, Clock, AlertCircle, TrendingUp, Users, Folder, Target, Calendar, ArrowUp, ArrowDown, BarChart3, Filter } from 'lucide-react';
+import TaskFilters from "./TaskFilters"; // adjust path if needed
+import ResourceAllocation from "./ResourceAllocation"; // adjust path
+import RecentProjects from './RecentProjects';
+import TaskDistribution from './TaskDistribution';
+
+import {
+  kpiData,
+  taskCompletionTrend,
+  resourceAllocation,
+  recentProjects,
+  tasksByPriority
+} from "./data/taskDashboardData";
 
 export const TaskDashboard = () => {
   const navigate = useNavigate();
   const [dateFilter, setDateFilter] = useState('this-month');
-
-  const kpiData = [
-    {
-      title: 'Total Projects',
-      value: '24',
-      change: '+3 from last month',
-      changeType: 'positive',
-      icon: Folder,
-      color: 'text-[#CA2030]',
-      bgColor: 'from-[#CA2030] to-[#d4471f]'
-    },
-    {
-      title: 'Open Tasks',
-      value: '156',
-      change: '+12 this week',
-      changeType: 'positive',
-      icon: CheckSquare,
-      color: 'text-[#2C318E]',
-      bgColor: 'from-[#2C318E] to-[#048ba8]'
-    },
-    {
-      title: 'Completed Tasks',
-      value: '342',
-      change: '+28 this week',
-      changeType: 'positive',
-      icon: Target,
-      color: 'text-green-600',
-      bgColor: 'from-green-400 to-green-600'
-    },
-    {
-      title: 'Overdue Tasks',
-      value: '8',
-      change: '-5 from yesterday',
-      changeType: 'positive',
-      icon: AlertCircle,
-      color: 'text-red-500',
-      bgColor: 'from-red-400 to-red-600'
-    }
-  ];
-
-  const taskCompletionTrend = [
-    { week: 'Week 1', completed: 45, target: 50 },
-    { week: 'Week 2', completed: 52, target: 50 },
-    { week: 'Week 3', completed: 48, target: 50 },
-    { week: 'Week 4', completed: 58, target: 50 }
-  ];
-
-  const resourceAllocation = [
-    { team: 'Frontend Team', allocated: 85, capacity: 100, tasks: 28, color: '#CA2030' },
-    { team: 'Backend Team', allocated: 92, capacity: 100, tasks: 34, color: '#2C318E' },
-    { team: 'DevOps Team', allocated: 67, capacity: 100, tasks: 18, color: '#4CAF50' },
-    { team: 'QA Team', allocated: 78, capacity: 100, tasks: 22, color: '#9C27B0' },
-    { team: 'Design Team', allocated: 54, capacity: 100, tasks: 15, color: '#FFC107' }
-  ];
-
-  const recentProjects = [
-    {
-      name: 'E-commerce Platform',
-      progress: 75,
-      tasks: { total: 45, completed: 34 },
-      team: 8,
-      deadline: '2024-04-15',
-      status: 'on-track',
-      priority: 'high'
-    },
-    {
-      name: 'Mobile App Redesign',
-      progress: 45,
-      tasks: { total: 32, completed: 14 },
-      team: 6,
-      deadline: '2024-05-20',
-      status: 'at-risk',
-      priority: 'medium'
-    },
-    {
-      name: 'API Integration',
-      progress: 90,
-      tasks: { total: 18, completed: 16 },
-      team: 4,
-      deadline: '2024-03-30',
-      status: 'on-track',
-      priority: 'high'
-    },
-    {
-      name: 'Data Migration',
-      progress: 25,
-      tasks: { total: 28, completed: 7 },
-      team: 5,
-      deadline: '2024-06-10',
-      status: 'delayed',
-      priority: 'low'
-    }
-  ];
-
-  const tasksByPriority = [
-    { priority: 'High', count: 45, color: '#CA2030' },
-    { priority: 'Medium', count: 78, color: '#FFC107' },
-    { priority: 'Low', count: 35, color: '#4CAF50' }
-  ];
-
   const getStatusColor = (status) => {
     const colors = {
       'on-track': 'bg-green-100 text-green-800',
@@ -131,43 +43,8 @@ export const TaskDashboard = () => {
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Task Dashboard</h1>
         <p className="text-[#666666]">Monitor project progress and track team performance</p>
       </div>
-
       {/* Filters */}
-      <div className="neu-card p-6 rounded-2xl mb-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center space-x-4">
-            <select 
-              value={dateFilter}
-              onChange={(e) => setDateFilter(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
-            >
-              <option value="this-week">This Week</option>
-              <option value="this-month">This Month</option>
-              <option value="this-quarter">This Quarter</option>
-              <option value="custom">Custom Range</option>
-            </select>
-            <button className="neu-button px-4 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors">
-              <Filter size={16} className="mr-2" />
-              More Filters
-            </button>
-          </div>
-          <div className="flex space-x-3">
-            <button 
-              onClick={() => onNavigate('task-projects')}
-              className="neu-button px-6 py-3 rounded-xl hover:text-[#CA2030] transition-colors"
-            >
-              View All Projects
-            </button>
-            <button 
-              onClick={() => navigate('/new-task')}
-              className="neu-primary px-6 py-3 rounded-xl hover:shadow-xl transition-all"
-            >
-              Create New Task
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <TaskFilters dateFilter={dateFilter} setDateFilter={setDateFilter} />
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {kpiData.map((kpi, index) => {
@@ -244,152 +121,23 @@ export const TaskDashboard = () => {
             </div>
           </div>
         </div>
-
         {/* Resource Allocation */}
-        <div className="neu-card p-6 rounded-2xl">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-[#333333]">Resource Allocation</h2>
-            <Users size={20} className="text-[#2C318E]" />
-          </div>
-          <div className="space-y-4">
-            {resourceAllocation.map((team, index) => (
-              <div key={team.team} className="neu-small p-4 rounded-xl">
-                <div className="flex justify-between items-center mb-3">
-                  <div className="flex items-center">
-                    <div 
-                      className="w-4 h-4 rounded-full mr-3"
-                      style={{ backgroundColor: team.color }}
-                    ></div>
-                    <span className="font-medium text-[#333333]">{team.team}</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-sm text-[#666666]">{team.tasks} tasks</span>
-                    <span className="text-sm font-bold" style={{ color: team.color }}>
-                      {team.allocated}%
-                    </span>
-                  </div>
-                </div>
-                <div className="neu-card-inset rounded-lg p-1">
-                  <div 
-                    className="h-3 rounded-lg transition-all duration-300"
-                    style={{ 
-                      width: `${team.allocated}%`,
-                      backgroundColor: team.color
-                    }}
-                  ></div>
-                </div>
-                <div className="flex justify-between text-xs text-[#666666] mt-2">
-                  <span>Allocated: {team.allocated}/{team.capacity}</span>
-                  <span>{team.capacity - team.allocated} available</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+       <ResourceAllocation resourceAllocation={resourceAllocation} />
       </div>
-
       {/* Recent Projects and Task Distribution */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Recent Projects */}
-        <div className="lg:col-span-2 neu-card p-6 rounded-2xl">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-[#333333]">Recent Projects</h2>
-            <button 
-              onClick={() => onNavigate('task-projects')}
-              className="neu-button px-4 py-2 rounded-xl text-sm hover:text-[#CA2030] transition-colors"
-            >
-              View All
-            </button>
-          </div>
-          <div className="space-y-4">
-            {recentProjects.map((project, index) => (
-              <div key={project.name} className="neu-small p-4 rounded-xl hover:shadow-md transition-all">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center space-x-3">
-                    <h3 className="font-semibold text-[#333333]">{project.name}</h3>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
-                      {project.status.replace('-', ' ')}
-                    </span>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(project.priority)}`}>
-                      {project.priority}
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-4 text-sm text-[#666666]">
-                    <span className="flex items-center">
-                      <Users size={14} className="mr-1" />
-                      {project.team}
-                    </span>
-                    <span className="flex items-center">
-                      <Calendar size={14} className="mr-1" />
-                      {project.deadline}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-[#666666]">
-                    Progress: {project.tasks.completed}/{project.tasks.total} tasks
-                  </span>
-                  <span className="text-sm font-bold text-[#CA2030]">{project.progress}%</span>
-                </div>
-                <div className="neu-card-inset rounded-lg p-1">
-                  <div 
-                    className="h-2 neu-primary rounded-lg transition-all duration-300"
-                    style={{ width: `${project.progress}%` }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
+       <RecentProjects
+          recentProjects={recentProjects}
+          navigate={navigate}
+          getStatusColor={getStatusColor}
+          getPriorityColor={getPriorityColor}
+        />
         {/* Task Distribution */}
-        <div className="neu-card p-6 rounded-2xl">
-          <h2 className="text-xl font-bold text-[#333333] mb-6">Tasks by Priority</h2>
-          <div className="space-y-6">
-            {tasksByPriority.map((priority, index) => (
-              <div key={priority.priority} className="neu-small p-4 rounded-xl text-center">
-                <div className="text-2xl font-bold mb-2" style={{ color: priority.color }}>
-                  {priority.count}
-                </div>
-                <div className="text-[#666666] mb-3">{priority.priority} Priority</div>
-                <div className="neu-card-inset rounded-lg p-1">
-                  <div 
-                    className="h-2 rounded-lg transition-all duration-300"
-                    style={{ 
-                      width: `${(priority.count / 158) * 100}%`,
-                      backgroundColor: priority.color
-                    }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-            
-            {/* Quick Actions */}
-            <div className="mt-8 space-y-3">
-              <button 
-                onClick={() => onNavigate('task-kanban')}
-                className="w-full neu-button p-3 rounded-xl hover:text-[#CA2030] transition-colors"
-              >
-                <CheckSquare size={16} className="inline mr-2" />
-                View Kanban Board
-              </button>
-              <button 
-                onClick={() => onNavigate('task-timeline')}
-                className="w-full neu-button p-3 rounded-xl hover:text-[#2C318E] transition-colors"
-              >
-                <BarChart3 size={16} className="inline mr-2" />
-                View Timeline
-              </button>
-              <button 
-                onClick={() => onNavigate('task-analytics')}
-                className="w-full neu-button p-3 rounded-xl hover:text-[#CA2030] transition-colors"
-              >
-                <TrendingUp size={16} className="inline mr-2" />
-                View Analytics
-              </button>
-            </div>
-          </div>
-        </div>
+       <TaskDistribution
+        tasksByPriority={tasksByPriority}
+        navigate={navigate}
+      />
       </div>
     </div>
   );

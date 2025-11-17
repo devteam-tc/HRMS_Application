@@ -27,11 +27,11 @@ const projectData = {
   progress: 75,
   startDate: '2024-01-15',
   endDate: '2024-06-30',
-  manager: 'John Doe',
+  manager: 'Lion',
   budget: 2500000,
   spent: 1875000,
   team: [
-    { name: 'John Doe', role: 'Project Manager', email: 'john.doe@company.com' },
+    { name: 'Lion', role: 'Project Manager', email: 'john.doe@company.com' },
     { name: 'Alice Johnson', role: 'Site Engineer', email: 'alice.johnson@company.com' },
     { name: 'Bob Smith', role: 'Safety Officer', email: 'bob.smith@company.com' },
     { name: 'Carol Davis', role: 'Quality Inspector', email: 'carol.davis@company.com' }
@@ -45,7 +45,7 @@ const projectData = {
     { id: 5, title: 'Final Inspection', date: '2024-06-30', status: 'pending', progress: 0 }
   ],
   recentVisits: [
-    { id: 1, date: '2024-01-18', visitor: 'John Doe', purpose: 'Weekly inspection', notes: 'Foundation work progressing well, no issues found.' },
+    { id: 1, date: '2024-01-18', visitor: 'Lion', purpose: 'Weekly inspection', notes: 'Foundation work progressing well, no issues found.' },
     { id: 2, date: '2024-01-16', visitor: 'Alice Johnson', purpose: 'Quality check', notes: 'Concrete pour quality meets specifications.' },
     { id: 3, date: '2024-01-14', visitor: 'Bob Smith', purpose: 'Safety audit', notes: 'All safety protocols being followed.' }
   ]
@@ -108,7 +108,7 @@ export const ProjectDetails = () => {
   ];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

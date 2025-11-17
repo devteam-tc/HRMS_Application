@@ -11,7 +11,7 @@ export const TaskAssignment = () => {
   const teamMembers = [
     {
       id: 1,
-      name: 'John Doe',
+      name: 'Lion',
       role: 'Frontend Lead',
       avatar: 'JD',
       email: 'john@company.com',
@@ -418,7 +418,7 @@ export const TaskAssignment = () => {
               </button>
             </div>
             <button 
-              onClick={() => navigate('/task')}
+              onClick={() => navigate('/task-analytics')}
               className="neu-button px-6 py-3 rounded-xl flex items-center hover:text-[#CA2030] transition-colors"
             >
               <BarChart3 size={16} className="mr-2" />
@@ -547,7 +547,7 @@ export const TaskAssignment = () => {
               ))}
             </div>
             <button 
-              onClick={() => navigate('/task')}
+              onClick={() => navigate('/new-task')}
               className="w-full mt-4 neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#CA2030] transition-colors"
             >
               <Plus size={16} className="mr-2" />

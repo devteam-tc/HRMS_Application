@@ -229,7 +229,7 @@ export const InterviewsList = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#666666]" size={20} />
+            <Search className="absolute left-4 top-[60%] transform -translate-y-1/2 text-[#666666]" size={20} />
             <input
               type="text"
               placeholder="Search interviews..."
@@ -240,44 +240,65 @@ export const InterviewsList = () => {
           </div>
 
           {/* Status Filter */}
-          <select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
-            className="neu-input px-4 py-3 text-[#333333] focus:outline-none appearance-none"
-          >
-            <option value="all">All Status</option>
-            <option value="Scheduled">Scheduled</option>
-            <option value="Completed">Completed</option>
-            <option value="Cancelled">Cancelled</option>
-            <option value="Rescheduled">Rescheduled</option>
-            <option value="No Show">No Show</option>
-          </select>
+          <div className="relative">
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
+            >
+              <option value="all">All Status</option>
+              <option value="Scheduled">Scheduled</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Rescheduled">Rescheduled</option>
+              <option value="No Show">No Show</option>
+            </select>
+            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
+              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
 
           {/* Type Filter */}
-          <select
-            value={filterType}
-            onChange={(e) => setFilterType(e.target.value)}
-            className="neu-input px-4 py-3 text-[#333333] focus:outline-none appearance-none"
-          >
-            <option value="all">All Types</option>
-            <option value="Phone Screening">Phone Screening</option>
-            <option value="Technical Interview">Technical Interview</option>
-            <option value="Behavioral Interview">Behavioral Interview</option>
-            <option value="Portfolio Review">Portfolio Review</option>
-            <option value="Final Interview">Final Interview</option>
-          </select>
+          <div className="relative">
+            <select
+              value={filterType}
+              onChange={(e) => setFilterType(e.target.value)}
+              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
+            >
+              <option value="all">All Types</option>
+              <option value="Phone Screening">Phone Screening</option>
+              <option value="Technical Interview">Technical Interview</option>
+              <option value="Behavioral Interview">Behavioral Interview</option>
+              <option value="Portfolio Review">Portfolio Review</option>
+              <option value="Final Interview">Final Interview</option>
+            </select>
+            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
+              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
 
           {/* Date Filter */}
-          <select
-            value={filterDate}
-            onChange={(e) => setFilterDate(e.target.value)}
-            className="neu-input px-4 py-3 text-[#333333] focus:outline-none appearance-none"
-          >
-            <option value="all">All Dates</option>
-            <option value="today">Today</option>
-            <option value="tomorrow">Tomorrow</option>
-            <option value="this-week">This Week</option>
-          </select>
+          <div className="relative">
+            <select
+              value={filterDate}
+              onChange={(e) => setFilterDate(e.target.value)}
+              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
+            >
+              <option value="all">All Dates</option>
+              <option value="today">Today</option>
+              <option value="tomorrow">Tomorrow</option>
+              <option value="this-week">This Week</option>
+            </select>
+            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
+              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
 
           {/* View Mode Toggle */}
           <div className="flex items-center space-x-2 neu-input p-2 rounded-2xl">
@@ -432,7 +453,7 @@ export const InterviewsList = () => {
               {/* Actions */}
               <div className="flex items-center space-x-3">
                 <button
-                  onClick={() => onNavigate('interview-details', { interviewId: interview.id })}
+                  onClick={() => navigate('/interview-details', { interviewId: interview.id })}
                   className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                   title="View Details"
                 >
@@ -441,7 +462,7 @@ export const InterviewsList = () => {
                 
                 {interview.status === 'Scheduled' && (
                   <button
-                    onClick={() => onNavigate('edit-interview', { interviewId: interview.id })}
+                    onClick={() => navigate('/edit-job-opening', { interviewId: interview.id })}
                     className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                     title="Edit Interview"
                   >
@@ -451,7 +472,7 @@ export const InterviewsList = () => {
 
                 {interview.status === 'Completed' && !interview.feedback && (
                   <button
-                    onClick={() => onNavigate('interview-feedback', { interviewId: interview.id })}
+                    onClick={() => navigate('/interview-feedback', { interviewId: interview.id })}
                     className="neu-secondary px-4 py-3 rounded-2xl text-white hover:shadow-lg transition-all duration-200"
                   >
                     Add Feedback

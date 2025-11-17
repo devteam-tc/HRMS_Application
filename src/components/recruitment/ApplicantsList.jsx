@@ -196,7 +196,7 @@ export const ApplicantsList = ({ jobId }) => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#666666]" size={20} />
+            <Search className="absolute left-4 top-[60%] transform -translate-y-1/2 text-[#666666]" size={20} />
             <input
               type="text"
               placeholder="Search applicants..."
@@ -207,63 +207,91 @@ export const ApplicantsList = ({ jobId }) => {
           </div>
 
           {/* Role Filter */}
-          <select
-            value={filterRole}
-            onChange={(e) => setFilterRole(e.target.value)}
-            className="neu-input px-4 py-3 text-[#333333] focus:outline-none appearance-none"
-          >
-            <option value="all">All Roles</option>
-            <option value="Senior Software Engineer">Senior Software Engineer</option>
-            <option value="Product Manager">Product Manager</option>
-            <option value="UX Designer">UX Designer</option>
-            <option value="Marketing Specialist">Marketing Specialist</option>
-            <option value="DevOps Engineer">DevOps Engineer</option>
-          </select>
+          <div className="relative">
+            <select
+              value={filterRole}
+              onChange={(e) => setFilterRole(e.target.value)}
+              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
+            >
+              <option value="all">All Roles</option>
+              <option value="Senior Software Engineer">Senior Software Engineer</option>
+              <option value="Product Manager">Product Manager</option>
+              <option value="UX Designer">UX Designer</option>
+              <option value="Marketing Specialist">Marketing Specialist</option>
+              <option value="DevOps Engineer">DevOps Engineer</option>
+            </select>
+            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
+              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
 
           {/* Stage Filter */}
-          <select
-            value={filterStage}
-            onChange={(e) => setFilterStage(e.target.value)}
-            className="neu-input px-4 py-3 text-[#333333] focus:outline-none appearance-none"
-          >
-            <option value="all">All Stages</option>
-            <option value="Application">Application</option>
-            <option value="Shortlisted">Shortlisted</option>
-            <option value="Interview">Interview</option>
-            <option value="Offer">Offer</option>
-            <option value="Hired">Hired</option>
-          </select>
+          <div className="relative">
+            <select
+              value={filterStage}
+              onChange={(e) => setFilterStage(e.target.value)}
+              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
+            >
+              <option value="all">All Stages</option>
+              <option value="Application">Application</option>
+              <option value="Shortlisted">Shortlisted</option>
+              <option value="Interview">Interview</option>
+              <option value="Offer">Offer</option>
+              <option value="Hired">Hired</option>
+            </select>
+            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
+              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
 
           {/* Source Filter */}
-          <select
-            value={filterSource}
-            onChange={(e) => setFilterSource(e.target.value)}
-            className="neu-input px-4 py-3 text-[#333333] focus:outline-none appearance-none"
-          >
-            <option value="all">All Sources</option>
-            <option value="LinkedIn">LinkedIn</option>
-            <option value="Company Website">Company Website</option>
-            <option value="Referral">Referral</option>
-            <option value="Indeed">Indeed</option>
-            <option value="Glassdoor">Glassdoor</option>
-            <option value="Stack Overflow">Stack Overflow</option>
-          </select>
+          <div className="relative">
+            <select
+              value={filterSource}
+              onChange={(e) => setFilterSource(e.target.value)}
+              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
+            >
+              <option value="all">All Sources</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Company Website">Company Website</option>
+              <option value="Referral">Referral</option>
+              <option value="Indeed">Indeed</option>
+              <option value="Glassdoor">Glassdoor</option>
+              <option value="Stack Overflow">Stack Overflow</option>
+            </select>
+            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
+              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
 
           {/* Status Filter */}
-          <select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
-            className="neu-input px-4 py-3 text-[#333333] focus:outline-none appearance-none"
-          >
-            <option value="all">All Status</option>
-            <option value="Under Review">Under Review</option>
-            <option value="Shortlisted">Shortlisted</option>
-            <option value="Interview Scheduled">Interview Scheduled</option>
-            <option value="Technical Interview">Technical Interview</option>
-            <option value="Offer Extended">Offer Extended</option>
-            <option value="Hired">Hired</option>
-            <option value="Rejected">Rejected</option>
-          </select>
+          <div className="relative">
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
+            >
+              <option value="all">All Status</option>
+              <option value="Under Review">Under Review</option>
+              <option value="Shortlisted">Shortlisted</option>
+              <option value="Interview Scheduled">Interview Scheduled</option>
+              <option value="Technical Interview">Technical Interview</option>
+              <option value="Offer Extended">Offer Extended</option>
+              <option value="Hired">Hired</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
+              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -422,7 +450,7 @@ export const ApplicantsList = ({ jobId }) => {
               {/* Actions */}
               <div className="flex items-center space-x-3">
                 <button
-                  onClick={() => onNavigate('applicant-details', { applicantId: applicant.id })}
+                  onClick={() => navigate('/applicant-details', { applicantId: applicant.id })}
                   className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                   title="View Details"
                 >
@@ -430,7 +458,7 @@ export const ApplicantsList = ({ jobId }) => {
                 </button>
                 
                 <button
-                  onClick={() => onNavigate('applicant-resume', { applicantId: applicant.id })}
+                  onClick={() => navigate('/applicant-resume')}
                   className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
                   title="View Resume"
                 >
@@ -438,7 +466,7 @@ export const ApplicantsList = ({ jobId }) => {
                 </button>
 
                 <button
-                  onClick={() => onNavigate('applicant-actions', { applicantId: applicant.id })}
+                  onClick={() => navigate('/applicant-resume')}
                   className="neu-secondary px-4 py-3 rounded-2xl flex items-center space-x-2 text-white hover:shadow-lg transition-all duration-200"
                 >
                   <span>Actions</span>

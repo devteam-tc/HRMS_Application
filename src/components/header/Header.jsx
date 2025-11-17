@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Bell, MessageCircle, User, Settings, LogOut, Sun, Moon, Menu } from 'lucide-react';
 
-export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobileSidebar }) {
+export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobileSidebar, handleLogout }) {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [notifications] = useState(3);
   const [messages] = useState(5);
@@ -47,7 +47,7 @@ export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobi
         {/* Search Bar - hidden on mobile, visible on md and up */}
         <div className="relative hidden md:block">
           <Search 
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
+            className="absolute left-3 top-2.5 text-gray-400" 
             size={20} 
           />
           <input
@@ -82,43 +82,7 @@ export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobi
           )}
         </button>
 
-        {/* Notifications */}
-        {/* <button 
-          className="relative p-2 rounded-lg transition-all duration-200 hover:bg-gray-100"
-          style={buttonStyles}
-        >
-          <Bell size={20} color="#333333" />
-          {notifications > 0 && (
-            <span 
-              className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
-              style={{
-                boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
-              }}
-            >
-              {notifications}
-            </span>
-          )}
-        </button> */}
-
-        {/* Messages */}
-        {/* <button 
-          className="relative p-2 rounded-lg transition-all duration-200 hover:bg-gray-100"
-          style={buttonStyles}
-        >
-          <MessageCircle size={20} color="#333333" />
-          {messages > 0 && (
-            <span 
-              className="absolute -top-1 -right-1 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
-              style={{
-                backgroundColor: '#2C318E',
-                boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
-              }}
-            >
-              {messages}
-            </span>
-          )}
-        </button> */}
-
+       
         {/* User Profile Dropdown */}
         <div className="relative">
           <button
@@ -135,7 +99,7 @@ export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobi
             >
               <User size={16} color="white" />
             </div>
-            <span className="text-gray-700 hidden md:block">John Doe</span>
+            <span className="text-gray-700 hidden md:block">Lion</span>
           </button>
 
           {/* Profile Dropdown */}
@@ -148,14 +112,14 @@ export function Header({ toggleSidebar, darkMode, onToggleDarkMode, onToggleMobi
             >
               <div className="py-2">
                 <div className="px-4 py-2 border-b border-gray-100">
-                  <p className="text-sm text-gray-900">John Doe</p>
+                  <p className="text-sm text-gray-900">Lion</p>
                   <p className="text-xs text-gray-500">HR Manager</p>
                 </div>
                 <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
                   <Settings size={16} />
                   Settings
                 </button>
-                <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2" onClick={handleLogout}>
                   <LogOut size={16} />
                   Logout
                 </button>

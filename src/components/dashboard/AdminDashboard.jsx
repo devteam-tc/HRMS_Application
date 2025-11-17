@@ -112,7 +112,7 @@ export const NeumorphicDashboard = () => {
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-bold text-[#333333] mb-2">Welcome back, John! 👋</h1>
+            <h1 className="text-4xl font-bold text-[#333333] mb-2">Welcome back, Lion! 👋</h1>
             <p className="text-[#666666] text-lg">Here's what's happening at your organization today.</p>
           </div>
           <div className="neu-card-inset p-6 rounded-2xl text-center">

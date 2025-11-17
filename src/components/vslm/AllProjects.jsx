@@ -13,7 +13,7 @@ const projects = [
     progress: 75,
     startDate: '2024-01-15',
     endDate: '2024-06-30',
-    manager: 'John Doe',
+    manager: 'Lion',
     team: ['Alice Johnson', 'Bob Smith', 'Carol Davis'],
     budget: 2500000,
     image: '/placeholder-project.jpg',
@@ -44,7 +44,7 @@ const projects = [
     startDate: '2023-11-20',
     endDate: '2024-05-15',
     manager: 'Alice Johnson',
-    team: ['John Doe', 'Emma Garcia', 'Frank Wilson'],
+    team: ['Lion', 'Emma Garcia', 'Frank Wilson'],
     budget: 1800000,
     image: '/placeholder-project.jpg',
     lastUpdate: '2024-01-10'
@@ -74,7 +74,7 @@ const projects = [
     startDate: '2024-01-01',
     endDate: '2024-08-15',
     manager: 'Carol Davis',
-    team: ['John Doe', 'Jane Smith', 'Mike Johnson'],
+    team: ['Lion', 'Jane Smith', 'Mike Johnson'],
     budget: 5600000,
     image: '/placeholder-project.jpg',
     lastUpdate: '2024-01-18'
@@ -136,7 +136,7 @@ export const AllProjects = () => {
   const uniqueClients = [...new Set(projects.map(project => project.client))];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">
@@ -339,14 +339,14 @@ export const AllProjects = () => {
               {/* Actions */}
               <div className="flex items-center space-x-3 pt-2">
                 <button 
-                  onClick={() => navigate(`/project-details/${project.id}`)}
+                  onClick={() => navigate(`/project-details`)}
                   className="flex-1 neu-button p-3 rounded-2xl flex items-center justify-center space-x-2 text-[#2C318E] hover:text-[#048ba8] transition-colors"
                 >
                   <Eye className="w-4 h-4" />
                   <span className="text-sm font-medium">View</span>
                 </button>
                 <button 
-                  onClick={() => navigate(`/project-edit/${project.id}`)}
+                  onClick={() => navigate(`/project-edit`)}
                   className="flex-1 neu-button p-3 rounded-2xl flex items-center justify-center space-x-2 text-[#666666] hover:text-[#333333] transition-colors"
                 >
                   <Edit className="w-4 h-4" />

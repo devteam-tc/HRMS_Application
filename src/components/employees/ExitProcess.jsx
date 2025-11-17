@@ -136,7 +136,7 @@ export const ExitProcess = ({ onNavigate }) => {
   const selectedEmployeeData = employees.find(emp => emp.id.toString() === selectedEmployee);
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between mb-6">

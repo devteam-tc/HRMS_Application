@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, GitBranch, AlertTriangle, CheckCircle, Clock, Plus, Trash2, Eye, Filter, Search } from 'lucide-react';
 
-export const TaskDependencies = ({ taskId, onNavigate }) => {
+export const TaskDependencies = ({ taskId }) => {
+  const navigate = useNavigate();
   const [selectedTask, setSelectedTask] = useState(null);
   const [showAddDependency, setShowAddDependency] = useState(false);
   const [filterCritical, setFilterCritical] = useState(false);
@@ -18,7 +20,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
       title: 'User Authentication System',
       status: 'in-progress',
       priority: 'high',
-      assignee: 'John Doe',
+      assignee: 'Lion',
       progress: 65,
       dependencies: ['TASK-002', 'TASK-005'],
       dependents: ['TASK-003', 'TASK-004'],
@@ -240,7 +242,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
           <button 
-            onClick={() => onNavigate('task-details', { taskId: currentTask.id })}
+            onClick={() => navigate('/task-details', { taskId: currentTask.id })}
             className="neu-small p-2 rounded-xl hover:text-[#CA2030] transition-colors"
           >
             <ArrowLeft size={20} />
@@ -324,22 +326,6 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
                   />
                 ))}
               </div>
-              
-              {/* Dependency Lines - Simplified visual representation */}
-              <div className="absolute inset-0 pointer-events-none">
-                {dependencyConnections
-                  .filter(conn => !filterCritical || (conn.fromTask.isCriticalPath && conn.toTask.isCriticalPath))
-                  .map((conn, index) => (
-                    <div key={index} className="absolute w-full h-0.5 bg-[#CA2030] opacity-50 rounded" 
-                         style={{ 
-                           top: `${20 + (index * 40)}%`, 
-                           left: '10%', 
-                           width: '80%',
-                           transform: 'rotate(15deg)'
-                         }}>
-                    </div>
-                  ))}
-              </div>
             </div>
           </div>
         </div>
@@ -397,7 +383,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
               
               <div className="flex space-x-2 mt-4">
                 <button 
-                  onClick={() => onNavigate('task-details', { taskId: selectedTask.id })}
+                  onClick={() => navigate(`/task-details/${selectedTask.id}`)}
                   className="flex-1 neu-button py-2 rounded-xl text-sm hover:text-[#CA2030] transition-colors"
                 >
                   <Eye size={14} className="inline mr-1" />
@@ -462,7 +448,7 @@ export const TaskDependencies = ({ taskId, onNavigate }) => {
             <h3 className="text-lg font-bold text-[#333333] mb-4">Quick Actions</h3>
             <div className="space-y-3">
               <button 
-                onClick={() => onNavigate('task-timeline')}
+                onClick={() => navigate('/task-timeline')}
                 className="w-full neu-button p-3 rounded-xl text-left hover:text-[#CA2030] transition-colors"
               >
                 <GitBranch size={16} className="inline mr-2" />

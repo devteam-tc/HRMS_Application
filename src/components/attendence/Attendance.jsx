@@ -33,7 +33,7 @@ const Attendance = ({ onNavigate }) => {
   
   // Sample attendance data
   const attendanceData = [
-    { id: 1, name: 'John Doe', date: '2025-09-09', checkIn: '09:00 AM', checkOut: '06:00 PM', status: 'Present', hoursWorked: '9h 0m' },
+    { id: 1, name: 'Lion', date: '2025-09-09', checkIn: '09:00 AM', checkOut: '06:00 PM', status: 'Present', hoursWorked: '9h 0m' },
     { id: 2, name: 'Jane Smith', date: '2025-09-09', checkIn: '09:15 AM', checkOut: '05:45 PM', status: 'Present', hoursWorked: '8h 30m' },
     { id: 3, name: 'Mike Johnson', date: '2025-09-09', checkIn: '10:30 AM', checkOut: '07:00 PM', status: 'Late', hoursWorked: '8h 30m' },
     { id: 4, name: 'Sarah Williams', date: '2025-09-09', checkIn: '--', checkOut: '--', status: 'Absent', hoursWorked: '0h 0m' },
@@ -95,7 +95,7 @@ const Attendance = ({ onNavigate }) => {
 
   // Recent Activity
   const recentActivity = [
-    { employee: 'John Doe', action: 'Punched In', time: '09:15 AM', status: 'late' },
+    { employee: 'Lion', action: 'Punched In', time: '09:15 AM', status: 'late' },
     { employee: 'Sarah Wilson', action: 'Punched Out', time: '06:30 PM', status: 'normal' },
     { employee: 'Mike Johnson', action: 'Break Started', time: '02:00 PM', status: 'normal' },
     { employee: 'Emma Brown', action: 'Absent', time: 'All Day', status: 'absent' }
@@ -147,11 +147,18 @@ const Attendance = ({ onNavigate }) => {
           <div className="neu-card p-6 rounded-2xl">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-[#333333]">Daily Attendance Trend</h2>
-              <select className="neu-input px-4 py-2 rounded-xl text-sm">
-                <option>Last 7 days</option>
-                <option>Last 30 days</option>
-                <option>This quarter</option>
-              </select>
+              <div className="relative">
+                <select className="neu-input pl-4 pr-8 py-2 rounded-xl text-sm appearance-none focus:ring-2 focus:ring-[#05A7CC] transition-all">
+                  <option>Last 7 days</option>
+                  <option>Last 30 days</option>
+                  <option>This quarter</option>
+                </select>
+                <div className="absolute right-3 top-[80%] -translate-y-1/2 pointer-events-none">
+                  <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
             </div>
             <div className="h-64 neu-card-inset rounded-xl p-4 flex items-center justify-center">
               <div className="text-center">

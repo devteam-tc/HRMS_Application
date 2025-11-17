@@ -8,7 +8,7 @@ const images = [
     name: 'Foundation_Pour_Phase1.jpg',
     projectName: 'Downtown Office Complex',
     projectId: '1',
-    uploadedBy: 'John Doe',
+    uploadedBy: 'Lion',
     uploadDate: '2024-01-18',
     size: '2.4 MB',
     tags: ['foundation', 'concrete', 'phase1'],
@@ -92,7 +92,7 @@ const images = [
     name: 'Material_Delivery_Log.jpg',
     projectName: 'Downtown Office Complex',
     projectId: '1',
-    uploadedBy: 'John Doe',
+    uploadedBy: 'Lion',
     uploadDate: '2024-01-11',
     size: '1.5 MB',
     tags: ['materials', 'delivery', 'logistics'],
@@ -144,7 +144,7 @@ export const UploadedImages = ({ onNavigate, projectId }) => {
   const uniqueTags = [...new Set(images.flatMap(img => img.tags))];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

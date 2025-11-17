@@ -24,7 +24,7 @@ export const TaskProjects = () => {
         pending: 3
       },
       team: [
-        { name: 'John Doe', role: 'Frontend Lead', avatar: 'JD', color: '#CA2030' },
+        { name: 'Lion', role: 'Frontend Lead', avatar: 'JD', color: '#CA2030' },
         { name: 'Sarah Wilson', role: 'Designer', avatar: 'SW', color: '#2C318E' },
         { name: 'Mike Johnson', role: 'Backend Dev', avatar: 'MJ', color: '#4CAF50' },
         { name: 'Emma Brown', role: 'QA Lead', avatar: 'EB', color: '#9C27B0' }
@@ -393,7 +393,7 @@ export const TaskProjects = () => {
           <div className="flex flex-col sm:flex-row gap-4 flex-1">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#CA2030]" />
+              <Search size={20} className="absolute left-4 top-[60%] transform -translate-y-1/2 text-[#CA2030]" />
               <input
                 type="text"
                 placeholder="Search projects..."

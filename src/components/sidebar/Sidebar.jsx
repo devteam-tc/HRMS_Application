@@ -5,13 +5,32 @@ import SidebarItem from "./SidebarItem";
 import { IoIosMenu } from 'react-icons/io';
 
 const Sidebar = ({ activeModule, onModuleChange }) => {
-  const [expandedItems, setExpandedItems] = useState(["tasks"]);
+  const [expandedItems, setExpandedItems] = useState([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  // Auto-expand parent when a sub-item is active
+  useEffect(() => {
+    const findParentId = () => {
+      for (const item of navigationItems) {
+        if (item.subItems?.some(subItem => subItem.id === activeModule)) {
+          return item.id;
+        }
+      }
+      return null;
+    };
+
+    const parentId = findParentId();
+    if (parentId && !expandedItems.includes(parentId)) {
+      setExpandedItems(prev => [...prev, parentId]);
+    }
+  }, [activeModule]);
+
   const toggleExpanded = (id) => {
-    setExpandedItems((prev) =>
-      prev.includes(id) ? [] : [id]  // Only keep the currently clicked item in the expanded items
+    setExpandedItems(prev =>
+      prev.includes(id)
+        ? prev.filter(item => item !== id) // Collapse if already expanded
+        : [...prev, id] // Expand if collapsed
     );
   };
 
@@ -25,12 +44,11 @@ const Sidebar = ({ activeModule, onModuleChange }) => {
 
   // Handle hover state for better UX
   const handleMouseEnter = () => {
-      setIsHovered(false);
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
-      setIsHovered(false);
-    
+    setIsHovered(false);
   };
 
   return (
@@ -71,16 +89,17 @@ const Sidebar = ({ activeModule, onModuleChange }) => {
           
           // When expanded, render the full item with submenu functionality
           return (
-            <SidebarItem
-              key={item.id}
-              item={item}
-              expandedItems={expandedItems}
-              onToggle={toggleExpanded}
-              activeModule={activeModule}
-              onModuleChange={onModuleChange}
-              isCollapsed={isCollapsed}
-              isHovered={false}
-            />
+            <div key={item.id} className="w-full">
+              <SidebarItem
+                item={item}
+                isExpanded={expandedItems.includes(item.id)}
+                onToggle={toggleExpanded}
+                activeModule={activeModule}
+                onModuleChange={onModuleChange}
+                isCollapsed={isCollapsed}
+                isHovered={isHovered}
+              />
+            </div>
           );
         })}
       </nav>

@@ -67,7 +67,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
   const totalVisits = siteVisitsData.reduce((sum, month) => sum + month.visits, 0);
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

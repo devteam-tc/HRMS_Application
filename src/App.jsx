@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, createContext, useContext, useMemo } from 'react';
+import { Routes, Route, useNavigate, useLocation, Navigate, Outlet } from 'react-router-dom';
 import { navigationItems } from './components/sidebar/navigationData';
 import Sidebar from './components/sidebar/Sidebar';
 import Dashboard from './pages/Dashboard';
@@ -16,11 +16,11 @@ import MeetingCalendar from './components/dashboard/meetings/MeetingCalendar';
 import Header from './components/header/Header';
 import ShiftManagement from './components/attendence/ShiftManagement';
 import { OvertimeHours } from './components/attendence/OvertimeHours';
-import HolidayManagement from './components/attendence/HolidayManagement';
 import { PunchRecords } from './components/attendence/PunchRecords';
 import { PolicyRules } from './components/attendence/PolicyRules';
 import { LeaveTracking } from './components/attendence/LeaveTracking';
 import { EmployeeAttendanceProfile } from './components/attendence/EmployeeAttendanceProfile';
+import { HolidayManagement } from './components/attendence/HolidayManagement.jsx';
 import { AttendanceCalendar } from './components/attendence/AttendanceCalendar';
 import { EmployeeDirectory } from './components/employees/EmployeeDirectory';
 import { EditProfile } from './components/employees/EditProfile';
@@ -68,6 +68,10 @@ import { EditJobOpening } from './components/recruitment/EditJobOpening';
 import { JobOpeningDetails } from './components/recruitment/JobOpeningDetails';
 import { ApplicantResume } from './components/recruitment/ApplicantResume';
 import { ProjectDetails } from './components/vslm/ProjectDetails';
+import { InterviewDetails } from './components/recruitment/InterviewDetails.jsx';
+import { TaskAnalytics } from './components/task/TaskAnalytics.jsx';
+import Login from './pages/Login';
+
 function MeetingsLayout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,14 +83,14 @@ function MeetingsLayout({ children }) {
       'new-meeting': '/new-meeting',
       'confirmation': '/meetings/confirmation',
       'meeting-confirmation': '/meeting-confirmation',
-      'meeting-details': state?.id ? `/meetings/${state.id}` : null,
+      'meeting-details': state?.id ? `/meetings/${state.id}` : '/meeting-details',
       'edit-meeting': '/edit-meeting',
       'employee-meeting': '/employee-meeting',
-      'calendar': '/meetings/calendar',
-      'calendar-add-meeting': '/meetings/calendar',
+      'subtasks-management': '/subtasks-management',
       'add-employee': '/add-employee',
       'edit-profile': '/edit-profile',
       'onboarding-new': '/onboarding-new',
+      'onboarding-dashboard' :'/onboarding-dashboard',
       'onboarding-checklist': '/onboarding-checklist',
       'offboarding-checklist': '/offboarding-checklist',
       'offboarding-dashboard': '/offboarding-dashboard',
@@ -107,11 +111,51 @@ function MeetingsLayout({ children }) {
   return React.cloneElement(children, { onNavigate: handleNavigate });
 }
 
-function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+// Create Auth Context
+export const AuthContext = createContext(null);
 
-  const toggleSidebar = () => {
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+// Protected Route Component
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children ? children : <Outlet />;
+};
+
+function App() {
+  const navigate = useNavigate();
+   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    // Check if user is already logged in (e.g., from localStorage)
+    return localStorage.getItem('isAuthenticated') === 'true';
+  });
+
+
+  const login = () => {
+    // Set the authentication state
+    localStorage.setItem('isAuthenticated', 'true');
+    setIsAuthenticated(true);
+    // Navigate to dashboard after successful login
+    navigate('/dashboard');
+  };
+
+  const logout = () => {
+    localStorage.removeItem('isAuthenticated');
+    setIsAuthenticated(false);
+    navigate('/login');
+
+  };
+
+   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
@@ -133,12 +177,10 @@ function App() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isMobileSidebarOpen]);
-
-  const navigate = useNavigate();
   const location = useLocation();
   const [activeModule, setActiveModule] = useState('employees');
 
-  const handleModuleChange = (path) => {
+    const handleModuleChange = (path) => {
     // If the path is a URL path (starts with /), navigate to it
     if (path.startsWith('/')) {
       navigate(path);
@@ -160,7 +202,9 @@ function App() {
     }
   };
 
+
   // Update active module based on current path
+   // Update active module based on current path
   useEffect(() => {
     const currentPath = location.pathname;
     // Find if current path matches any navigation item
@@ -177,14 +221,17 @@ function App() {
     
     setActiveModule(findActiveModule(navigationItems));
   }, [location.pathname]);
-
-  return (
+  // Show login page by default
+ 
+  
+  // Create a layout component for authenticated routes
+  const AuthenticatedLayout = ({ children }) => (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
       {/* Mobile overlay */}
-      {isMobileSidebarOpen && (
+     {isMobileSidebarOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" />
       )}
-      
+
       {/* Sidebar - sticky */}
       <div className={`sidebar-container fixed lg:sticky top-0 left-0 h-screen z-50 transform transition-transform duration-300 ease-in-out ${
         isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
@@ -205,36 +252,107 @@ function App() {
             toggleSidebar={toggleSidebar} 
             onToggleMobileSidebar={toggleMobileSidebar}
             darkMode={false} // Add this if you're implementing dark mode
-            onToggleDarkMode={() => {}} // Add your dark mode toggle function here
+            onToggleDarkMode={() => {}} // Add this if you're implementing dark mode
+            handleLogout={logout}
           />
         </div>
         
         {/* Main content */}
         <main className="flex-1 overflow-y-auto bg-gray-50 p-4">
-          <Routes>
-            <Route path="/" element={<AdminDashboard />} />
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+      <Routes>
+        {/* Public routes */}
+        <Route 
+          path="/login" 
+          element={
+            isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login onLogin={login} />
+          } 
+        />
+        {/* Protected routes with layout */}
+        <Route element={
+          isAuthenticated ? (
+            <AuthenticatedLayout>
+              <Outlet />
+            </AuthenticatedLayout>
+          ) : (
+            <Navigate to="/login" state={{ from: location.pathname }} replace />
+          )
+        }>
+
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/attendance" element={<Attendance />} />
+            <Route path="/leave" element={<Leave />} />
+            <Route path="/payroll" element={<Payroll />} />
             <Route path="/view-analytics" element={
-              <MeetingsLayout>
-                <ViewAnalytics />
-              </MeetingsLayout>
+              <ProtectedRoute>
+                <MeetingsLayout>
+                  <ViewAnalytics />
+                </MeetingsLayout>
+              </ProtectedRoute>
             } />
-            <Route path="/shift-management" element={<ShiftManagement/>} />
-            <Route path="/overtime-hours" element={<OvertimeHours />} />
-            <Route path="/holiday-management" element={<HolidayManagement/>} />
-            <Route path="/punch-records" element={<PunchRecords/>} />
+            <Route path="/shift-management" element={
+              <ProtectedRoute>
+                <ShiftManagement navigate={navigate} />
+              </ProtectedRoute>
+            } />
+            <Route path="/shift-details" element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/overtime-hours" element={
+              <ProtectedRoute>
+                <OvertimeHours />
+              </ProtectedRoute>
+            } />
+            <Route path="/holiday-management" element={
+              <ProtectedRoute>
+                <HolidayManagement onNavigate={navigate} />
+              </ProtectedRoute>
+            } />
+            <Route path="/punch-records" element={
+              <ProtectedRoute>
+                <PunchRecords onNavigate={navigate} />
+              </ProtectedRoute>
+            } />
             <Route path="/policy-rules" element={
-              <MeetingsLayout>
-                <PolicyRules navigate={navigate} />
-              </MeetingsLayout>
+              <ProtectedRoute>
+                <MeetingsLayout>
+                  <PolicyRules navigate={navigate} />
+                </MeetingsLayout>
+              </ProtectedRoute>
             } />
-            <Route path="/leave-tracking" element={<LeaveTracking/>} />
-            <Route path="/employee-attendance-profile" element={<EmployeeAttendanceProfile />}/>
-            <Route path="/attendance-calendar" element={<AttendanceCalendar/>}/>
-            <Route path="/leave" element={<Leave />} /> 
+            <Route path="/leave-tracking" element={
+              <ProtectedRoute>
+                <LeaveTracking onNavigate={navigate} />
+              </ProtectedRoute>
+            } />
+            <Route path="/employee-attendance-profile" element={
+              <ProtectedRoute>
+                <EmployeeAttendanceProfile />
+              </ProtectedRoute>
+            }/>
+            <Route path="/attendance-calendar" element={
+              <ProtectedRoute>
+                <AttendanceCalendar onNavigate={navigate}/>
+              </ProtectedRoute>
+            }/>
+            <Route path="/leave" element={
+              <ProtectedRoute>
+                <Leave />
+              </ProtectedRoute>
+            } /> 
             <Route path="/payroll" element={<Payroll />} />
             <Route path="/edit-profile" element={
               <MeetingsLayout>
@@ -269,7 +387,15 @@ function App() {
               </MeetingsLayout>
             } />
             <Route path="/add-employee" element={<AddEmployee />} />
-
+            <Route path="/edit-meeting" element={<EditMeeting />} />
+<Route
+  path="/meeting-details"
+  element={
+    <ProtectedRoute>
+      <MeetingDetails />
+    </ProtectedRoute>
+  }
+/>
             {/* VSLM DASHBAORD */}
 
               <Route path="/all-projects" element={
@@ -289,19 +415,16 @@ function App() {
               <Route path="/uploaded-images" element={<UploadedImages />} />
               <Route path="/project-timeline" element={<ProjectTimeline />} />
               <Route path="/project-details" element={<ProjectDetails />} />
-              <Route path="/site-visit-log" element={<SiteVisitLog />} />
-              <Route path="/vslm-analytics" element={<VSLMAnalytics />} />
-              <Route path="/project-reports" element={<ProjectReports />} /> 
-
-
-            
+              <Route path="/site-visit-log" element={<SiteVisitLog onNavigate={navigate} />} />
+              <Route path="/vslm-analytics" element={<VSLMAnalytics onNavigate={navigate} />} />
+              <Route path="/project-reports" element={<ProjectReports onNavigate={navigate} />} /> 
             {/* Task Management Routes */}
             <Route path="/task-dashboard" element={<TaskDashboard />} />
             <Route path="/task-projects" element={<TaskProjects />} />
             <Route path="/task-kanban" element={<TaskKanban />} />
             <Route path="/new-task" element={<AddNewTask />} />
             <Route path="/task-details" element={<TaskDetails />} />
-            <Route path="/subtasks-management" element={<SubtasksManagement />} />
+            
             <Route path="/task-dependencies" element={<TaskDependencies />} />
             <Route path="/task-assignment" element={<TaskAssignment />} />
             <Route path="/task-timeline" element={<TaskTimeline />} />
@@ -312,10 +435,9 @@ function App() {
             } />
             <Route path="/subtasks-management" element={<SubtasksManagement />} />
             <Route path="/task-assignment" element={<TaskAssignment />} />
+            <Route path="/task-analytics" element={<TaskAnalytics />} />
             <Route path="/task-timeline" element={<TaskTimeline />} />
             <Route path="/task-details" element={<TaskDetails />} />
-
-
             {/* Meeting Routes */}
             <Route path="/meetings-attachments" element={<MeetingAttachments />} />
             <Route path="/meeting-reports" element={
@@ -372,7 +494,7 @@ function App() {
             } />
             <Route path="/meetings" element={
               <MeetingsLayout>
-                <MeetingDetails />
+                <AllMeetings />
               </MeetingsLayout>
             } />
             <Route path="/edit-meeting" element={
@@ -390,27 +512,33 @@ function App() {
             <Route path="/new-job-opening" element={<NewJobOpening />} />
             <Route path="/job-opening-details" element={<JobOpeningDetails />} />
             <Route path="/edit-job-opening" element={<EditJobOpening />} />
-            <Route path="/applicants-list" element={<ApplicantsList />} />
+            <Route path="/applicants-list" element={<ApplicantsList onNavigate={navigate} />} />
             <Route path="/interview-calendar" element={<InterviewCalendar />} />
             <Route path="/new-interview" element={<NewInterview />} />
             <Route path="/applicant-progress" element={<ApplicantProgress />} />
             <Route path="/applicant-details" element={<ApplicantDetails />} />
             <Route path="/interviews-list" element={<InterviewsList />} />
+            <Route path="/interview-details" element={<InterviewDetails />} />
             <Route path="/applicant-resume" element={<ApplicantResume />} />
                         <Route path="/interviews" element={<InterviewsList />} />
 
-          </Routes>
-        </main>
-              <Footer />
+          <Route path="*" element={
+            <MeetingsLayout>
+              <div className="flex flex-col min-h-screen">
+                <main className="flex-grow">
+                  <h1>404 - Page Not Found</h1>
+                  <p>The page you're looking for doesn't exist.</p>
+                </main>
+                <Footer />
+              </div>
+            </MeetingsLayout>
+          } />
+          </Route>
+        </Routes>
 
-      </div>
-
-
-
-
-
-    </div>
-  );
+      
+  </AuthContext.Provider>
+);
 }
 
 export default App;

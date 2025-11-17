@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Search, Filter, Download, Clock, Edit3, AlertCircle, CheckCircle, Calendar, Eye, MoreHorizontal } from 'lucide-react';
+import { EmployeePunchTable } from '../PunchInRecords/EmployeePunchTable';
+import { SummaryCards } from '../PunchInRecords/SummaryCards';
+import { punchRecords } from '../PunchInRecords/punchRecordsData';
 
 export const PunchRecords = ({ onNavigate }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -8,98 +11,6 @@ export const PunchRecords = ({ onNavigate }) => {
   const [selectedRecords, setSelectedRecords] = useState([]);
   const [showActions, setShowActions] = useState(null);
 
-  const punchRecords = [
-    {
-      id: 1,
-      employee: 'John Doe',
-      employeeId: 'EMP001',
-      avatar: 'JD',
-      date: '2024-03-15',
-      punchIn: '09:00 AM',
-      punchOut: '06:15 PM',
-      totalHours: '9h 15m',
-      overtime: '1h 15m',
-      status: 'complete',
-      location: 'Office',
-      notes: '',
-      department: 'IT'
-    },
-    {
-      id: 2,
-      employee: 'Sarah Wilson',
-      employeeId: 'EMP002',
-      avatar: 'SW',
-      date: '2024-03-15',
-      punchIn: '09:15 AM',
-      punchOut: '06:00 PM',
-      totalHours: '8h 45m',
-      overtime: '0h',
-      status: 'late',
-      location: 'Office',
-      notes: 'Traffic delay',
-      department: 'HR'
-    },
-    {
-      id: 3,
-      employee: 'Mike Johnson',
-      employeeId: 'EMP003',
-      avatar: 'MJ',
-      date: '2024-03-15',
-      punchIn: '08:45 AM',
-      punchOut: '',
-      totalHours: '7h 30m',
-      overtime: '0h',
-      status: 'incomplete',
-      location: 'WFH',
-      notes: 'Forgot to punch out',
-      department: 'Support'
-    },
-    {
-      id: 4,
-      employee: 'Emma Brown',
-      employeeId: 'EMP004',
-      avatar: 'EB',
-      date: '2024-03-15',
-      punchIn: '09:30 AM',
-      punchOut: '05:45 PM',
-      totalHours: '8h 15m',
-      overtime: '0h',
-      status: 'late',
-      location: 'Office',
-      notes: 'Medical appointment',
-      department: 'Design'
-    },
-    {
-      id: 5,
-      employee: 'David Lee',
-      employeeId: 'EMP005',
-      avatar: 'DL',
-      date: '2024-03-15',
-      punchIn: '08:55 AM',
-      punchOut: '06:30 PM',
-      totalHours: '9h 35m',
-      overtime: '1h 35m',
-      status: 'complete',
-      location: 'Office',
-      notes: '',
-      department: 'Development'
-    },
-    {
-      id: 6,
-      employee: 'Lisa Chen',
-      employeeId: 'EMP006',
-      avatar: 'LC',
-      date: '2024-03-15',
-      punchIn: '',
-      punchOut: '',
-      totalHours: '0h',
-      overtime: '0h',
-      status: 'absent',
-      location: '',
-      notes: 'Sick leave applied',
-      department: 'Marketing'
-    }
-  ];
 
   const handleSelectRecord = (recordId) => {
     setSelectedRecords(prev => 
@@ -173,7 +84,7 @@ export const PunchRecords = ({ onNavigate }) => {
 
   // Layout: Interactive Table with Action Buttons and Enhanced Cards
   return (
-    <div className="p-8 bg-[#FDFAFA] min-h-screen">
+    <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Punch In/Out Records</h1>
@@ -187,7 +98,7 @@ export const PunchRecords = ({ onNavigate }) => {
           <div className="flex flex-col sm:flex-row gap-4 flex-1">
             {/* Enhanced Search */}
             <div className="relative flex-1 max-w-md">
-              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#CA2030]" />
+              <Search size={20} className="absolute left-4 top-3.5 text-[#CA2030]" />
               <input
                 type="text"
                 placeholder="Search by name or employee ID..."
@@ -198,31 +109,45 @@ export const PunchRecords = ({ onNavigate }) => {
             </div>
 
             {/* Date Filter */}
-            <select 
-              value={dateFilter}
-              onChange={(e) => setDateFilter(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
-            >
-              <option value="today">Today</option>
-              <option value="yesterday">Yesterday</option>
-              <option value="this-week">This Week</option>
-              <option value="last-week">Last Week</option>
-              <option value="this-month">This Month</option>
-              <option value="custom">Custom Range</option>
-            </select>
+            <div className="relative">
+              <select 
+                value={dateFilter}
+                onChange={(e) => setDateFilter(e.target.value)}
+                className="neu-input pl-4 pr-8 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all appearance-none"
+              >
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="this-week">This Week</option>
+                <option value="last-week">Last Week</option>
+                <option value="this-month">This Month</option>
+                <option value="custom">Custom Range</option>
+              </select>
+              <div className="absolute right-3 top-[65%] -translate-y-1/2 pointer-events-none">
+                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
 
             {/* Status Filter */}
-            <select 
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
-            >
-              <option value="all">All Status</option>
-              <option value="complete">Complete</option>
-              <option value="late">Late</option>
-              <option value="incomplete">Incomplete</option>
-              <option value="absent">Absent</option>
-            </select>
+            <div className="relative">
+              <select 
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="neu-input pl-4 pr-8 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all appearance-none"
+              >
+                <option value="all">All Status</option>
+                <option value="complete">Complete</option>
+                <option value="late">Late</option>
+                <option value="incomplete">Incomplete</option>
+                <option value="absent">Absent</option>
+              </select>
+              <div className="absolute right-3 top-[65%] -translate-y-1/2 pointer-events-none">
+                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
           </div>
 
           {/* Right side - Actions */}
@@ -238,195 +163,21 @@ export const PunchRecords = ({ onNavigate }) => {
           </div>
         </div>
       </div>
-
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="neu-card p-6 rounded-2xl group hover:shadow-lg transition-all">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-[#333333] group-hover:text-[#CA2030] transition-colors">142</h3>
-              <p className="text-[#666666] text-sm">Total Records</p>
-            </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#CA2030] to-[#d4471f]">
-              <Clock size={24} className="text-black" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="neu-card p-6 rounded-2xl group hover:shadow-lg transition-all">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-green-600 group-hover:scale-105 transition-transform">128</h3>
-              <p className="text-[#666666] text-sm">Complete</p>
-            </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-green-400 to-green-600">
-              <CheckCircle size={24} className="text-black" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="neu-card p-6 rounded-2xl group hover:shadow-lg transition-all">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-[#2C318E] group-hover:scale-105 transition-transform">8</h3>
-              <p className="text-[#666666] text-sm">Incomplete</p>
-            </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#2C318E] to-[#048ba8]">
-              <AlertCircle size={24} className="text-black" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="neu-card p-6 rounded-2xl group hover:shadow-lg transition-all">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-[#333333] group-hover:text-[#CA2030] transition-colors">6</h3>
-              <p className="text-[#666666] text-sm">Need Review</p>
-            </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600">
-              <Edit3 size={24} className="text-black" />
-            </div>
-          </div>
-        </div>
-      </div>
-
+     <SummaryCards />
       {/* Enhanced Records Table */}
-      <div className="neu-card rounded-2xl overflow-hidden shadow-lg">
-        <div className="p-6 border-b border-[#E8EBEF] bg-gradient-to-r from-[#ECF0F3] to-[#E8EBEF]">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-[#333333]">Employee Punch Records</h2>
-            <div className="flex items-center gap-4">
-              <span className="text-[#666666] text-sm">
-                Showing {filteredRecords.length} of {punchRecords.length} records
-              </span>
-              <label className="flex items-center group cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={selectedRecords.length === filteredRecords.length && filteredRecords.length > 0}
-                  onChange={handleSelectAll}
-                  className="mr-2 w-4 h-4 text-[#CA2030] bg-gray-100 border-gray-300 rounded focus:ring-[#CA2030] focus:ring-2"
-                />
-                <span className="text-sm text-[#666666] group-hover:text-[#CA2030] transition-colors">Select All</span>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gradient-to-r from-[#E8EBEF] to-[#ECF0F3]">
-              <tr>
-                <th className="px-6 py-4 text-left">
-                  <input
-                    type="checkbox"
-                    checked={selectedRecords.length === filteredRecords.length && filteredRecords.length > 0}
-                    onChange={handleSelectAll}
-                    className="w-4 h-4 text-[#CA2030] bg-gray-100 border-gray-300 rounded focus:ring-[#CA2030] focus:ring-2"
-                  />
-                </th>
-                <th className="px-6 py-4 text-left text-[#333333] font-semibold">Employee</th>
-                <th className="px-6 py-4 text-left text-[#333333] font-semibold">Date</th>
-                <th className="px-6 py-4 text-left text-[#333333] font-semibold">Punch In</th>
-                <th className="px-6 py-4 text-left text-[#333333] font-semibold">Punch Out</th>
-                <th className="px-6 py-4 text-left text-[#333333] font-semibold">Total Hours</th>
-                <th className="px-6 py-4 text-left text-[#333333] font-semibold">Overtime</th>
-                <th className="px-6 py-4 text-left text-[#333333] font-semibold">Status</th>
-                <th className="px-6 py-4 text-left text-[#333333] font-semibold">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredRecords.map((record, index) => (
-                <tr 
-                  key={record.id} 
-                  className={`border-b border-[#E8EBEF] hover:bg-gradient-to-r hover:from-[#ECF0F3] hover:to-[#E8EBEF] transition-all duration-200 ${
-                    index % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFB]'
-                  } ${selectedRecords.includes(record.id) ? 'ring-2 ring-[#CA2030] bg-orange-50' : ''}`}
-                >
-                  <td className="px-6 py-4">
-                    <input
-                      type="checkbox"
-                      checked={selectedRecords.includes(record.id)}
-                      onChange={() => handleSelectRecord(record.id)}
-                      className="w-4 h-4 text-[#CA2030] bg-gray-100 border-gray-300 rounded focus:ring-[#CA2030] focus:ring-2"
-                    />
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center">
-                      <div className="neu-small w-10 h-10 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-[#CA2030] to-[#d4471f] text-black font-semibold">
-                        {record.avatar}
-                      </div>
-                      <div>
-                        <div className="font-semibold text-[#333333]">{record.employee}</div>
-                        <div className="text-[#666666] text-sm">{record.employeeId}</div>
-                        <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium mt-1 ${getDepartmentColor(record.department)}`}>
-                          {record.department}
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-[#333333] font-medium">{record.date}</td>
-                  <td className="px-6 py-4">
-                    <span className={`font-medium ${record.punchIn ? 'text-[#333333]' : 'text-[#666666]'}`}>
-                      {record.punchIn || '--'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`font-medium ${record.punchOut ? 'text-[#333333]' : 'text-[#666666]'}`}>
-                      {record.punchOut || '--'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-[#333333] font-bold">{record.totalHours}</td>
-                  <td className="px-6 py-4">
-                    <span className={`font-bold ${record.overtime !== '0h' ? 'text-[#2C318E]' : 'text-[#666666]'}`}>
-                      {record.overtime}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    {getStatusBadge(record.status)}
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center space-x-2">
-                      <button className="neu-small p-2 rounded-lg hover:text-[#CA2030] hover:shadow-md transition-all">
-                        <Edit3 size={14} />
-                      </button>
-                      <button 
-                        onClick={() => onNavigate('employee-attendance-profile', { employeeId: record.employeeId })}
-                        className="neu-small p-2 rounded-lg hover:text-[#2C318E] hover:shadow-md transition-all"
-                      >
-                        <Eye size={14} />
-                      </button>
-                      <button 
-                        onClick={() => setShowActions(showActions === record.id ? null : record.id)}
-                        className="neu-small p-2 rounded-lg hover:text-[#333333] hover:shadow-md transition-all"
-                      >
-                        <MoreHorizontal size={14} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Enhanced Pagination */}
-        <div className="p-6 border-t border-[#E8EBEF] bg-gradient-to-r from-[#ECF0F3] to-[#E8EBEF] flex items-center justify-between">
-          <div className="text-[#666666] text-sm">
-            Showing <span className="font-semibold text-[#333333]">1</span> to <span className="font-semibold text-[#333333]">{filteredRecords.length}</span> of <span className="font-semibold text-[#333333]">{punchRecords.length}</span> entries
-          </div>
-          <div className="flex items-center space-x-2">
-            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#CA2030] transition-colors">
-              Previous
-            </button>
-            <button className="neu-primary px-4 py-2 rounded-xl shadow-md">1</button>
-            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#CA2030] transition-colors">2</button>
-            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#CA2030] transition-colors">3</button>
-            <button className="neu-button px-4 py-2 rounded-xl text-[#666666] hover:text-[#CA2030] transition-colors">
-              Next
-            </button>
-          </div>
-        </div>
-      </div>
+   <EmployeePunchTable
+  filteredRecords={filteredRecords}
+  selectedRecords={selectedRecords}
+  handleSelectRecord={handleSelectRecord}
+  handleSelectAll={handleSelectAll}
+  onNavigate={onNavigate}
+  showActions={showActions}
+  setShowActions={setShowActions}
+  punchRecords={punchRecords}
+  getStatusBadge={getStatusBadge}
+  getDepartmentColor={getDepartmentColor}
+/>
     </div>
   );
 };

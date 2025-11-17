@@ -8,7 +8,7 @@ const attachments = [
     name: 'Sprint_Planning_Q1_2024.pdf',
     type: 'PDF',
     size: '2.4 MB',
-    uploadedBy: 'John Doe',
+    uploadedBy: 'Lion',
     uploadDate: '2024-01-15',
     meetingTitle: 'Weekly Team Standup',
     meetingDate: '2024-01-15',
@@ -164,7 +164,7 @@ export const MeetingAttachments = () => {
   });
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

@@ -12,7 +12,7 @@ const projects = [
     progress: 75,
     startDate: '2024-01-15',
     endDate: '2024-06-30',
-    manager: 'John Doe',
+    manager: 'Lion',
     team: ['Alice Johnson', 'Bob Smith', 'Carol Davis'],
     budget: 2500000,
     image: '/placeholder-project.jpg',
@@ -43,7 +43,7 @@ const projects = [
     startDate: '2023-11-20',
     endDate: '2024-05-15',
     manager: 'Alice Johnson',
-    team: ['John Doe', 'Emma Garcia', 'Frank Wilson'],
+    team: ['Lion', 'Emma Garcia', 'Frank Wilson'],
     budget: 1800000,
     image: '/placeholder-project.jpg',
     lastUpdate: '2024-01-10'
@@ -73,7 +73,7 @@ const projects = [
     startDate: '2024-01-01',
     endDate: '2024-08-15',
     manager: 'Carol Davis',
-    team: ['John Doe', 'Jane Smith', 'Mike Johnson'],
+    team: ['Lion', 'Jane Smith', 'Mike Johnson'],
     budget: 5600000,
     image: '/placeholder-project.jpg',
     lastUpdate: '2024-01-18'
@@ -134,7 +134,7 @@ export const AllProjectsGrid = ({ onNavigate }) => {
   const uniqueClients = [...new Set(projects.map(project => project.client))];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

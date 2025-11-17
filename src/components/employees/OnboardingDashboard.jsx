@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { Plus, Users, Clock, CheckCircle, AlertTriangle, Calendar, TrendingUp, FileText, User, Award } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { OnboardingTrends } from '../OnBoarding/OnboardingTrends';
+import { DepartmentDistribution } from '../OnBoarding/DepartmentDistribution';
+import { RecentOnboarding } from '../OnBoarding/RecentOnboarding';
+import { UpcomingTasks } from '../OnBoarding/UpcomingTasks';
+import { OnboardingStages } from '../OnBoarding/OnboardingStages';
 
 export const OnboardingDashboard = ({ onNavigate }) => {
   const [selectedPeriod, setSelectedPeriod] = useState('30');
@@ -138,97 +143,104 @@ export const OnboardingDashboard = ({ onNavigate }) => {
   };
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
-      <div className="neu-card p-8 rounded-3xl">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-4xl font-bold text-[#333333] mb-2">Onboarding Dashboard</h1>
-            <p className="text-[#666666] text-lg">Track new employee onboarding progress and metrics</p>
+      <div className="neu-card p-4 sm:p-6 md:p-8 rounded-3xl">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div className='mb-4 sm:mb-0'>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-1 sm:mb-2">Onboarding Dashboard</h1>
+            <p className="text-[#666666] text-sm sm:text-base md:text-lg">Track new employee onboarding progress and metrics</p>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto ">
             <button
               onClick={() => onNavigate?.('onboarding-new')}
-              className="neu-primary px-6 py-3 rounded-2xl flex items-center space-x-2 hover:scale-105 transition-transform"
+              className="neu-primary px-4 sm:px-6 py-2 sm:py-3 rounded-2xl flex items-center justify-center space-x-2 hover:scale-105 transition-transform w-full sm:w-auto"
             >
               <Plus size={20} />
               <span>Start Onboarding</span>
             </button>
-            <select
-              value={selectedPeriod}
-              onChange={(e) => setSelectedPeriod(e.target.value)}
-              className="neu-input px-4 py-3 rounded-2xl text-[#333333]"
-            >
-              <option value="7">Last 7 days</option>
-              <option value="30">Last 30 days</option>
-              <option value="90">Last 90 days</option>
-              <option value="365">Last year</option>
-            </select>
+            <div className="relative">
+              <select
+                value={selectedPeriod}
+                onChange={(e) => setSelectedPeriod(e.target.value)}
+                className="neu-input pl-4 pr-10 py-3 rounded-2xl text-[#333333] appearance-none focus:ring-2 focus:ring-[#05A7CC] transition-all"
+              >
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+                <option value="90">Last 90 days</option>
+                <option value="365">Last year</option>
+              </select>
+              <div className="absolute right-3 top-[65%] -translate-y-1/2 pointer-events-none">
+                <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="neu-small p-6 rounded-2xl">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 neu-primary rounded-xl flex items-center justify-center">
-                <Users className="w-6 h-6 text-white" />
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div className="neu-small p-4 sm:p-5 md:p-6 rounded-2xl">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 neu-primary rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div className="text-right">
-                <div className="text-3xl font-bold text-[#333333]">{onboardingStats.total}</div>
-                <div className="text-sm text-[#4CAF50] font-medium">+6 this month</div>
+              <div className="text-right ml-2">
+                <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.total}</div>
+                <div className="text-xs sm:text-sm text-[#2C318E] font-medium">+12% from last month</div>
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-[#333333] mb-1">Total Onboarding</h3>
-              <div className="text-xs text-[#666666]">New employees this period</div>
+              <h3 className="font-medium text-[#333333] text-sm sm:text-base mb-1">Total Onboarded</h3>
+              <div className="text-xs text-[#666666]">This year</div>
             </div>
           </div>
 
-          <div className="neu-small p-6 rounded-2xl">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 neu-secondary rounded-xl flex items-center justify-center">
-                <Clock className="w-6 h-6 text-white" />
+          <div className="neu-small p-4 sm:p-5 md:p-6 rounded-2xl">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 neu-secondary rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div className="text-right">
-                <div className="text-3xl font-bold text-[#333333]">{onboardingStats.inProgress}</div>
-                <div className="text-sm text-[#2C318E] font-medium">In progress</div>
+              <div className="text-right ml-2">
+                <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.inProgress}</div>
+                <div className="text-xs sm:text-sm text-[#2C318E] font-medium">In progress</div>
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-[#333333] mb-1">Active Onboarding</h3>
+              <h3 className="font-medium text-[#333333] text-sm sm:text-base mb-1">Active Onboarding</h3>
               <div className="text-xs text-[#666666]">Currently in process</div>
             </div>
           </div>
 
-          <div className="neu-small p-6 rounded-2xl">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-white" />
+          <div className="neu-small p-4 sm:p-5 md:p-6 rounded-2xl">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div className="text-right">
-                <div className="text-3xl font-bold text-[#333333]">{onboardingStats.completionRate}%</div>
-                <div className="text-sm text-[#4CAF50] font-medium">+3% vs last month</div>
+              <div className="text-right ml-2">
+                <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.completionRate}%</div>
+                <div className="text-xs sm:text-sm text-[#4CAF50] font-medium">+3% vs last month</div>
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-[#333333] mb-1">Completion Rate</h3>
+              <h3 className="font-medium text-[#333333] text-sm sm:text-base mb-1">Completion Rate</h3>
               <div className="text-xs text-[#666666]">Successfully completed</div>
             </div>
           </div>
 
-          <div className="neu-small p-6 rounded-2xl">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-white" />
+          <div className="neu-small p-4 sm:p-5 md:p-6 rounded-2xl">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div className="text-right">
-                <div className="text-3xl font-bold text-[#333333]">{onboardingStats.averageDuration}</div>
-                <div className="text-sm text-[#4CAF50] font-medium">-2 days improved</div>
+              <div className="text-right ml-2">
+                <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.averageDuration}</div>
+                <div className="text-xs sm:text-sm text-[#4CAF50] font-medium">-2 days improved</div>
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-[#333333] mb-1">Avg. Duration</h3>
+              <h3 className="font-medium text-[#333333] text-sm sm:text-base mb-1">Avg. Duration</h3>
               <div className="text-xs text-[#666666]">Days to complete</div>
             </div>
           </div>
@@ -236,214 +248,38 @@ export const OnboardingDashboard = ({ onNavigate }) => {
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {/* Onboarding Trends */}
-        <div className="neu-card p-8 rounded-3xl">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-[#333333] mb-2">Onboarding Trends</h3>
-            <p className="text-[#666666]">Monthly new hires and completion rate</p>
+        <div className="neu-card p-4 sm:p-6 md:p-8 rounded-3xl">
+          <div className="mb-4 sm:mb-6">
+            <h3 className="text-lg sm:text-xl font-bold text-[#333333] mb-1 sm:mb-2">Onboarding Trends</h3>
+            <p className="text-sm sm:text-base text-[#666666]">Monthly new hires and completion rate</p>
           </div>
-          <div className="neu-card-inset p-4 rounded-2xl">
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={onboardingTrends}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#d1d9e6" />
-                <XAxis dataKey="month" stroke="#666666" />
-                <YAxis stroke="#666666" />
-                <Tooltip 
-                  contentStyle={{
-                    backgroundColor: '#ECF0F3',
-                    border: 'none',
-                    borderRadius: '12px',
-                    boxShadow: '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff'
-                  }}
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="new" 
-                  stroke="#CA2030" 
-                  strokeWidth={3}
-                  dot={{ fill: '#CA2030', strokeWidth: 2, r: 6 }}
-                  name="New Hires"
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="completed" 
-                  stroke="#2C318E" 
-                  strokeWidth={3}
-                  dot={{ fill: '#2C318E', strokeWidth: 2, r: 6 }}
-                  name="Completed"
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+          <OnboardingTrends data={onboardingTrends} />
         </div>
 
         {/* Department Distribution */}
-        <div className="neu-card p-8 rounded-3xl">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-[#333333] mb-2">Department Distribution</h3>
-            <p className="text-[#666666]">New hires by department</p>
-          </div>
-          <div className="neu-card-inset p-4 rounded-2xl">
-            <ResponsiveContainer width="100%" height={200}>
-              <PieChart>
-                <Pie
-                  data={departmentOnboarding}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={40}
-                  outerRadius={80}
-                  paddingAngle={5}
-                  dataKey="count"
-                >
-                  {departmentOnboarding.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip 
-                  contentStyle={{
-                    backgroundColor: '#ECF0F3',
-                    border: 'none',
-                    borderRadius: '12px',
-                    boxShadow: '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff'
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-            <div className="grid grid-cols-2 gap-2 mt-4">
-              {departmentOnboarding.map((item, index) => (
-                <div key={index} className="flex items-center">
-                  <div 
-                    className="w-3 h-3 rounded-full mr-2" 
-                    style={{ backgroundColor: item.color }}
-                  ></div>
-                  <span className="text-xs text-[#666666]">{item.department} ({item.count})</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <DepartmentDistribution data={departmentOnboarding} />
       </div>
 
       {/* Bottom Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mt-6 sm:mt-8">
         {/* Recent Onboarding */}
-        <div className="lg:col-span-2 neu-card p-8 rounded-3xl">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h3 className="text-xl font-bold text-[#333333] mb-2">Recent Onboarding</h3>
-              <p className="text-[#666666]">Latest employee onboarding progress</p>
-            </div>
-            <button
-              onClick={() => onNavigate?.('onboarding-checklist')}
-              className="neu-button px-4 py-2 rounded-2xl flex items-center space-x-2 hover:text-[#2C318E] transition-colors"
-            >
-              <FileText size={16} />
-              <span>View All</span>
-            </button>
-          </div>
-          
-          <div className="space-y-4">
-            {recentOnboarding.map((employee) => (
-              <div key={employee.id} className="neu-small p-6 rounded-2xl">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 neu-gradient rounded-full flex items-center justify-center">
-                      <span className="font-bold text-[#2C318E]">
-                        {employee.name.split(' ').map(n => n[0]).join('')}
-                      </span>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-[#333333]">{employee.name}</h4>
-                      <p className="text-sm text-[#666666]">{employee.designation}</p>
-                      <p className="text-xs text-[#999999]">{employee.department} • Started {new Date(employee.startDate).toLocaleDateString()}</p>
-                    </div>
-                  </div>
-
-                  <div className="text-right">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(employee.status)}`}>
-                      {employee.status}
-                    </span>
-                    <div className="mt-2">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-20 h-2 bg-[#E8EBEF] rounded-full">
-                          <div 
-                            className="h-2 bg-[#2C318E] rounded-full transition-all duration-300"
-                            style={{ width: `${employee.progress}%` }}
-                          ></div>
-                        </div>
-                        <span className="text-xs text-[#666666]">{employee.progress}%</span>
-                      </div>
-                      <p className="text-xs text-[#999999] mt-1">Current: {employee.stage}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
+        <RecentOnboarding
+          data={recentOnboarding}
+          onNavigate={onNavigate}
+          getStatusColor={getStatusColor}
+        />
         {/* Upcoming Tasks */}
-        <div className="neu-card p-8 rounded-3xl">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-[#333333] mb-2">Upcoming Tasks</h3>
-            <p className="text-[#666666]">Pending onboarding tasks</p>
-          </div>
-          
-          <div className="space-y-4">
-            {upcomingTasks.map((task) => (
-              <div key={task.id} className="neu-small p-4 rounded-2xl">
-                <div className="mb-2">
-                  <h4 className="font-medium text-[#333333] text-sm">{task.task}</h4>
-                  <p className="text-xs text-[#666666]">For: {task.employee}</p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <Calendar size={12} className="text-[#666666]" />
-                    <span className="text-xs text-[#666666]">{new Date(task.dueDate).toLocaleDateString()}</span>
-                  </div>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(task.priority)}`}>
-                    {task.priority}
-                  </span>
-                </div>
-                <p className="text-xs text-[#999999] mt-2">Assigned to: {task.assignee}</p>
-              </div>
-            ))}
-          </div>
-
-          <button className="w-full neu-button p-3 rounded-2xl mt-4 hover:text-[#CA2030] transition-colors">
-            View All Tasks
-          </button>
-        </div>
+        <UpcomingTasks
+    tasks={upcomingTasks}
+    getPriorityColor={getPriorityColor}
+  />
       </div>
 
       {/* Onboarding Stages */}
-      <div className="neu-card p-8 rounded-3xl">
-        <div className="mb-6">
-          <h3 className="text-xl font-bold text-[#333333] mb-2">Current Onboarding Stages</h3>
-          <p className="text-[#666666]">Breakdown of employees by onboarding stage</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-          {onboardingStages.map((stage, index) => (
-            <div key={index} className="neu-small p-6 rounded-2xl text-center">
-              <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
-                stage.stage === 'Completed' ? 'neu-primary' : 'neu-secondary'
-              }`}>
-                <span className="text-2xl font-bold text-white">{stage.count}</span>
-              </div>
-              <h4 className="font-bold text-[#333333] mb-2">{stage.stage}</h4>
-              <div className="w-full h-2 bg-[#E8EBEF] rounded-full mb-2">
-                <div 
-                  className="h-2 bg-[#2C318E] rounded-full transition-all duration-300"
-                  style={{ width: `${stage.percentage}%` }}
-                ></div>
-              </div>
-              <p className="text-sm text-[#666666]">{stage.percentage}%</p>
-            </div>
-          ))}
-        </div>
-      </div>
+     <OnboardingStages stages={onboardingStages} />
+
     </div>
   );
 };

@@ -6,7 +6,7 @@ const activities = [
   {
     id: '1',
     type: 'site_visit',
-    user: 'John Doe',
+    user: 'Lion',
     userRole: 'Project Manager',
     timestamp: '2024-01-18T14:30:00',
     title: 'Completed weekly site inspection',
@@ -66,7 +66,7 @@ const activities = [
   {
     id: '6',
     type: 'team_update',
-    user: 'John Doe',
+    user: 'Lion',
     userRole: 'Project Manager',
     timestamp: '2024-01-16T10:30:00',
     title: 'Team member added to project',
@@ -186,7 +186,7 @@ export const ProjectActivityFeed = ({ projectId, onNavigate }) => {
   const uniqueUsers = [...new Set(activities.map(activity => activity.user))].filter(user => user !== 'System');
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

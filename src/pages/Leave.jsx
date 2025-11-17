@@ -9,7 +9,7 @@ const Leave = () => {
   const leaveRequests = [
     { 
       id: 1, 
-      employee: 'John Doe', 
+      employee: 'Lion', 
       type: 'Sick Leave', 
       from: '2025-09-15', 
       to: '2025-09-17', 

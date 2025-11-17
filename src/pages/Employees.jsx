@@ -6,7 +6,7 @@ const Employees = () => {
   
   // Sample employee data
   const employees = [
-    { id: 1, name: 'John Doe', position: 'Software Engineer', department: 'Engineering', email: 'john@example.com', status: 'Active' },
+    { id: 1, name: 'Lion', position: 'Software Engineer', department: 'Engineering', email: 'john@example.com', status: 'Active' },
     { id: 2, name: 'Jane Smith', position: 'HR Manager', department: 'Human Resources', email: 'jane@example.com', status: 'Active' },
     { id: 3, name: 'Mike Johnson', position: 'Product Manager', department: 'Product', email: 'mike@example.com', status: 'Active' },
     { id: 4, name: 'Sarah Williams', position: 'UX Designer', department: 'Design', email: 'sarah@example.com', status: 'On Leave' },

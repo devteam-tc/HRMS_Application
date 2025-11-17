@@ -1,147 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Filter, Plus, User, Calendar, Flag, Paperclip, MessageCircle, Eye, MoreHorizontal } from 'lucide-react';
+import { BoardStatistics } from './Kanban/BoardStatistics';
+import { initialTasks, kanbanColumns } from '../task/data/taskData';
+import { KanbanBoard } from './Kanban/KanbanBoard';
 
 export const TaskKanban = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProject, setSelectedProject] = useState('all');
   const [draggedTask, setDraggedTask] = useState(null);
+  const [taskList, setTaskList] = useState(initialTasks);
 
-  const kanbanColumns = [
-    { id: 'todo', title: 'To Do', color: '#666666', count: 0 },
-    { id: 'in-progress', title: 'In Progress', color: '#2C318E', count: 0 },
-    { id: 'review', title: 'Review', color: '#FFC107', count: 0 },
-    { id: 'done', title: 'Done', color: '#4CAF50', count: 0 }
-  ];
+  // Define kanban columns at component level
+  
 
-  const tasks = [
-    {
-      id: 'TASK-001',
-      title: 'User Authentication System',
-      description: 'Implement OAuth 2.0 with social login options',
-      status: 'todo',
-      priority: 'high',
-      assignee: { name: 'John Doe', avatar: 'JD', color: '#CA2030' },
-      project: 'E-commerce Platform',
-      dueDate: '2024-03-25',
-      tags: ['Frontend', 'Security'],
-      attachments: 2,
-      comments: 5,
-      estimatedHours: 16,
-      completedHours: 0
-    },
-    {
-      id: 'TASK-002',
-      title: 'Database Schema Design',
-      description: 'Design and implement the database schema for user management',
-      status: 'in-progress',
-      priority: 'high',
-      assignee: { name: 'Sarah Wilson', avatar: 'SW', color: '#2C318E' },
-      project: 'E-commerce Platform',
-      dueDate: '2024-03-22',
-      tags: ['Backend', 'Database'],
-      attachments: 1,
-      comments: 3,
-      estimatedHours: 12,
-      completedHours: 8
-    },
-    {
-      id: 'TASK-003',
-      title: 'Payment Gateway Integration',
-      description: 'Integrate Stripe payment gateway with error handling',
-      status: 'in-progress',
-      priority: 'medium',
-      assignee: { name: 'Mike Johnson', avatar: 'MJ', color: '#4CAF50' },
-      project: 'E-commerce Platform',
-      dueDate: '2024-03-28',
-      tags: ['Backend', 'API'],
-      attachments: 0,
-      comments: 2,
-      estimatedHours: 20,
-      completedHours: 12
-    },
-    {
-      id: 'TASK-004',
-      title: 'Responsive UI Components',
-      description: 'Create reusable React components for mobile and desktop',
-      status: 'review',
-      priority: 'medium',
-      assignee: { name: 'Emma Brown', avatar: 'EB', color: '#9C27B0' },
-      project: 'Mobile App',
-      dueDate: '2024-03-20',
-      tags: ['Frontend', 'UI/UX'],
-      attachments: 3,
-      comments: 8,
-      estimatedHours: 24,
-      completedHours: 24
-    },
-    {
-      id: 'TASK-005',
-      title: 'API Documentation',
-      description: 'Complete API documentation using Swagger',
-      status: 'done',
-      priority: 'low',
-      assignee: { name: 'David Lee', avatar: 'DL', color: '#FFC107' },
-      project: 'API Gateway',
-      dueDate: '2024-03-15',
-      tags: ['Documentation', 'Backend'],
-      attachments: 1,
-      comments: 4,
-      estimatedHours: 8,
-      completedHours: 8
-    },
-    {
-      id: 'TASK-006',
-      title: 'Unit Testing Suite',
-      description: 'Write comprehensive unit tests for core modules',
-      status: 'todo',
-      priority: 'medium',
-      assignee: { name: 'Lisa Chen', avatar: 'LC', color: '#E91E63' },
-      project: 'API Gateway',
-      dueDate: '2024-03-30',
-      tags: ['Testing', 'QA'],
-      attachments: 0,
-      comments: 1,
-      estimatedHours: 16,
-      completedHours: 0
-    },
-    {
-      id: 'TASK-007',
-      title: 'Performance Optimization',
-      description: 'Optimize database queries and API response times',
-      status: 'in-progress',
-      priority: 'high',
-      assignee: { name: 'Tom Wilson', avatar: 'TW', color: '#795548' },
-      project: 'Data Analytics',
-      dueDate: '2024-03-26',
-      tags: ['Performance', 'Backend'],
-      attachments: 2,
-      comments: 6,
-      estimatedHours: 14,
-      completedHours: 6
-    },
-    {
-      id: 'TASK-008',
-      title: 'Security Audit',
-      description: 'Conduct security audit and fix vulnerabilities',
-      status: 'review',
-      priority: 'high',
-      assignee: { name: 'Anna Miller', avatar: 'AM', color: '#607D8B' },
-      project: 'Security System',
-      dueDate: '2024-03-24',
-      tags: ['Security', 'Audit'],
-      attachments: 4,
-      comments: 12,
-      estimatedHours: 18,
-      completedHours: 18
-    }
-  ];
-
-  // Update column counts
-  kanbanColumns.forEach(column => {
-    column.count = tasks.filter(task => task.status === column.id).length;
-  });
+  // Update column counts when tasks change
+  useEffect(() => {
+    kanbanColumns.forEach(column => {
+      column.count = taskList.filter(task => task.status === column.id).length;
+    });
+  }, [taskList]);
 
   const getPriorityColor = (priority) => {
     const colors = {
@@ -153,8 +32,14 @@ export const TaskKanban = () => {
   };
 
   const handleDragStart = (e, task) => {
+    e.dataTransfer.setData('text/plain', task.id);
     setDraggedTask(task);
     e.dataTransfer.effectAllowed = 'move';
+    e.currentTarget.classList.add('opacity-50');
+  };
+
+  const handleDragEnd = (e) => {
+    e.currentTarget.classList.remove('opacity-50');
   };
 
   const handleDragOver = (e) => {
@@ -162,21 +47,45 @@ export const TaskKanban = () => {
     e.dataTransfer.dropEffect = 'move';
   };
 
-  const handleDrop = (e, columnId) => {
+  const handleDragEnter = (e) => {
     e.preventDefault();
-    if (draggedTask && draggedTask.status !== columnId) {
-      // Here you would update the task status
-      console.log(`Moving task ${draggedTask.id} to ${columnId}`);
-      setDraggedTask(null);
-    }
+    e.currentTarget.classList.add('ring-2', 'ring-[#CA2030]');
+  };
+
+  const handleDragLeave = (e) => {
+    e.currentTarget.classList.remove('ring-2', 'ring-[#CA2030]');
+  };
+
+  const handleDrop = (e, targetStatus) => {
+    e.preventDefault();
+    e.currentTarget.classList.remove('ring-2', 'ring-[#CA2030]');
+    
+    if (!draggedTask || draggedTask.status === targetStatus) return;
+
+    // Update the task status in the state
+    setTaskList(prevTasks => 
+      prevTasks.map(task => 
+        task.id === draggedTask.id 
+          ? { ...task, status: targetStatus } 
+          : task
+      )
+    );
+    
+    // In a real app, you would make an API call here to update the task status in the backend
+    console.log(`Moving task ${draggedTask.id} to ${targetStatus}`);
+    
+    // Reset dragged task
+    setDraggedTask(null);
   };
 
   const TaskCard = ({ task }) => (
     <div
       draggable
       onDragStart={(e) => handleDragStart(e, task)}
-      className="neu-card p-4 rounded-xl mb-4 cursor-move hover:shadow-lg transition-all duration-200 group border-l-4"
-      style={{ borderLeftColor: getPriorityColor(task.priority) }}
+      onDragEnd={handleDragEnd}
+      className="p-4 rounded-xl mb-4 cursor-move transition-all duration-200 group border-l-4 draggable-task bg-white shadow-sm hover:shadow-md"
+      style={{ borderLeftColor: task.assignee.color }}
+      data-task-id={task.id}
     >
       {/* Task Header */}
       <div className="flex items-start justify-between mb-3">
@@ -190,7 +99,7 @@ export const TaskKanban = () => {
         </div>
         <div className="opacity-0 group-hover:opacity-100 transition-opacity">
           <button 
-            onClick={() => onNavigate('task-details', { taskId: task.id })}
+            onClick={() => navigate('/task-details', { taskId: task.id })}
             className="neu-small p-1 rounded-lg hover:text-[#CA2030] transition-colors"
           >
             <Eye size={12} />
@@ -275,14 +184,14 @@ export const TaskKanban = () => {
     </div>
   );
 
-  const filteredTasks = tasks.filter(task => {
+  const filteredTasks = taskList.filter(task => {
     const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          task.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesProject = selectedProject === 'all' || task.project === selectedProject;
     return matchesSearch && matchesProject;
   });
 
-  const projects = [...new Set(tasks.map(task => task.project))];
+  const projects = [...new Set(taskList.map(task => task.project))];
 
   // Layout: Kanban Board with Drag & Drop
   return (
@@ -299,7 +208,7 @@ export const TaskKanban = () => {
           <div className="flex flex-col sm:flex-row gap-4 flex-1">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#CA2030]" />
+              <Search size={20} className="absolute left-4 top-[60%] transform -translate-y-1/2 text-[#CA2030]" />
               <input
                 type="text"
                 placeholder="Search tasks..."
@@ -310,16 +219,23 @@ export const TaskKanban = () => {
             </div>
 
             {/* Project Filter */}
-            <select 
-              value={selectedProject}
-              onChange={(e) => setSelectedProject(e.target.value)}
-              className="neu-input px-4 py-3 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all"
-            >
-              <option value="all">All Projects</option>
-              {projects.map(project => (
-                <option key={project} value={project}>{project}</option>
-              ))}
-            </select>
+            <div className="relative">
+              <select 
+                value={selectedProject}
+                onChange={(e) => setSelectedProject(e.target.value)}
+                className="neu-input px-4 py-3 pr-10 rounded-xl text-[#333333] focus:ring-2 focus:ring-[#CA2030] transition-all appearance-none w-full min-w-[180px]"
+              >
+                <option value="all">All Projects</option>
+                {projects.map(project => (
+                  <option key={project} value={project}>{project}</option>
+                ))}
+              </select>
+              <div className="absolute right-3 top-[65%] -translate-y-1/2 pointer-events-none">
+                <svg className="w-4 h-4 text-[#CA2030]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
           </div>
 
           <div className="flex gap-3">
@@ -339,93 +255,19 @@ export const TaskKanban = () => {
       </div>
 
       {/* Kanban Board */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {kanbanColumns.map((column) => (
-          <div 
-            key={column.id} 
-            className="neu-card p-6 rounded-2xl h-fit"
-            onDragOver={handleDragOver}
-            onDrop={(e) => handleDrop(e, column.id)}
-          >
-            {/* Column Header */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center">
-                <div 
-                  className="w-4 h-4 rounded-full mr-3"
-                  style={{ backgroundColor: column.color }}
-                ></div>
-                <h3 className="text-lg font-bold text-[#333333]">{column.title}</h3>
-              </div>
-              <div 
-                className="px-3 py-1 rounded-full text-white text-sm font-medium neu-small"
-                style={{ backgroundColor: column.color }}
-              >
-                {filteredTasks.filter(task => task.status === column.id).length}
-              </div>
-            </div>
-
-            {/* Tasks in Column */}
-            <div className="space-y-4 min-h-96">
-              {filteredTasks
-                .filter(task => task.status === column.id)
-                .map(task => (
-                  <TaskCard key={task.id} task={task} />
-                ))}
-              
-              {/* Empty State */}
-              {filteredTasks.filter(task => task.status === column.id).length === 0 && (
-                <div className="neu-card-inset p-8 rounded-xl text-center">
-                  <div className="text-[#666666] mb-4">
-                    <div className="w-12 h-12 rounded-full bg-[#E8EBEF] flex items-center justify-center mx-auto mb-3">
-                      <Plus size={24} className="text-[#666666]" />
-                    </div>
-                    <p className="text-sm">No tasks in {column.title.toLowerCase()}</p>
-                    <p className="text-xs mt-1">Drag tasks here or create new ones</p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Add Task Button */}
-            <button 
-              onClick={() => onNavigate('add-new-task', { defaultStatus: column.id })}
-              className="w-full mt-6 neu-button py-3 rounded-xl flex items-center justify-center hover:text-[#CA2030] transition-colors group"
-            >
-              <Plus size={16} className="mr-2 group-hover:text-[#CA2030]" />
-              Add Task to {column.title}
-            </button>
-          </div>
-        ))}
-      </div>
-
+            <KanbanBoard
+          kanbanColumns={kanbanColumns}
+          filteredTasks={filteredTasks}
+          navigate={navigate}
+          TaskCard={TaskCard}
+          handleDragOver={handleDragOver}
+          handleDragEnter={handleDragEnter}
+          handleDragLeave={handleDragLeave}
+          handleDrop={handleDrop}
+        />
       {/* Kanban Stats */}
-      <div className="mt-8 neu-card p-6 rounded-2xl">
-        <h3 className="text-lg font-bold text-[#333333] mb-4">Board Statistics</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="neu-small p-4 rounded-xl text-center">
-            <div className="text-2xl font-bold text-[#333333] mb-1">{filteredTasks.length}</div>
-            <div className="text-[#666666] text-sm">Total Tasks</div>
-          </div>
-          <div className="neu-small p-4 rounded-xl text-center">
-            <div className="text-2xl font-bold text-[#2C318E] mb-1">
-              {filteredTasks.filter(t => t.status === 'in-progress').length}
-            </div>
-            <div className="text-[#666666] text-sm">In Progress</div>
-          </div>
-          <div className="neu-small p-4 rounded-xl text-center">
-            <div className="text-2xl font-bold text-[#4CAF50] mb-1">
-              {filteredTasks.filter(t => t.status === 'done').length}
-            </div>
-            <div className="text-[#666666] text-sm">Completed</div>
-          </div>
-          <div className="neu-small p-4 rounded-xl text-center">
-            <div className="text-2xl font-bold text-[#CA2030] mb-1">
-              {filteredTasks.filter(t => t.priority === 'high').length}
-            </div>
-            <div className="text-[#666666] text-sm">High Priority</div>
-          </div>
-        </div>
-      </div>
+     <BoardStatistics tasks={filteredTasks} />
+
     </div>
   );
 };

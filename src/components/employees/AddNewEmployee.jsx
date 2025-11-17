@@ -64,7 +64,7 @@ export const AddNewEmployee = () => {
   ];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">
@@ -400,7 +400,7 @@ export const AddNewEmployee = () => {
                     className="w-full bg-transparent outline-none text-[#333333]"
                   >
                     <option value="">Select manager</option>
-                    <option value="john-doe">John Doe - Engineering Manager</option>
+                    <option value="john-doe">Lion - Engineering Manager</option>
                     <option value="jane-smith">Jane Smith - Product Manager</option>
                     <option value="mike-wilson">Mike Wilson - Design Manager</option>
                   </select>

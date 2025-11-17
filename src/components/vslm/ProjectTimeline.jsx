@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Calendar, Clock, CheckCircle, AlertTriangle, Play, Pause, ZoomIn, ZoomOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const timelineData = [
   {
@@ -97,7 +98,8 @@ const milestones = [
   { date: '2024-06-30', title: 'Project Completion', type: 'end' }
 ];
 
-export const ProjectTimeline = ({ projectId, onNavigate }) => {
+export const ProjectTimeline = ({ projectId }) => {
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState('gantt'); // 'gantt', 'timeline', 'calendar'
   const [zoomLevel, setZoomLevel] = useState('month'); // 'week', 'month', 'quarter'
   const [selectedPhase, setSelectedPhase] = useState('all');
@@ -159,13 +161,13 @@ export const ProjectTimeline = ({ projectId, onNavigate }) => {
   };
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button 
-              onClick={() => onNavigate('project-details', projectId)}
+              onClick={() => navigate('/project-details', projectId)}
               className="neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />

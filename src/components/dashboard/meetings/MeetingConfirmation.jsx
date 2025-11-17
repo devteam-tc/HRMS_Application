@@ -10,20 +10,20 @@ const createdMeetingData = {
   endTime: '04:00 PM',
   location: 'Conference Room A',
   participants: [
-    { name: 'John Doe', email: 'john.doe@company.com' },
+    { name: 'Lion', email: 'john.doe@company.com' },
     { name: 'Jane Smith', email: 'jane.smith@company.com' },
     { name: 'Mike Johnson', email: 'mike.johnson@company.com' },
     { name: 'Sarah Wilson', email: 'sarah.wilson@company.com' }
   ],
   department: 'Product',
-  organizer: 'John Doe',
+  organizer: 'Lion',
   reminderSent: true,
   calendarInviteSent: true
 };
 
 export const MeetingConfirmation = ({ onNavigate }) => {
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Success Header */}
       <div className="neu-card p-8 rounded-3xl text-center">
         <div className="neu-small w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center">

@@ -18,31 +18,28 @@ import {
   BarChart3,
   GitBranch,
   CheckCircle,
-  User,
+  UserX
 } from "lucide-react";
 
 export const navigationItems = [
-  {
-    id: "dashboard",
-    label: "Dashboard",
-    icon: LayoutDashboard,
-    path: '/dashboard'
-  },
+  // {
+  //   id: "dashboard",
+  //   label: "Dashboard",
+  //   icon: LayoutDashboard,
+  //   path: '/dashboard'
+  // },
   {
     id: "employees",
     label: "Employee Management",
     icon: Users,
-    subItems: [
-      { id: "employee-directory", label: "HR Dashboard", icon: LayoutDashboard , path: '/employee-directory' },
-      // { id: "employee-profile", label: "Employee Profile", icon: User , path: '/employee-profile' },
-      { id: "onboarding-dashboard", label: "Onboarding", icon: LayoutDashboard  , path: '/onboarding-dashboard' },
-      { id: "offboarding-dashboard", label: "Offboarding", icon: LayoutDashboard  , path: '/offboarding-dashboard' },
-      { id: "neumorphic-dashboard", label: "Admin Dashboard", icon: LayoutDashboard  , path: '/admin-dashboard' },
+     subItems: [
+      { id: "employee-directory", label: "HR Dashboard", icon: Users, path: '/employee-directory' },
+            // { id: "employee-profile", label: "Employee Profile", icon: User , path: '/employee-profile' },
+      { id: "onboarding-dashboard", label: "Onboarding", icon: UserPlus, path: '/onboarding-dashboard' },
+      { id: "offboarding-dashboard", label: "Offboarding", icon: UserX, path: '/offboarding-dashboard' },
+      { id: "neumorphic-dashboard", label: "Admin Dashboard", icon: Settings, path: '/admin-dashboard' },
     ],
   },
-
-
-   
   {
     id: "attendance",
     label: "Attendance",
@@ -60,8 +57,6 @@ export const navigationItems = [
       { id: "punch-in-out", label: "Punch In/Out", icon: Clock, path: '/punch-in-out' },
     ],
   },
-
-  
   {
     id: "recruitment",
     label: "Recruitment",
@@ -73,27 +68,18 @@ export const navigationItems = [
       { id: "interview-calendar", label: "Interview Calendar", icon: CalendarDays , path: '/interview-calendar' },
     ],
   },
-
-
-
-  
-
-
    {
     id: "meetings",
     label: "Meetings",
     icon: Calendar,
     subItems: [
       { id: "all-meetings", label: "All Meetings", icon: FileText ,  path: '/meetings'},
-      { id: "new-meeting", label: "New Meeting", icon: Plus , path: '/new-meeting/'},
-      { id: "meeting-calendar", label: "Meeting Calendar", icon: CalendarDays , path: '/calendar-meetings/'},
+      { id: "new-meeting", label: "New Meeting", icon: Plus , path: '/new-meeting'},
+      { id: "meeting-calendar", label: "Meeting Calendar", icon: CalendarDays , path: '/calendar-meetings'},
       { id: "meeting-attachments", label: "Attachments", icon: Image , path: '/meetings-attachments'},
       { id: "meeting-reports", label: "Reports & Analytics", icon: BarChart3 , path: '/meeting-reports'},
     ],
   },
-
-
-
   {
     id: "vslm",
     label: "VSLM",

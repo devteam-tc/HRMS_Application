@@ -12,7 +12,7 @@ const projects = [
     progress: 75,
     startDate: '2024-01-15',
     endDate: '2024-06-30',
-    manager: 'John Doe',
+    manager: 'Lion',
     budget: 2500000,
     lastUpdate: '2024-01-18'
   },
@@ -171,7 +171,7 @@ export const AllProjectsList = ({ onNavigate }) => {
   const uniqueClients = [...new Set(projects.map(project => project.client))];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">

@@ -163,7 +163,7 @@ export const InterviewCalendar = () => {
             List View
           </button>
           <button
-            onClick={() => onNavigate('new-interview')}
+            onClick={() => navigate('/new-interview')}
             className="neu-primary px-6 py-3 rounded-2xl flex items-center space-x-2 transition-all duration-200 hover:shadow-lg"
           >
             <Plus size={20} />
@@ -209,29 +209,43 @@ export const InterviewCalendar = () => {
 
           {/* Filters */}
           <div className="flex items-center space-x-4">
-            <select
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-              className="neu-input px-4 py-2 text-[#333333] focus:outline-none appearance-none"
-            >
-              <option value="all">All Status</option>
-              <option value="Scheduled">Scheduled</option>
-              <option value="Completed">Completed</option>
-              <option value="Cancelled">Cancelled</option>
-            </select>
+            <div className="relative">
+              <select
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+                className="neu-input pl-4 pr-10 py-2 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full min-w-[140px]"
+              >
+                <option value="all">All Status</option>
+                <option value="Scheduled">Scheduled</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+              <div className="absolute right-3 top-[65%] -translate-y-1/2 pointer-events-none">
+                <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
 
-            <select
-              value={filterType}
-              onChange={(e) => setFilterType(e.target.value)}
-              className="neu-input px-4 py-2 text-[#333333] focus:outline-none appearance-none"
-            >
-              <option value="all">All Types</option>
-              <option value="Phone Screening">Phone Screening</option>
-              <option value="Technical Interview">Technical Interview</option>
-              <option value="Behavioral Interview">Behavioral Interview</option>
-              <option value="Portfolio Review">Portfolio Review</option>
-              <option value="Final Interview">Final Interview</option>
-            </select>
+            <div className="relative">
+              <select
+                value={filterType}
+                onChange={(e) => setFilterType(e.target.value)}
+                className="neu-input pl-4 pr-10 py-2 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full min-w-[180px]"
+              >
+                <option value="all">All Types</option>
+                <option value="Phone Screening">Phone Screening</option>
+                <option value="Technical Interview">Technical Interview</option>
+                <option value="Behavioral Interview">Behavioral Interview</option>
+                <option value="Portfolio Review">Portfolio Review</option>
+                <option value="Final Interview">Final Interview</option>
+              </select>
+              <div className="absolute right-3 top-[65%] -translate-y-1/2 pointer-events-none">
+                <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
 
             {/* View Mode Toggle */}
             <div className="flex items-center space-x-2 neu-input p-2 rounded-2xl">

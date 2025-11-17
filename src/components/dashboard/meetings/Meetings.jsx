@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Filter, Plus, Eye, Edit, Trash2, Download, Calendar, Users, Clock, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { useNavigate } from 'react-router-dom';
 
 const meetings = [
   {
@@ -9,11 +10,11 @@ const meetings = [
     date: '2024-01-15',
     time: '09:00 AM',
     duration: '30 min',
-    participants: ['John Doe', 'Jane Smith', 'Mike Johnson', 'Sarah Wilson'],
+    participants: ['Lion', 'Jane Smith', 'Mike Johnson', 'Sarah Wilson'],
     department: 'Engineering',
     location: 'Conference Room A',
     status: 'completed',
-    organizer: 'John Doe',
+    organizer: 'Lion',
     attachments: 2,
     hasMinutes: true
   },
@@ -65,17 +66,19 @@ const meetings = [
     date: '2024-01-13',
     time: '10:00 AM',
     duration: '45 min',
-    participants: ['John Doe', 'Jane Smith', 'Alice Johnson'],
+    participants: ['Lion', 'Jane Smith', 'Alice Johnson'],
     department: 'Engineering',
     location: 'Conference Room C',
     status: 'cancelled',
-    organizer: 'John Doe',
+    organizer: 'Lion',
     attachments: 0,
     hasMinutes: false
   }
 ];
 
 export const AllMeetings = ({ onNavigate }) => {
+    const navigate = useNavigate();
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
@@ -106,7 +109,7 @@ export const AllMeetings = ({ onNavigate }) => {
   const departments = [...new Set(meetings.map(meeting => meeting.department))];
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">
@@ -305,13 +308,13 @@ export const AllMeetings = ({ onNavigate }) => {
                 {/* Actions */}
                 <div className="flex items-center space-x-3">
                   <button 
-                    onClick={() => onNavigate('meeting-details', meeting.id)}
+                    onClick={() => onNavigate('meeting-details', { id: meeting.id })}
                     className="neu-button p-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8] transition-colors"
                   >
                     <Eye className="w-5 h-5" />
                   </button>
                   <button 
-                    onClick={() => onNavigate('edit-meeting', meeting.id)}
+                    onClick={() => onNavigate('edit-meeting', { id: meeting.id })}
                     className="neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors"
                   >
                     <Edit className="w-5 h-5" />

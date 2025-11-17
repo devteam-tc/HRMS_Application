@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Save, ArrowLeft, Upload, X, Plus, Users, Calendar, Clock, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { useNavigate } from 'react-router-dom';
 
 const initialForm = {
   title: '',
@@ -19,7 +20,7 @@ const initialForm = {
 };
 
 const availableParticipants = [
-  { id: '1', name: 'John Doe', email: 'john.doe@company.com', role: 'Team Lead', department: 'Engineering' },
+  { id: '1', name: 'Lion', email: 'john.doe@company.com', role: 'Team Lead', department: 'Engineering' },
   { id: '2', name: 'Jane Smith', email: 'jane.smith@company.com', role: 'Senior Developer', department: 'Engineering' },
   { id: '3', name: 'Mike Johnson', email: 'mike.johnson@company.com', role: 'Frontend Developer', department: 'Engineering' },
   { id: '4', name: 'Sarah Wilson', email: 'sarah.wilson@company.com', role: 'Backend Developer', department: 'Engineering' },
@@ -30,6 +31,7 @@ const availableParticipants = [
 ];
 
 export const NewMeeting = ({ onNavigate }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initialForm);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [showParticipantSearch, setShowParticipantSearch] = useState(false);
@@ -105,13 +107,13 @@ export const NewMeeting = ({ onNavigate }) => {
   );
 
   return (
-    <div className="p-8 space-y-8 bg-[#ECF0F3] min-h-screen">
+    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button 
-              onClick={() => onNavigate('all-meetings')}
+              onClick={() => navigate('/meetings')}
               className="neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -123,7 +125,7 @@ export const NewMeeting = ({ onNavigate }) => {
           </div>
           <div className="flex space-x-4">
             <button 
-              onClick={() => onNavigate('all-meetings')}
+              onClick={() => navigate('/meetings')}
               className="neu-button px-6 py-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors"
             >
               Cancel
