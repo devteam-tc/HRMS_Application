@@ -1,21 +1,10 @@
 import React, { useState } from 'react';
 import { Calendar, Users, Clock, TrendingUp, Download, Filter, BarChart3, PieChart, LineChart } from 'lucide-react';
-import {
-  BarChart,
-  Bar,
-  LineChart as RechartsLineChart,
-  Line,
-  PieChart as RechartsPieChart,
-  Pie,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  AreaChart,
-  Area
-} from 'recharts';
+import { KpiCards } from '../../Reports/KpiCards';
+import { MeetingChartsRow1 } from '../../Reports/MeetingChartsRow1';
+import { MeetingChartsRow2 } from '../../Reports/MeetingChartsRow2';
+import { MeetingInsights } from '../../Reports/MeetingInsights';
+import { DepartmentPerformanceTable } from '../../Reports/DepartmentPerformanceTable';
 
 const monthlyMeetingsData = [
   { month: 'Jan', meetings: 45, participants: 320, duration: 1250 },
@@ -70,11 +59,11 @@ export const MeetingReports = ({ onNavigate }) => {
   const averageAttendance = attendanceRateData.reduce((sum, month) => sum + month.rate, 0) / attendanceRateData.length;
 
   return (
-    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
+    <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
-        <div className="flex items-center justify-between">
-          <div>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div className='mb-4 sm:mb-0'>
             <h1 className="text-3xl font-bold text-[#333333] mb-2">Meeting Reports & Analytics</h1>
             <p className="text-[#666666]">Insights and analytics on meeting productivity and engagement</p>
           </div>
@@ -135,325 +124,31 @@ export const MeetingReports = ({ onNavigate }) => {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between mb-4">
-            <div className="neu-small p-3 rounded-2xl">
-              <Calendar className="h-6 w-6 text-[#2C318E]" />
-            </div>
-            <div className="text-right">
-              <div className="text-3xl font-bold text-[#333333]">{totalMeetings}</div>
-              <div className="text-sm text-[#4CAF50] font-medium">+15% vs last period</div>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-medium text-[#333333] mb-1">Total Meetings</h3>
-            <div className="text-xs text-[#666666]">Average: {Math.round(totalMeetings / 6)} per month</div>
-          </div>
-        </div>
+    <KpiCards
+      totalMeetings={totalMeetings}
+      totalParticipants={totalParticipants}
+      totalDuration={totalDuration}
+      averageAttendance={averageAttendance}
+    />
 
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between mb-4">
-            <div className="neu-small p-3 rounded-2xl">
-              <Users className="h-6 w-6 text-[#4CAF50]" />
-            </div>
-            <div className="text-right">
-              <div className="text-3xl font-bold text-[#333333]">{totalParticipants}</div>
-              <div className="text-sm text-[#2C318E] font-medium">+8% vs last period</div>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-medium text-[#333333] mb-1">Total Participants</h3>
-            <div className="text-xs text-[#666666]">Average: {Math.round(totalParticipants / totalMeetings)} per meeting</div>
-          </div>
-        </div>
+          {/* Charts Row 1 */}
+        <MeetingChartsRow1 
+      monthlyMeetingsData={monthlyMeetingsData} 
+      attendanceRateData={attendanceRateData} 
+    />
 
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between mb-4">
-            <div className="neu-small p-3 rounded-2xl">
-              <Clock className="h-6 w-6 text-[#9C27B0]" />
-            </div>
-            <div className="text-right">
-              <div className="text-3xl font-bold text-[#333333]">{Math.round(totalDuration / 60)}h</div>
-              <div className="text-sm text-[#CA2030] font-medium">-5% vs last period</div>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-medium text-[#333333] mb-1">Total Duration</h3>
-            <div className="text-xs text-[#666666]">Average: {Math.round(totalDuration / totalMeetings)} min per meeting</div>
-          </div>
-        </div>
-
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between mb-4">
-            <div className="neu-small p-3 rounded-2xl">
-              <TrendingUp className="h-6 w-6 text-[#FF9800]" />
-            </div>
-            <div className="text-right">
-              <div className="text-3xl font-bold text-[#333333]">{Math.round(averageAttendance)}%</div>
-              <div className="text-sm text-[#4CAF50] font-medium">+3% vs last period</div>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-medium text-[#333333] mb-1">Attendance Rate</h3>
-            <div className="text-xs text-[#666666]">Target: 85%</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Monthly Meetings Trend */}
-        <div className="neu-card p-8 rounded-3xl">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-[#333333] mb-2">Monthly Meeting Trends</h3>
-            <p className="text-[#666666]">Number of meetings and participants over time</p>
-          </div>
-          <div className="neu-card-inset p-4 rounded-2xl">
-            <ResponsiveContainer width="100%" height={300}>
-              <AreaChart data={monthlyMeetingsData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#d1d9e6" />
-                <XAxis dataKey="month" stroke="#666666" />
-                <YAxis stroke="#666666" />
-                <Tooltip 
-                  contentStyle={{
-                    backgroundColor: '#ECF0F3',
-                    border: 'none',
-                    borderRadius: '12px',
-                    boxShadow: '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff'
-                  }}
-                />
-                <Area 
-                  type="monotone" 
-                  dataKey="meetings" 
-                  stackId="1" 
-                  stroke="#2C318E" 
-                  fill="#2C318E" 
-                  fillOpacity={0.6}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        {/* Attendance Rate */}
-        <div className="neu-card p-8 rounded-3xl">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-[#333333] mb-2">Attendance Rate Trends</h3>
-            <p className="text-[#666666]">Monthly attendance percentage</p>
-          </div>
-          <div className="neu-card-inset p-4 rounded-2xl">
-            <ResponsiveContainer width="100%" height={300}>
-              <RechartsLineChart data={attendanceRateData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#d1d9e6" />
-                <XAxis dataKey="month" stroke="#666666" />
-                <YAxis stroke="#666666" domain={[80, 100]} />
-                <Tooltip 
-                  contentStyle={{
-                    backgroundColor: '#ECF0F3',
-                    border: 'none',
-                    borderRadius: '12px',
-                    boxShadow: '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff'
-                  }}
-                  formatter={(value) => [`${value}%`, 'Attendance Rate']} 
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="rate" 
-                  stroke="#4CAF50" 
-                  strokeWidth={3}
-                  dot={{ fill: '#4CAF50', strokeWidth: 2, r: 6 }}
-                />
-              </RechartsLineChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </div>
-
-      {/* Charts Row 2 */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Department Participation */}
-        <div className="neu-card p-8 rounded-3xl">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-[#333333] mb-2">Department Participation</h3>
-            <p className="text-[#666666]">Participation rate by department</p>
-          </div>
-          <div className="neu-card-inset p-4 rounded-2xl">
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={departmentParticipationData} layout="horizontal">
-                <CartesianGrid strokeDasharray="3 3" stroke="#d1d9e6" />
-                <XAxis type="number" domain={[0, 100]} stroke="#666666" />
-                <YAxis type="category" dataKey="department" stroke="#666666" width={80} />
-                <Tooltip 
-                  contentStyle={{
-                    backgroundColor: '#ECF0F3',
-                    border: 'none',
-                    borderRadius: '12px',
-                    boxShadow: '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff'
-                  }}
-                  formatter={(value) => [`${value}%`, 'Participation Rate']} 
-                />
-                <Bar dataKey="participation" radius={[0, 8, 8, 0]}>
-                  {departmentParticipationData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        {/* Meeting Types */}
-        <div className="neu-card p-8 rounded-3xl">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-[#333333] mb-2">Meeting Types</h3>
-            <p className="text-[#666666]">Distribution of meeting types</p>
-          </div>
-          <div className="neu-card-inset p-4 rounded-2xl">
-            <ResponsiveContainer width="100%" height={250}>
-              <RechartsPieChart>
-                <Pie
-                  data={meetingTypesData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={40}
-                  outerRadius={80}
-                  paddingAngle={5}
-                  dataKey="value"
-                >
-                  {meetingTypesData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip 
-                  contentStyle={{
-                    backgroundColor: '#ECF0F3',
-                    border: 'none',
-                    borderRadius: '12px',
-                    boxShadow: '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff'
-                  }}
-                  formatter={(value) => [`${value}%`, 'Meetings']} 
-                />
-              </RechartsPieChart>
-            </ResponsiveContainer>
-            <div className="grid grid-cols-1 gap-2 mt-4">
-              {meetingTypesData.map((item, index) => (
-                <div key={index} className="flex items-center">
-                  <div 
-                    className="w-3 h-3 rounded-full mr-2" 
-                    style={{ backgroundColor: item.color }}
-                  ></div>
-                  <span className="text-xs text-[#666666] flex-1">{item.name}</span>
-                  <span className="text-xs text-[#333333] font-medium">{item.value}%</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Meeting Duration Distribution */}
-        <div className="neu-card p-8 rounded-3xl">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-[#333333] mb-2">Meeting Duration</h3>
-            <p className="text-[#666666]">Distribution of meeting lengths</p>
-          </div>
-          <div className="space-y-4">
-            {meetingDurationData.map((item, index) => (
-              <div key={index} className="neu-small p-4 rounded-2xl">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-medium text-[#333333]">{item.duration}</span>
-                  <span className="text-[#666666]">{item.count} meetings</span>
-                </div>
-                <div className="neu-card-inset rounded-xl overflow-hidden">
-                  <div 
-                    className="h-3 bg-gradient-to-r from-[#2C318E] to-[#048ba8] transition-all duration-500"
-                    style={{ width: `${item.percentage}%` }}
-                  ></div>
-                </div>
-                <div className="text-right mt-1">
-                  <span className="text-sm text-[#2C318E] font-medium">{item.percentage}%</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+          {/* Charts Row 2 */}
+        <MeetingChartsRow2
+        departmentParticipationData={departmentParticipationData}
+        meetingTypesData={meetingTypesData}
+        meetingDurationData={meetingDurationData}
+      />
 
       {/* Department Details Table */}
-      <div className="neu-card p-8 rounded-3xl">
-        <div className="mb-6">
-          <h3 className="text-xl font-bold text-[#333333] mb-2">Department Performance Details</h3>
-          <p className="text-[#666666]">Detailed metrics by department</p>
-        </div>
-        
-        <div className="space-y-4">
-          <div className="neu-small p-4 rounded-2xl">
-            <div className="grid grid-cols-5 gap-4 font-medium text-[#666666] text-sm">
-              <div>Department</div>
-              <div>Total Meetings</div>
-              <div>Participation Rate</div>
-              <div>Avg Attendance</div>
-              <div>Performance</div>
-            </div>
-          </div>
-
-          {departmentParticipationData.map((dept, index) => (
-            <div key={index} className="neu-small p-4 rounded-2xl hover:scale-105 transition-transform duration-200">
-              <div className="grid grid-cols-5 gap-4 items-center">
-                <div className="flex items-center space-x-3">
-                  <div 
-                    className="w-4 h-4 rounded-full"
-                    style={{ backgroundColor: dept.color }}
-                  ></div>
-                  <span className="font-medium text-[#333333]">{dept.department}</span>
-                </div>
-                <div className="text-[#333333]">{dept.meetings}</div>
-                <div className="text-[#333333]">{dept.participation}%</div>
-                <div className="text-[#333333]">92%</div>
-                <div className="flex items-center space-x-2">
-                  <div className={`w-3 h-3 rounded-full ${
-                    dept.participation >= 90 ? 'bg-[#4CAF50]' :
-                    dept.participation >= 85 ? 'bg-[#FFC107]' : 'bg-[#CA2030]'
-                  }`}></div>
-                  <span className={`text-sm font-medium ${
-                    dept.participation >= 90 ? 'text-[#4CAF50]' :
-                    dept.participation >= 85 ? 'text-[#FFC107]' : 'text-[#CA2030]'
-                  }`}>
-                    {dept.participation >= 90 ? 'Excellent' :
-                     dept.participation >= 85 ? 'Good' : 'Needs Improvement'}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
+      <DepartmentPerformanceTable departmentData={departmentParticipationData} />
       {/* Insights and Recommendations */}
-      <div className="neu-card p-8 rounded-3xl">
-        <h3 className="text-xl font-bold text-[#333333] mb-6">Key Insights & Recommendations</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="neu-small p-6 rounded-2xl">
-            <h4 className="font-bold text-[#333333] mb-3">📈 Positive Trends</h4>
-            <ul className="space-y-2 text-[#666666]">
-              <li>• Attendance rate increased by 3% this period</li>
-              <li>• HR department shows 96% participation rate</li>
-              <li>• Average meeting duration decreased by 5 minutes</li>
-              <li>• 15% more meetings scheduled than last period</li>
-            </ul>
-          </div>
-          
-          <div className="neu-small p-6 rounded-2xl">
-            <h4 className="font-bold text-[#333333] mb-3">⚠️ Areas for Improvement</h4>
-            <ul className="space-y-2 text-[#666666]">
-              <li>• Sales department has lowest participation (85%)</li>
-              <li>• 8% of meetings exceed 90 minutes</li>
-              <li>• Follow up on missed meetings in Engineering</li>
-              <li>• Consider reducing frequency of status meetings</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <MeetingInsights />
+
     </div>
   );
 };

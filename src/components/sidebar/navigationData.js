@@ -18,7 +18,8 @@ import {
   BarChart3,
   GitBranch,
   CheckCircle,
-  UserX
+  UserX,
+  User
 } from "lucide-react";
 
 export const navigationItems = [
@@ -34,7 +35,7 @@ export const navigationItems = [
     icon: Users,
      subItems: [
       { id: "employee-directory", label: "HR Dashboard", icon: Users, path: '/employee-directory' },
-            // { id: "employee-profile", label: "Employee Profile", icon: User , path: '/employee-profile' },
+            { id: "employee-profile", label: "Employee Profile", icon: User , path: '/employee-profile' },
       { id: "onboarding-dashboard", label: "Onboarding", icon: UserPlus, path: '/onboarding-dashboard' },
       { id: "offboarding-dashboard", label: "Offboarding", icon: UserX, path: '/offboarding-dashboard' },
       { id: "neumorphic-dashboard", label: "Admin Dashboard", icon: Settings, path: '/admin-dashboard' },
@@ -108,6 +109,23 @@ export const navigationItems = [
       { id: "task-assignment", label: "Team Assignment", icon: Users  , path: '/task-assignment' },
       { id: "task-timeline", label: "Timeline (Gantt)", icon: CalendarDays  , path: '/task-timeline' },
       { id: "task-analytics", label: "Analytics & Reports", icon: BarChart3  , path: '/task-analytics' },
+    ],
+  },
+  {
+    id: "payroll",
+    label: "Payroll",
+    icon: CheckSquare,
+    subItems: [
+      { id: "payroll-overview", label: "Attendance Overview", icon: LayoutDashboard  ,  path: '/attendance-overview' },
+      { id: "salary-overview", label: "Salary Overview", icon: FolderOpen  , path: '/salary-overview' },
+      { id: "payroll-history", label: "Payroll History", icon: Kanban  , path: '/payroll-history' },
+      { id: "add-new-payroll", label: "Add New Payroll", icon: Plus  , path: '/new-payroll' },
+      { id: "payroll-details", label: "Payroll Details", icon: FileText  , path: '/payroll-details' },
+      { id: "payroll-management", label: "Payroll Management", icon: CheckCircle  , path: '/payroll-management' },
+      { id: "payroll-dependencies", label: "Dependencies", icon: GitBranch  , path: '/payroll-dependencies' },
+      { id: "payroll-assignment", label: "Team Assignment", icon: Users  , path: '/payroll-assignment' },
+      { id: "payroll-timeline", label: "Timeline (Gantt)", icon: CalendarDays  , path: '/payroll-timeline' },
+      { id: "payroll-analytics", label: "Analytics & Reports", icon: BarChart3  , path: '/payroll-analytics' },
     ],
   },
 ];

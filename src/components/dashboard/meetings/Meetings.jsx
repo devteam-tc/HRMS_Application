@@ -2,79 +2,9 @@ import React, { useState } from 'react';
 import { Search, Filter, Plus, Eye, Edit, Trash2, Download, Calendar, Users, Clock, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 import { useNavigate } from 'react-router-dom';
-
-const meetings = [
-  {
-    id: '1',
-    title: 'Weekly Team Standup',
-    date: '2024-01-15',
-    time: '09:00 AM',
-    duration: '30 min',
-    participants: ['Lion', 'Jane Smith', 'Mike Johnson', 'Sarah Wilson'],
-    department: 'Engineering',
-    location: 'Conference Room A',
-    status: 'completed',
-    organizer: 'Lion',
-    attachments: 2,
-    hasMinutes: true
-  },
-  {
-    id: '2',
-    title: 'Product Planning Q1 2024',
-    date: '2024-01-16',
-    time: '02:00 PM',
-    duration: '120 min',
-    participants: ['Jane Smith', 'Alice Johnson', 'Bob Brown', 'Carol Davis', 'David Miller'],
-    department: 'Product',
-    location: 'Board Room',
-    status: 'scheduled',
-    organizer: 'Jane Smith',
-    attachments: 5,
-    hasMinutes: false
-  },
-  {
-    id: '3',
-    title: 'HR Policy Review',
-    date: '2024-01-14',
-    time: '11:00 AM',
-    duration: '90 min',
-    participants: ['Sarah Wilson', 'Mike Johnson', 'Emma Garcia'],
-    department: 'HR',
-    location: 'Virtual Meeting',
-    status: 'completed',
-    organizer: 'Sarah Wilson',
-    attachments: 3,
-    hasMinutes: true
-  },
-  {
-    id: '4',
-    title: 'Marketing Campaign Review',
-    date: '2024-01-17',
-    time: '03:30 PM',
-    duration: '60 min',
-    participants: ['Carol Davis', 'David Miller', 'Emma Garcia', 'Frank Wilson'],
-    department: 'Marketing',
-    location: 'Meeting Room B',
-    status: 'scheduled',
-    organizer: 'Carol Davis',
-    attachments: 1,
-    hasMinutes: false
-  },
-  {
-    id: '5',
-    title: 'Client Project Kickoff',
-    date: '2024-01-13',
-    time: '10:00 AM',
-    duration: '45 min',
-    participants: ['Lion', 'Jane Smith', 'Alice Johnson'],
-    department: 'Engineering',
-    location: 'Conference Room C',
-    status: 'cancelled',
-    organizer: 'Lion',
-    attachments: 0,
-    hasMinutes: false
-  }
-];
+import { MeetingStats } from '../../Meetings/MeetingStats';
+import { MeetingsList } from '../../Meetings/MeetingsList';
+import { meetingsData as meetings } from '../../Meetings/meetingsData';
 
 export const AllMeetings = ({ onNavigate }) => {
     const navigate = useNavigate();
@@ -109,10 +39,10 @@ export const AllMeetings = ({ onNavigate }) => {
   const departments = [...new Set(meetings.map(meeting => meeting.department))];
 
   return (
-    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
+    <div className="p-3 sm:p-4 md:p-6 lg:p-8 space-y-4 sm:space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div>
             <h1 className="text-3xl font-bold text-[#333333] mb-2">All Meetings</h1>
             <p className="text-[#666666]">Manage and view all meeting records and minutes</p>
@@ -196,148 +126,15 @@ export const AllMeetings = ({ onNavigate }) => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#333333] mb-2">{meetings.length}</div>
-          <div className="text-[#666666]">Total Meetings</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#05A7CC] mb-2">
-            {meetings.filter(m => m.status === 'scheduled').length}
-          </div>
-          <div className="text-[#666666]">Scheduled</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#4CAF50] mb-2">
-            {meetings.filter(m => m.status === 'completed').length}
-          </div>
-          <div className="text-[#666666]">Completed</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#EF5226] mb-2">
-            {meetings.filter(m => m.status === 'cancelled').length}
-          </div>
-          <div className="text-[#666666]">Cancelled</div>
-        </div>
-      </div>
+   <MeetingStats meetings={meetings} />
 
       {/* Meetings List */}
-      <div className="neu-card p-8 rounded-3xl">
-        <div className="space-y-4">
-          {filteredMeetings.map((meeting) => (
-            <div key={meeting.id} className="neu-small p-6 rounded-2xl hover:scale-105 transition-transform duration-200">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-6">
-                  {/* Meeting Icon */}
-                  <div className="neu-small rounded-2xl p-4">
-                    <Calendar className="w-8 h-8 text-[#05A7CC]" />
-                  </div>
+    <MeetingsList 
+      filteredMeetings={filteredMeetings} 
+      getStatusColor={getStatusColor} 
+      onNavigate={onNavigate}
+    />
 
-                  {/* Meeting Info */}
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-3">
-                      <h3 className="text-xl font-bold text-[#333333]">{meeting.title}</h3>
-                      <div className={`neu-small px-3 py-1 rounded-xl text-xs font-medium ${getStatusColor(meeting.status)}`}>
-                        {meeting.status.toUpperCase()}
-                      </div>
-                      {meeting.hasMinutes && (
-                        <div className="neu-small px-3 py-1 rounded-xl text-xs font-medium bg-[#9C27B0] text-white">
-                          MOM
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4 text-[#666666]" />
-                        <span className="text-[#333333]">{new Date(meeting.date).toLocaleDateString()}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Clock className="w-4 h-4 text-[#666666]" />
-                        <span className="text-[#333333]">{meeting.time} ({meeting.duration})</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Users className="w-4 h-4 text-[#666666]" />
-                        <span className="text-[#333333]">{meeting.participants.length} participants</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <MapPin className="w-4 h-4 text-[#666666]" />
-                        <span className="text-[#333333]">{meeting.location}</span>
-                      </div>
-                    </div>
-
-                    <div className="mt-3 flex items-center space-x-4">
-                      <div className="text-sm text-[#666666]">
-                        <span>Organized by: </span>
-                        <span className="font-medium text-[#333333]">{meeting.organizer}</span>
-                      </div>
-                      <div className="text-sm text-[#666666]">
-                        <span>Department: </span>
-                        <span className="font-medium text-[#333333]">{meeting.department}</span>
-                      </div>
-                      {meeting.attachments > 0 && (
-                        <div className="flex items-center space-x-1 text-sm text-[#05A7CC]">
-                          <Download className="w-4 h-4" />
-                          <span>{meeting.attachments} files</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Participants Preview */}
-                    <div className="mt-3 flex items-center space-x-2">
-                      <span className="text-sm text-[#666666]">Participants:</span>
-                      <div className="flex -space-x-2">
-                        {meeting.participants.slice(0, 4).map((participant, index) => (
-                          <Avatar key={index} className="w-8 h-8 border-2 border-[#ECF0F3]">
-                            <AvatarImage src="/placeholder-avatar.jpg" />
-                            <AvatarFallback className="bg-[#05A7CC] text-white text-xs">
-                              {participant.split(' ').map(n => n[0]).join('')}
-                            </AvatarFallback>
-                          </Avatar>
-                        ))}
-                        {meeting.participants.length > 4 && (
-                          <div className="w-8 h-8 rounded-full bg-[#E8EBEF] border-2 border-[#ECF0F3] flex items-center justify-center">
-                            <span className="text-xs text-[#666666]">+{meeting.participants.length - 4}</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center space-x-3">
-                  <button 
-                    onClick={() => onNavigate('meeting-details', { id: meeting.id })}
-                    className="neu-button p-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8] transition-colors"
-                  >
-                    <Eye className="w-5 h-5" />
-                  </button>
-                  <button 
-                    onClick={() => onNavigate('edit-meeting', { id: meeting.id })}
-                    className="neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors"
-                  >
-                    <Edit className="w-5 h-5" />
-                  </button>
-                  <button className="neu-button p-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f] transition-colors">
-                    <Trash2 className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {filteredMeetings.length === 0 && (
-          <div className="text-center py-12">
-            <div className="neu-card-inset p-8 rounded-3xl inline-block">
-              <Calendar className="w-16 h-16 text-[#666666] mx-auto mb-4" />
-              <h3 className="text-xl font-medium text-[#333333] mb-2">No meetings found</h3>
-              <p className="text-[#666666]">Try adjusting your search filters or create a new meeting.</p>
-            </div>
-          </div>
-        )}
-      </div>
 
       {/* Pagination */}
       {filteredMeetings.length > 0 && (

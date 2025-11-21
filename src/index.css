@@ -24,7 +24,7 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   padding: 0;
-  background-color: var(--background, #ecf0f3);
+  /* background-color: var(--background, #ecf0f3); */
   color: var(--foreground, #1a1a1a);
 }
 
@@ -454,11 +454,7 @@ body {
     }
   }
 
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-  }
-
+  
   
   .basis-full {
     flex-basis: 100%;

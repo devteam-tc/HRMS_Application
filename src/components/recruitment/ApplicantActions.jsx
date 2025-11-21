@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, CheckCircle, XCircle, ArrowRight, Calendar, Mail, MessageSquare, Star, User, Clock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const ApplicantActions = ({ applicantId, onNavigate }) => {
   const [selectedAction, setSelectedAction] = useState('');
@@ -7,6 +8,7 @@ export const ApplicantActions = ({ applicantId, onNavigate }) => {
   const [interviewType, setInterviewType] = useState('');
   const [notes, setNotes] = useState('');
   const [rating, setRating] = useState(0);
+  const navigate = useNavigate();
 
   // Mock applicant data
   const applicant = {
@@ -117,7 +119,7 @@ export const ApplicantActions = ({ applicantId, onNavigate }) => {
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
           <button
-            onClick={() => onNavigate('applicant-details', { applicantId: applicant.id })}
+            onClick={() => navigate('/applicant-details', { applicantId: applicant.id })}
             className="neu-button p-3 rounded-2xl mr-4 hover:shadow-md transition-all duration-200"
           >
             <ArrowLeft size={20} className="text-[#666666]" />

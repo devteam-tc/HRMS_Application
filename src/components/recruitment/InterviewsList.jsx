@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, Clock, User, Video, MapPin, Phone, Plus, Filter, Search, Eye, Edit, MoreVertical, CheckCircle, XCircle } from 'lucide-react';
+import { InterviewsStatistics } from '../Interviews/InterviewsStatistics';
+import { InterviewInfo } from '../Interviews/InterviewInfo';
+import { InterviewActions } from '../Interviews/InterviewActions';
+import { interviews } from '../Interviews/interviewsData';
 
 export const InterviewsList = () => {
   const navigate = useNavigate();
@@ -10,133 +14,7 @@ export const InterviewsList = () => {
   const [filterDate, setFilterDate] = useState('all');
   const [viewMode, setViewMode] = useState('list'); // 'list' or 'calendar'
 
-  const interviews = [
-    {
-      id: 1,
-      candidateName: 'Alice Johnson',
-      jobTitle: 'Senior Software Engineer',
-      type: 'Technical Interview',
-      mode: 'Video Call',
-      interviewer: 'Michael Chen',
-      date: '2024-01-25',
-      time: '3:00 PM',
-      duration: '90 minutes',
-      status: 'Scheduled',
-      location: 'Zoom Meeting',
-      notes: 'Focus on system design and algorithms',
-      candidateId: 1,
-      jobId: 1
-    },
-    {
-      id: 2,
-      candidateName: 'Michael Chen',
-      jobTitle: 'Product Manager',
-      type: 'Behavioral Interview',
-      mode: 'In-Person',
-      interviewer: 'Sarah Wilson',
-      date: '2024-01-24',
-      time: '11:00 AM',
-      duration: '60 minutes',
-      status: 'Completed',
-      location: 'Conference Room A',
-      notes: 'Assess leadership and communication skills',
-      candidateId: 2,
-      jobId: 2,
-      feedback: {
-        rating: 4.5,
-        summary: 'Strong leadership background, excellent communication'
-      }
-    },
-    {
-      id: 3,
-      candidateName: 'Sarah Williams',
-      jobTitle: 'UX Designer',
-      type: 'Portfolio Review',
-      mode: 'Video Call',
-      interviewer: 'Lisa Davis',
-      date: '2024-01-26',
-      time: '2:30 PM',
-      duration: '45 minutes',
-      status: 'Scheduled',
-      location: 'Google Meet',
-      notes: 'Review design portfolio and case studies',
-      candidateId: 3,
-      jobId: 3
-    },
-    {
-      id: 4,
-      candidateName: 'David Rodriguez',
-      jobTitle: 'DevOps Engineer',
-      type: 'Technical Interview',
-      mode: 'Phone',
-      interviewer: 'Tom Wilson',
-      date: '2024-01-23',
-      time: '10:00 AM',
-      duration: '60 minutes',
-      status: 'Completed',
-      location: 'Phone Call',
-      notes: 'Infrastructure and automation questions',
-      candidateId: 4,
-      jobId: 4,
-      feedback: {
-        rating: 4.8,
-        summary: 'Excellent technical knowledge and practical experience'
-      }
-    },
-    {
-      id: 5,
-      candidateName: 'Emma Thompson',
-      jobTitle: 'Marketing Specialist',
-      type: 'Phone Screening',
-      mode: 'Phone',
-      interviewer: 'John Smith',
-      date: '2024-01-27',
-      time: '9:30 AM',
-      duration: '30 minutes',
-      status: 'Scheduled',
-      location: 'Phone Call',
-      notes: 'Initial screening and culture fit assessment',
-      candidateId: 5,
-      jobId: 5
-    },
-    {
-      id: 6,
-      candidateName: 'James Wilson',
-      jobTitle: 'Senior Software Engineer',
-      type: 'Final Interview',
-      mode: 'In-Person',
-      interviewer: 'CEO - Mark Johnson',
-      date: '2024-01-22',
-      time: '4:00 PM',
-      duration: '45 minutes',
-      status: 'Completed',
-      location: 'Executive Conference Room',
-      notes: 'Final decision interview with leadership',
-      candidateId: 6,
-      jobId: 1,
-      feedback: {
-        rating: 4.2,
-        summary: 'Good technical skills, needs improvement in leadership'
-      }
-    },
-    {
-      id: 7,
-      candidateName: 'Rachel Green',
-      jobTitle: 'Data Scientist',
-      type: 'Technical Interview',
-      mode: 'Video Call',
-      interviewer: 'Dr. Smith',
-      date: '2024-01-28',
-      time: '1:00 PM',
-      duration: '120 minutes',
-      status: 'Cancelled',
-      location: 'Teams Meeting',
-      notes: 'Machine learning and statistics assessment',
-      candidateId: 7,
-      jobId: 6
-    }
-  ];
-
+ 
   const getStatusColor = (status) => {
     switch (status) {
       case 'Scheduled': return 'text-blue-600 bg-blue-50';
@@ -200,17 +78,17 @@ export const InterviewsList = () => {
   });
 
   return (
-    <div className="p-8 bg-[#FDFAFA] min-h-screen">
+    <div className="p-3 sm:p-4 md:p-6 lg:p-8 space-y-4 sm:space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-[#333333] mb-2">Interviews</h1>
-          <p className="text-[#666666]">Manage and track all interview sessions</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="mb-2 sm:mb-0">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#333333] mb-1">Interviews</h1>
+          <p className="text-[#666666] text-xs sm:text-sm md:text-base lg:text-lg">Manage and track all interview sessions</p>
         </div>
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
           <button
             onClick={() => navigate('/interview-calendar')}
-            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
+            className="neu-primary px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-xl sm:rounded-2xl flex items-center justify-center space-x-1.5 sm:space-x-2 hover:scale-105 transition-transform text-xs sm:text-sm md:text-base w-full sm:w-auto"
           >
             Calendar View
           </button>
@@ -323,55 +201,8 @@ export const InterviewsList = () => {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[#666666] text-sm mb-1">Total Interviews</p>
-              <p className="text-2xl font-bold text-[#333333]">{interviews.length}</p>
-            </div>
-            <div className="neu-small p-4 rounded-2xl">
-              <Calendar size={24} className="text-[#CA2030]" />
-            </div>
-          </div>
-        </div>
+    <InterviewsStatistics interviews={interviews} />
 
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[#666666] text-sm mb-1">Scheduled</p>
-              <p className="text-2xl font-bold text-[#333333]">{interviews.filter(i => i.status === 'Scheduled').length}</p>
-            </div>
-            <div className="neu-small p-4 rounded-2xl">
-              <Clock size={24} className="text-[#2C318E]" />
-            </div>
-          </div>
-        </div>
-
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[#666666] text-sm mb-1">Completed</p>
-              <p className="text-2xl font-bold text-[#333333]">{interviews.filter(i => i.status === 'Completed').length}</p>
-            </div>
-            <div className="neu-small p-4 rounded-2xl">
-              <CheckCircle size={24} className="text-green-500" />
-            </div>
-          </div>
-        </div>
-
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[#666666] text-sm mb-1">This Week</p>
-              <p className="text-2xl font-bold text-[#333333]">5</p>
-            </div>
-            <div className="neu-small p-4 rounded-2xl">
-              <Calendar size={24} className="text-[#2C318E]" />
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Interviews List */}
       <div className="space-y-6">
@@ -385,104 +216,16 @@ export const InterviewsList = () => {
                 </div>
 
                 {/* Interview Info */}
-                <div className="flex-1">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-[#333333] mb-1">{interview.candidateName}</h3>
-                      <p className="text-[#CA2030] font-medium mb-2">{interview.jobTitle}</p>
-                      <div className="flex items-center space-x-4 text-sm text-[#666666] mb-3">
-                        <div className="flex items-center">
-                          <Calendar size={14} className="mr-1" />
-                          <span>{interview.date}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Clock size={14} className="mr-1" />
-                          <span>{interview.time}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span>Duration: {interview.duration}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-4 text-sm text-[#666666]">
-                        <div className="flex items-center">
-                          <User size={14} className="mr-1" />
-                          <span>Interviewer: {interview.interviewer}</span>
-                        </div>
-                        <div className="flex items-center">
-                          {getModeIcon(interview.mode)}
-                          <span className="ml-1">{interview.location}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Interview Type and Status */}
-                  <div className="flex items-center space-x-4 mb-4">
-                    <span className="neu-small px-4 py-2 rounded-2xl text-sm text-[#333333] font-medium">
-                      {interview.type}
-                    </span>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(interview.status)}`}>
-                      {interview.status}
-                    </span>
-                    <span className="text-xs text-[#666666] bg-[#E8EBEF] px-3 py-1 rounded-full">
-                      {interview.mode}
-                    </span>
-                  </div>
-
-                  {/* Notes */}
-                  {interview.notes && (
-                    <p className="text-sm text-[#666666] bg-[#F5F8FB] p-3 rounded-2xl mb-4">
-                      <strong>Notes:</strong> {interview.notes}
-                    </p>
-                  )}
-
-                  {/* Feedback (for completed interviews) */}
-                  {interview.feedback && (
-                    <div className="bg-green-50 p-4 rounded-2xl">
-                      <div className="flex items-center space-x-2 mb-2">
-                        <CheckCircle size={16} className="text-green-600" />
-                        <span className="text-green-600 font-medium text-sm">Interview Completed</span>
-                        <span className="text-sm text-[#666666]">Rating: {interview.feedback.rating}/5</span>
-                      </div>
-                      <p className="text-sm text-[#333333]">{interview.feedback.summary}</p>
-                    </div>
-                  )}
-                </div>
+                <InterviewInfo
+            interview={interview}
+            getModeIcon={getModeIcon}
+            getStatusColor={getStatusColor}
+          />
               </div>
 
               {/* Actions */}
-              <div className="flex items-center space-x-3">
-                <button
-                  onClick={() => navigate('/interview-details', { interviewId: interview.id })}
-                  className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
-                  title="View Details"
-                >
-                  <Eye size={20} className="text-[#2C318E]" />
-                </button>
-                
-                {interview.status === 'Scheduled' && (
-                  <button
-                    onClick={() => navigate('/edit-job-opening', { interviewId: interview.id })}
-                    className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
-                    title="Edit Interview"
-                  >
-                    <Edit size={20} className="text-[#CA2030]" />
-                  </button>
-                )}
+            <InterviewActions interview={interview} navigate={navigate} />
 
-                {interview.status === 'Completed' && !interview.feedback && (
-                  <button
-                    onClick={() => navigate('/interview-feedback', { interviewId: interview.id })}
-                    className="neu-secondary px-4 py-3 rounded-2xl text-white hover:shadow-lg transition-all duration-200"
-                  >
-                    Add Feedback
-                  </button>
-                )}
-
-                <button className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200">
-                  <MoreVertical size={20} className="text-[#666666]" />
-                </button>
-              </div>
             </div>
           </div>
         ))}

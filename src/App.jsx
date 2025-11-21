@@ -71,6 +71,9 @@ import { ProjectDetails } from './components/vslm/ProjectDetails';
 import { InterviewDetails } from './components/recruitment/InterviewDetails.jsx';
 import { TaskAnalytics } from './components/task/TaskAnalytics.jsx';
 import Login from './pages/Login';
+import { PayrollOverview } from './components/Payroll/PayrollOverview.jsx';
+import SalaryOverview from './components/Salary/SalaryOverview.jsx';
+import PayrollHistory from './components/PayrollSalary/PayrollHistory.jsx';
 
 function MeetingsLayout({ children }) {
   const navigate = useNavigate();
@@ -411,6 +414,7 @@ function App() {
                 </MeetingsLayout>
               } />
               <Route path="/project-edit" element={<ProjectEdit />} />
+              <Route path="/new-employee" element={<AddNewEmployee />} />
               <Route path="/new-project" element={<ProjectEdit isNew={true} />} />
               <Route path="/uploaded-images" element={<UploadedImages />} />
               <Route path="/project-timeline" element={<ProjectTimeline />} />
@@ -433,11 +437,19 @@ function App() {
                 <OnboardingNew />
               </MeetingsLayout>
             } />
+            <Route path="/applicant-actions" element={<ApplicantActions />} />
             <Route path="/subtasks-management" element={<SubtasksManagement />} />
             <Route path="/task-assignment" element={<TaskAssignment />} />
             <Route path="/task-analytics" element={<TaskAnalytics />} />
             <Route path="/task-timeline" element={<TaskTimeline />} />
             <Route path="/task-details" element={<TaskDetails />} />
+
+
+            {/* payroll routes  */}
+            <Route path="/attendance-overview" element={<PayrollOverview />} />
+            <Route path="/salary-overview" element={<SalaryOverview/>} />
+            <Route path="/payroll-history" element={<PayrollHistory/>} />
+
             {/* Meeting Routes */}
             <Route path="/meetings-attachments" element={<MeetingAttachments />} />
             <Route path="/meeting-reports" element={

@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Save, ArrowLeft, Upload, X, Plus, Users, Calendar, Clock, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 import { useNavigate } from 'react-router-dom';
+import { BasicInformation } from '../../NewMeeting/BasicInformation';
+import { ScheduleSection } from '../../NewMeeting/ScheduleSection';
+import { MeetingSummary } from '../../NewMeeting/MeetingSummary';
+import { SelectedParticipants } from '../../NewMeeting/SelectedParticipants';
+import { AgendaSection } from '../../NewMeeting/AgendaSection';
 
 const initialForm = {
   title: '',
@@ -107,10 +112,10 @@ export const NewMeeting = ({ onNavigate }) => {
   );
 
   return (
-    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
+    <div className="p-3 sm:p-4 md:p-6 lg:p-8 space-y-4 sm:space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div className="flex items-center space-x-4">
             <button 
               onClick={() => navigate('/meetings')}
@@ -132,7 +137,7 @@ export const NewMeeting = ({ onNavigate }) => {
             </button>
             <button 
               onClick={handleSave}
-              className="neu-primary px-8 py-3 rounded-2xl flex items-center space-x-3 hover:scale-105 transition-transform"
+              className="neu-primary px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-xl sm:rounded-2xl flex items-center justify-center space-x-1.5 sm:space-x-2 hover:scale-105 transition-transform text-xs sm:text-sm md:text-base w-full sm:w-auto"
             >
               <Save className="w-5 h-5" />
               <span className="font-medium">Create Meeting</span>
@@ -145,223 +150,27 @@ export const NewMeeting = ({ onNavigate }) => {
         {/* Main Form */}
         <div className="lg:col-span-2 space-y-8">
           {/* Basic Information */}
-          <div className="neu-card p-8 rounded-3xl">
-            <h2 className="text-2xl font-bold text-[#333333] mb-6">Meeting Information</h2>
-            
-            <div className="space-y-6">
-              <div>
-                <label className="block text-[#333333] font-medium mb-3">Meeting Title *</label>
-                <div className="neu-input p-4 rounded-2xl">
-                  <input
-                    type="text"
-                    value={formData.title}
-                    onChange={(e) => handleInputChange('title', e.target.value)}
-                    className="w-full bg-transparent outline-none text-[#333333] placeholder-[#999999]"
-                    placeholder="Enter meeting title"
-                  />
-                </div>
-              </div>
+       <BasicInformation 
+        formData={formData} 
+        handleInputChange={handleInputChange} 
+      />
 
-              <div>
-                <label className="block text-[#333333] font-medium mb-3">Description</label>
-                <div className="neu-input p-4 rounded-2xl">
-                  <textarea
-                    value={formData.description}
-                    onChange={(e) => handleInputChange('description', e.target.value)}
-                    rows={4}
-                    className="w-full bg-transparent outline-none text-[#333333] placeholder-[#999999] resize-none"
-                    placeholder="Enter meeting description and objectives"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[#333333] font-medium mb-3">Department</label>
-                  <div className="neu-input p-4 rounded-2xl">
-                    <select
-                      value={formData.department}
-                      onChange={(e) => handleInputChange('department', e.target.value)}
-                      className="w-full bg-transparent outline-none text-[#333333]"
-                    >
-                      <option value="">Select department</option>
-                      <option value="Engineering">Engineering</option>
-                      <option value="Product">Product</option>
-                      <option value="Design">Design</option>
-                      <option value="Marketing">Marketing</option>
-                      <option value="Sales">Sales</option>
-                      <option value="HR">Human Resources</option>
-                      <option value="Finance">Finance</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[#333333] font-medium mb-3">Priority</label>
-                  <div className="neu-input p-4 rounded-2xl">
-                    <select
-                      value={formData.priority}
-                      onChange={(e) => handleInputChange('priority', e.target.value)}
-                      className="w-full bg-transparent outline-none text-[#333333]"
-                    >
-                      <option value="low">Low Priority</option>
-                      <option value="medium">Medium Priority</option>
-                      <option value="high">High Priority</option>
-                      <option value="urgent">Urgent</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* Date & Time */}
-          <div className="neu-card p-8 rounded-3xl">
-            <h2 className="text-2xl font-bold text-[#333333] mb-6">Schedule</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div>
-                <label className="block text-[#333333] font-medium mb-3">Date *</label>
-                <div className="neu-input p-4 rounded-2xl">
-                  <input
-                    type="date"
-                    value={formData.date}
-                    onChange={(e) => handleInputChange('date', e.target.value)}
-                    className="w-full bg-transparent outline-none text-[#333333]"
-                  />
-                </div>
-              </div>
+        <ScheduleSection 
+  formData={formData} 
+  handleInputChange={handleInputChange} 
+/>
 
-              <div>
-                <label className="block text-[#333333] font-medium mb-3">Start Time *</label>
-                <div className="neu-input p-4 rounded-2xl">
-                  <input
-                    type="time"
-                    value={formData.startTime}
-                    onChange={(e) => handleInputChange('startTime', e.target.value)}
-                    className="w-full bg-transparent outline-none text-[#333333]"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[#333333] font-medium mb-3">End Time *</label>
-                <div className="neu-input p-4 rounded-2xl">
-                  <input
-                    type="time"
-                    value={formData.endTime}
-                    onChange={(e) => handleInputChange('endTime', e.target.value)}
-                    className="w-full bg-transparent outline-none text-[#333333]"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-[#333333] font-medium mb-3">Meeting Type</label>
-                <div className="neu-input p-4 rounded-2xl">
-                  <select
-                    value={formData.meetingType}
-                    onChange={(e) => handleInputChange('meetingType', e.target.value)}
-                    className="w-full bg-transparent outline-none text-[#333333]"
-                  >
-                    <option value="in-person">In-Person</option>
-                    <option value="virtual">Virtual Meeting</option>
-                    <option value="hybrid">Hybrid</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[#333333] font-medium mb-3">Location</label>
-                <div className="neu-input p-4 rounded-2xl">
-                  <input
-                    type="text"
-                    value={formData.location}
-                    onChange={(e) => handleInputChange('location', e.target.value)}
-                    className="w-full bg-transparent outline-none text-[#333333] placeholder-[#999999]"
-                    placeholder={formData.meetingType === 'virtual' ? 'Meeting link' : 'Room or address'}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-              <div>
-                <label className="block text-[#333333] font-medium mb-3">Recurring</label>
-                <div className="neu-input p-4 rounded-2xl">
-                  <select
-                    value={formData.recurringType}
-                    onChange={(e) => handleInputChange('recurringType', e.target.value)}
-                    className="w-full bg-transparent outline-none text-[#333333]"
-                  >
-                    <option value="none">No Recurring</option>
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[#333333] font-medium mb-3">Reminder</label>
-                <div className="neu-input p-4 rounded-2xl">
-                  <select
-                    value={formData.reminderTime}
-                    onChange={(e) => handleInputChange('reminderTime', e.target.value)}
-                    className="w-full bg-transparent outline-none text-[#333333]"
-                  >
-                    <option value="5">5 minutes before</option>
-                    <option value="15">15 minutes before</option>
-                    <option value="30">30 minutes before</option>
-                    <option value="60">1 hour before</option>
-                    <option value="1440">1 day before</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* Agenda */}
-          <div className="neu-card p-8 rounded-3xl">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-[#333333]">Meeting Agenda</h2>
-              <button 
-                onClick={addAgendaItem}
-                className="neu-button p-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8]"
-              >
-                <Plus className="w-5 h-5" />
-              </button>
-            </div>
-            
-            <div className="space-y-4">
-              {formData.agenda.map((item, index) => (
-                <div key={index} className="flex items-center space-x-4">
-                  <div className="neu-card-inset w-10 h-10 rounded-xl flex items-center justify-center">
-                    <span className="text-sm font-bold text-[#05A7CC]">{index + 1}</span>
-                  </div>
-                  <div className="flex-1 neu-input p-4 rounded-2xl">
-                    <input
-                      type="text"
-                      value={item}
-                      onChange={(e) => handleAgendaChange(index, e.target.value)}
-                      className="w-full bg-transparent outline-none text-[#333333] placeholder-[#999999]"
-                      placeholder="Enter agenda item"
-                    />
-                  </div>
-                  {formData.agenda.length > 1 && (
-                    <button 
-                      onClick={() => removeAgendaItem(index)}
-                      className="neu-button p-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f]"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+       <AgendaSection
+  agenda={formData.agenda}
+  handleAgendaChange={handleAgendaChange}
+  addAgendaItem={addAgendaItem}
+  removeAgendaItem={removeAgendaItem}
+/>
+
 
           {/* Attachments */}
           <div className="neu-card p-8 rounded-3xl">
@@ -458,97 +267,16 @@ export const NewMeeting = ({ onNavigate }) => {
             )}
 
             {/* Selected Participants */}
-            <div className="space-y-3">
-              {formData.participants.map((participant) => (
-                <div key={participant.id} className="neu-small p-4 rounded-2xl">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <Avatar className="w-10 h-10">
-                        <AvatarImage src="/placeholder-avatar.jpg" />
-                        <AvatarFallback className="bg-[#05A7CC] text-white">
-                          {participant.name.split(' ').map(n => n[0]).join('')}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <div className="font-medium text-[#333333]">{participant.name}</div>
-                        <div className="text-sm text-[#666666]">{participant.role}</div>
-                      </div>
-                    </div>
-                    <button 
-                      onClick={() => removeParticipant(participant.id)}
-                      className="neu-button p-2 rounded-xl text-[#EF5226] hover:text-[#d4471f]"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-              
-              {formData.participants.length === 0 && (
-                <div className="neu-card-inset p-6 rounded-2xl text-center">
-                  <Users className="w-12 h-12 text-[#666666] mx-auto mb-3" />
-                  <p className="text-[#666666]">No participants added yet</p>
-                </div>
-              )}
-            </div>
+         <SelectedParticipants 
+  participants={formData.participants} 
+  removeParticipant={removeParticipant} 
+/>
+
           </div>
 
           {/* Meeting Summary */}
-          <div className="neu-card p-8 rounded-3xl">
-            <h3 className="text-xl font-bold text-[#333333] mb-6">Meeting Summary</h3>
-            <div className="space-y-4">
-              <div className="neu-small p-4 rounded-2xl">
-                <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5 text-[#05A7CC]" />
-                  <div>
-                    <div className="text-sm text-[#666666]">Date & Time</div>
-                    <div className="font-medium text-[#333333]">
-                      {formData.date && formData.startTime 
-                        ? `${new Date(formData.date).toLocaleDateString()} at ${formData.startTime}`
-                        : 'Not set'
-                      }
-                    </div>
-                  </div>
-                </div>
-              </div>
+         <MeetingSummary formData={formData} />
 
-              <div className="neu-small p-4 rounded-2xl">
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-[#05A7CC]" />
-                  <div>
-                    <div className="text-sm text-[#666666]">Location</div>
-                    <div className="font-medium text-[#333333]">
-                      {formData.location || 'Not set'}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="neu-small p-4 rounded-2xl">
-                <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-[#05A7CC]" />
-                  <div>
-                    <div className="text-sm text-[#666666]">Participants</div>
-                    <div className="font-medium text-[#333333]">
-                      {formData.participants.length} invited
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="neu-small p-4 rounded-2xl">
-                <div className="flex items-center space-x-3">
-                  <Clock className="w-5 h-5 text-[#05A7CC]" />
-                  <div>
-                    <div className="text-sm text-[#666666]">Reminder</div>
-                    <div className="font-medium text-[#333333]">
-                      {formData.reminderTime} minutes before
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

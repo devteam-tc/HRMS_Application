@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Filter, User, MapPin, Calendar, FileText, Eye, Download, Star, ArrowRight, MoreVertical, Mail, Phone } from 'lucide-react';
+import { ApplicantInfo } from '../Applicants/ApplicantInfo';
+import { ApplicantsStatistics } from '../Applicants/ApplicantsStatistics';
+import { ApplicantActions } from '../Applicants/ApplicantActions';
+import { StatusFilter } from '../Applicants/StatusFilter';
+import { StageFilter } from '../Applicants/StageFilter';
+import { SourceFilter } from '../Applicants/SourceFilter';
+import { RoleFilter } from '../Applicants/RoleFilter';
+import { applicants } from '../Applicants/applicantsData';
 
 export const ApplicantsList = ({ jobId }) => {
   const navigate = useNavigate();
@@ -9,130 +17,6 @@ export const ApplicantsList = ({ jobId }) => {
   const [filterStage, setFilterStage] = useState('all');
   const [filterSource, setFilterSource] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
-
-  const applicants = [
-    {
-      id: 1,
-      name: 'Alice Johnson',
-      email: 'alice.johnson@email.com',
-      phone: '+1 (555) 123-4567',
-      appliedFor: 'Senior Software Engineer',
-      appliedDate: '2024-01-18',
-      experience: '6 years',
-      location: 'New York, NY',
-      stage: 'Application',
-      status: 'Under Review',
-      source: 'LinkedIn',
-      resume: 'alice_johnson_resume.pdf',
-      coverLetter: 'alice_johnson_cover.pdf',
-      skills: ['JavaScript', 'React', 'Node.js', 'Python'],
-      education: 'MS Computer Science - Stanford University',
-      rating: 4.5,
-      notes: 'Strong technical background with excellent communication skills',
-      lastActivity: '2 hours ago'
-    },
-    {
-      id: 2,
-      name: 'Michael Chen',
-      email: 'michael.chen@email.com',
-      phone: '+1 (555) 234-5678',
-      appliedFor: 'Senior Software Engineer',
-      appliedDate: '2024-01-17',
-      experience: '8 years',
-      location: 'San Francisco, CA',
-      stage: 'Shortlisted',
-      status: 'Shortlisted',
-      source: 'Company Website',
-      resume: 'michael_chen_resume.pdf',
-      coverLetter: 'michael_chen_cover.pdf',
-      skills: ['Java', 'Spring', 'AWS', 'Docker'],
-      education: 'BS Computer Engineering - UC Berkeley',
-      rating: 5.0,
-      notes: 'Exceptional candidate with leadership experience',
-      lastActivity: '1 day ago'
-    },
-    {
-      id: 3,
-      name: 'Sarah Williams',
-      email: 'sarah.williams@email.com',
-      phone: '+1 (555) 345-6789',
-      appliedFor: 'UX Designer',
-      appliedDate: '2024-01-16',
-      experience: '5 years',
-      location: 'New York, NY',
-      stage: 'Interview',
-      status: 'Interview Scheduled',
-      source: 'Referral',
-      resume: 'sarah_williams_resume.pdf',
-      coverLetter: 'sarah_williams_cover.pdf',
-      skills: ['Figma', 'Sketch', 'Adobe Creative Suite', 'Prototyping'],
-      education: 'BFA Design - Parsons School of Design',
-      rating: 4.8,
-      notes: 'Great portfolio demonstrating user-centered design approach',
-      lastActivity: '3 hours ago'
-    },
-    {
-      id: 4,
-      name: 'David Rodriguez',
-      email: 'david.rodriguez@email.com',
-      phone: '+1 (555) 456-7890',
-      appliedFor: 'Product Manager',
-      appliedDate: '2024-01-15',
-      experience: '7 years',
-      location: 'Austin, TX',
-      stage: 'Offer',
-      status: 'Offer Extended',
-      source: 'Indeed',
-      resume: 'david_rodriguez_resume.pdf',
-      coverLetter: 'david_rodriguez_cover.pdf',
-      skills: ['Product Strategy', 'Agile', 'Analytics', 'Stakeholder Management'],
-      education: 'MBA - Wharton School',
-      rating: 4.9,
-      notes: 'Strong product sense with proven track record of successful launches',
-      lastActivity: '4 hours ago'
-    },
-    {
-      id: 5,
-      name: 'Emma Thompson',
-      email: 'emma.thompson@email.com',
-      phone: '+1 (555) 567-8901',
-      appliedFor: 'Marketing Specialist',
-      appliedDate: '2024-01-14',
-      experience: '3 years',
-      location: 'Remote',
-      stage: 'Application',
-      status: 'Rejected',
-      source: 'Glassdoor',
-      resume: 'emma_thompson_resume.pdf',
-      coverLetter: '',
-      skills: ['Digital Marketing', 'SEO', 'Content Marketing', 'Social Media'],
-      education: 'BA Marketing - University of Texas',
-      rating: 3.2,
-      notes: 'Limited experience in B2B marketing which is required for this role',
-      lastActivity: '1 week ago'
-    },
-    {
-      id: 6,
-      name: 'James Wilson',
-      email: 'james.wilson@email.com',
-      phone: '+1 (555) 678-9012',
-      appliedFor: 'DevOps Engineer',
-      appliedDate: '2024-01-13',
-      experience: '6 years',
-      location: 'Seattle, WA',
-      stage: 'Interview',
-      status: 'Technical Interview',
-      source: 'Stack Overflow',
-      resume: 'james_wilson_resume.pdf',
-      coverLetter: 'james_wilson_cover.pdf',
-      skills: ['Kubernetes', 'Docker', 'AWS', 'Terraform', 'Jenkins'],
-      education: 'BS Information Systems - University of Washington',
-      rating: 4.6,
-      notes: 'Solid DevOps experience with cloud infrastructure expertise',
-      lastActivity: '2 days ago'
-    }
-  ];
-
   const getStageColor = (stage) => {
     switch (stage) {
       case 'Application': return 'text-blue-600 bg-blue-50';
@@ -143,7 +27,6 @@ export const ApplicantsList = ({ jobId }) => {
       default: return 'text-gray-600 bg-gray-50';
     }
   };
-
   const getStatusColor = (status) => {
     switch (status) {
       case 'Under Review': return 'text-yellow-600 bg-yellow-50';
@@ -170,323 +53,90 @@ export const ApplicantsList = ({ jobId }) => {
   });
 
   return (
-    <div className="p-8 bg-[#FDFAFA] min-h-screen">
+    <div className="p-3 sm:p-4 md:p-6 lg:p-8 space-y-4 sm:space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-[#333333] mb-2">Applicants</h1>
-          <p className="text-[#666666]">Manage and review job applications</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="mb-2 sm:mb-0">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#333333] mb-1">Applicants</h1>
+          <p className="text-[#666666] text-xs sm:text-sm md:text-base lg:text-lg">Manage and review job applications</p>
         </div>
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
           <button 
             onClick={() => navigate('/applicant-progress')}
-            className="neu-button px-6 py-3 rounded-2xl text-[#333333] hover:text-[#2C318E] transition-all duration-200"
+            className="neu-primary px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-xl sm:rounded-2xl flex items-center justify-center space-x-1.5 sm:space-x-2 hover:scale-105 transition-transform text-xs sm:text-sm md:text-base w-full sm:w-auto"
           >
-            Progress Tracker
+            <span>Progress Tracker</span>
           </button>
-          <button className="neu-primary px-6 py-3 rounded-2xl flex items-center space-x-2 transition-all duration-200 hover:shadow-lg">
-            <Download size={20} />
+          <button className="neu-primary px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-xl sm:rounded-2xl flex items-center space-x-1.5 sm:space-x-2 transition-all duration-200 hover:shadow-lg text-xs sm:text-sm md:text-base">
+            <Download size={16} className="sm:w-5 sm:h-5" />
             <span>Export Data</span>
           </button>
         </div>
       </div>
 
       {/* Filters and Search */}
-      <div className="neu-card p-6 rounded-3xl mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+      <div className="neu-card p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl md:rounded-3xl">
+        <div className="flex flex-col gap-3 sm:gap-4">
           {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-4 top-[60%] transform -translate-y-1/2 text-[#666666]" size={20} />
+          <div className="relative w-full">
+            <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-[#666666] sm:w-5 sm:h-5" size={16}  />
             <input
               type="text"
               placeholder="Search applicants..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="neu-input w-full pl-12 pr-4 py-3 text-[#333333] placeholder-[#666666] focus:outline-none"
+              className="neu-input w-full pl-9 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 text-sm sm:text-base text-[#333333] placeholder-[#666666] focus:outline-none"
             />
           </div>
-
-          {/* Role Filter */}
-          <div className="relative">
-            <select
-              value={filterRole}
-              onChange={(e) => setFilterRole(e.target.value)}
-              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
-            >
-              <option value="all">All Roles</option>
-              <option value="Senior Software Engineer">Senior Software Engineer</option>
-              <option value="Product Manager">Product Manager</option>
-              <option value="UX Designer">UX Designer</option>
-              <option value="Marketing Specialist">Marketing Specialist</option>
-              <option value="DevOps Engineer">DevOps Engineer</option>
-            </select>
-            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
-              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Stage Filter */}
-          <div className="relative">
-            <select
-              value={filterStage}
-              onChange={(e) => setFilterStage(e.target.value)}
-              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
-            >
-              <option value="all">All Stages</option>
-              <option value="Application">Application</option>
-              <option value="Shortlisted">Shortlisted</option>
-              <option value="Interview">Interview</option>
-              <option value="Offer">Offer</option>
-              <option value="Hired">Hired</option>
-            </select>
-            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
-              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Source Filter */}
-          <div className="relative">
-            <select
-              value={filterSource}
-              onChange={(e) => setFilterSource(e.target.value)}
-              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
-            >
-              <option value="all">All Sources</option>
-              <option value="LinkedIn">LinkedIn</option>
-              <option value="Company Website">Company Website</option>
-              <option value="Referral">Referral</option>
-              <option value="Indeed">Indeed</option>
-              <option value="Glassdoor">Glassdoor</option>
-              <option value="Stack Overflow">Stack Overflow</option>
-            </select>
-            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
-              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Status Filter */}
-          <div className="relative">
-            <select
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-              className="neu-input pl-4 pr-10 py-3 text-[#333333] focus:ring-2 focus:ring-[#05A7CC] transition-all appearance-none w-full"
-            >
-              <option value="all">All Status</option>
-              <option value="Under Review">Under Review</option>
-              <option value="Shortlisted">Shortlisted</option>
-              <option value="Interview Scheduled">Interview Scheduled</option>
-              <option value="Technical Interview">Technical Interview</option>
-              <option value="Offer Extended">Offer Extended</option>
-              <option value="Hired">Hired</option>
-              <option value="Rejected">Rejected</option>
-            </select>
-            <div className="absolute right-3 top-[60%] -translate-y-1/2 pointer-events-none">
-              <svg className="w-4 h-4 text-[#05A7CC]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
+          {/* Filters Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+            <RoleFilter filterRole={filterRole} setFilterRole={setFilterRole} />
+            <StageFilter filterStage={filterStage} setFilterStage={setFilterStage} />
+            <SourceFilter filterSource={filterSource} setFilterSource={setFilterSource} />
+            <StatusFilter filterStatus={filterStatus} setFilterStatus={setFilterStatus} />
           </div>
         </div>
       </div>
-
+      
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[#666666] text-sm mb-1">Total Applicants</p>
-              <p className="text-2xl font-bold text-[#333333]">{applicants.length}</p>
-            </div>
-            <div className="neu-small p-4 rounded-2xl">
-              <User size={24} className="text-[#CA2030]" />
-            </div>
-          </div>
-        </div>
-
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[#666666] text-sm mb-1">Under Review</p>
-              <p className="text-2xl font-bold text-[#333333]">{applicants.filter(a => a.status === 'Under Review').length}</p>
-            </div>
-            <div className="neu-small p-4 rounded-2xl">
-              <FileText size={24} className="text-[#2C318E]" />
-            </div>
-          </div>
-        </div>
-
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[#666666] text-sm mb-1">Shortlisted</p>
-              <p className="text-2xl font-bold text-[#333333]">{applicants.filter(a => a.status === 'Shortlisted').length}</p>
-            </div>
-            <div className="neu-small p-4 rounded-2xl">
-              <Star size={24} className="text-[#CA2030]" />
-            </div>
-          </div>
-        </div>
-
-        <div className="neu-card p-6 rounded-3xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[#666666] text-sm mb-1">In Interview</p>
-              <p className="text-2xl font-bold text-[#333333]">{applicants.filter(a => a.stage === 'Interview').length}</p>
-            </div>
-            <div className="neu-small p-4 rounded-2xl">
-              <Calendar size={24} className="text-[#2C318E]" />
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <ApplicantsStatistics applicants={filteredApplicants} />
+      
       {/* Applicants List */}
-      <div className="space-y-6">
+      <div className="space-y-3 sm:space-y-4 md:space-y-6">
         {filteredApplicants.map((applicant) => (
-          <div key={applicant.id} className="neu-card p-8 rounded-3xl">
-            <div className="flex items-start justify-between">
-              <div className="flex items-start space-x-6">
+          <div key={applicant.id} className="neu-card p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl md:rounded-3xl hover:shadow-lg transition-all duration-200">
+            <div className="flex flex-col gap-4 sm:gap-5 md:gap-6">
+              <div className="flex items-start gap-3 sm:gap-4">
                 {/* Avatar */}
-                <div className="neu-small w-16 h-16 rounded-3xl flex items-center justify-center">
-                  <User size={32} className="text-[#666666]" />
+                <div className="neu-small w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl md:rounded-3xl flex items-center justify-center flex-shrink-0">
+                  <User size={24} className="sm:w-8 sm:h-8 md:w-10 md:h-10 text-[#666666]" />
                 </div>
 
                 {/* Applicant Info */}
-                <div className="flex-1">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-[#333333] mb-1">{applicant.name}</h3>
-                      <p className="text-[#CA2030] font-medium mb-2">{applicant.appliedFor}</p>
-                      <div className="flex items-center space-x-4 text-sm text-[#666666] mb-3">
-                        <div className="flex items-center">
-                          <MapPin size={14} className="mr-1" />
-                          <span>{applicant.location}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Calendar size={14} className="mr-1" />
-                          <span>Applied {applicant.appliedDate}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <User size={14} className="mr-1" />
-                          <span>{applicant.experience} experience</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-4 text-sm text-[#666666]">
-                        <div className="flex items-center">
-                          <Mail size={14} className="mr-1" />
-                          <span>{applicant.email}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Phone size={14} className="mr-1" />
-                          <span>{applicant.phone}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-4">
-                      <div className="text-right">
-                        <div className="flex items-center mb-2">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              size={16}
-                              className={i < Math.floor(applicant.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}
-                            />
-                          ))}
-                          <span className="text-sm text-[#666666] ml-2">{applicant.rating}</span>
-                        </div>
-                        <p className="text-xs text-[#666666]">Last activity: {applicant.lastActivity}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Skills */}
-                  <div className="mb-4">
-                    <div className="flex flex-wrap gap-2">
-                      {applicant.skills.slice(0, 4).map((skill, index) => (
-                        <span
-                          key={index}
-                          className="neu-small px-3 py-1 rounded-2xl text-sm text-[#333333]"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                      {applicant.skills.length > 4 && (
-                        <span className="neu-small px-3 py-1 rounded-2xl text-sm text-[#666666]">
-                          +{applicant.skills.length - 4} more
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Status and Stage */}
-                  <div className="flex items-center space-x-4 mb-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStageColor(applicant.stage)}`}>
-                      {applicant.stage}
-                    </span>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(applicant.status)}`}>
-                      {applicant.status}
-                    </span>
-                    <span className="text-xs text-[#666666] bg-[#E8EBEF] px-3 py-1 rounded-full">
-                      Source: {applicant.source}
-                    </span>
-                  </div>
-
-                  {/* Notes */}
-                  {applicant.notes && (
-                    <p className="text-sm text-[#666666] bg-[#F5F8FB] p-3 rounded-2xl">
-                      "{applicant.notes}"
-                    </p>
-                  )}
+                <div className="flex-1 min-w-0">
+                  <ApplicantInfo
+                    applicant={applicant} 
+                    getStageColor={getStageColor} 
+                    getStatusColor={getStatusColor} 
+                  />
                 </div>
               </div>
-
+              
               {/* Actions */}
-              <div className="flex items-center space-x-3">
-                <button
-                  onClick={() => navigate('/applicant-details', { applicantId: applicant.id })}
-                  className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
-                  title="View Details"
-                >
-                  <Eye size={20} className="text-[#2C318E]" />
-                </button>
-                
-                <button
-                  onClick={() => navigate('/applicant-resume')}
-                  className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200"
-                  title="View Resume"
-                >
-                  <FileText size={20} className="text-[#CA2030]" />
-                </button>
-
-                <button
-                  onClick={() => navigate('/applicant-resume')}
-                  className="neu-secondary px-4 py-3 rounded-2xl flex items-center space-x-2 text-white hover:shadow-lg transition-all duration-200"
-                >
-                  <span>Actions</span>
-                  <ArrowRight size={16} />
-                </button>
-
-                <button className="neu-button p-3 rounded-2xl hover:shadow-md transition-all duration-200">
-                  <MoreVertical size={20} className="text-[#666666]" />
-                </button>
+              <div className="flex justify-end">
+                <ApplicantActions applicant={applicant} />
               </div>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Empty State */}
       {filteredApplicants.length === 0 && (
-        <div className="neu-card p-12 rounded-3xl text-center">
-          <User size={48} className="text-[#666666] mx-auto mb-4" />
-          <p className="text-[#666666] text-lg">No applicants found</p>
-          <p className="text-[#666666] text-sm">Try adjusting your search criteria</p>
+        <div className="neu-card p-8 sm:p-10 md:p-12 rounded-xl sm:rounded-2xl md:rounded-3xl text-center">
+          <User size={32} className="sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#666666] mx-auto mb-3 sm:mb-4" />
+          <p className="text-[#666666] text-base sm:text-lg md:text-xl">No applicants found</p>
+          <p className="text-[#666666] text-xs sm:text-sm md:text-base">Try adjusting your search criteria</p>
         </div>
       )}
     </div>

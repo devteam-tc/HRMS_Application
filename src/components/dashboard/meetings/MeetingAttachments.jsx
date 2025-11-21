@@ -1,105 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Plus, Download, Eye, Trash2, Upload, FileText, Image, File, Grid, List } from 'lucide-react';
+import { AttachmentsGridView } from '../../Attachments/AttachmentsGridView';
+import { AttachmentsListView } from '../../Attachments/AttachmentsListView';
+import { AttachmentsStats } from '../../Attachments/AttachmentsStats';
+import { attachments } from '../../Attachments/attachmentsData';
 
-const attachments = [
-  {
-    id: '1',
-    name: 'Sprint_Planning_Q1_2024.pdf',
-    type: 'PDF',
-    size: '2.4 MB',
-    uploadedBy: 'Lion',
-    uploadDate: '2024-01-15',
-    meetingTitle: 'Weekly Team Standup',
-    meetingDate: '2024-01-15',
-    category: 'document',
-    thumbnail: '/placeholder-pdf.jpg'
-  },
-  {
-    id: '2',
-    name: 'Team_Progress_Report.xlsx',
-    type: 'Excel',
-    size: '1.8 MB',
-    uploadedBy: 'Jane Smith',
-    uploadDate: '2024-01-15',
-    meetingTitle: 'Weekly Team Standup',
-    meetingDate: '2024-01-15',
-    category: 'document',
-    thumbnail: '/placeholder-excel.jpg'
-  },
-  {
-    id: '3',
-    name: 'Product_Roadmap_Presentation.pptx',
-    type: 'PowerPoint',
-    size: '5.2 MB',
-    uploadedBy: 'Alice Johnson',
-    uploadDate: '2024-01-16',
-    meetingTitle: 'Product Planning Q1 2024',
-    meetingDate: '2024-01-16',
-    category: 'presentation',
-    thumbnail: '/placeholder-ppt.jpg'
-  },
-  {
-    id: '4',
-    name: 'UI_Mockups_Dashboard.png',
-    type: 'Image',
-    size: '890 KB',
-    uploadedBy: 'Bob Brown',
-    uploadDate: '2024-01-16',
-    meetingTitle: 'Product Planning Q1 2024',
-    meetingDate: '2024-01-16',
-    category: 'image',
-    thumbnail: '/placeholder-image.jpg'
-  },
-  {
-    id: '5',
-    name: 'HR_Policy_Updates.docx',
-    type: 'Word',
-    size: '1.2 MB',
-    uploadedBy: 'Sarah Wilson',
-    uploadDate: '2024-01-14',
-    meetingTitle: 'HR Policy Review',
-    meetingDate: '2024-01-14',
-    category: 'document',
-    thumbnail: '/placeholder-doc.jpg'
-  },
-  {
-    id: '6',
-    name: 'Budget_Analysis_Charts.pdf',
-    type: 'PDF',
-    size: '3.1 MB',
-    uploadedBy: 'Carol Davis',
-    uploadDate: '2024-01-17',
-    meetingTitle: 'Marketing Campaign Review',
-    meetingDate: '2024-01-17',
-    category: 'document',
-    thumbnail: '/placeholder-pdf.jpg'
-  },
-  {
-    id: '7',
-    name: 'Team_Photo_Retreat.jpg',
-    type: 'Image',
-    size: '2.5 MB',
-    uploadedBy: 'Mike Johnson',
-    uploadDate: '2024-01-13',
-    meetingTitle: 'Client Project Kickoff',
-    meetingDate: '2024-01-13',
-    category: 'image',
-    thumbnail: '/placeholder-image.jpg'
-  },
-  {
-    id: '8',
-    name: 'Meeting_Recording_Audio.mp3',
-    type: 'Audio',
-    size: '45.2 MB',
-    uploadedBy: 'David Miller',
-    uploadDate: '2024-01-16',
-    meetingTitle: 'Product Planning Q1 2024',
-    meetingDate: '2024-01-16',
-    category: 'media',
-    thumbnail: '/placeholder-audio.jpg'
-  }
-];
 
 export const MeetingAttachments = () => {
   const navigate = useNavigate();
@@ -119,33 +25,7 @@ export const MeetingAttachments = () => {
     return matchesSearch && matchesCategory && matchesMeeting;
   });
 
-  const getFileIcon = (type) => {
-    switch (type.toLowerCase()) {
-      case 'pdf':
-        return <FileText className="w-8 h-8 text-[#CA2030]" />;
-      case 'image':
-      case 'jpg':
-      case 'png':
-        return <Image className="w-8 h-8 text-[#4CAF50]" />;
-      default:
-        return <File className="w-8 h-8 text-[#666666]" />;
-    }
-  };
-
-  const getCategoryColor = (category) => {
-    switch (category) {
-      case 'document':
-        return 'bg-[#2C318E] text-white';
-      case 'presentation':
-        return 'bg-[#9C27B0] text-white';
-      case 'image':
-        return 'bg-[#4CAF50] text-white';
-      case 'media':
-        return 'bg-[#FF9800] text-white';
-      default:
-        return 'bg-[#666666] text-white';
-    }
-  };
+ 
 
   const uniqueMeetings = [...new Set(attachments.map(att => att.meetingTitle))];
 
@@ -164,11 +44,11 @@ export const MeetingAttachments = () => {
   });
 
   return (
-    <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
+    <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="neu-card p-8 rounded-3xl">
-        <div className="flex items-center justify-between">
-          <div>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div className='mb-4 sm:mb-0'>
             <h1 className="text-3xl font-bold text-[#333333] mb-2">Meeting Attachments</h1>
             <p className="text-[#666666]">Browse and manage all meeting documents and files</p>
           </div>
@@ -277,136 +157,19 @@ export const MeetingAttachments = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#333333] mb-2">{attachments.length}</div>
-          <div className="text-[#666666]">Total Files</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#2C318E] mb-2">
-            {attachments.filter(att => att.category === 'document').length}
-          </div>
-          <div className="text-[#666666]">Documents</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#4CAF50] mb-2">
-            {attachments.filter(att => att.category === 'image').length}
-          </div>
-          <div className="text-[#666666]">Images</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#9C27B0] mb-2">
-            {(attachments.reduce((total, att) => total + parseFloat(att.size), 0)).toFixed(1)} MB
-          </div>
-          <div className="text-[#666666]">Total Size</div>
-        </div>
-      </div>
+     <AttachmentsStats attachments={attachments} />
+
 
       {/* Files Display */}
       <div className="neu-card p-8 rounded-3xl">
         {viewMode === 'grid' ? (
           /* Grid View */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {sortedAttachments.map((attachment) => (
-              <div key={attachment.id} className="neu-small p-6 rounded-2xl hover:scale-105 transition-transform duration-200">
-                <div className="space-y-4">
-                  {/* File Icon/Thumbnail */}
-                  <div className="neu-card-inset w-full h-32 rounded-2xl flex items-center justify-center">
-                    {getFileIcon(attachment.type)}
-                  </div>
+           <AttachmentsGridView sortedAttachments={sortedAttachments} />
 
-                  {/* File Info */}
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <div className={`neu-small px-3 py-1 rounded-xl text-xs font-medium ${getCategoryColor(attachment.category)}`}>
-                        {attachment.category.toUpperCase()}
-                      </div>
-                      <span className="text-xs text-[#666666]">{attachment.size}</span>
-                    </div>
-                    
-                    <h3 className="font-bold text-[#333333] mb-2 truncate" title={attachment.name}>
-                      {attachment.name}
-                    </h3>
-                    
-                    <div className="text-sm text-[#666666] space-y-1">
-                      <div>From: {attachment.meetingTitle}</div>
-                      <div>By: {attachment.uploadedBy}</div>
-                      <div>{new Date(attachment.uploadDate).toLocaleDateString()}</div>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center space-x-2">
-                    <button className="flex-1 neu-button p-3 rounded-2xl text-[#2C318E] hover:text-[#048ba8] transition-colors">
-                      <Eye className="w-4 h-4 mx-auto" />
-                    </button>
-                    <button className="flex-1 neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors">
-                      <Download className="w-4 h-4 mx-auto" />
-                    </button>
-                    <button className="flex-1 neu-button p-3 rounded-2xl text-[#CA2030] hover:text-[#d4471f] transition-colors">
-                      <Trash2 className="w-4 h-4 mx-auto" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         ) : (
           /* List View */
-          <div className="space-y-4">
-            <div className="neu-small p-4 rounded-2xl">
-              <div className="grid grid-cols-12 gap-4 font-medium text-[#666666] text-sm">
-                <div className="col-span-4">File Name</div>
-                <div className="col-span-2">Type</div>
-                <div className="col-span-2">Size</div>
-                <div className="col-span-2">Uploaded By</div>
-                <div className="col-span-1">Date</div>
-                <div className="col-span-1">Actions</div>
-              </div>
-            </div>
+           <AttachmentsListView sortedAttachments={sortedAttachments} />
 
-            {sortedAttachments.map((attachment) => (
-              <div key={attachment.id} className="neu-small p-4 rounded-2xl hover:scale-105 transition-transform duration-200">
-                <div className="grid grid-cols-12 gap-4 items-center">
-                  <div className="col-span-4 flex items-center space-x-3">
-                    <div className="neu-card-inset p-2 rounded-lg">
-                      {getFileIcon(attachment.type)}
-                    </div>
-                    <div>
-                      <div className="font-medium text-[#333333] truncate">{attachment.name}</div>
-                      <div className="text-sm text-[#666666] truncate">{attachment.meetingTitle}</div>
-                    </div>
-                  </div>
-                  
-                  <div className="col-span-2">
-                    <div className={`neu-small px-3 py-1 rounded-xl text-xs font-medium ${getCategoryColor(attachment.category)} inline-block`}>
-                      {attachment.type}
-                    </div>
-                  </div>
-                  
-                  <div className="col-span-2 text-[#333333] font-medium">{attachment.size}</div>
-                  
-                  <div className="col-span-2 text-[#666666]">{attachment.uploadedBy}</div>
-                  
-                  <div className="col-span-1 text-[#666666] text-sm">
-                    {new Date(attachment.uploadDate).toLocaleDateString()}
-                  </div>
-                  
-                  <div className="col-span-1 flex items-center space-x-2">
-                    <button className="neu-button p-2 rounded-xl text-[#2C318E] hover:text-[#048ba8] transition-colors">
-                      <Eye className="w-4 h-4" />
-                    </button>
-                    <button className="neu-button p-2 rounded-xl text-[#666666] hover:text-[#333333] transition-colors">
-                      <Download className="w-4 h-4" />
-                    </button>
-                    <button className="neu-button p-2 rounded-xl text-[#CA2030] hover:text-[#d4471f] transition-colors">
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         )}
 
         {sortedAttachments.length === 0 && (
