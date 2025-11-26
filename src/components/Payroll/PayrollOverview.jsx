@@ -14,7 +14,8 @@ export const PayrollOverview = ({ taskId }) => {
   const [showAddDependency, setShowAddDependency] = useState(false);
   const [filterCritical, setFilterCritical] = useState(false);
   const [viewMode, setViewMode] = useState('Quick Attendance Overview');
-
+ const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState('all');
   const currentTask = {
     id: taskId || 'TASK-001',
     title: 'User Authentication System',
@@ -80,32 +81,44 @@ export const PayrollOverview = ({ taskId }) => {
   ];
 
   return (
-    <div className="p-8 bg-[#FDFAFA] min-h-screen">
-      <div className="mb-8">
-        <div className="flex items-center gap-4 mb-4">
-          <button 
-            onClick={() => navigate(-1)}
-            className="neu-small p-2 rounded-xl hover:text-[#CA2030] transition-colors"
-          >
-            <ArrowLeft size={20} />
-          </button>
-          <div className="flex-1">
-            <h1 className="text-3xl font-bold text-[#333333] mb-2">Attendance</h1>
-          </div>
+    <div className="px-4 sm:px-6 lg:px-10 py-6 lg:py-8 bg-[#FDFAFA] min-h-screen">
+      <div className="mb-6 lg:mb-8 flex items-center gap-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="neu-small p-2 rounded-xl hover:text-[#CA2030] transition-colors"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        <div className="flex-1">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#333333]">Attendance</h1>
         </div>
       </div>
-      <Tabination viewMode={viewMode} setViewMode={setViewMode} />
-      {/* Components */}
-      {viewMode === 'Quick Attendance Overview' ? (
-        <>
-          <PayrollDropdowns />
-          <PayrollHeader />
-          <PayrollTable />
-          <PayrollLegends />
-        </>
-      ) : (
-        <OverviewTable />
-      )}
+
+      <div className="mb-4 sm:mb-6 flex justify-center">
+        <Tabination viewMode={viewMode} setViewMode={setViewMode} />
+      </div>
+
+      {/* Content cards */}
+      <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+        {viewMode === 'Quick Attendance Overview' ? (
+          <>
+           <PayrollDropdowns
+  searchTerm={searchTerm}
+  setSearchTerm={setSearchTerm}
+  selectedDepartment={selectedDepartment}
+  setSelectedDepartment={setSelectedDepartment}
+/>
+<PayrollHeader />
+<PayrollTable
+  searchTerm={searchTerm}
+  selectedDepartment={selectedDepartment}
+/>
+<PayrollLegends />
+          </>
+        ) : (
+          <OverviewTable />
+        )}
+      </div>
     </div>
   );
 };

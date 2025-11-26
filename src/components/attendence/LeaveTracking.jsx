@@ -144,6 +144,11 @@ export const LeaveTracking = ({ onNavigate }) => {
         <p className="text-[#666666]">Manage leave requests with interactive kanban board</p>
       </div>
 
+
+  {/* Summary Cards */}
+      <LeaveSummaryCards leaveRequests={currentLeaveRequests} kanbanColumns={columns} />
+      
+      
       {/* Filters and Actions */}
       <div className="neu-card p-6 rounded-2xl mb-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -207,8 +212,7 @@ export const LeaveTracking = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Summary Cards */}
-      <LeaveSummaryCards leaveRequests={currentLeaveRequests} kanbanColumns={columns} />
+    
 
       {/* Kanban Board */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

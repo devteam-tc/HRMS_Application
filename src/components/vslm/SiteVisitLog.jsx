@@ -186,7 +186,31 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
           </button>
         </div>
       </div>
-
+ {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#333333] mb-2">{siteVisits.length}</div>
+          <div className="text-[#666666]">Total Visits</div>
+        </div>
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#4CAF50] mb-2">
+            {siteVisits.filter(v => v.status === 'completed').length}
+          </div>
+          <div className="text-[#666666]">Completed</div>
+        </div>
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#05A7CC] mb-2">
+            {siteVisits.reduce((total, visit) => total + visit.photos, 0)}
+          </div>
+          <div className="text-[#666666]">Photos Taken</div>
+        </div>
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#9C27B0] mb-2">
+            {siteVisits.reduce((total, visit) => total + visit.attachments, 0)}
+          </div>
+          <div className="text-[#666666]">Documents</div>
+        </div>
+      </div>
       {/* Filters */}
       <div className="neu-card p-6 rounded-3xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -256,31 +280,7 @@ export const SiteVisitLog = ({ projectId, onNavigate }) => {
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#333333] mb-2">{siteVisits.length}</div>
-          <div className="text-[#666666]">Total Visits</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#4CAF50] mb-2">
-            {siteVisits.filter(v => v.status === 'completed').length}
-          </div>
-          <div className="text-[#666666]">Completed</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#05A7CC] mb-2">
-            {siteVisits.reduce((total, visit) => total + visit.photos, 0)}
-          </div>
-          <div className="text-[#666666]">Photos Taken</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#9C27B0] mb-2">
-            {siteVisits.reduce((total, visit) => total + visit.attachments, 0)}
-          </div>
-          <div className="text-[#666666]">Documents</div>
-        </div>
-      </div>
+     
 
       {/* Visit List */}
       <div className="space-y-6">

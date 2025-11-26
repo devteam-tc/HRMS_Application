@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+// src/components/Payroll/PayrollDropdowns.jsx
+import React from "react";
 import { ChevronDown, Search, Download, Calendar } from "lucide-react";
 
-const PayrollDropdowns = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [dateRange, setDateRange] = useState('all');
-  const [selectedDepartment, setSelectedDepartment] = useState('all');
-  const [selectedStatus, setSelectedStatus] = useState('all');
-
+const PayrollDropdowns = ({
+  searchTerm,
+  setSearchTerm,
+  selectedDepartment,
+  setSelectedDepartment,
+}) => {
   const departments = [
+    "All Departments", // Add this if you want it in the dropdown
     "Engineering",
     "Sales",
     "Marketing",
     "HR",
     "Finance",
-    "Operations"
+    "Operations",
   ];
 
   return (
@@ -25,7 +27,7 @@ const PayrollDropdowns = () => {
             <Search className="text-[#666666] mr-3" size={20} />
             <input
               type="text"
-              placeholder="Search Employee Name or ID."
+              placeholder="Search employees by name or ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="flex-1 bg-transparent outline-none text-[#333333] placeholder-[#999999]"
@@ -33,55 +35,42 @@ const PayrollDropdowns = () => {
           </div>
         </div>
 
-        {/* Date Range Filter */}
-        <div>
-          <div className="neu-input p-4 rounded-2xl relative group">
-            <div className="flex items-center">
-              <Calendar className="text-[#666666] mr-3 group-hover:text-[#CA2030] transition-colors" size={18} />
-             
-                <option value="all">Jan , 2025</option>
-             
-            </div>
-          </div>
-        </div>
-
         {/* Department Filter */}
         <div>
-          <div className="neu-input p-4 rounded-2xl relative group">
+          <div className="neu-input p-4 rounded-2xl">
             <select
               value={selectedDepartment}
               onChange={(e) => setSelectedDepartment(e.target.value)}
-              className="w-full bg-transparent outline-none text-[#333333] appearance-none cursor-pointer group-hover:text-[#CA2030] transition-colors"
+              className="w-full bg-transparent outline-none text-[#333333]"
             >
               <option value="all">All Departments</option>
-              {departments.map(dept => (
-                <option key={dept} value={dept}>{dept}</option>
+              {departments.map((dept) => (
+                <option key={dept} value={dept}>
+                  {dept}
+                </option>
               ))}
             </select>
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#666666] pointer-events-none group-hover:text-[#CA2030] transition-colors" size={18} />
           </div>
         </div>
 
-        {/* Status Filter */}
-         <div className="neu-input p-4 rounded-2xl relative group">
-
-          <Download size={18} />
-
-            <select
-              value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
-              className="w-full bg-transparent outline-none text-[#333333] appearance-none cursor-pointer group-hover:text-[#CA2030] transition-colors"
-            >
-              <option value="present">Excel</option>
-              <option value="absent">pdf</option>
-              <option value="late">CSV</option>
-             
+        {/* Date Range (Visual Only) */}
+        <div>
+          <div className="neu-input p-4 rounded-2xl">
+            <select className="w-full bg-transparent outline-none text-[#333333]">
+              <option>Jan, 2025</option>
             </select>
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#666666] pointer-events-none group-hover:text-[#CA2030] transition-colors" size={18} />
           </div>
+        </div>
+
+        {/* Downloads (Visual Only) */}
+        <div>
+          <div className="neu-input p-4 rounded-2xl">
+            <select className="w-full bg-transparent outline-none text-[#333333]">
+              <option>Downloads</option>
+            </select>
+          </div>
+        </div>
       </div>
-      
-    
     </div>
   );
 };

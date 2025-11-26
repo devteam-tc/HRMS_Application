@@ -91,44 +91,7 @@ export const VSLMAnalytics = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="neu-card p-6 rounded-3xl">
-        <div className="flex items-center space-x-6">
-          <div className="flex items-center space-x-3">
-            <Filter className="w-5 h-5 text-[#666666]" />
-            <span className="font-medium text-[#333333]">Filters:</span>
-          </div>
-          
-          <div className="neu-input p-3 rounded-2xl">
-            <select
-              value={selectedTimeRange}
-              onChange={(e) => setSelectedTimeRange(e.target.value)}
-              className="bg-transparent outline-none text-[#333333]"
-            >
-              <option value="last-month">Last Month</option>
-              <option value="last-3-months">Last 3 Months</option>
-              <option value="last-6-months">Last 6 Months</option>
-              <option value="last-year">Last Year</option>
-            </select>
-          </div>
-
-          <div className="neu-input p-3 rounded-2xl">
-            <select
-              value={selectedMetric}
-              onChange={(e) => setSelectedMetric(e.target.value)}
-              className="bg-transparent outline-none text-[#333333]"
-            >
-              <option value="all">All Metrics</option>
-              <option value="progress">Progress</option>
-              <option value="budget">Budget</option>
-              <option value="quality">Quality</option>
-              <option value="safety">Safety</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      {/* KPI Cards */}
+ {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div className="neu-card p-6 rounded-3xl">
           <div className="flex items-center justify-between mb-4">
@@ -195,6 +158,46 @@ export const VSLMAnalytics = ({ onNavigate }) => {
         </div>
       </div>
 
+
+
+      {/* Filters */}
+      <div className="neu-card p-6 rounded-3xl">
+        <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-3">
+            <Filter className="w-5 h-5 text-[#666666]" />
+            <span className="font-medium text-[#333333]">Filters:</span>
+          </div>
+          
+          <div className="neu-input p-3 rounded-2xl">
+            <select
+              value={selectedTimeRange}
+              onChange={(e) => setSelectedTimeRange(e.target.value)}
+              className="bg-transparent outline-none text-[#333333]"
+            >
+              <option value="last-month">Last Month</option>
+              <option value="last-3-months">Last 3 Months</option>
+              <option value="last-6-months">Last 6 Months</option>
+              <option value="last-year">Last Year</option>
+            </select>
+          </div>
+
+          <div className="neu-input p-3 rounded-2xl">
+            <select
+              value={selectedMetric}
+              onChange={(e) => setSelectedMetric(e.target.value)}
+              className="bg-transparent outline-none text-[#333333]"
+            >
+              <option value="all">All Metrics</option>
+              <option value="progress">Progress</option>
+              <option value="budget">Budget</option>
+              <option value="quality">Quality</option>
+              <option value="safety">Safety</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+     
       {/* Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Project Status Distribution */}

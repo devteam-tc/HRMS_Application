@@ -12,8 +12,8 @@ export const PolicyStatusCards = () => {
             <h3 className="text-xl sm:text-2xl font-bold text-green-600">24</h3>
             <p className="text-[#666666] text-xs sm:text-sm">Active Policies</p>
           </div>
-          <div className="neu-small p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-green-400 to-green-600">
-            <CheckCircle size={16} className="sm:w-6 sm:h-6 text-black" />
+          <div className="neu-small p-2 sm:p-3 rounded-lg sm:rounded-xl bg-[#CA2030]">
+            <CheckCircle size={16} className="sm:w-6 sm:h-6 text-white" />
           </div>
         </div>
       </div>
@@ -24,8 +24,8 @@ export const PolicyStatusCards = () => {
             <h3 className="text-xl sm:text-2xl font-bold text-[#2C318E]">8</h3>
             <p className="text-[#666666] text-xs sm:text-sm">Auto-Calculated</p>
           </div>
-          <div className="neu-small p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-[#2C318E] to-[#048ba8]">
-            <Sliders size={16} className="sm:w-6 sm:h-6 text-black" />
+          <div className="neu-small p-2 sm:p-3 rounded-lg sm:rounded-xl  bg-[#2C318E]">
+            <Sliders size={16} className="sm:w-6 sm:h-6 text-white" />
           </div>
         </div>
       </div>
@@ -36,8 +36,8 @@ export const PolicyStatusCards = () => {
             <h3 className="text-xl sm:text-2xl font-bold text-yellow-600">3</h3>
             <p className="text-[#666666] text-xs sm:text-sm">Need Review</p>
           </div>
-          <div className="neu-small p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600">
-            <AlertCircle size={16} className="sm:w-6 sm:h-6 text-black" />
+          <div className="neu-small p-2 sm:p-3 rounded-lg sm:rounded-xl bg-[#9C27B0]">
+            <AlertCircle size={16} className="sm:w-6 sm:h-6 text-white" />
           </div>
         </div>
       </div>
@@ -48,8 +48,8 @@ export const PolicyStatusCards = () => {
             <h3 className="text-xl sm:text-2xl font-bold text-green-600">100%</h3>
             <p className="text-[#666666] text-xs sm:text-sm">Compliance</p>
           </div>
-          <div className="neu-small p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-green-400 to-green-600">
-            <Shield size={16} className="sm:w-6 sm:h-6 text-black" />
+          <div className="neu-small p-2 sm:p-3 rounded-lg sm:rounded-xl bg-[#ef5226]">
+            <Shield size={16} className="sm:w-6 sm:h-6 text-white" />
           </div>
         </div>
       </div>

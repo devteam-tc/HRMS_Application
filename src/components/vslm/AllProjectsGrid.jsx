@@ -174,6 +174,33 @@ export const AllProjectsGrid = ({ onNavigate }) => {
         </div>
       </div>
 
+   {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#333333] mb-2">{projects.length}</div>
+          <div className="text-[#666666]">Total Projects</div>
+        </div>
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#05A7CC] mb-2">
+            {projects.filter(p => p.status === 'ongoing').length}
+          </div>
+          <div className="text-[#666666]">Ongoing</div>
+        </div>
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#4CAF50] mb-2">
+            {projects.filter(p => p.status === 'completed').length}
+          </div>
+          <div className="text-[#666666]">Completed</div>
+        </div>
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#FFC107] mb-2">
+            {projects.filter(p => p.status === 'on-hold').length}
+          </div>
+          <div className="text-[#666666]">On Hold</div>
+        </div>
+      </div>
+
+
       {/* Filters */}
       <div className="neu-card p-6 rounded-3xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -225,31 +252,7 @@ export const AllProjectsGrid = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#333333] mb-2">{projects.length}</div>
-          <div className="text-[#666666]">Total Projects</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#05A7CC] mb-2">
-            {projects.filter(p => p.status === 'ongoing').length}
-          </div>
-          <div className="text-[#666666]">Ongoing</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#4CAF50] mb-2">
-            {projects.filter(p => p.status === 'completed').length}
-          </div>
-          <div className="text-[#666666]">Completed</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#FFC107] mb-2">
-            {projects.filter(p => p.status === 'on-hold').length}
-          </div>
-          <div className="text-[#666666]">On Hold</div>
-        </div>
-      </div>
+   
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

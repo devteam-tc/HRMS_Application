@@ -119,7 +119,7 @@ export const navigationItems = [
       { id: "payroll-overview", label: "Attendance Overview", icon: LayoutDashboard  ,  path: '/attendance-overview' },
       { id: "salary-overview", label: "Salary Overview", icon: FolderOpen  , path: '/salary-overview' },
       { id: "payroll-history", label: "Payroll History", icon: Kanban  , path: '/payroll-history' },
-      { id: "add-new-payroll", label: "Add New Payroll", icon: Plus  , path: '/new-payroll' },
+      { id: "new-payroll", label: "New Payroll", icon: Plus  , path: '/new-payroll' },
       { id: "payroll-details", label: "Payroll Details", icon: FileText  , path: '/payroll-details' },
       { id: "payroll-management", label: "Payroll Management", icon: CheckCircle  , path: '/payroll-management' },
       { id: "payroll-dependencies", label: "Dependencies", icon: GitBranch  , path: '/payroll-dependencies' },

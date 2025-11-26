@@ -188,6 +188,35 @@ export const UploadedImages = ({ onNavigate, projectId }) => {
         </div>
       </div>
 
+ {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#333333] mb-2">{images.length}</div>
+          <div className="text-[#666666]">Total Images</div>
+        </div>
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#2C318E] mb-2">
+            {uniqueProjects.length}
+          </div>
+          <div className="text-[#666666]">Projects</div>
+        </div>
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#4CAF50] mb-2">
+            {(images.reduce((total, img) => total + parseFloat(img.size), 0)).toFixed(1)} MB
+          </div>
+          <div className="text-[#666666]">Total Size</div>
+        </div>
+        <div className="neu-card p-6 rounded-3xl text-center">
+          <div className="text-3xl font-bold text-[#9C27B0] mb-2">
+            {uniqueTags.length}
+          </div>
+          <div className="text-[#666666]">Unique Tags</div>
+        </div>
+      </div>
+
+
+
+
       {/* Filters */}
       <div className="neu-card p-6 rounded-3xl">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
@@ -255,32 +284,7 @@ export const UploadedImages = ({ onNavigate, projectId }) => {
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#333333] mb-2">{images.length}</div>
-          <div className="text-[#666666]">Total Images</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#2C318E] mb-2">
-            {uniqueProjects.length}
-          </div>
-          <div className="text-[#666666]">Projects</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#4CAF50] mb-2">
-            {(images.reduce((total, img) => total + parseFloat(img.size), 0)).toFixed(1)} MB
-          </div>
-          <div className="text-[#666666]">Total Size</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#9C27B0] mb-2">
-            {uniqueTags.length}
-          </div>
-          <div className="text-[#666666]">Unique Tags</div>
-        </div>
-      </div>
-
+     
       {/* Images Display */}
       <div className="neu-card p-8 rounded-3xl">
         {viewMode === 'grid' ? (

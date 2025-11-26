@@ -114,7 +114,6 @@ export const NewMeeting = ({ onNavigate }) => {
   return (
     <div className="p-3 sm:p-4 md:p-6 lg:p-8 space-y-4 sm:space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
-      <div className="neu-card p-8 rounded-3xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div className="flex items-center space-x-4">
             <button 
@@ -144,7 +143,7 @@ export const NewMeeting = ({ onNavigate }) => {
             </button>
           </div>
         </div>
-      </div>
+    
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Form */}

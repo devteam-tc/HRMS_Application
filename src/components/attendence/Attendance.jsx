@@ -26,6 +26,9 @@ import {
   BarChart3,
   ChevronRight
 } from 'lucide-react';
+import AttendanceCards from '../AttendanceDashboard/AttendanceCards';
+import { attendanceKpiData } from '../AttendanceDashboard/AttendanceCardsdata';
+
 
 const Attendance = ({ onNavigate }) => {
   const [activeTab, setActiveTab] = useState('all');
@@ -40,41 +43,7 @@ const Attendance = ({ onNavigate }) => {
     { id: 5, name: 'David Brown', date: '2025-09-09', checkIn: '09:05 AM', checkOut: '--', status: 'Working', hoursWorked: '--' },
   ];
 
-  // KPI Data
-  const kpiData = [
-    {
-      title: 'Average Attendance',
-      value: '87.5%',
-      change: '+2.3%',
-      changeType: 'positive',
-      icon: UserCheckIcon,
-      color: 'text-[#CA2030]'
-    },
-    {
-      title: 'Late Arrivals Today',
-      value: '12',
-      change: '-5 from yesterday',
-      changeType: 'positive',
-      icon: Clock,
-      color: 'text-[#2C318E]'
-    },
-    {
-      title: 'Absenteeism Rate',
-      value: '4.2%',
-      change: '+0.8%',
-      changeType: 'negative',
-      icon: UserX,
-      color: 'text-red-500'
-    },
-    {
-      title: 'Active Shifts',
-      value: '8',
-      change: '2 ongoing',
-      changeType: 'neutral',
-      icon: Timer,
-      color: 'text-[#CA2030]'
-    }
-  ];
+
 
   // Quick Actions
   const quickActions = [
@@ -106,7 +75,7 @@ const Attendance = ({ onNavigate }) => {
     : attendanceData.filter(record => record.status.toLowerCase() === activeTab.toLowerCase());
 
   return (
-    <div className="bg-[#FDFAFA] min-h-screen p-8">
+    <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Attendance Dashboard</h1>
@@ -114,31 +83,8 @@ const Attendance = ({ onNavigate }) => {
       </div>
 
       {/* KPI Cards Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {kpiData.map((kpi, index) => {
-          const Icon = kpi.icon;
-          return (
-            <div key={index} className="neu-card p-6 rounded-2xl hover:shadow-lg transition-all duration-300">
-              <div className="flex items-center justify-between mb-4">
-                <div className={`neu-small p-3 rounded-xl ${kpi.color}`}>
-                  <Icon size={24} />
-                </div>
-                <div className={`text-xs px-3 py-1 rounded-full font-medium ${
-                  kpi.changeType === 'positive' ? 'bg-green-100 text-green-700' :
-                  kpi.changeType === 'negative' ? 'bg-red-100 text-red-700' :
-                  'bg-gray-100 text-gray-700'
-                }`}>
-                  {kpi.change}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-[#333333] mb-1">{kpi.value}</h3>
-                <p className="text-[#666666] text-sm">{kpi.title}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <AttendanceCards kpiData={attendanceKpiData} />
+
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column - Charts */}

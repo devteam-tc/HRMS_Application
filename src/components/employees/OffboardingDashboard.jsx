@@ -168,7 +168,6 @@ export const OffboardingDashboard = ({ onNavigate }) => {
   return (
     <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
-      <div className="neu-card p-4 sm:p-6 md:p-8 rounded-3xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className="mb-4 sm:mb-0">
             <h1 className="text-4xl font-bold text-[#333333] mb-2">Offboarding Dashboard</h1>
@@ -205,7 +204,7 @@ export const OffboardingDashboard = ({ onNavigate }) => {
         {/* Key Metrics */}
         <KeyMetrics offboardingStats={offboardingStats} />
 
-      </div>
+      
 
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

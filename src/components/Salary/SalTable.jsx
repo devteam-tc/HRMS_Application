@@ -1,149 +1,36 @@
- import React, { useState } from 'react';
+ import React, { useState, useMemo } from 'react';
 import { Edit3, Download, Search, Filter, ChevronDown, User, Briefcase, Building, DollarSign, TrendingUp, TrendingDown } from 'lucide-react';
+import { defaultEmployees } from './SalaryTableData';
 
-const defaultEmployees = [
-  {
-    id: 1,
-    name: 'John',
-    empId: 'EMP001',
-    designation: 'Software Engineer',
-    department: 'IT',
-    basic: 35000,
-    hra: 10500,
-    conveyance: 1600,
-    medical: 1250,
-    other: 800,
-    gross: 49150,
-    pf: 4200,
-    esi: 700,
-    pt: 200,
-    totalDeduction: 5100,
-    netSalary: 44050
-  },
-  {
-    id: 2,
-    name: 'David',
-    empId: 'EMP002', 
-    designation: 'Project Manager',
-    department: 'IT',
-    basic: 45000,
-    hra: 13500,
-    conveyance: 1600,
-    medical: 1250,
-    other: 800,
-    gross: 62150,
-    pf: 5400,
-    esi: 900,
-    pt: 200,
-    totalDeduction: 6500,
-    netSalary: 55650
-  },
-  {
-    id: 3,
-    name: 'Kevin',
-    empId: 'EMP003',
-    designation: 'UX Designer',
-    department: 'Design',
-    basic: 32000,
-    hra: 9600,
-    conveyance: 1600,
-    medical: 1250,
-    other: 800,
-    gross: 45250,
-    pf: 3840,
-    esi: 640,
-    pt: 200,
-    totalDeduction: 4680,
-    netSalary: 40570
-  },
-  {
-    id: 4,
-    name: 'Bruce',
-    empId: 'EMP004',
-    designation: 'Data Analyst',
-    department: 'Analytics',
-    basic: 38000,
-    hra: 11400,
-    conveyance: 1600,
-    medical: 1250,
-    other: 800,
-    gross: 53050,
-    pf: 4560,
-    esi: 760,
-    pt: 200,
-    totalDeduction: 5520,
-    netSalary: 47530
-  },
-  {
-    id: 5,
-    name: 'Mark',
-    empId: 'EMP005',
-    designation: 'HR Manager',
-    department: 'HR',
-    basic: 40000,
-    hra: 12000,
-    conveyance: 1600,
-    medical: 1250,
-    other: 800,
-    gross: 55650,
-    pf: 4800,
-    esi: 800,
-    pt: 200,
-    totalDeduction: 5800,
-    netSalary: 49850
-  },
-  {
-    id: 6,
-    name: 'Mark',
-    empId: 'EMP006',
-    designation: 'HR Manager',
-    department: 'HR',
-    basic: 40000,
-    hra: 12000,
-    conveyance: 1600,
-    medical: 1250,
-    other: 800,
-    gross: 55650,
-    pf: 4800,
-    esi: 800,
-    pt: 200,
-    totalDeduction: 5800,
-    netSalary: 49850
-  },
-  {
-    id: 7,
-    name: 'Mark',
-    empId: 'EMP007',
-    designation: 'HR Manager',
-    department: 'HR',
-    basic: 40000,
-    hra: 12000,
-    conveyance: 1600,
-    medical: 1250,
-    other: 800,
-    gross: 55650,
-    pf: 4800,
-    esi: 800,
-    pt: 200,
-    totalDeduction: 5800,
-    netSalary: 49850
-  },
-];
-
-const SalTable = ({ employees = defaultEmployees }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const SalTable = ({ 
+  employees = defaultEmployees, 
+  searchTerm = '', 
+  selectedDepartment = 'All Departments',
+  selectedStatus = 'all',
+  dateRange = 'all'
+}) => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
-  const [selectedDepartment, setSelectedDepartment] = useState('All');
-
-  const departments = ['All', ...new Set(employees.map(emp => emp.department))];
   
-  const filteredEmployees = employees.filter(employee => {
-    const matchesSearch = employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          employee.empId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          employee.designation.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDepartment = selectedDepartment === 'All' || employee.department === selectedDepartment;
-    return matchesSearch && matchesDepartment;
-  });
+// In SalTable.jsx, update the filteredEmployees calculation
+const filteredEmployees = employees.filter(employee => {
+  // Search filter
+  const searchLower = searchTerm.toLowerCase();
+  const matchesSearch = 
+    employee.name.toLowerCase().includes(searchLower) ||
+    employee.empId.toLowerCase().includes(searchLower) ||
+    employee.designation.toLowerCase().includes(searchLower) ||
+    employee.department.toLowerCase().includes(searchLower);
+  
+  // Department filter
+  const matchesDepartment = 
+    selectedDepartment === 'All Departments' || 
+    employee.department === selectedDepartment;
+  
+  // Status filter
+  const matchesStatus = selectedStatus === 'all' || employee.status === selectedStatus;
+  
+  return matchesSearch && matchesDepartment && matchesStatus;
+});
 
   const handleSort = (key) => {
     let direction = 'ascending';
@@ -174,32 +61,7 @@ const SalTable = ({ employees = defaultEmployees }) => {
       {/* Header Section */}
      
       {/* Search and Filter Section */}
-      <div className="p-6 border-b border-gray-200 bg-[#FDFAFA]">
-        <div className="flex flex-col lg:flex-row gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#666666] w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search employees..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 neu-small rounded-xl focus:ring-2 focus:ring-[#2C318E] focus:border-transparent outline-none transition-all duration-200 text-[#333333] placeholder-[#666666]"
-            />
-          </div>
-          <div className="relative">
-            <select
-              value={selectedDepartment}
-              onChange={(e) => setSelectedDepartment(e.target.value)}
-              className="appearance-none neu-small rounded-xl px-4 py-2 pr-10 focus:ring-2 focus:ring-[#2C318E] focus:border-transparent outline-none transition-all duration-200 cursor-pointer text-[#333333]"
-            >
-              {departments.map(dept => (
-                <option key={dept} value={dept}>{dept}</option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#666666] w-4 h-4 pointer-events-none" />
-          </div>
-        </div>
-      </div>
+     
 
       {/* Table */}
       <div className="overflow-x-auto">
@@ -380,12 +242,12 @@ const SalTable = ({ employees = defaultEmployees }) => {
                     <span className="text-sm font-bold text-blue-700">
                       ₹{employee.netSalary.toLocaleString('en-IN')}
                     </span>
-                    <div className="w-full bg-blue-200 rounded-full h-1 mt-1">
+                    {/* <div className="w-full bg-blue-200 rounded-full h-1 mt-1">
                       <div 
                         className="bg-blue-600 h-1 rounded-full"
                         style={{ width: `${Math.min((employee.netSalary / 100000) * 100, 100)}%` }}
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </td>
               </tr>

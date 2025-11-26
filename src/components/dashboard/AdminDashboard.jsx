@@ -107,12 +107,11 @@ export const NeumorphicDashboard = () => {
     attendanceRate: 92,
   };
   return (
-    <div className="p-8 space-y-8 bg-[#F8F9FB] min-h-screen">
+    <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Welcome Header */}
-      <div className="neu-card p-8 rounded-3xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-4xl font-bold text-[#333333] mb-2">Welcome back, Lion! 👋</h1>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div className="mb-4 sm:mb-0">
+            <h1 className="text-4xl font-bold text-[#333333] mb-2">Welcome back, Lion!👋</h1>
             <p className="text-[#666666] text-lg">Here's what's happening at your organization today.</p>
           </div>
           <div className="neu-card-inset p-6 rounded-2xl text-center">
@@ -126,7 +125,7 @@ export const NeumorphicDashboard = () => {
             </p>
           </div>
         </div>
-      </div>
+     
 
       {/* Primary Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

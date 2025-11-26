@@ -1,74 +1,9 @@
 import React, { useState } from 'react';
 import { Search, Filter, Plus, Edit, Eye, Trash2, Mail, Phone, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-
-const employees = [
-  {
-    id: '1',
-    name: 'Lion',
-    email: 'john.doe@company.com',
-    phone: '+1 (555) 123-4567',
-    position: 'Senior Software Engineer',
-    department: 'Engineering',
-    location: 'New York, NY',
-    status: 'active',
-    joinDate: '2022-03-15',
-    avatar: '/placeholder-avatar.jpg',
-    employeeId: 'EMP001'
-  },
-  {
-    id: '2',
-    name: 'Jane Smith',
-    email: 'jane.smith@company.com',
-    phone: '+1 (555) 234-5678',
-    position: 'Product Manager',
-    department: 'Product',
-    location: 'San Francisco, CA',
-    status: 'active',
-    joinDate: '2021-08-20',
-    avatar: '/placeholder-avatar.jpg',
-    employeeId: 'EMP002'
-  },
-  {
-    id: '3',
-    name: 'Mike Johnson',
-    email: 'mike.johnson@company.com',
-    phone: '+1 (555) 345-6789',
-    position: 'UX Designer',
-    department: 'Design',
-    location: 'Austin, TX',
-    status: 'on-leave',
-    joinDate: '2023-01-10',
-    avatar: '/placeholder-avatar.jpg',
-    employeeId: 'EMP003'
-  },
-  {
-    id: '4',
-    name: 'Sarah Wilson',
-    email: 'sarah.wilson@company.com',
-    phone: '+1 (555) 456-7890',
-    position: 'Marketing Specialist',
-    department: 'Marketing',
-    location: 'Remote',
-    status: 'active',
-    joinDate: '2022-11-05',
-    avatar: '/placeholder-avatar.jpg',
-    employeeId: 'EMP004'
-  },
-  {
-    id: '5',
-    name: 'David Brown',
-    email: 'david.brown@company.com',
-    phone: '+1 (555) 567-8901',
-    position: 'DevOps Engineer',
-    department: 'Engineering',
-    location: 'Seattle, WA',
-    status: 'active',
-    joinDate: '2021-06-12',
-    avatar: '/placeholder-avatar.jpg',
-    employeeId: 'EMP005'
-  }
-];
+import EmployeeCard from '../HRDashboard/EmployeeCard';
+import employees from '../HRDashboard/employeesData';
+import StatsCards from '../HRDashboard/StatsCards';
 
 export const ViewAllEmployees = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -86,18 +21,7 @@ export const ViewAllEmployees = () => {
     return matchesSearch && matchesDepartment && matchesStatus;
   });
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'active':
-        return 'bg-[#4CAF50] text-white';
-      case 'inactive':
-        return 'bg-[#EF5226] text-white';
-      case 'on-leave':
-        return 'bg-[#FFC107] text-white';
-      default:
-        return 'bg-[#666666] text-white';
-    }
-  };
+ 
 
   const departments = [...new Set(employees.map(emp => emp.department))];
 
@@ -118,29 +42,29 @@ export const ViewAllEmployees = () => {
       </div>
 
       {/* Filters */}
-      <div className="neu-card p-6 rounded-3xl">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="neu-card p-6 rounded-3xl mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-center">
           {/* Search */}
-          <div className="md:col-span-2">
-            <div className="neu-input p-4 rounded-2xl flex items-center">
-              <Search className="text-[#666666] mr-3" size={20} />
+          <div className="lg:col-span-2">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#CA2030]" size={18} />
               <input
                 type="text"
                 placeholder="Search by name, email, position, or ID..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="flex-1 bg-transparent outline-none text-[#333333] placeholder-[#999999]"
+                className="w-full pl-12 pr-4 py-3 neu-input rounded-xl text-[#333333] placeholder-[#666666] focus:ring-2 focus:ring-[#CA2030] transition-all text-sm"
               />
             </div>
           </div>
 
           {/* Department Filter */}
-          <div>
-            <div className="neu-input p-4 rounded-2xl">
+          <div className="w-full">
+            <div className="neu-input p-3 rounded-2xl h-full">
               <select
                 value={selectedDepartment}
                 onChange={(e) => setSelectedDepartment(e.target.value)}
-                className="w-full bg-transparent outline-none text-[#333333]"
+                className="w-full bg-transparent outline-none text-[#333333] text-sm cursor-pointer"
               >
                 <option value="all">All Departments</option>
                 {departments.map(dept => (
@@ -151,12 +75,12 @@ export const ViewAllEmployees = () => {
           </div>
 
           {/* Status Filter */}
-          <div>
-            <div className="neu-input p-4 rounded-2xl">
+          <div className="w-full">
+            <div className="neu-input p-3 rounded-2xl h-full">
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value)}
-                className="w-full bg-transparent outline-none text-[#333333]"
+                className="w-full bg-transparent outline-none text-[#333333] text-sm cursor-pointer"
               >
                 <option value="all">All Status</option>
                 <option value="active">Active</option>
@@ -165,101 +89,43 @@ export const ViewAllEmployees = () => {
               </select>
             </div>
           </div>
+
+          {/* Sort Filter */}
+          <div className="w-full">
+            <div className="neu-input p-3 rounded-2xl h-full">
+              <select className="w-full bg-transparent outline-none text-[#333333] text-sm cursor-pointer">
+                <option value="name-asc">Sort by Name</option>
+                <option value="name-desc">Name (Z-A)</option>
+                <option value="department">By Department</option>
+                <option value="status">By Status</option>
+              </select>
+            </div>
+          </div>
+
+          {/* View Toggle */}
+          <div className="flex items-center space-x-2">
+            <button className="p-2 neu-button rounded-xl hover:bg-gray-50">
+              <svg className="w-5 h-5 text-[#666666]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+              </svg>
+            </button>
+            <button className="p-2 neu-button rounded-xl bg-white">
+              <svg className="w-5 h-5 text-[#CA2030]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#333333] mb-2">{employees.length}</div>
-          <div className="text-[#666666]">Total Employees</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#4CAF50] mb-2">
-            {employees.filter(emp => emp.status === 'active').length}
-          </div>
-          <div className="text-[#666666]">Active</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#FFC107] mb-2">
-            {employees.filter(emp => emp.status === 'on-leave').length}
-          </div>
-          <div className="text-[#666666]">On Leave</div>
-        </div>
-        <div className="neu-card p-6 rounded-3xl text-center">
-          <div className="text-3xl font-bold text-[#05A7CC] mb-2">{departments.length}</div>
-          <div className="text-[#666666]">Departments</div>
-        </div>
-      </div>
-
+      <StatsCards employees={employees} departments={departments} />
       {/* Employee Table */}
       <div className="neu-card p-8 rounded-3xl">
         <div className="space-y-4">
           {filteredEmployees.map((employee) => (
-            <div key={employee.id} className="neu-small p-6 rounded-2xl hover:scale-105 transition-transform duration-200">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-6">
-                  {/* Avatar */}
-                  <div className="neu-small rounded-2xl p-2">
-                    <Avatar className="w-16 h-16">
-                      <AvatarImage src={employee.avatar} />
-                      <AvatarFallback className="bg-[#05A7CC] text-white text-lg">
-                        {employee.name.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                  </div>
+            <EmployeeCard key={employee.id} employee={employee} />
 
-                  {/* Employee Info */}
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <h3 className="text-xl font-bold text-[#333333]">{employee.name}</h3>
-                      <div className={`neu-small px-3 py-1 rounded-xl text-xs font-medium ${getStatusColor(employee.status)}`}>
-                        {employee.status.replace('-', ' ').toUpperCase()}
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-[#666666]">ID:</span>
-                        <span className="font-medium text-[#333333]">{employee.employeeId}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-[#666666]">Position:</span>
-                        <span className="font-medium text-[#333333]">{employee.position}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-[#666666]">Department:</span>
-                        <span className="font-medium text-[#333333]">{employee.department}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Mail className="w-4 h-4 text-[#666666]" />
-                        <span className="text-[#333333]">{employee.email}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Phone className="w-4 h-4 text-[#666666]" />
-                        <span className="text-[#333333]">{employee.phone}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <MapPin className="w-4 h-4 text-[#666666]" />
-                        <span className="text-[#333333]">{employee.location}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center space-x-3">
-                  <button className="neu-button p-3 rounded-2xl text-[#05A7CC] hover:text-[#048ba8] transition-colors">
-                    <Eye className="w-5 h-5" />
-                  </button>
-                  <button className="neu-button p-3 rounded-2xl text-[#666666] hover:text-[#333333] transition-colors">
-                    <Edit className="w-5 h-5" />
-                  </button>
-                  <button className="neu-button p-3 rounded-2xl text-[#EF5226] hover:text-[#d4471f] transition-colors">
-                    <Trash2 className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-            </div>
           ))}
         </div>
 

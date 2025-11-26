@@ -145,7 +145,6 @@ export const OnboardingDashboard = ({ onNavigate }) => {
   return (
     <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
-      <div className="neu-card p-4 sm:p-6 md:p-8 rounded-3xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className='mb-4 sm:mb-0'>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-1 sm:mb-2">Onboarding Dashboard</h1>
@@ -179,74 +178,73 @@ export const OnboardingDashboard = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Key Metrics */}
-        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
-          <div className="neu-small p-4 sm:p-5 md:p-6 rounded-2xl">
-            <div className="flex items-center justify-between mb-3 sm:mb-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 neu-primary rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+    
+    {/* Key Metrics */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+          <div className="neu-card p-6 rounded-3xl">
+            <div className="flex items-center justify-between">
+              <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.total}</div>
+              <div className="text-right ml-2">
+                 <div className="w-10 h-10 sm:w-12 sm:h-12 neu-primary rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
                 <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div className="text-right ml-2">
-                <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.total}</div>
-                <div className="text-xs sm:text-sm text-[#2C318E] font-medium">+12% from last month</div>
+                {/* <div className="text-xs sm:text-sm text-[#2C318E] font-medium">+12% from last month</div> */}
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-[#333333] text-sm sm:text-base mb-1">Total Onboarded</h3>
-              <div className="text-xs text-[#666666]">This year</div>
+              <p className="font-medium text-[#333333] text-sm sm:text-base mb-1">Total Onboarded</p>
+              {/* <div className="text-xs text-[#666666]">This year</div> */}
             </div>
           </div>
 
-          <div className="neu-small p-4 sm:p-5 md:p-6 rounded-2xl">
-            <div className="flex items-center justify-between mb-3 sm:mb-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 neu-secondary rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+          <div className="neu-card p-6 rounded-3xl">
+            <div className="flex items-center justify-between">
+               <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.inProgress}</div>
+              <div className="text-right ml-2">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 neu-secondary rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
                 <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div className="text-right ml-2">
-                <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.inProgress}</div>
-                <div className="text-xs sm:text-sm text-[#2C318E] font-medium">In progress</div>
+                {/* <div className="text-xs sm:text-sm text-[#2C318E] font-medium">In progress</div> */}
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-[#333333] text-sm sm:text-base mb-1">Active Onboarding</h3>
-              <div className="text-xs text-[#666666]">Currently in process</div>
+              <p className="font-medium text-[#333333] text-sm sm:text-base mb-1">Active Onboarding</p>
+              {/* <div className="text-xs text-[#666666]">Currently in process</div> */}
             </div>
           </div>
 
-          <div className="neu-small p-4 sm:p-5 md:p-6 rounded-2xl">
-            <div className="flex items-center justify-between mb-3 sm:mb-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+          <div className="neu-card p-6 rounded-3xl">
+            <div className="flex items-center justify-between">
+              <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.completionRate}%</div>
+              <div className="text-right ml-2">
+                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
                 <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div className="text-right ml-2">
-                <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.completionRate}%</div>
-                <div className="text-xs sm:text-sm text-[#4CAF50] font-medium">+3% vs last month</div>
+                {/* <div className="text-xs sm:text-sm text-[#4CAF50] font-medium">+3% vs last month</div> */}
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-[#333333] text-sm sm:text-base mb-1">Completion Rate</h3>
-              <div className="text-xs text-[#666666]">Successfully completed</div>
+              <p className="font-medium text-[#333333] text-sm sm:text-base mb-1">Completion Rate</p>
+              {/* <div className="text-xs text-[#666666]">Successfully completed</div> */}
             </div>
           </div>
 
-          <div className="neu-small p-4 sm:p-5 md:p-6 rounded-2xl">
-            <div className="flex items-center justify-between mb-3 sm:mb-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+          <div className="neu-card p-6 rounded-3xl">
+            <div className="flex items-center justify-between">
+          <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.averageDuration}</div>
+              <div className="text-right ml-2">
+                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
                 <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div className="text-right ml-2">
-                <div className="text-2xl sm:text-3xl font-bold text-[#333333]">{onboardingStats.averageDuration}</div>
-                <div className="text-xs sm:text-sm text-[#4CAF50] font-medium">-2 days improved</div>
+                {/* <div className="text-xs sm:text-sm text-[#4CAF50] font-medium">-2 days improved</div> */}
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-[#333333] text-sm sm:text-base mb-1">Avg. Duration</h3>
-              <div className="text-xs text-[#666666]">Days to complete</div>
+              <p className="font-medium text-[#333333] text-sm sm:text-base mb-1">Avg. Duration</p>
+              {/* <div className="text-xs text-[#666666]">Days to complete</div> */}
             </div>
           </div>
         </div>
-      </div>
-
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {/* Onboarding Trends */}

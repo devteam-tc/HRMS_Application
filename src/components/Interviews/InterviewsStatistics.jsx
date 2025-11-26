@@ -27,8 +27,8 @@ export const InterviewsStatistics = ({ interviews }) => {
             <p className="text-[#666666] text-sm mb-1">Total Interviews</p>
             <p className="text-2xl font-bold text-[#333333]">{totalInterviews}</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <Calendar size={24} className="text-[#CA2030]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#CA2030]">
+            <Calendar size={24} className="text-[#FFF]" />
           </div>
         </div>
       </div>
@@ -39,8 +39,8 @@ export const InterviewsStatistics = ({ interviews }) => {
             <p className="text-[#666666] text-sm mb-1">Scheduled</p>
             <p className="text-2xl font-bold text-[#333333]">{scheduledCount}</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <Clock size={24} className="text-[#2C318E]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#2C318E]">
+            <Clock size={24} className="text-[#FFF]" />
           </div>
         </div>
       </div>
@@ -51,8 +51,8 @@ export const InterviewsStatistics = ({ interviews }) => {
             <p className="text-[#666666] text-sm mb-1">Completed</p>
             <p className="text-2xl font-bold text-[#333333]">{completedCount}</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <CheckCircle size={24} className="text-green-500" />
+          <div className="neu-small p-4 rounded-2xl bg-[#009688]">
+            <CheckCircle size={24} className="text-[#FFF]" />
           </div>
         </div>
       </div>
@@ -63,8 +63,8 @@ export const InterviewsStatistics = ({ interviews }) => {
             <p className="text-[#666666] text-sm mb-1">This Week</p>
             <p className="text-2xl font-bold text-[#333333]">{thisWeekCount}</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <Calendar size={24} className="text-[#2C318E]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#9C27B0]">
+            <Calendar size={24} className="text-[#FFF]" />
           </div>
         </div>
       </div>

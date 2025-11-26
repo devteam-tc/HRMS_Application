@@ -74,6 +74,11 @@ export const ApplicantsList = ({ jobId }) => {
         </div>
       </div>
 
+  {/* Statistics */}
+      <ApplicantsStatistics applicants={filteredApplicants} />
+      
+
+
       {/* Filters and Search */}
       <div className="neu-card p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl md:rounded-3xl">
         <div className="flex flex-col gap-3 sm:gap-4">
@@ -98,9 +103,7 @@ export const ApplicantsList = ({ jobId }) => {
         </div>
       </div>
       
-      {/* Statistics */}
-      <ApplicantsStatistics applicants={filteredApplicants} />
-      
+    
       {/* Applicants List */}
       <div className="space-y-3 sm:space-y-4 md:space-y-6">
         {filteredApplicants.map((applicant) => (

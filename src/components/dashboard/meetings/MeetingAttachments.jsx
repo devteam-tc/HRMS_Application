@@ -46,7 +46,6 @@ export const MeetingAttachments = () => {
   return (
     <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
-      <div className="neu-card p-8 rounded-3xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className='mb-4 sm:mb-0'>
             <h1 className="text-3xl font-bold text-[#333333] mb-2">Meeting Attachments</h1>
@@ -60,8 +59,10 @@ export const MeetingAttachments = () => {
             <span className="font-medium">Upload Files</span>
           </button>
         </div>
-      </div>
+ {/* Stats Cards */}
+     <AttachmentsStats attachments={attachments} />
 
+     
       {/* Filters and Controls */}
       <div className="neu-card p-6 rounded-3xl">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
@@ -156,8 +157,7 @@ export const MeetingAttachments = () => {
         </div>
       </div>
 
-      {/* Stats Cards */}
-     <AttachmentsStats attachments={attachments} />
+     
 
 
       {/* Files Display */}

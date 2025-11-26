@@ -3,6 +3,7 @@ import { Plus, Edit3, Calendar, Trash2, Globe, Building, MapPin, Search, Filter,
 import { AddHolidayModal } from '../Holiday/AddHolidayModal';
 import { HolidayList } from '../Holiday/HolidayList';
 import { HolidayCalendar } from '../Holiday/HolidayCalendar';
+import { HolidayStats } from './HolidayManagement/components/HolidayStats';
 
 export const HolidayManagement = ({ onNavigate }) => {
   const [currentDate, setCurrentDate] = useState(new Date(2024, 2, 1)); // March 2024
@@ -237,61 +238,7 @@ export const HolidayManagement = ({ onNavigate }) => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="neu-card p-6 rounded-2xl hover:shadow-lg transition-all">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-[#333333]">{holidays.length}</h3>
-              <p className="text-[#666666] text-sm">Total Holidays</p>
-            </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#EF5226] to-[#d4471f]">
-              <Calendar size={24} className="" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="neu-card p-6 rounded-2xl hover:shadow-lg transition-all">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-[#05A7CC]">
-                {holidays.filter(h => h.type === 'national').length}
-              </h3>
-              <p className="text-[#666666] text-sm">National Holidays</p>
-            </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#05A7CC] to-[#048ba8]">
-              <Globe size={24} className="" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="neu-card p-6 rounded-2xl hover:shadow-lg transition-all">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-purple-600">
-                {holidays.filter(h => h.type === 'religious').length}
-              </h3>
-              <p className="text-[#666666] text-sm">Religious Holidays</p>
-            </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-purple-400 to-purple-600">
-              <MapPin size={24} className="" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="neu-card p-6 rounded-2xl hover:shadow-lg transition-all">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-[#EF5226]">
-                {holidays.filter(h => h.type === 'company').length}
-              </h3>
-              <p className="text-[#666666] text-sm">Company Holidays</p>
-            </div>
-            <div className="neu-small p-3 rounded-xl bg-gradient-to-br from-[#EF5226] to-[#d4471f]">
-              <Building size={24} className="" />
-            </div>
-          </div>
-        </div>
-      </div>
+    <HolidayStats holidays={holidays} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Calendar View */}

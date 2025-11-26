@@ -101,7 +101,8 @@ export const InterviewsList = () => {
           </button>
         </div>
       </div>
-
+     {/* Statistics */}
+    <InterviewsStatistics interviews={interviews} />
       {/* Filters and Search */}
       <div className="neu-card p-6 rounded-3xl mb-8">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
@@ -200,8 +201,7 @@ export const InterviewsList = () => {
         </div>
       </div>
 
-      {/* Statistics */}
-    <InterviewsStatistics interviews={interviews} />
+ 
 
 
       {/* Interviews List */}

@@ -61,7 +61,6 @@ export const MeetingReports = ({ onNavigate }) => {
   return (
     <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
-      <div className="neu-card p-8 rounded-3xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className='mb-4 sm:mb-0'>
             <h1 className="text-3xl font-bold text-[#333333] mb-2">Meeting Reports & Analytics</h1>
@@ -81,7 +80,15 @@ export const MeetingReports = ({ onNavigate }) => {
             </button>
           </div>
         </div>
-      </div>
+
+  {/* KPI Cards */}
+    <KpiCards
+      totalMeetings={totalMeetings}
+      totalParticipants={totalParticipants}
+      totalDuration={totalDuration}
+      averageAttendance={averageAttendance}
+    />
+
 
       {/* Filters */}
       <div className="neu-card p-6 rounded-3xl">
@@ -123,13 +130,7 @@ export const MeetingReports = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* KPI Cards */}
-    <KpiCards
-      totalMeetings={totalMeetings}
-      totalParticipants={totalParticipants}
-      totalDuration={totalDuration}
-      averageAttendance={averageAttendance}
-    />
+    
 
           {/* Charts Row 1 */}
         <MeetingChartsRow1 

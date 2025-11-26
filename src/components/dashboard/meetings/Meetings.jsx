@@ -39,11 +39,10 @@ export const AllMeetings = ({ onNavigate }) => {
   const departments = [...new Set(meetings.map(meeting => meeting.department))];
 
   return (
-    <div className="p-3 sm:p-4 md:p-6 lg:p-8 space-y-4 sm:space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
+    <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
-      <div className="neu-card p-8 rounded-3xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-          <div>
+          <div className="mb-4 sm:mb-0">
             <h1 className="text-3xl font-bold text-[#333333] mb-2">All Meetings</h1>
             <p className="text-[#666666]">Manage and view all meeting records and minutes</p>
           </div>
@@ -55,7 +54,9 @@ export const AllMeetings = ({ onNavigate }) => {
             <span className="font-medium">New Meeting</span>
           </button>
         </div>
-      </div>
+   
+  {/* Stats Cards */}
+   <MeetingStats meetings={meetings} />
 
       {/* Filters */}
       <div className="neu-card p-6 rounded-3xl">
@@ -125,9 +126,7 @@ export const AllMeetings = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Stats Cards */}
-   <MeetingStats meetings={meetings} />
-
+    
       {/* Meetings List */}
     <MeetingsList 
       filteredMeetings={filteredMeetings} 

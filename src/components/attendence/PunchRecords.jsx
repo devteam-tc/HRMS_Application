@@ -90,7 +90,8 @@ export const PunchRecords = ({ onNavigate }) => {
         <h1 className="text-3xl font-bold text-[#333333] mb-2">Punch In/Out Records</h1>
         <p className="text-[#666666]">Comprehensive time tracking with detailed employee records</p>
       </div>
-
+      {/* Summary Cards */}
+     <SummaryCards />
       {/* Enhanced Filters Section */}
       <div className="neu-card p-6 rounded-2xl mb-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -163,21 +164,20 @@ export const PunchRecords = ({ onNavigate }) => {
           </div>
         </div>
       </div>
-      {/* Summary Cards */}
-     <SummaryCards />
+
       {/* Enhanced Records Table */}
-   <EmployeePunchTable
-  filteredRecords={filteredRecords}
-  selectedRecords={selectedRecords}
-  handleSelectRecord={handleSelectRecord}
-  handleSelectAll={handleSelectAll}
-  onNavigate={onNavigate}
-  showActions={showActions}
-  setShowActions={setShowActions}
-  punchRecords={punchRecords}
-  getStatusBadge={getStatusBadge}
-  getDepartmentColor={getDepartmentColor}
-/>
+            <EmployeePunchTable
+            filteredRecords={filteredRecords}
+            selectedRecords={selectedRecords}
+            handleSelectRecord={handleSelectRecord}
+            handleSelectAll={handleSelectAll}
+            onNavigate={onNavigate}
+            showActions={showActions}
+            setShowActions={setShowActions}
+            punchRecords={punchRecords}
+            getStatusBadge={getStatusBadge}
+            getDepartmentColor={getDepartmentColor}
+          />
     </div>
   );
 };

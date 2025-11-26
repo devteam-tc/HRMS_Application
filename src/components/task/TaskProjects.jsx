@@ -387,6 +387,35 @@ export const TaskProjects = () => {
         <p className="text-[#666666]">Manage software development projects with team collaboration</p>
       </div>
 
+
+           {/* Project Summary Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
+          <div className="text-2xl font-bold text-[#CA2030] mb-1">
+            {projects.filter(p => p.status === 'active').length}
+          </div>
+          <div className="text-[#666666] text-sm">Active Projects</div>
+        </div>
+        <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
+          <div className="text-2xl font-bold text-[#2C318E] mb-1">
+            {projects.reduce((sum, p) => sum + p.tasks.total, 0)}
+          </div>
+          <div className="text-[#666666] text-sm">Total Tasks</div>
+        </div>
+        <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
+          <div className="text-2xl font-bold text-green-600 mb-1">
+            {projects.reduce((sum, p) => sum + p.team.length, 0)}
+          </div>
+          <div className="text-[#666666] text-sm">Team Members</div>
+        </div>
+        <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
+          <div className="text-2xl font-bold text-[#333333] mb-1">
+            {Math.round(projects.reduce((sum, p) => sum + p.progress, 0) / projects.length)}%
+          </div>
+          <div className="text-[#666666] text-sm">Avg Progress</div>
+        </div>
+      </div>
+
       {/* Filters and Controls */}
       <div className="neu-card p-6 rounded-2xl mb-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -457,33 +486,7 @@ export const TaskProjects = () => {
         </div>
       </div>
 
-      {/* Project Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-[#CA2030] mb-1">
-            {projects.filter(p => p.status === 'active').length}
-          </div>
-          <div className="text-[#666666] text-sm">Active Projects</div>
-        </div>
-        <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-[#2C318E] mb-1">
-            {projects.reduce((sum, p) => sum + p.tasks.total, 0)}
-          </div>
-          <div className="text-[#666666] text-sm">Total Tasks</div>
-        </div>
-        <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-green-600 mb-1">
-            {projects.reduce((sum, p) => sum + p.team.length, 0)}
-          </div>
-          <div className="text-[#666666] text-sm">Team Members</div>
-        </div>
-        <div className="neu-card p-6 rounded-2xl text-center hover:shadow-lg transition-all">
-          <div className="text-2xl font-bold text-[#333333] mb-1">
-            {Math.round(projects.reduce((sum, p) => sum + p.progress, 0) / projects.length)}%
-          </div>
-          <div className="text-[#666666] text-sm">Avg Progress</div>
-        </div>
-      </div>
+ 
 
       {/* Projects List/Grid */}
       <div className="neu-card rounded-2xl p-8">

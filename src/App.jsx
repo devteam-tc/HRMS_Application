@@ -74,6 +74,8 @@ import Login from './pages/Login';
 import { PayrollOverview } from './components/Payroll/PayrollOverview.jsx';
 import SalaryOverview from './components/Salary/SalaryOverview.jsx';
 import PayrollHistory from './components/PayrollSalary/PayrollHistory.jsx';
+import NewPayroll from './components/PayrollClaim/NewPayroll.jsx';
+import NewClaim from './components/PayrollClaim/NewClaim.jsx';
 
 function MeetingsLayout({ children }) {
   const navigate = useNavigate();
@@ -449,6 +451,8 @@ function App() {
             <Route path="/attendance-overview" element={<PayrollOverview />} />
             <Route path="/salary-overview" element={<SalaryOverview/>} />
             <Route path="/payroll-history" element={<PayrollHistory/>} />
+            <Route path="/new-payroll" element={<NewPayroll/>} />
+            <Route path="/new-claim" element={<NewClaim/>} />
 
             {/* Meeting Routes */}
             <Route path="/meetings-attachments" element={<MeetingAttachments />} />

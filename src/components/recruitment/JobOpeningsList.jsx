@@ -57,6 +57,10 @@ export const JobOpeningsList = () => {
         </button>
       </div>
 
+  {/* Job Statistics */}
+          <JobStatistics jobOpenings={jobOpenings} />
+
+
       {/* Filters and Search */}
       <div className="neu-card p-6 rounded-3xl mb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -135,8 +139,7 @@ export const JobOpeningsList = () => {
         </div>
       </div>
 
-      {/* Job Statistics */}
-          <JobStatistics jobOpenings={jobOpenings} />
+    
       {/* Job Openings Table */}
      <JobOpeningsTable
         jobs={filteredJobs}
