@@ -57,7 +57,7 @@ export const JobOpeningsList = () => {
         </button>
       </div>
 
-  {/* Job Statistics */}
+        {/* Job Statistics */}
           <JobStatistics jobOpenings={jobOpenings} />
 
 

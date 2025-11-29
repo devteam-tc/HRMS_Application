@@ -127,6 +127,8 @@ export const PunchInOut = () => {
           {/* Time Logs Table */}
         <TimeLogsTable timeLogs={timeLogs} />
 
+        
+
         </div>
 
         {/* Sidebar Stats */}

@@ -7,11 +7,11 @@ const SummaryCards = () => {
       <div className="neu-card p-6 rounded-3xl">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[#666666] text-sm mb-1">Total Employees</p>
             <p className="text-2xl font-bold text-[#333333]">1,247</p>
+            <p className="text-[#666666] text-sm mb-1">Total Employees</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <Users size={24} className="text-[#2C318E]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#9C27B0]">
+            <Users size={24} className="text-[#fff]" />
           </div>
         </div>
       </div>
@@ -19,11 +19,11 @@ const SummaryCards = () => {
       <div className="neu-card p-6 rounded-3xl">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[#666666] text-sm mb-1">Total LOP's</p>
             <p className="text-2xl font-bold text-[#333333]">124</p>
+            <p className="text-[#666666] text-sm mb-1">Total LOP's</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <Wallet size={24} className="text-[#CA2030]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#CA2030]">
+            <Wallet size={24} className="text-[#fff]" />
           </div>
         </div>
       </div>
@@ -31,11 +31,11 @@ const SummaryCards = () => {
       <div className="neu-card p-6 rounded-3xl">
         <div className="flex items-center justify-between">
           <div>
+             <p className="text-2xl font-bold text-[#333333]">26</p>
             <p className="text-[#666666] text-sm mb-1">Working days</p>
-            <p className="text-2xl font-bold text-[#333333]">26</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <CalendarDays size={24} className="text-[#2C318E]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#2C318E]">
+            <CalendarDays size={24} className="text-[#fff]" />
           </div>
         </div>
       </div>
@@ -43,11 +43,11 @@ const SummaryCards = () => {
       <div className="neu-card p-6 rounded-3xl">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[#666666] text-sm mb-1">Avg Attendance</p>
             <p className="text-2xl font-bold text-[#333333]">92.4%</p>
+            <p className="text-[#666666] text-sm mb-1">Avg Attendance</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <BarChart3 size={24} className="text-[#CA2030]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#05A7CC]">
+            <BarChart3 size={24} className="text-[#fff]" />
           </div>
         </div>
       </div>

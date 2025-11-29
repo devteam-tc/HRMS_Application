@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Edit, Phone, Mail, MapPin, Calendar, User, Building, Award, TrendingUp, Clock, CheckCircle } from 'lucide-react';
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { EmployeeHeaderCard } from '../Employee/EmployeeHeaderCard';
 import { EmployeeKeyMetrics } from '../Employee/EmployeeKeyMetrics';
 import { SkillsExpertise } from '../Employee/SkillsExpertise';
 import { RecentActivities } from '../Employee/RecentActivities';
-import { CurrentGoals } from '../Employee/CurrentGoals';
-import { PerformanceTrends } from '../Employee/PerformanceTrends';
-import { AttendanceOverview } from '../Employee/AttendanceOverview';
-import { employee , performanceData, attendanceData } from '../Employee/employeeData';
+import { employee, performanceData, attendanceData } from '../Employee/employeeData';
+import UserTable from '../EmployeeProfile/UserTable';
+import { projects } from '../EmployeeProfile/UserTableData';
 
 export const EmployeeProfile = ({ employeeId, onNavigate }) => {
   // Mock comprehensive employee data
- 
-
   return (
     <div className="p-8 space-y-8 bg-[#FDFAFA] min-h-screen">
       {/* Header */}
@@ -27,8 +23,7 @@ export const EmployeeProfile = ({ employeeId, onNavigate }) => {
           </div>
           <div className="flex items-center space-x-4">
             <button
-                            onClick={() => onNavigate?.('edit-profile')}
-
+              onClick={() => onNavigate?.('edit-profile')}
               className="neu-button px-6 py-3 rounded-2xl flex items-center space-x-2 hover:text-[#05A7CC] transition-colors"
             >
               <Edit size={20} />
@@ -36,38 +31,32 @@ export const EmployeeProfile = ({ employeeId, onNavigate }) => {
             </button>
           </div>
         </div>
-
         {/* Employee Header Card */}
-      <EmployeeHeaderCard employee={employee} />
-
+        <EmployeeHeaderCard employee={employee} />
       </div>
-
       {/* Key Metrics */}
-    <EmployeeKeyMetrics employee={employee} />
-
-
+      <EmployeeKeyMetrics employee={employee} />
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Current Goals */}
+        {/* <CurrentGoals goals={employee.performance.goals} /> */}
+        {/* Skills & Expertise */}
+ <div className="lg:col-span-8">
+    <SkillsExpertise timeLogs={employee.jobInfo.timeLogs} />
+  </div>        {/* Recent Activities */}
+<div className="lg:col-span-4">
+    <RecentActivities activities={employee.recentActivities} />
+  </div>      </div>
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Performance Trends */}
-        <PerformanceTrends data={performanceData} />
+        {/* <PerformanceTrends data={performanceData} /> */}
         {/* Attendance Overview */}
-         <AttendanceOverview data={attendanceData} />
-
+        {/* <AttendanceOverview data={attendanceData} /> */}
+        {/* User Table */}
       </div>
+<UserTable projects={projects} />
+
       {/* Bottom Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Current Goals */}
-          <CurrentGoals goals={employee.performance.goals} />
-
-
-        {/* Skills & Expertise */}
-          <SkillsExpertise skills={employee.jobInfo.skills} />
-
-
-        {/* Recent Activities */}
-        <RecentActivities activities={employee.recentActivities} />
-
-      </div>
     </div>
   );
 };

@@ -19,6 +19,7 @@ const SidebarItem = ({
   const showTooltip = isCollapsed && isHovered;
 
   const handleItemClick = () => {
+    console.log('Sidebar item clicked:', { id, label, hasSubItems, isExpanded });
     if (hasSubItems) {
       // If not already expanded, expand and select the first sub-item
       if (!isExpanded) {
@@ -40,7 +41,7 @@ const SidebarItem = ({
   };
 
   return (
-    <div className="space-y-1 relative">
+    <div className="space-y-1 relative group">
       {/* Parent Item */}
       <div className="relative">
         <button
@@ -72,10 +73,10 @@ const SidebarItem = ({
       {/* Submenu */}
       {hasSubItems && (isExpanded || (isCollapsed === true && isHovered === true)) && (
         <div 
-          className={`space-y-1 neu-card-inset p-2 rounded-xl ${
-            isCollapsed && isHovered 
-              ? 'absolute left-full top-0 ml-2 min-w-[200px] z-50' 
-              : 'ml-4'
+          className={`space-y-1 neu-card-inset p-2 rounded-xl transition-all duration-200 ${
+            isCollapsed 
+              ? 'absolute left-full top-0 ml-2 min-w-[200px] z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200' 
+              : 'ml-4 mt-1 transition-none'
           }`}
         >
           {subItems.map((subItem) => (

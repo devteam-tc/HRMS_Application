@@ -1,6 +1,9 @@
 import React from "react";
 
-const StatsCards = ({ employees, departments }) => {
+const 
+
+
+StatsCards = ({ employees, departments }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
       <div className="neu-card p-6 rounded-3xl text-center">

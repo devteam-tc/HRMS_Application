@@ -33,7 +33,45 @@ export const employee = {
     reportingTo: 'Sarah Wilson',
     directReports: ['Alice Johnson', 'Bob Davis'],
     workLocation: 'Hybrid',
-    shiftTime: '9:00 AM - 6:00 PM'
+    shiftTime: '9:00 AM - 6:00 PM',
+    timeLogs: [
+      {
+        id: 1,
+        date: '2024-06-27',
+        location: 'Office',
+        punchIn: '09:15 AM',
+        punchOut: '06:30 PM',
+        totalHours: '9h 15m',
+        status: 'on-time'
+      },
+      {
+        id: 2,
+        date: '2024-06-26',
+        location: 'Remote',
+        punchIn: '09:30 AM',
+        punchOut: '06:45 PM',
+        totalHours: '9h 15m',
+        status: 'on-time'
+      },
+      {
+        id: 3,
+        date: '2024-06-25',
+        location: 'Office',
+        punchIn: '09:45 AM',
+        punchOut: '05:30 PM',
+        totalHours: '7h 45m',
+        status: 'early-out'
+      },
+      {
+        id: 4,
+        date: '2024-06-24',
+        location: 'Office',
+        punchIn: '10:15 AM',
+        punchOut: '07:00 PM',
+        totalHours: '8h 45m',
+        status: 'late-in'
+      }
+    ]
   },
 
   performance: {
@@ -62,11 +100,51 @@ export const employee = {
   },
 
   recentActivities: [
-    { date: '2024-01-20', activity: 'Completed Q4 Performance Review', type: 'achievement' },
-    { date: '2024-01-18', activity: 'Started mentoring Alice Johnson', type: 'responsibility' },
-    { date: '2024-01-15', activity: 'Submitted React project proposal', type: 'project' },
-    { date: '2024-01-12', activity: 'Attended leadership training', type: 'training' },
-    { date: '2024-01-10', activity: 'Received client appreciation', type: 'achievement' }
+    { 
+      date: '2024-06-15', 
+      name: 'John Smith', 
+      type: 'birthday',
+      department: 'Engineering'
+    },
+    { 
+      date: '2024-06-14', 
+      name: 'Christmas',
+      type: 'holiday',
+      description: 'Office closed for Christmas'
+    },
+    { 
+      date: '2024-06-12', 
+      name: 'Sarah Johnson',
+      years: 5,
+      type: 'work_anniversary',
+      department: 'HR'
+    },
+    { 
+      date: '2024-06-10', 
+      name: 'Alex Chen',
+      team: 'Frontend Team',
+      type: 'new_hire',
+      position: 'Junior Developer'
+    },
+    { 
+      date: '2024-06-08', 
+      title: 'New Office Policy Update',
+      type: 'workplace_update',
+      description: 'Updated remote work policy effective next month'
+    },
+    { 
+      date: '2024-06-05',
+      name: 'Mike & Sarah',
+      years: 1,
+      type: 'anniversary',
+      department: 'Design'
+    },
+    { 
+      date: '2024-06-01',
+      event: 'Project Launch Party',
+      type: 'celebration',
+      location: 'Main Conference Room'
+    }
   ]
 };
 

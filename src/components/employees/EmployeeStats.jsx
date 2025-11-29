@@ -11,8 +11,8 @@ const EmployeeStats = ({ employees, departments }) => {
             <p className="text-2xl font-bold text-[#333333]">{employees.length}</p>
             <p className="text-[#666666] text-sm mt-1">Total Employees</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#2C318E]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#2C318E]">
+            <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#fff]" />
           </div>
         </div>
       </div>
@@ -26,8 +26,8 @@ const EmployeeStats = ({ employees, departments }) => {
             </p>
             <p className="text-[#666666] text-sm mt-1">Active</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <UserCheck  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#CA2030]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#CA2030]">
+            <UserCheck  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#fff]" />
           </div>
         </div>
       </div>
@@ -41,8 +41,8 @@ const EmployeeStats = ({ employees, departments }) => {
             </p>
             <p className="text-[#666666] text-sm mt-1">On Leave</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#2C318E]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#996DFF]">
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#fff]" />
           </div>
         </div>
       </div>
@@ -54,8 +54,8 @@ const EmployeeStats = ({ employees, departments }) => {
             <p className="text-2xl font-bold text-[#333333]">{departments.length - 1}</p>
             <p className="text-[#666666] text-sm mt-1">Departments</p>
           </div>
-          <div className="neu-small p-4 rounded-2xl">
-            <Building2  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#CA2030]" />
+          <div className="neu-small p-4 rounded-2xl bg-[#ef5226]">
+            <Building2  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#fff]" />
           </div>
         </div>
       </div>

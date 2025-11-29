@@ -28,7 +28,7 @@ const SalaryOverview = () => {
                 >
                     <ArrowLeft size={20} className="text-[#333333]" />
                 </button>
-                <h1 className="text-2xl font-semibold text-[#333333]">Salaries</h1>
+                <h1 className="text-3xl font-bold text-[#333333] mb-2">Salaries</h1>
             </div>
             
             <StatsCards />

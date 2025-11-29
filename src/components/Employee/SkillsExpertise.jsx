@@ -1,27 +1,64 @@
 import React from "react";
+import { Calendar } from "lucide-react";
 
-export const SkillsExpertise = ({ skills }) => (
-  <div className="neu-card p-8 rounded-3xl">
-    <div className="mb-6">
-      <h3 className="text-xl font-bold text-[#333333] mb-2">Skills & Expertise</h3>
-      <p className="text-[#666666]">Technical competencies</p>
-    </div>
+const getStatusColor = (status) => {
+  switch (status) {
+    case 'on-time':
+      return 'bg-green-100 text-green-800';
+    case 'late':
+      return 'bg-amber-100 text-amber-800';
+    case 'early-out':
+      return 'bg-blue-100 text-blue-800';
+    case 'absent':
+      return 'bg-red-100 text-red-800';
+    default:
+      return 'bg-gray-100 text-gray-800';
+  }
+};
+export const SkillsExpertise = ({ timeLogs }) => (
+    <div className="neu-card p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl">
+      <h3 className="text-xl sm:text-2xl font-bold text-[#333333] mb-4 sm:mb-6">Activity Timeline</h3>
+      
+      <div className="space-y-3 sm:space-y-4">
+        {timeLogs.map((log) => (
+          <div key={log.id} className="neu-small p-4 sm:p-6 rounded-xl sm:rounded-2xl">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+              <div className="flex items-center space-x-3 sm:space-x-6">
+                <div className="neu-card-inset p-2 sm:p-3 rounded-lg sm:rounded-xl">
+                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-[#666666]" />
+                </div>
+                <div>
+                  <div className="font-bold text-[#333333] mb-1 text-sm sm:text-base">
+                    {new Date(log.date).toLocaleDateString('en-US', { 
+                      weekday: 'short',
+                      month: 'short',
+                      day: 'numeric'
+                    })}
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#666666]">{log.location}</div>
+                </div>
+              </div>
 
-    <div className="space-y-3">
-      {skills.map((skill, index) => (
-        <div key={index} className="neu-small p-3 rounded-2xl">
-          <div className="flex items-center justify-between">
-            <span className="font-medium text-[#333333]">{skill}</span>
-            <span className="px-2 py-1 bg-[#05A7CC] text-white rounded-full text-xs">
-              Expert
-            </span>
+             <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6">
+                <div className="flex sm:flex-col items-center sm:items-start space-x-3 sm:space-x-0">
+                  <div className="text-xs sm:text-sm text-[#666666] sm:mb-1">Punch In</div>
+                  <div className="font-medium text-[#333333] text-sm sm:text-base">{log.punchIn}</div>
+                </div>
+                <div className="flex sm:flex-col items-center sm:items-start space-x-3 sm:space-x-0">
+                  <div className="text-xs sm:text-sm text-[#666666] sm:mb-1">Punch Out</div>
+                  <div className="font-medium text-[#333333] text-sm sm:text-base">{log.punchOut || '--'}</div>
+                </div>
+                <div className="flex sm:flex-col items-center sm:items-start space-x-3 sm:space-x-0">
+                  <div className="text-xs sm:text-sm text-[#666666] sm:mb-1">Total</div>
+                  <div className="font-medium text-[#333333] text-sm sm:text-base">{log.totalHours}</div>
+                </div>
+                <div className={`neu-small px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium ${getStatusColor(log.status)}`}>
+                  {log.status.replace('-', ' ').toUpperCase()}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-
-    <button className="w-full neu-button p-3 rounded-2xl mt-4 hover:text-[#ef5226] transition-colors">
-      Update Skills
-    </button>
-  </div>
 );
