@@ -11,39 +11,49 @@ const PayrollHeader = () => {
   );
 
   return (
-    <div className="neu-card p-6 rounded-3xl flex gap-6 items-center">
-      {/* LEFT CARD */}
-      <div className="flex items-center gap-6">
-        <div className="w-[45px] h-[45px] bg-[#00AEEF] rounded-lg flex items-center justify-center">
-          <Users size={26} color="white" />
-        </div>
-
-        <div>
-          <div className="text-xl font-bold">1,247</div>
-          <div className="text-[13px] -mt-0.5">
-            Total Employees
+    <div className="neu-card p-4 sm:p-6 rounded-3xl w-full overflow-hidden">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center w-full">
+        {/* LEFT CARD */}
+        <div className="flex items-center gap-4 shrink-0">
+          <div className="w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] bg-[#00AEEF] rounded-lg flex items-center justify-center">
+            <Users size={22} className="sm:w-6 sm:h-6 text-white" />
+          </div>
+          <div>
+            <div className="text-lg sm:text-xl font-bold">1,247</div>
+            <div className="text-xs sm:text-sm text-gray-600 -mt-0.5">
+              Total Employees
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* RIGHT SIDE DAYS + DATE ROW */}
-      <div className="flex-1">
-        <div className="flex gap-[18px] mb-1.5 text-[14px] font-semibold">
-          <span className="w-[40px]">Days</span>
-          {days.map((d, i) => (
-            <span key={i} className="w-[24px] text-center">
-              {d}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex gap-[18px] text-[14px]">
-          <span className="w-[40px]">Date</span>
-          {dates.map((dt, i) => (
-            <span key={i} className="w-[24px] text-center">
-              {dt}
-            </span>
-          ))}
+        {/* RIGHT SIDE - Days and Dates */}
+        <div className="w-full overflow-x-auto">
+          <div className="flex items-center min-w-max">
+            {/* Empty space to align with table columns */}
+            <div className="w-[120px] sm:w-[150px] mr-2">
+              <div className="h-6"></div>
+              <div className="h-6"></div>
+              
+            </div>
+            
+            {/* Days and Dates */}
+            <div className="flex-1">
+              <div className="flex gap-1 mb-1.5 text-xs sm:text-sm font-semibold">
+                {days.slice(0, 30).map((d, i) => (
+                  <div key={`day-${i}`} className="w-6 h-6 flex items-center justify-center">
+                    <span className="text-xs sm:text-sm">{d}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex gap-1 text-xs sm:text-sm">
+                {dates.map((dt, i) => (
+                  <div key={`date-${i}`} className="w-6 h-6 flex items-center justify-center">
+                    <span className="text-xs sm:text-sm">{dt}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

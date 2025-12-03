@@ -76,6 +76,8 @@ import SalaryOverview from './components/Salary/SalaryOverview.jsx';
 import PayrollHistory from './components/PayrollSalary/PayrollHistory.jsx';
 import NewPayroll from './components/PayrollClaim/NewPayroll.jsx';
 import NewClaim from './components/PayrollClaim/NewClaim.jsx';
+import PayrollProcess from './components/PayrollProcess/payrollprocess.jsx';
+import NewPayrollProcess from './components/PayrollProcess/NewPayrollProcess.jsx';
 
 function MeetingsLayout({ children }) {
   const navigate = useNavigate();
@@ -380,6 +382,7 @@ function App() {
               </MeetingsLayout>
             } />
             <Route path="/punch-in-out" element={<PunchInOut />} />
+            <Route path="/payroll-process" element={<PayrollProcess />} />
             <Route path="/employee-profile" element={
               <MeetingsLayout>
                 <EmployeeProfile />
@@ -393,168 +396,163 @@ function App() {
             } />
             <Route path="/add-employee" element={<AddEmployee />} />
             <Route path="/edit-meeting" element={<EditMeeting />} />
-<Route
-  path="/meeting-details"
-  element={
-    <ProtectedRoute>
-      <MeetingDetails />
-    </ProtectedRoute>
-  }
-/>
-            {/* VSLM DASHBAORD */}
+            <Route
+              path="/meeting-details"
+              element={
+                <ProtectedRoute>
+                  <MeetingDetails />
+                </ProtectedRoute>
+              }
+            />
+              {/* VSLM DASHBAORD */}
 
-              <Route path="/all-projects" element={
+                <Route path="/all-projects" element={
+                  <MeetingsLayout>
+                    <AllProjects onNavigate={(path, state) => {
+                      const navigationMap = {
+                        'project-edit': '/project-edit',
+                        'all-projects-list': '/all-projects-list'
+                      };
+                      const route = navigationMap[path] || '/';
+                      navigate(route, { state });
+                    }} />
+                  </MeetingsLayout>
+                } />
+                <Route path="/project-edit" element={<ProjectEdit />} />
+                <Route path="/new-employee" element={<AddNewEmployee />} />
+                <Route path="/new-project" element={<ProjectEdit isNew={true} />} />
+                <Route path="/uploaded-images" element={<UploadedImages />} />
+                <Route path="/project-timeline" element={<ProjectTimeline />} />
+                <Route path="/project-details" element={<ProjectDetails />} />
+                <Route path="/site-visit-log" element={<SiteVisitLog onNavigate={navigate} />} />
+                <Route path="/vslm-analytics" element={<VSLMAnalytics onNavigate={navigate} />} />
+                <Route path="/project-reports" element={<ProjectReports onNavigate={navigate} />} /> 
+                <Route path="/add-new-payroll" element={<NewPayrollProcess />} />
+              {/* Task Management Routes */}
+                <Route path="/task-dashboard" element={<TaskDashboard />} />
+                <Route path="/task-projects" element={<TaskProjects />} />
+                <Route path="/task-kanban" element={<TaskKanban />} />
+                <Route path="/new-task" element={<AddNewTask />} />
+                <Route path="/task-details" element={<TaskDetails />} />
+                <Route path="/task-dependencies" element={<TaskDependencies />} />
+                <Route path="/task-assignment" element={<TaskAssignment />} />
+                <Route path="/task-timeline" element={<TaskTimeline />} />
+                <Route path="/onboarding-new" element={
+                  <MeetingsLayout>
+                    <OnboardingNew />
+                  </MeetingsLayout>
+                } />
+                <Route path="/applicant-actions" element={<ApplicantActions />} />
+                <Route path="/subtasks-management" element={<SubtasksManagement />} />
+                <Route path="/task-assignment" element={<TaskAssignment />} />
+                <Route path="/task-analytics" element={<TaskAnalytics />} />
+                <Route path="/task-timeline" element={<TaskTimeline />} />
+                <Route path="/task-details" element={<TaskDetails />} />
+                {/* payroll routes  */}
+                <Route path="/attendance-overview" element={<PayrollOverview />} />
+                <Route path="/salary-overview" element={<SalaryOverview/>} />
+                <Route path="/payroll-history" element={<PayrollHistory/>} />
+                <Route path="/new-payroll" element={<NewPayroll/>} />
+                <Route path="/new-claim" element={<NewClaim/>} />
+                {/* Meeting Routes */}
+                <Route path="/meetings-attachments" element={<MeetingAttachments />} />
+                <Route path="/meeting-reports" element={
+                  <MeetingsLayout>
+                    <MeetingReports onNavigate={(path, state) => {
+                      const navigationMap = {
+                        'new-meeting': '/new-meeting',
+                        'all': '/meetings'
+                      };
+                      const route = navigationMap[path] || '/';
+                      navigate(route, { state });
+                    }} />
+                  </MeetingsLayout>
+                } />
+                <Route path="/offboarding-checklist" element={
+                  <MeetingsLayout>
+                    <OffboardingChecklist onNavigate={(path, state) => {
+                      const navigationMap = {
+                        'offboarding-dashboard': '/offboarding-dashboard',
+                        'exit-process': '/exit-process'
+                      };
+                      const route = navigationMap[path] || '/';
+                      navigate(route, { state });
+                    }} />
+                  </MeetingsLayout>
+                } />
+                <Route path="/new-task" element={<AddNewTask />} />
+                <Route path="/exit-process" element={
+                  <MeetingsLayout>
+                    <ExitProcess onNavigate={(path, state) => {
+                      const navigationMap = {
+                        'offboarding-checklist': '/offboarding-checklist',
+                        'offboarding-dashboard': '/offboarding-dashboard'
+                      };
+                      const route = navigationMap[path] || '/';
+                      navigate(route, { state });
+                    }} />
+                  </MeetingsLayout>
+                } />
+                <Route path="/offboarding-dashboard" element={
+                  <MeetingsLayout>
+                    <OffboardingDashboard />
+                  </MeetingsLayout>
+                } />
+                <Route path="/new-meeting" element={
+                  <MeetingsLayout>
+                    <NewMeeting />
+                  </MeetingsLayout>
+                } />
+                <Route path="/meeting-confirmation" element={
+                  <MeetingsLayout>
+                    <MeetingConfirmation />
+                  </MeetingsLayout>
+                } />
+                <Route path="/meetings" element={
+                  <MeetingsLayout>
+                    <AllMeetings />
+                  </MeetingsLayout>
+                } />
+                <Route path="/edit-meeting" element={
+                  <MeetingsLayout>
+                    <AllMeetings />
+                  </MeetingsLayout>
+                } />
+                <Route path="/calendar-meetings" element={
+                  <MeetingsLayout>
+                    <MeetingCalendar />
+                  </MeetingsLayout>
+                } />
+                <Route path="/job-openings" element={<JobOpeningsList />} />
+                <Route path="/new-job-opening" element={<NewJobOpening />} />
+                <Route path="/job-opening-details" element={<JobOpeningDetails />} />
+                <Route path="/edit-job-opening" element={<EditJobOpening />} />
+                <Route path="/applicants-list" element={<ApplicantsList onNavigate={navigate} />} />
+                <Route path="/interview-calendar" element={<InterviewCalendar />} />
+                <Route path="/new-interview" element={<NewInterview />} />
+                <Route path="/applicant-progress" element={<ApplicantProgress />} />
+                <Route path="/applicant-details" element={<ApplicantDetails />} />
+                <Route path="/interviews-list" element={<InterviewsList />} />
+                <Route path="/interview-details" element={<InterviewDetails />} />
+                <Route path="/applicant-resume" element={<ApplicantResume />} />
+                <Route path="/interviews" element={<InterviewsList />} />
+              <Route path="*" element={
                 <MeetingsLayout>
-                  <AllProjects onNavigate={(path, state) => {
-                    const navigationMap = {
-                      'project-edit': '/project-edit',
-                      'all-projects-list': '/all-projects-list'
-                    };
-                    const route = navigationMap[path] || '/';
-                    navigate(route, { state });
-                  }} />
+                  <div className="flex flex-col min-h-screen">
+                    <main className="flex-grow">
+                      <h1>404 - Page Not Found</h1>
+                      <p>The page you're looking for doesn't exist.</p>
+                    </main>
+                    <Footer />
+                  </div>
                 </MeetingsLayout>
               } />
-              <Route path="/project-edit" element={<ProjectEdit />} />
-              <Route path="/new-employee" element={<AddNewEmployee />} />
-              <Route path="/new-project" element={<ProjectEdit isNew={true} />} />
-              <Route path="/uploaded-images" element={<UploadedImages />} />
-              <Route path="/project-timeline" element={<ProjectTimeline />} />
-              <Route path="/project-details" element={<ProjectDetails />} />
-              <Route path="/site-visit-log" element={<SiteVisitLog onNavigate={navigate} />} />
-              <Route path="/vslm-analytics" element={<VSLMAnalytics onNavigate={navigate} />} />
-              <Route path="/project-reports" element={<ProjectReports onNavigate={navigate} />} /> 
-            {/* Task Management Routes */}
-            <Route path="/task-dashboard" element={<TaskDashboard />} />
-            <Route path="/task-projects" element={<TaskProjects />} />
-            <Route path="/task-kanban" element={<TaskKanban />} />
-            <Route path="/new-task" element={<AddNewTask />} />
-            <Route path="/task-details" element={<TaskDetails />} />
-            
-            <Route path="/task-dependencies" element={<TaskDependencies />} />
-            <Route path="/task-assignment" element={<TaskAssignment />} />
-            <Route path="/task-timeline" element={<TaskTimeline />} />
-            <Route path="/onboarding-new" element={
-              <MeetingsLayout>
-                <OnboardingNew />
-              </MeetingsLayout>
-            } />
-            <Route path="/applicant-actions" element={<ApplicantActions />} />
-            <Route path="/subtasks-management" element={<SubtasksManagement />} />
-            <Route path="/task-assignment" element={<TaskAssignment />} />
-            <Route path="/task-analytics" element={<TaskAnalytics />} />
-            <Route path="/task-timeline" element={<TaskTimeline />} />
-            <Route path="/task-details" element={<TaskDetails />} />
+              </Route>
+            </Routes>
+      </AuthContext.Provider>
+      );
+      }
 
-
-            {/* payroll routes  */}
-            <Route path="/attendance-overview" element={<PayrollOverview />} />
-            <Route path="/salary-overview" element={<SalaryOverview/>} />
-            <Route path="/payroll-history" element={<PayrollHistory/>} />
-            <Route path="/new-payroll" element={<NewPayroll/>} />
-            <Route path="/new-claim" element={<NewClaim/>} />
-
-            {/* Meeting Routes */}
-            <Route path="/meetings-attachments" element={<MeetingAttachments />} />
-            <Route path="/meeting-reports" element={
-              <MeetingsLayout>
-                <MeetingReports onNavigate={(path, state) => {
-                  const navigationMap = {
-                    'new-meeting': '/new-meeting',
-                    'all': '/meetings'
-                  };
-                  const route = navigationMap[path] || '/';
-                  navigate(route, { state });
-                }} />
-              </MeetingsLayout>
-            } />
-            <Route path="/offboarding-checklist" element={
-              <MeetingsLayout>
-                <OffboardingChecklist onNavigate={(path, state) => {
-                  const navigationMap = {
-                    'offboarding-dashboard': '/offboarding-dashboard',
-                    'exit-process': '/exit-process'
-                  };
-                  const route = navigationMap[path] || '/';
-                  navigate(route, { state });
-                }} />
-              </MeetingsLayout>
-            } />
-            <Route path="/new-task" element={<AddNewTask />} />
-            <Route path="/exit-process" element={
-              <MeetingsLayout>
-                <ExitProcess onNavigate={(path, state) => {
-                  const navigationMap = {
-                    'offboarding-checklist': '/offboarding-checklist',
-                    'offboarding-dashboard': '/offboarding-dashboard'
-                  };
-                  const route = navigationMap[path] || '/';
-                  navigate(route, { state });
-                }} />
-              </MeetingsLayout>
-            } />
-            <Route path="/offboarding-dashboard" element={
-              <MeetingsLayout>
-                <OffboardingDashboard />
-              </MeetingsLayout>
-            } />
-            <Route path="/new-meeting" element={
-              <MeetingsLayout>
-                <NewMeeting />
-              </MeetingsLayout>
-            } />
-            <Route path="/meeting-confirmation" element={
-              <MeetingsLayout>
-                <MeetingConfirmation />
-              </MeetingsLayout>
-            } />
-            <Route path="/meetings" element={
-              <MeetingsLayout>
-                <AllMeetings />
-              </MeetingsLayout>
-            } />
-            <Route path="/edit-meeting" element={
-              <MeetingsLayout>
-                <AllMeetings />
-              </MeetingsLayout>
-            } />
-            
-            <Route path="/calendar-meetings" element={
-              <MeetingsLayout>
-                <MeetingCalendar />
-              </MeetingsLayout>
-            } />
-            <Route path="/job-openings" element={<JobOpeningsList />} />
-            <Route path="/new-job-opening" element={<NewJobOpening />} />
-            <Route path="/job-opening-details" element={<JobOpeningDetails />} />
-            <Route path="/edit-job-opening" element={<EditJobOpening />} />
-            <Route path="/applicants-list" element={<ApplicantsList onNavigate={navigate} />} />
-            <Route path="/interview-calendar" element={<InterviewCalendar />} />
-            <Route path="/new-interview" element={<NewInterview />} />
-            <Route path="/applicant-progress" element={<ApplicantProgress />} />
-            <Route path="/applicant-details" element={<ApplicantDetails />} />
-            <Route path="/interviews-list" element={<InterviewsList />} />
-            <Route path="/interview-details" element={<InterviewDetails />} />
-            <Route path="/applicant-resume" element={<ApplicantResume />} />
-                        <Route path="/interviews" element={<InterviewsList />} />
-
-          <Route path="*" element={
-            <MeetingsLayout>
-              <div className="flex flex-col min-h-screen">
-                <main className="flex-grow">
-                  <h1>404 - Page Not Found</h1>
-                  <p>The page you're looking for doesn't exist.</p>
-                </main>
-                <Footer />
-              </div>
-            </MeetingsLayout>
-          } />
-          </Route>
-        </Routes>
 
       
-  </AuthContext.Provider>
-);
-}
-
 export default App;

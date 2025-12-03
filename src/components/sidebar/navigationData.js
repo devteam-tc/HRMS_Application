@@ -122,7 +122,7 @@ export const navigationItems = [
       { id: "new-payroll", label: "New Payroll", icon: Plus  , path: '/new-payroll' },
       { id: "payroll-details", label: "Payroll Details", icon: FileText  , path: '/payroll-details' },
       { id: "payroll-management", label: "Payroll Management", icon: CheckCircle  , path: '/payroll-management' },
-      { id: "payroll-dependencies", label: "Dependencies", icon: GitBranch  , path: '/payroll-dependencies' },
+      { id: "payroll-process", label: "Payroll Process", icon: GitBranch  , path: '/payroll-process' },
       { id: "payroll-assignment", label: "Team Assignment", icon: Users  , path: '/payroll-assignment' },
       { id: "payroll-timeline", label: "Timeline (Gantt)", icon: CalendarDays  , path: '/payroll-timeline' },
       { id: "payroll-analytics", label: "Analytics & Reports", icon: BarChart3  , path: '/payroll-analytics' },

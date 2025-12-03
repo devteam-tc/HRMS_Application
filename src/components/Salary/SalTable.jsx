@@ -59,19 +59,33 @@ const filteredEmployees = employees.filter(employee => {
   return (
     <div className="neu-card rounded-3xl overflow-hidden">
       {/* Header Section */}
-     
       {/* Search and Filter Section */}
-     
-
       {/* Table */}
       <div className="overflow-x-auto">
         <div className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
           <table className="w-full min-w-[1400px]">
+          {/* Grouped Headers */}
           <thead className="bg-[#FDFAFA] border-b-2 border-gray-200 sticky top-0 z-10">
             <tr>
+              <th colSpan="4" className="text-left py-3 px-4 text-[#2C318E] font-semibold text-sm bg-blue-50 border-r border-gray-200">
+                Employee Details
+              </th>
+              <th colSpan="5" className="text-center py-3 px-4 text-[#2C318E] font-semibold text-sm bg-green-50 border-r border-gray-200">
+                Earnings
+              </th>
+              <th colSpan="3" className="text-center py-3 px-4 text-[#2C318E] font-semibold text-sm bg-red-50 border-r border-gray-200">
+                Deductions
+              </th>
+              <th colSpan="3" className="text-center py-3 px-4 text-[#2C318E] font-semibold text-sm bg-purple-50">
+                Salary Details
+              </th>
+            </tr>
+            {/* Column Headers */}
+            <tr>
+              {/* Employee Details */}
               <th 
                 onClick={() => handleSort('name')}
-                className="text-left py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 cursor-pointer hover:bg-[#F0F0F0] transition-colors duration-150 sticky top-0 bg-[#FDFAFA] z-10"
+                className="text-left py-3 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 cursor-pointer hover:bg-[#F0F0F0] transition-colors duration-150 bg-white"
               >
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4 text-[#2C318E]" />
@@ -81,64 +95,73 @@ const filteredEmployees = employees.filter(employee => {
                   )}
                 </div>
               </th>
-              <th className="text-left py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 sticky top-0 bg-[#FDFAFA] z-10">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs neu-small px-2 py-1 rounded-xl">ID</span>
-                </div>
+              <th className="text-left py-3 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-white">
+                <span className="text-xs">EMP ID</span>
               </th>
               <th 
                 onClick={() => handleSort('designation')}
-                className="text-left py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 cursor-pointer hover:bg-[#F0F0F0] transition-colors duration-150 sticky top-0 bg-[#FDFAFA] z-10"
+                className="text-left py-3 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 cursor-pointer hover:bg-[#F0F0F0] transition-colors duration-150 bg-white"
               >
                 <div className="flex items-center gap-2">
                   <Briefcase className="w-4 h-4 text-[#2C318E]" />
                   <span>Designation</span>
-                  {sortConfig.key === 'designation' && (
-                    <span className="text-[#CA2030]">{sortConfig.direction === 'ascending' ? '↑' : '↓'}</span>
-                  )}
                 </div>
               </th>
               <th 
                 onClick={() => handleSort('department')}
-                className="text-left py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 cursor-pointer hover:bg-[#F0F0F0] transition-colors duration-150 sticky top-0 bg-[#FDFAFA] z-10"
+                className="text-left py-3 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 cursor-pointer hover:bg-[#F0F0F0] transition-colors duration-150 bg-white"
               >
                 <div className="flex items-center gap-2">
                   <Building className="w-4 h-4 text-[#2C318E]" />
                   <span>Department</span>
-                  {sortConfig.key === 'department' && (
-                    <span className="text-[#CA2030]">{sortConfig.direction === 'ascending' ? '↑' : '↓'}</span>
-                  )}
                 </div>
               </th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200">
-                <div className="flex items-center justify-center gap-2">
-                  <DollarSign className="w-4 h-4 text-[#2C318E]" />
-                  <span>Basic</span>
+              
+              {/* Earnings */}
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-green-50">
+                Basic
+              </th>
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-green-50">
+                HRA
+              </th>
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-green-50">
+                Conveyance
+              </th>
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-green-50">
+                Medical
+              </th>
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-green-50">
+                Other
+              </th>
+              
+              {/* Deductions */}
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-red-50">
+                PF
+              </th>
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-red-50">
+                ESI
+              </th>
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-red-50">
+                PT
+              </th>
+              
+              {/* Salary Details */}
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-blue-50">
+                <div className="flex flex-col items-center">
+                  <span>Total</span>
+                  <span className="text-xs font-normal">Earnings</span>
                 </div>
               </th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 sticky top-0 bg-[#FDFAFA] z-10">HRA</th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 sticky top-0 bg-[#FDFAFA] z-10">Conveyance</th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 sticky top-0 bg-[#FDFAFA] z-10">Medical</th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 sticky top-0 bg-[#FDFAFA] z-10">Other</th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-green-50 sticky top-0 z-10">
-                <div className="flex items-center justify-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-green-600" />
-                  <span>Gross</span>
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-red-50">
+                <div className="flex flex-col items-center">
+                  <span>Total</span>
+                  <span className="text-xs font-normal">Deductions</span>
                 </div>
               </th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 sticky top-0 bg-[#FDFAFA] z-10">PF</th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 sticky top-0 bg-[#FDFAFA] z-10">ESI</th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 sticky top-0 bg-[#FDFAFA] z-10">PT</th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm border-r border-gray-200 bg-red-50 sticky top-0 z-10">
-                <div className="flex items-center justify-center gap-2">
-                  <TrendingDown className="w-4 h-4 text-[#CA2030]" />
-                  <span>Total Deduction</span>
-                </div>
-              </th>
-              <th className="text-center py-4 px-4 text-[#333333] font-semibold text-sm bg-blue-50 sticky top-0 z-10">
-                <div className="flex items-center justify-center gap-2">
-                  <DollarSign className="w-4 h-4 text-[#2C318E]" />
-                  <span>Net Salary</span>
+              <th className="text-center py-3 px-2 text-[#333333] font-semibold text-sm bg-blue-50">
+                <div className="flex flex-col items-center">
+                  <span>Net</span>
+                  <span className="text-xs font-normal">Payable</span>
                 </div>
               </th>
             </tr>
@@ -151,54 +174,54 @@ const filteredEmployees = employees.filter(employee => {
                   rowIndex % 2 === 0 ? 'bg-white' : 'bg-[#FDFAFA]'
                 }`}
               >
-                <td className="py-4 px-4 border-r border-gray-200">
+                {/* Employee Details */}
+                <td className="py-3 px-4 border-r border-gray-200 bg-white">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-[#2C318E] to-[#CA2030] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                    <div className="w-8 h-8 bg-gradient-to-br from-[#2C318E] to-[#CA2030] rounded-full flex items-center justify-center text-white font-semibold text-xs">
                       {employee.name.charAt(0)}
                     </div>
                     <div>
-                      <p className="font-semibold text-[#333333] text-sm">
+                      <p className="font-medium text-[#333333] text-sm">
                         {employee.name}
                       </p>
-                      <p className="text-xs text-[#666666]">{employee.empId}</p>
                     </div>
                   </div>
                 </td>
-                <td className="py-4 px-4 border-r border-gray-200">
-                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium neu-small text-[#333333]">
+                <td className="py-3 px-2 text-center border-r border-gray-200 bg-white">
+                  <span className="text-sm text-[#666666]">
                     {employee.empId}
                   </span>
                 </td>
-                <td className="py-4 px-4 border-r border-gray-200">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-[#333333]">
-                      {employee.designation}
-                    </span>
-                  </div>
+                <td className="py-3 px-2 border-r border-gray-200 bg-white">
+                  <span className="text-sm text-[#333333]">
+                    {employee.designation}
+                  </span>
                 </td>
-                <td className="py-4 px-4 border-r border-gray-200">
-                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                    employee.department === 'IT' ? 'neu-small text-[#2C318E]' :
-                    employee.department === 'HR' ? 'neu-small text-[#CA2030]' :
-                    employee.department === 'Design' ? 'neu-small text-[#2C318E]' :
-                    employee.department === 'Analytics' ? 'neu-small text-[#2C318E]' :
-                    'neu-small text-[#666666]'
+                <td className="py-3 px-2 border-r border-gray-200 bg-white">
+                  <span className={`inline-flex items-center justify-center px-2 py-1 rounded text-xs font-medium ${
+                    employee.department === 'IT' ? 'bg-blue-100 text-blue-800' :
+                    employee.department === 'HR' ? 'bg-red-100 text-red-800' :
+                    employee.department === 'Design' ? 'bg-purple-100 text-purple-800' :
+                    employee.department === 'Analytics' ? 'bg-green-100 text-green-800' :
+                    'bg-gray-100 text-gray-800'
                   }`}>
                     {employee.department}
                   </span>
                 </td>
-                <td className="text-center py-4 px-4 border-r border-gray-200">
-                  <span className="text-sm font-medium text-[#333333]">
+                
+                {/* Earnings */}
+                <td className="text-center py-3 px-2 border-r border-gray-200 bg-green-50">
+                  <span className="text-sm text-[#333333]">
                     ₹{employee.basic.toLocaleString('en-IN')}
                   </span>
                 </td>
-                <td className="text-center py-4 px-4 border-r border-gray-200">
-                  <span className="text-sm text-gray-600">
+                <td className="text-center py-3 px-2 border-r border-gray-200 bg-green-50">
+                  <span className="text-sm text-[#333333]">
                     ₹{employee.hra.toLocaleString('en-IN')}
                   </span>
                 </td>
-                <td className="text-center py-4 px-4 border-r border-gray-200">
-                  <span className="text-sm text-gray-600">
+                <td className="text-center py-3 px-2 border-r border-gray-200 bg-green-50">
+                  <span className="text-sm text-[#333333]">
                     ₹{employee.conveyance.toLocaleString('en-IN')}
                   </span>
                 </td>

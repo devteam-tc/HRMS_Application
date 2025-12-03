@@ -9,17 +9,17 @@ const OverviewTable = ({ employees = defaultEmployees }) => {
   const [selectedDepartment, setSelectedDepartment] = useState('all');
 
   // Apply filters
- // Inside OverviewTable component
-const filteredEmployees = employees.filter((emp) => {
-  const matchesSearch =
-    emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    emp.empId.toLowerCase().includes(searchTerm.toLowerCase());
+  // Inside OverviewTable component
+  const filteredEmployees = employees.filter((emp) => {
+    const matchesSearch =
+      emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      emp.empId.toLowerCase().includes(searchTerm.toLowerCase());
 
-  const matchesDept =
-    selectedDepartment === "all" || emp.department === selectedDepartment;
+    const matchesDept =
+      selectedDepartment === "all" || emp.department === selectedDepartment;
 
-  return matchesSearch && matchesDept;
-});
+    return matchesSearch && matchesDept;
+  });
 
   return (
     <>

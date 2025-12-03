@@ -17,36 +17,42 @@ const defaultEmployees = [
   {
     id: 1,
     name: 'John Doe',
+    department: 'Sales',
     empId: 'EMP-001',
     attendance: ['present', 'present', 'absent', 'holiday', 'present', 'present', 'weekOff', 'leave', 'present', 'present', 'present', 'present', 'present', 'late', 'present', 'present', 'present', 'present', 'holiday', 'present', 'present', 'remote', 'present', 'present']
   },
   {
     id: 2,
     name: 'Mary Wilson',
+    department: 'Engineering',
     empId: 'EMP-002',
     attendance: ['present', 'leave', 'late', 'present', 'present', 'remote', 'present', 'present', 'present', 'weekOff', 'present', 'present', 'present', 'present', 'present', 'present', 'absent', 'present', 'present', 'present', 'present', 'present', 'present', 'present']
   },
   {
     id: 3,
     name: 'David Brown',
+    department: 'Finance',
     empId: 'EMP-003',
     attendance: ['present', 'present', 'present', 'remote', 'present', 'present', 'present', 'present', 'holiday', 'leave', 'present', 'present', 'weekOff', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present']
   },
   {
     id: 4,
     name: 'Emily Johnson',
+    department: 'HR',
     empId: 'EMP-004',
     attendance: ['present', 'present', 'present', 'present', 'late', 'holiday', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'weekOff', 'present', 'present', 'present', 'present', 'present', 'present']
   },
   {
     id: 5,
     name: 'Tom Anderson',
+    department: 'Operations',
     empId: 'EMP-005',
     attendance: ['present', 'present', 'present', 'holiday', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present']
   },
   {
     id: 6,
     name: 'Tom Anderson',
+    department: 'HR',
     empId: 'EMP-006',
     attendance: ['present', 'present', 'present', 'holiday', 'present', 'present', 'present', 'present', 'leave', 'present', 'present', 'present', 'weekOff', 'present', 'present', 'late', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present']
   },
@@ -65,7 +71,10 @@ const PayrollTable = ({ employees = defaultEmployees }) => {
       <div className="overflow-x-auto">
         <table className="w-full min-w-[700px]">
           <thead className="bg-[#fff]">
-            <tr>
+            <tr>  
+               <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-[#333333] font-medium text-xs sm:text-sm">
+                Departments
+              </th>
               <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-[#333333] font-medium text-xs sm:text-sm">
                 Emp Name
               </th>
@@ -83,7 +92,14 @@ const PayrollTable = ({ employees = defaultEmployees }) => {
                 key={employee.id}
                 className={rowIndex % 2 === 0 ? 'bg-[#fff]' : 'bg-[#FDFAFA]'}
               >
+                 <td className="py-3 sm:py-4 px-3 sm:px-6">
+                 
+                  <p className="font-medium text-[#333333] mb-1 text-sm sm:text-base">
+                    {employee.department}
+                  </p>
+                </td>
                 <td className="py-3 sm:py-4 px-3 sm:px-6">
+                 
                   <p className="font-medium text-[#333333] mb-1 text-sm sm:text-base">
                     {employee.name}
                   </p>
